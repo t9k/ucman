@@ -1,0 +1,575 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>TensorStack AI 计算平台 - User Console 用户手册</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="theme/sidebar.css">
+        <link rel="stylesheet" href="theme/custom.css">
+        <link rel="stylesheet" href="theme/version-dropdown.css">
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="overview.html">概述</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="homepage.html"><strong aria-hidden="true">1.</strong> 首页</a></li><li class="chapter-item expanded "><a href="storage/index.html"><strong aria-hidden="true">2.</strong> 存储</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="storage/volume.html"><strong aria-hidden="true">2.1.</strong> 创建存储卷</a></li><li class="chapter-item expanded "><a href="storage/adapter.html"><strong aria-hidden="true">2.2.</strong> 创建存储适配器</a></li></ol></li><li class="chapter-item expanded "><a href="app/index.html"><strong aria-hidden="true">3.</strong> 应用</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="app/jupyter-lab.html"><strong aria-hidden="true">3.1.</strong> 部署 Jupyter Lab</a></li><li class="chapter-item expanded "><a href="app/terminal.html"><strong aria-hidden="true">3.2.</strong> 部署 Terminal</a></li><li class="chapter-item expanded "><a href="app/codeserver.html"><strong aria-hidden="true">3.3.</strong> 部署 CodeServer</a></li><li class="chapter-item expanded "><a href="app/job-manager.html"><strong aria-hidden="true">3.4.</strong> 部署 Job Manager</a></li><li class="chapter-item expanded "><a href="app/postgresql.html"><strong aria-hidden="true">3.5.</strong> 部署 PostgreSQL</a></li></ol></li><li class="chapter-item expanded "><a href="network/index.html"><strong aria-hidden="true">4.</strong> 网络服务</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="network/service.html"><strong aria-hidden="true">4.1.</strong> 查看 Service</a></li><li class="chapter-item expanded "><a href="network/ingress.html"><strong aria-hidden="true">4.2.</strong> 查看 Ingress</a></li></ol></li><li class="chapter-item expanded "><a href="auxiliary/index.html"><strong aria-hidden="true">5.</strong> 辅助资源</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="auxiliary/secret.html"><strong aria-hidden="true">5.1.</strong> 创建 Secret</a></li><li class="chapter-item expanded "><a href="auxiliary/configmap.html"><strong aria-hidden="true">5.2.</strong> 创建 ConfigMap</a></li></ol></li><li class="chapter-item expanded "><a href="account/index.html"><strong aria-hidden="true">6.</strong> 账户设置</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="account/view-profile.html"><strong aria-hidden="true">6.1.</strong> 查看账户信息</a></li><li class="chapter-item expanded "><a href="account/project-management.html"><strong aria-hidden="true">6.2.</strong> 项目管理</a></li><li class="chapter-item expanded "><a href="account/security-setting.html"><strong aria-hidden="true">6.3.</strong> 安全设置</a></li><li class="chapter-item expanded "><a href="account/view-bill.html"><strong aria-hidden="true">6.4.</strong> 查看账单</a></li><li class="chapter-item expanded "><a href="account/alert-notification.html"><strong aria-hidden="true">6.5.</strong> 告警通知</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        <!-- custom code for adding release version dropdown menu -->
+                        <div class="version-dropdown">
+                            <button id="release-version" class="icon-button" type="button" title="Release version" aria-label="Release version" aria-haspopup="true" aria-expanded="false" aria-controls="release-versions">
+                                <i class="fa fa-book"></i>
+                            </button>
+                            <div class="version-dropdown-content">
+                                <a href="https://t9k.github.io/user-manuals/latest/index.html"target="_blank" rel="noopener noreferrer">latest</a>
+                                <a href="https://t9k.github.io/user-manuals/v20240206/index.html"target="_blank" rel="noopener noreferrer">v20240206</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h1 class="menu-title">TensorStack AI 计算平台 - User Console 用户手册</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="sidetoc"><nav class="pagetoc"></nav></div>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="概述"><a class="header" href="#概述">概述</a></h1>
+<p>（介绍 User Console）</p>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="首页"><a class="header" href="#首页">首页</a></h1>
+<p>在开始使用 User Console 前，你需要：</p>
+<ol>
+<li>了解<a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/modules/security/account.html">账户</a>和<a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/modules/security/project.html">项目</a>的概念。</li>
+<li>拥有一个账户，且该账户至少是一个项目的成员。</li>
+</ol>
+<p>User Console 首页包含以下元素：</p>
+<ol>
+<li>顶部导航栏（包括白色和蓝色两个导航栏）</li>
+<li>左侧导航菜单</li>
+<li>中间的各项功能和账户统计</li>
+</ol>
+<figure class="screenshot">
+  <img alt="homepage" src="./assets/homepage.png" />
+</figure>
+<p>顶部白色导航栏的右侧有一些快捷按键，分别提供了以下功能：</p>
+<ol>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2Z"/></svg></span>：使用 YAML 创建 K8s 资源</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24Z"/></svg></span>：切换语言</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 18h2v-2h-2v2m1-16A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m0-14a4 4 0 0 0-4 4h2a2 2 0 0 1 2-2 2 2 0 0 1 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5a4 4 0 0 0-4-4Z"/></svg></span>：打开用户文档</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 21h4c0 1.1-.9 2-2 2s-2-.9-2-2m11-2v1H3v-1l2-2v-6c0-3.1 2-5.8 5-6.7V4c0-1.1.9-2 2-2s2 .9 2 2v.3c3 .9 5 3.6 5 6.7v6l2 2m-4-8c0-2.8-2.2-5-5-5s-5 2.2-5 5v7h10v-7Z"/></svg></span>：显示当前账户订阅的告警信息</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 19.2c-2.5 0-4.71-1.28-6-3.2.03-2 4-3.1 6-3.1s5.97 1.1 6 3.1a7.232 7.232 0 0 1-6 3.2M12 5a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3m0-3A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10Z"/></svg></span>：显示当前用户信息，可用于退出登录</li>
+</ol>
+<p>蓝色面包屑导航栏的左侧可以显示/隐藏左侧导航菜单，右侧是手动刷新按键和自动刷新的开关。</p>
+<p>左侧导航菜单和中间区域对应的各项功能在下文介绍。</p>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="存储"><a class="header" href="#存储">存储</a></h1>
+<p>本章演示左侧导航菜单<strong>存储</strong>相关的常用功能。</p>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="创建存储卷"><a class="header" href="#创建存储卷">创建存储卷</a></h1>
+<p><a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/modules/storage/pvc.html">PVC</a> 是一种 Kubernetes 原生资源，是对存储的需求声明。用户可以请求特定大小和访问模式的存储，而不必关心存储的具体实现。本章演示如何创建一个 PVC。</p>
+<p>点击菜单<strong>存储 &gt; 存储卷</strong>，打开 PVC 的列表页面。然后点击右上角<strong>创建 PVC</strong>，进入 PVC 创建页面：</p>
+<figure class="screenshot">
+  <img alt="list-pvc" src="storage/../assets/storage/list-pvc.png" />
+</figure>
+<p>填写 PVC 的名称、存储空间大小，选择访问模式、存储类，确认右上角选择的项目，然后点击右上方的<strong>创建</strong>：</p>
+<figure class="screenshot">
+  <img alt="create-pvc" src="storage/../assets/storage/create-pvc.png" />
+</figure>
+<p>回到存储卷列表，可以看到刚创建的 PVC：</p>
+<figure class="screenshot">
+  <img alt="created-pvc" src="storage/../assets/storage/created-pvc.png" />
+</figure>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="创建存储适配器"><a class="header" href="#创建存储适配器">创建存储适配器</a></h1>
+<p><a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/modules/storage/storageshim.html">StorageShim</a> 用于将已有的存储系统以 PVC 的形式提供给用户使用，例如将分布式文件系统的某个子目录作为一个 PVC 使用。本章演示创建 CephFs 类型的存储适配器，将 CephFs 的一个子目录作为一个 PVC。</p>
+<p>在开始之前，你需要依靠从管理员处获得的信息，先完成<a href="storage/../auxiliary/secret.html">创建 Secret</a> 和<a href="storage/../auxiliary/configmap.html">创建 ConfigMap</a>。</p>
+<p>点击菜单<strong>存储 &gt; 适配器</strong>，打开适配器的列表页面。然后点击右上角<strong>创建 StorageShim</strong>，进入创建页面：</p>
+<figure class="screenshot">
+  <img alt="list-storageshim" src="storage/../assets/storage/list-storageshim.png" />
+</figure>
+<p>选择类型为 CephFs，并选择提前创建好的 Ceph 服务器 ConfigMap 和 Ceph 客户端 Secret。其中的 ConfigMap 可以是管理员创建的公共配置，或者自己创建的私有配置：</p>
+<figure class="screenshot">
+  <img alt="create-storageshim-1" src="storage/../assets/storage/create-storageshim-1.png" />
+</figure>
+<p>然后填写名称和 CephFS 路径。如果不知道可用的 CephFS 路径信息，可以询问管理员。最后点击右上角的创建：</p>
+<figure class="screenshot">
+  <img alt="create-storageshim-2" src="storage/../assets/storage/create-storageshim-2.png" />
+</figure>
+<p>创建成功后，等待适配器就绪即可：</p>
+<figure class="screenshot">
+  <img alt="created-storageshim" src="storage/../assets/storage/created-storageshim.png" />
+</figure>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="应用"><a class="header" href="#应用">应用</a></h1>
+<p>应用是能实现某一特定功能的软件，例如文件管理工具、开发环境等。本章演示左侧导航菜单 <strong>应用</strong> 相关的常用功能。</p>
+<p>点击左侧导航菜单的<strong>应用</strong>，查看所有已经部署的应用：</p>
+<figure class="screenshot">
+  <img alt="list-app" src="app/../assets/app/list-app.png" />
+</figure>
+<p>点击上图右上角的<strong>部署应用</strong>，查看所有可部署的应用：</p>
+<figure class="screenshot">
+  <img alt="app-catalog" src="app/../assets/app/app-catalog.png" />
+</figure>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="部署-jupyter-lab"><a class="header" href="#部署-jupyter-lab">部署 Jupyter Lab</a></h1>
+<p><a target="_blank" rel="noopener noreferrer" href="https://jupyterlab.readthedocs.io/en/latest/">JupyterLab</a> 是一款非常流行的机器学习开发工具，它通过友好易用的 Web 界面提供交互式计算环境，支持多种编程语言和执行环境，在机器学习、AI、数据处理、数值模拟、统计建模、数据可视化等领域被广泛使用。</p>
+<p>点击 <strong>Jupyter Lab</strong> 应用，可以选择 CPU 版本或者 GPU 版本，进入详情页面：</p>
+<figure class="screenshot">
+  <img alt="select-jupyter-lab" src="app/../assets/app/select-jupyter-lab.png" />
+</figure>
+<p>在详情页面，你可以看到如何配置 Jupyter Lab，这包含了可用镜像列表、示例 YAML 和参数说明。确认信息后，点击右上角的<strong>立刻部署</strong>进入创建页面：</p>
+<figure class="screenshot">
+  <img alt="readme-jupyter-lab" src="app/../assets/app/readme-jupyter-lab.png" />
+</figure>
+<p>点击上方的 <strong>README</strong> 再次查看说明信息，这些信息可以帮助你正确地设置 Jupyter Lab 的运行参数：</p>
+<figure class="screenshot">
+  <img alt="parameter-jupyter-lab" src="app/../assets/app/parameter-jupyter-lab.png" />
+</figure>
+<aside class="note tip">
+<div class="title">提示</div>
+<p>用户通常可以通过<strong>表单</strong>或者 <strong>YAML 编辑器</strong>进行应用的配置。前者提供了一个直观的界面，让你可以方便地填写和修改参数；而后者则需要你直接编辑 YAML 文件，适合熟悉 YAML 格式的资深用户使用。如果你不确定参数的含义，可以点击<strong>README</strong>标签来查看各个参数的说明。</p>
+</aside>
+<p>较简单的配置方式是直接在<strong>表单</strong>页面中填写给出的字段：</p>
+<figure class="screenshot">
+  <img alt="form-jupyter-lab" src="app/../assets/app/form-jupyter-lab.png" />
+</figure>
+<p>熟悉 YAML 的用户可以在 <strong>YAML 编辑器</strong>中编辑相应的字段：</p>
+<figure class="screenshot">
+  <img alt="yaml-jupyter-lab" src="app/../assets/app/yaml-jupyter-lab.png" />
+</figure>
+<p>填写配置后，点击右上角的<strong>部署</strong>。然后等待新的 Jupyter Lab 服务就绪：</p>
+<figure class="screenshot">
+  <img alt="wait-for-jupyter-lab" src="app/../assets/app/wait-for-jupyter-lab.png" />
+</figure>
+<p>服务就绪后，点击右侧的<strong>链接</strong>，即可使用该应用：</p>
+<figure class="screenshot">
+  <img alt="ui-jupyter-lab" src="app/../assets/app/ui-jupyter-lab.png" />
+</figure>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="部署-terminal"><a class="header" href="#部署-terminal">部署 Terminal</a></h1>
+<p>Terminal 是一个通过 Web 使用的终端应用。用户可以在浏览器中连接到该终端以进行各项工作，包括使用 kubectl 管理 K8s 资源。本章演示如何部署 Terminal 应用。</p>
+<p>点击应用 <strong>Terminal</strong>，进入详情页面：</p>
+<figure class="screenshot">
+  <img alt="select-terminal" src="app/../assets/app/select-terminal.png" />
+</figure>
+<p>在详情页面，你可以看到如何配置 Terminal，这包含了示例 YAML 和参数说明。确认信息后，点击右上角的<strong>立刻部署</strong>进入创建页面：</p>
+<figure class="screenshot">
+  <img alt="readme-terminal" src="app/../assets/app/readme-terminal.png" />
+</figure>
+<p>创建页面已经提供了默认配置，直接点击右上角的<strong>部署</strong>创建应用：</p>
+<figure class="screenshot">
+  <img alt="form-terminal" src="app/../assets/app/form-terminal.png" />
+</figure>
+<p>等待应用就绪：</p>
+<figure class="screenshot">
+  <img alt="wait-for-terminal" src="app/../assets/app/wait-for-terminal.png" />
+</figure>
+<p>服务就绪后，点击右侧的<strong>链接</strong>，即可在网页中使用 Terminal：</p>
+<figure class="screenshot">
+  <img alt="ui-terminal" src="app/../assets/app/ui-terminal.png" />
+</figure>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="部署-codeserver"><a class="header" href="#部署-codeserver">部署 CodeServer</a></h1>
+<p>CodeServer 是一个可以通过浏览器访问的 VSCode 服务。本章演示如何部署 CodeServer 应用。</p>
+<p>点击应用 <strong>CodeServer</strong>，进入详情页面：</p>
+<figure class="screenshot">
+  <img alt="select-codeserver" src="app/../assets/app/select-codeserver.png" />
+</figure>
+<p>在详情页面，你可以看到如何配置 CodeServer，这包含了示例 YAML 及参数说明。确认信息后，点击右上角的<strong>立刻部署</strong>进入创建页面：</p>
+<figure class="screenshot">
+  <img alt="readme-codeserver" src="app/../assets/app/readme-codeserver.png" />
+</figure>
+<p>通过<strong>表单</strong>配置 CodeServer。为 <code>spec.storageName</code> 字段赋值 <code>demo</code>，即之前创建的存储卷的名称。最后点击右上角的<strong>部署</strong>：</p>
+<figure class="screenshot">
+  <img alt="readme-codeserver" src="app/../assets/app/readme-codeserver.png" />
+</figure>
+<p>查看创建成功的 CodeServer 服务，并等待它就绪：</p>
+<figure class="screenshot">
+  <img alt="wait-for-codeserver" src="app/../assets/app/wait-for-codeserver.png" />
+</figure>
+<p>点击 CodeServer 右侧的<strong>链接</strong>，即可使用该应用：</p>
+<figure class="screenshot">
+  <img alt="ui-codeserver" src="app/../assets/app/ui-codeserver.png" />
+</figure>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="部署-job-manager"><a class="header" href="#部署-job-manager">部署 Job Manager</a></h1>
+<p>Job Manager 是一个用于管理计算任务的控制台，可执行创建任务、查看任务状态、监控任务事件等操作。</p>
+<p>点击 <strong>Job Manager</strong> 应用，进入详情页面：</p>
+<figure class="screenshot">
+  <img alt="select-job-manager" src="app/../assets/app/select-job-manager.png" />
+</figure>
+<p>在详情页面，你可以看到如何配置 Jupyter Lab，这包含了示例 YAML 和参数说明。确认信息后，点击右上角的<strong>立刻部署</strong>进入创建页面：</p>
+<figure class="screenshot">
+  <img alt="readme-job-manager" src="app/../assets/app/readme-job-manager.png" />
+</figure>
+<p>Job Manager 的可配置参数较多，因此没有通过<strong>表单</strong>配置的选项。<strong>YAML 编辑器</strong>中已经预设了一组可用的值，你可以直接使用预设值部署：</p>
+<figure class="screenshot">
+  <img alt="yaml-job-manager" src="app/../assets/app/yaml-job-manager.png" />
+</figure>
+<p>确认配置后，点击右上角的<strong>部署</strong>，并等待应用就绪：</p>
+<figure class="screenshot">
+  <img alt="wait-for-job-manager" src="app/../assets/app/wait-for-job-manager.png" />
+</figure>
+<p>服务就绪后，点击右侧的<strong>链接</strong>，即可使用该应用：</p>
+<figure class="screenshot">
+  <img alt="ui-job-manager" src="app/../assets/app/ui-job-manager.png" />
+</figure>
+<aside class="note tip">
+<div class="title">提示</div>
+<p>Job 的定义请参考<a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/modules/jobs/index.html">用户文档 Job</a>，使用示例请参考<a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/tasks/model-training.html">运行模型训练</a>。</p>
+</aside>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="部署-postgresql"><a class="header" href="#部署-postgresql">部署 PostgreSQL</a></h1>
+<p><a target="_blank" rel="noopener noreferrer" href="https://www.postgresql.org/">PostgreSQL</a> 是一个开源对象关系数据库，以可靠性和数据完整性而闻名。本章演示部署一个 PostgreSQL 应用。</p>
+<p>点击 <strong>PostgreSQL</strong> 应用，进入详情页面：</p>
+<figure class="screenshot">
+  <img alt="select-postgresql" src="app/../assets/app/select-postgresql.png" />
+</figure>
+<p>查看 PostgreSQL 的说明：</p>
+<figure class="screenshot">
+  <img alt="readme-postgresql" src="app/../assets/app/readme-postgresql.png" />
+</figure>
+<p>向下浏览，可以找到 <strong>Parameters</strong> 标题，这里提供了各个参数的含义。确认信息后，点击右上角<strong>立刻部署</strong>进入部署页面：</p>
+<figure class="screenshot">
+  <img alt="parameter-postgresql" src="app/../assets/app/parameter-postgresql.png" />
+</figure>
+<p>结合实际情况和 <strong>README</strong> 中的说明，通过<strong>表单</strong>或者 <strong>YAML 编辑器</strong>配置参数：</p>
+<figure class="screenshot">
+  <img alt="yaml-postgresql" src="app/../assets/app/yaml-postgresql.png" />
+</figure>
+<p>我们采用默认设置进行安装，仅设置变量 <code>global.postgresql.auth.postgresPassword</code> 即可。点击右上角的<strong>部署</strong>，并等待应用就绪：</p>
+<figure class="screenshot">
+  <img alt="wait-for-postgresql" src="app/../assets/app/wait-for-postgresql.png" />
+</figure>
+<p>PostgreSQL 应用没有 UI 界面，因此无法直接通过链接访问。</p>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="网络服务"><a class="header" href="#网络服务">网络服务</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="查看-service"><a class="header" href="#查看-service">查看 Service</a></h1>
+<p><a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/zh-cn/docs/concepts/services-networking/service/">Service</a> 是将运行在一个或一组 Pod 上的网络应用程序公开为网络服务的方法。大部分应用在部署时会自动创建相应的 Service，以方便集群中的其他服务进行访问。</p>
+<p>点击<strong>网络服务 &gt; Service</strong>，查看已有的 Service：</p>
+<figure class="screenshot">
+  <img alt="list-service" src="network/../assets/network/list-service.png" />
+</figure>
+<p>例如，部署 PostgreSQL 应用时，会自动创建以下 Service：</p>
+<figure class="screenshot">
+  <img alt="create-service" src="network/../assets/network/create-service.png" />
+</figure>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="查看-ingress"><a class="header" href="#查看-ingress">查看 Ingress</a></h1>
+<p><a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/zh-cn/docs/concepts/services-networking/ingress/">Ingress</a> 提供从集群外部到集群内服务的 HTTP 和 HTTPS 路由。 流量路由由 Ingress 资源所定义的规则来控制。</p>
+<p>点击<strong>网络服务 &gt; Ingress</strong>，查看已有的 Ingress：</p>
+<figure class="screenshot">
+  <img alt="list-ingress" src="network/../assets/network/list-ingress.png" />
+</figure>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="辅助资源"><a class="header" href="#辅助资源">辅助资源</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="创建-secret"><a class="header" href="#创建-secret">创建 Secret</a></h1>
+<p><a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/modules/auxiliary/secret.html">Secret</a> 是一种 Kubernetes 原生资源，用于存储少量敏感信息，比如密码、OAuth 令牌、SSH 密钥等。使用 Secret 可以避免将敏感数据直接写入到 Pod 的定义中或者应用程序代码里，从而提高了安全性。</p>
+<p>本章演示创建一个 Ceph 客户端的 Secret。在开始之前，你需要从管理员处获取 Ceph Client 的 userID 和 userKey。</p>
+<p>点击<strong>辅助 &gt; ConfigMap</strong>，查看已有的 Secret：</p>
+<figure class="screenshot">
+  <img alt="list-secret" src="auxiliary/../assets/auxiliary/list-secret.png" />
+</figure>
+<p>点击右上角的创建，进入创建页面，并选择模板为 <strong>Ceph Client</strong>：</p>
+<figure class="screenshot">
+  <img alt="create-secret-1" src="auxiliary/../assets/auxiliary/create-secret-1.png" />
+</figure>
+<p>填写名称、userID 和 userKey，点击创建即可完成 Secret 的创建：</p>
+<figure class="screenshot">
+  <img alt="create-secret-2" src="auxiliary/../assets/auxiliary/create-secret-2.png" />
+</figure>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="创建-configmap"><a class="header" href="#创建-configmap">创建 ConfigMap</a></h1>
+<p><a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/modules/auxiliary/configmap.html">ConfigMap</a> 是一种 API 对象，用来将非机密性的数据保存到键值对中。本章演示创建 ConfigMap 来保存 Ceph 服务的信息。</p>
+<aside class="note">
+<div class="title">注意</div>
+<p>本章的示例是用户创建一个保存了 Ceph 配置信息的 ConfigMap 作为自己的私有配置。在实际使用中，也可以让管理员创建一个 ConfigMap 作为所有用户的公共配置。</p>
+</aside>
+<p>点击<strong>辅助 &gt; ConfigMap</strong>，查看已有的 ConfigMap：</p>
+<figure class="screenshot">
+  <img alt="list-configmap" src="auxiliary/../assets/auxiliary/list-configmap.png" />
+</figure>
+<p>点击右上角的<strong>创建</strong>，进入创建页面。填写 ConfigMap 名称、标签和数据（这些数据的值来自于管理员），点击右上角的<strong>创建</strong>，即可完成 ConfigMap 的创建：</p>
+<figure class="screenshot">
+  <img alt="create-configmap" src="auxiliary/../assets/auxiliary/create-configmap.png" />
+</figure>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="账户设置"><a class="header" href="#账户设置">账户设置</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="查看账户信息"><a class="header" href="#查看账户信息">查看账户信息</a></h1>
+<p>点击左侧的<strong>账户设置 &gt; 账户信息</strong>，展示了用户的信息：</p>
+<figure class="screenshot">
+  <img alt="profile" src="account/../assets/account/profile.png" />
+</figure>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="项目管理"><a class="header" href="#项目管理">项目管理</a></h1>
+<p>点击左侧的<strong>账户设置 &gt; 项目管理</strong>，展示了当前用户有权限访问的项目：</p>
+<figure class="screenshot">
+  <img alt="project-management" src="account/../assets/account/project-management.png" width="80%" />
+</figure>
+<p>在<strong>我的项目</strong>部分，展示的都是当前用户作为项目管理员的项目。这些项目产生的所有费用，都将结算到当前用户的账单中。而在<strong>分享给我的项目</strong>部分展示的项目中，当前用户是项目的普通成员，不需要承担项目的费用。</p>
+<p>点击项目名称，可以查看项目的管理员和成员。如果当前用户是项目管理员，还可以点击<strong>成员</strong>右侧的编辑按键调整项目成员：</p>
+<figure class="screenshot">
+  <img alt="view-member" src="account/../assets/account/view-member.png" />
+</figure>
+<p>点击<strong>成员</strong>右侧的加号，添加用户或者用户组为项目成员；点击已有成员右侧的减号，可以将该用户或者用户组移除项目成员：</p>
+<figure class="screenshot">
+  <img alt="edit-member" src="account/../assets/account/edit-member.png" />
+</figure>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="安全设置"><a class="header" href="#安全设置">安全设置</a></h1>
+<p>点击左侧的<strong>账户设置 &gt; 安全设置</strong>，进入安全设置页面：</p>
+<figure class="screenshot">
+  <img alt="security-setting" src="account/../assets/account/security-setting.png" />
+</figure>
+<p>安全设置页面提供了两个功能，修改密码和管理 API Key。这里我们只演示如何管理 API Key。</p>
+<p>初次使用时，需要点击<strong>管理 API Key</strong> 的<strong>启用</strong>，输入密码来开启 API Key 功能。然后，点击<strong>生成 APIKey</strong> 进入创建页面：</p>
+<figure class="screenshot">
+  <img alt="create-api-key-1" src="account/../assets/account/create-api-key-1.png" />
+</figure>
+<p>在创建页面，输入 APIKey 的名称，并勾选该 API Key 的权限。点击下面的<strong>生成 APIKey</strong>完成创建：</p>
+<figure class="screenshot">
+  <img alt="create-api-key-2" src="account/../assets/account/create-api-key-2.png" />
+</figure>
+<p>创建完成后，可以复制 API Key 的值：</p>
+<figure class="screenshot">
+  <img alt="create-api-key-3" src="account/../assets/account/create-api-key-3.png" />
+</figure>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="查看账单"><a class="header" href="#查看账单">查看账单</a></h1>
+<p>点击左侧的<strong>账户设置 &gt; 账单</strong>，可以查看账单页面：</p>
+<figure class="screenshot">
+  <img alt="bill" src="account/../assets/account/bill.png" />
+</figure>
+<p><strong>账单</strong>显示了当前用户拥有的所有项目的各类费用总和。这些费用来源于你拥有的项目中使用的各种资源，包括计算资源（例如 CPU、GPU、内存）、存储资源（例如 PVC）和网络资源（例如流量）。注意：项目中所有资源的费用都由项目管理员负责，即使这个资源是其他项目成员创建的。</p>
+<p><strong>费用详情</strong>列出了费用的细分条目，即每一种资源产生的具体费用。如果你想了解某一种资源的计费方式，可以将鼠标放在该资源右侧的 感叹号 上：</p>
+<figure class="screenshot">
+  <img alt="billing-practices" src="account/../assets/account/billing-practices.png" />
+</figure>
+<p>点击<strong>下载当前表格</strong>，可以下载一个包含了<strong>费用详情</strong>信息的 csv 文件。</p>
+<p>点击<strong>查看当前价格</strong>，可以查看每种资源的单价：</p>
+<figure class="screenshot">
+  <img alt="price" src="account/../assets/account/price.png" />
+</figure>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="告警通知"><a class="header" href="#告警通知">告警通知</a></h1>
+<p>点击左侧的<strong>账户设置 &gt; 告警通知</strong>，可以查看告警信息。你也可以通过点击上方白色导航栏的右侧的<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 21h4c0 1.1-.9 2-2 2s-2-.9-2-2m11-2v1H3v-1l2-2v-6c0-3.1 2-5.8 5-6.7V4c0-1.1.9-2 2-2s2 .9 2 2v.3c3 .9 5 3.6 5 6.7v6l2 2m-4-8c0-2.8-2.2-5-5-5s-5 2.2-5 5v7h10v-7Z"/></svg></span>跳转到这个页面：</p>
+<figure class="screenshot">
+  <img alt="alert" src="account/../assets/account/alert.png" />
+</figure>
+<p>展开告警信息，可以看到更详细的说明。包括告警信息的开始时间、状态、标签、注释：</p>
+<figure class="screenshot">
+  <img alt="alert-detailed" src="account/../assets/account/alert-detailed.png" />
+</figure>
+<p>点击上方的<strong>通知</strong>标签页，可以设置告警信息的订阅状态：</p>
+<figure class="screenshot">
+  <img alt="subscribe-alert" src="account/../assets/account/subscribe-alert.png" />
+</figure>
+<p>填写邮箱地址，勾选你想订阅的告警信息，点击最下方的<strong>保存修改</strong>。被订阅的告警信息触发后，TensorStack AI 平台会发送邮件到指定的邮箱地址：</p>
+<figure class="screenshot">
+  <img alt="subscribed-alert" src="account/../assets/account/subscribed-alert.png" />
+</figure>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="theme/sidebar.js"></script>
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>

@@ -7,13 +7,15 @@
 * [首页](homepage.md)
 
 * [存储](storage/index.md)
-    * [创建存储卷](storage/volume.md)
-    * [创建存储适配器](storage/adapter.md)
+    * [创建 PVC](storage/volume.md)
+    * [创建 StorageShim](storage/adapter.md)
 
 * [应用](app/index.md)
     * [部署 Jupyter Lab](app/jupyter-lab.md)
     * [部署 Terminal](app/terminal.md)
+    * [部署 FileBrowser](app/filebrowser.md)
     * [部署 CodeServer](app/codeserver.md)
+    * [部署 TensorBoard](app/tensorboard.md)
     * [部署 Job Manager](app/job-manager.md)
     * [部署 PostgreSQL](app/postgresql.md)
     
@@ -31,3 +33,11 @@
     * [安全设置](account/security-setting.md)
     * [查看账单](account/view-bill.md)
     * [告警通知](account/alert-notification.md)
+
+* [任务](task/index.md)
+    * [上传和下载文件](task/upload-and-download-file.md)
+    * [训练模型](task/train-model/index.md)
+        * [使用 Job Manager 应用启动训练](task/train-model/start-training-by-job-manager.md)
+        <!-- * [使用 YAML 配置文件启动训练](task/train-model/start-training-by-yaml-config.md) -->
+    * [部署模型推理服务](task/deploy-model/index.md)
+        * [使用 vLLM 应用部署 LLM 推理服务](task/deploy-model/using-vllm-app.md)

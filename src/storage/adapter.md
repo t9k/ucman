@@ -1,4 +1,4 @@
-# 创建存储适配器
+# 创建 StorageShim
 
 <a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/modules/storage/storageshim.html">StorageShim</a> 用于将已有的存储系统以 PVC 的形式提供给用户使用，例如将分布式文件系统的某个子目录作为一个 PVC 使用。本章演示创建 CephFs 类型的存储适配器，将 CephFs 的一个子目录作为一个 PVC。
 

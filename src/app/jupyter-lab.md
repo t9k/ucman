@@ -1,10 +1,10 @@
-# 部署 Jupyter Lab
+# 部署 JupyterLab
 
-<a target="_blank" rel="noopener noreferrer" href="https://jupyterlab.readthedocs.io/en/latest/">Jupyter Lab</a> 是一款非常流行的机器学习开发工具，它通过友好易用的 Web 界面提供交互式计算环境，支持多种编程语言和执行环境，在机器学习、AI、数据处理、数值模拟、统计建模、数据可视化等领域被广泛使用。
+<a target="_blank" rel="noopener noreferrer" href="https://jupyterlab.readthedocs.io/en/latest/">JupyterLab</a> 是一款非常流行的机器学习开发工具，它通过友好易用的 Web 界面提供交互式计算环境，支持多种编程语言和执行环境，在机器学习、AI、数据处理、数值模拟、统计建模、数据可视化等领域被广泛使用。
 
-Jupyter Lab 系列应用包括 Jupyter Lab (CPU)、Jupyter Lab (NVIDIA GPU)、Jupyter Lab (Enflame GCU)、和 Jupyter Lab (Hygon DCU)，它们之间的区别仅在于支持不同的加速设备。本教程演示如何部署 Jupyter Lab (CPU) 应用。
+JupyterLab 系列应用包括 JupyterLab (CPU)、JupyterLab (NVIDIA GPU)、JupyterLab (Enflame GCU)、和 JupyterLab (Hygon DCU)，它们之间的区别仅在于支持不同的加速设备。本教程演示如何部署 JupyterLab (CPU) 应用。
 
-点击 **Jupyter Lab (CPU)** 应用，进入 README 页面：
+点击 **JupyterLab (CPU)** 应用，进入 README 页面：
 
 <figure class="screenshot">
   <img alt="select-jupyter-lab" src="../assets/app/select-jupyter-lab.png" />
@@ -16,7 +16,7 @@ Jupyter Lab 系列应用包括 Jupyter Lab (CPU)、Jupyter Lab (NVIDIA GPU)、Ju
   <img alt="readme-jupyter-lab" src="../assets/app/readme-jupyter-lab.png" />
 </figure>
 
-点击上方的 **README** 再次查看说明信息，这些信息可以帮助你正确地设置 Jupyter Lab 的运行参数：
+点击上方的 **README** 再次查看说明信息，这些信息可以帮助你正确地设置 JupyterLab 的运行参数：
 
 <figure class="screenshot">
   <img alt="parameter-jupyter-lab" src="../assets/app/parameter-jupyter-lab.png" />
@@ -41,7 +41,7 @@ Jupyter Lab 系列应用包括 Jupyter Lab (CPU)、Jupyter Lab (NVIDIA GPU)、Ju
   <img alt="yaml-jupyter-lab" src="../assets/app/yaml-jupyter-lab.png" />
 </figure>
 
-等待创建成功的 Jupyter Lab 应用就绪：
+等待创建成功的 JupyterLab 应用就绪：
 
 <figure class="screenshot">
   <img alt="wait-for-jupyter-lab" src="../assets/app/wait-for-jupyter-lab.png" />

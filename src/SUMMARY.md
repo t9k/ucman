@@ -11,7 +11,7 @@
     * [创建 StorageShim](storage/adapter.md)
 
 * [应用](app/index.md)
-    * [部署 Jupyter Lab](app/jupyter-lab.md)
+    * [部署 JupyterLab](app/jupyter-lab.md)
     * [部署 Terminal](app/terminal.md)
     * [部署 FileBrowser](app/filebrowser.md)
     * [部署 CodeServer](app/codeserver.md)
@@ -37,7 +37,9 @@
 * [任务](task/index.md)
     * [上传和下载文件](task/upload-and-download-file.md)
     * [训练模型](task/train-model/index.md)
-        * [使用 Job Manager 应用启动训练](task/train-model/start-training-by-job-manager.md)
-        <!-- * [使用 YAML 配置文件启动训练](task/train-model/start-training-by-yaml-config.md) -->
+        * [进行数据并行训练](task/train-model/pytorch-training-parallel.md)
+        * [进行 LLM 大规模预训练](task/train-model/llm-large-scale-pretraining.md)
+        * [分析性能](task/train-model/profile.md)
+        <!-- * [使用 Job Manager 应用启动训练](task/train-model/start-training-by-job-manager.md) -->
     * [部署模型推理服务](task/deploy-model/index.md)
-        * [使用 vLLM 应用部署 LLM 推理服务](task/deploy-model/using-vllm-app.md)
+        * [部署 LLM 推理服务](task/deploy-model/using-vllm-app.md)

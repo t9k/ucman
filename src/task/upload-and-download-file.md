@@ -233,7 +233,7 @@ tokenizer = AutoTokenizer.from_pretrained("facebook/opt-125m")
 model = AutoModelForCausalLM.from_pretrained("facebook/opt-125m")
 ```
 
-对于受保护的或私有的模型或数据集（例如模型 `meta-llama/Meta-Llama-3-8B`），需要提供拥有访问权限的用户的 token：
+对于受保护的或私有的模型（例如模型 `meta-llama/Meta-Llama-3-8B`），需要提供拥有读权限的用户的 token：
 
 ```python
 from transformers import pipeline
@@ -246,10 +246,10 @@ tokenizer = AutoTokenizer.from_pretrained("meta-llama/Meta-Llama-3-8B", token="<
 model = AutoModelForCausalLM.from_pretrained("meta-llama/Meta-Llama-3-8B", token="<HF_TOKEN>")
 ```
 
-使用 <a target="_blank" rel="noopener noreferrer" href="https://github.com/huggingface/datasets">`datasets` 库</a>下载和上传数据集文件。相比加载模型，加载数据集要更加复杂一些，请直接参阅教程
+使用 <a target="_blank" rel="noopener noreferrer" href="https://github.com/huggingface/datasets">`datasets` 库</a>下载和上传数据集文件。相比加载模型，加载数据集要更加复杂一些，请参阅教程
 <a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/docs/datasets/load_hub">Load a dataset</a> 和 <a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/docs/datasets/loading">Load</a>。
 
-调用<a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/docs/transformers/main_classes/model#transformers.PreTrainedModel">模型对象</a>、<a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/docs/transformers/main_classes/tokenizer#transformers.PreTrainedTokenizer">tokenizer 对象</a>或<a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/docs/datasets/package_reference/main_classes#datasets.Dataset">数据集对象</a>的 `push_to_hub()` 方法以将其文件上传到仓库：
+调用<a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/docs/transformers/main_classes/model#transformers.PreTrainedModel">模型对象</a>、<a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/docs/transformers/main_classes/tokenizer#transformers.PreTrainedTokenizer">tokenizer 对象</a>或<a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/docs/datasets/package_reference/main_classes#datasets.Dataset">数据集对象</a>的 `push_to_hub()` 方法以将其文件上传到仓库，需要提供拥有写权限的用户的 token：
 
 ```python
 ...
@@ -267,18 +267,43 @@ dataset.push_to_hub("user/data", token="<HF_TOKEN>")
 
 ### `huggingface-cli` 命令和 `huggingface_hub` 库
 
-可以使用 `huggingface-cli download` 命令下载仓库中的所有文件或指定文件。文件会被下载到与 [`transformers` 库](#transformers-库)相同的缓存目录下。
+可以使用 `huggingface-cli download` 命令下载仓库中的所有文件或指定文件：
 
 ```bash
-huggingface-cli download facebook/opt-125m                                           # 下载所有文件
-huggingface-cli download facebook/opt-125m pytorch_model.bin                         # 下载单个指定文件
-huggingface-cli download facebook/opt-125m pytorch_model.bin generation_config.json  # 下载多个指定文件
-huggingface-cli download facebook/opt-125m --include="*.bin"                         # 模式匹配
-huggingface-cli download facebook/opt-125m --cache-dir .                             # 指定缓存目录
-huggingface-cli download cais/mmlu all/test-00000-of-00001.parquet --repo-type=dataset  # 下载数据集文件
+# 下载所有文件
+huggingface-cli download facebook/opt-125m
+
+# 下载单个指定文件
+huggingface-cli download facebook/opt-125m pytorch_model.bin
+
+# 下载多个指定文件
+huggingface-cli download facebook/opt-125m pytorch_model.bin generation_config.json
+
+# 模式匹配
+huggingface-cli download facebook/opt-125m --include="*.bin"
+huggingface-cli download facebook/opt-125m --exclude="*.bin"
+
+# 指定缓存目录
+huggingface-cli download facebook/opt-125m --cache-dir .
+
+# 下载数据集文件
+huggingface-cli download cais/mmlu all/test-00000-of-00001.parquet --repo-type=dataset
 ```
 
-对于受保护的或私有的模型或数据集（例如模型 `meta-llama/Meta-Llama-3-8B`），需要提供拥有访问权限的用户的 token：
+可以指定放置下载文件的本地目录，否则文件会被放置到与 [`transformers` 库](#transformers-库)相同的缓存目录下：
+
+```bash
+# 文件被放置到缓存目录下
+huggingface-cli download facebook/opt-125m
+
+# 文件被放置到指定的本地目录下，其中大于 10MB 的文件会被替换为指向相应缓存文件的符号链接
+huggingface-cli download facebook/opt-125m --local-dir "opt-125m"
+
+# 文件被放置到指定的本地目录下
+huggingface-cli download facebook/opt-125m --local-dir "opt-125m" --local-dir-use-symlinks False
+```
+
+对于受保护的或私有的模型或数据集（例如模型 `meta-llama/Meta-Llama-3-8B`），需要提供拥有读权限的用户的 token：
 
 ```bash
 huggingface-cli login --token <HF_TOKEN>  # 登录到 Hugging Face
@@ -289,7 +314,7 @@ huggingface-cli download meta-llama/Meta-Llama-3-8B
 huggingface-cli download meta-llama/Meta-Llama-3-8B --token <HF_TOKEN>
 ```
 
-使用 `huggingface-cli upload` 命令上传文件或整个目录到仓库：
+使用 `huggingface-cli upload` 命令上传文件或整个目录到仓库，需要提供拥有写权限的用户的 token：
 
 ```bash
 # Usage: huggingface-cli upload <REPO_ID> <LOCAL_PATH> [REPO_PATH]
@@ -312,7 +337,7 @@ huggingface-cli upload user/llm . . --token <HF_TOKEN>
 
 </aside>
 
-实际上，`huggingface-cli` 是 <a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/docs/huggingface_hub/index">`huggingface_hub` 库</a>的命令行工具。`huggingface-cli download` 命令在内部调用了该库的 <a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/docs/huggingface_hub/main/en/package_reference/file_download#huggingface_hub.hf_hub_download">`hf_hub_download()`</a> 和 <a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/docs/huggingface_hub/main/en/package_reference/file_download#huggingface_hub.snapshot_download">`snapshot_download()`</a> 函数，`huggingface-cli upload` 命令在内部调用了该库的 <a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/docs/huggingface_hub/main/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file">`upload_file()`</a> 和 <a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/docs/huggingface_hub/main/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder">`upload_folder()`</a> 函数。我们同样可以在 Python 程序中调用该库的这些函数来下载和上传文件，这里不再展开，请直接参阅教程 <a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/docs/huggingface_hub/main/en/guides/download">Download files</a> 和 <a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/docs/huggingface_hub/main/en/guides/upload">Upload files</a>。
+实际上，`huggingface-cli` 是 <a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/docs/huggingface_hub/index">`huggingface_hub` 库</a>的命令行工具。`huggingface-cli download` 命令在内部调用了该库的 <a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/docs/huggingface_hub/main/en/package_reference/file_download#huggingface_hub.hf_hub_download">`hf_hub_download()`</a> 和 <a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/docs/huggingface_hub/main/en/package_reference/file_download#huggingface_hub.snapshot_download">`snapshot_download()`</a> 函数，`huggingface-cli upload` 命令在内部调用了该库的 <a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/docs/huggingface_hub/main/en/package_reference/hf_api#huggingface_hub.HfApi.upload_file">`upload_file()`</a> 和 <a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/docs/huggingface_hub/main/en/package_reference/hf_api#huggingface_hub.HfApi.upload_folder">`upload_folder()`</a> 函数。我们同样可以在 Python 程序中调用该库的这些函数来下载和上传文件，这里不再展开，请参阅教程 <a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/docs/huggingface_hub/main/en/guides/download">Download files</a> 和 <a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/docs/huggingface_hub/main/en/guides/upload">Upload files</a>。
 
 ### `wget` 命令
 
@@ -326,7 +351,7 @@ wget https://huggingface.co/facebook/opt-125m/resolve/main/pytorch_model.bin?dow
 curl -L https://huggingface.co/facebook/opt-125m/resolve/main/pytorch_model.bin?download=true -o pytorch_model.bin
 ```
 
-对于受保护的或私有的模型或数据集（例如模型 `meta-llama/Meta-Llama-3-8B`），需要提供拥有访问权限的用户的 token：
+对于受保护的或私有的模型或数据集（例如模型 `meta-llama/Meta-Llama-3-8B`），需要提供拥有读权限的用户的 token：
 
 ```bash
 wget --header="Authorization: Bearer <HF_TOKEN>" https://huggingface.co/meta-llama/Meta-Llama-3-8B/resolve/main/model-00001-of-00004.safetensors?download=true -O model-00001-of-00004.safetensors
@@ -413,6 +438,36 @@ model_file_download("AI-ModelScope/opt-125", file_path="pytorch_model.bin")  # �
 snapshot_download("AI-ModelScope/opt-125", cache_dir=".")                    # 指定缓存目录
 ```
 
+第三种下载模型文件的方法类似于 `huggingface-cli` 命令，可以使用 `modelscope download` 命令下载仓库中的所有文件或指定文件：
+
+```bash
+# 下载所有文件
+modelscope download --model "AI-ModelScope/opt-125"
+
+# 下载单个指定文件
+modelscope download --model "AI-ModelScope/opt-125" pytorch_model.bin
+
+# 下载多个指定文件
+modelscope download --model "AI-ModelScope/opt-125" pytorch_model.bin tf_model.h5
+
+# 模式匹配
+modelscope download --model "AI-ModelScope/opt-125" --include "*.bin"
+modelscope download --model "AI-ModelScope/opt-125" --exclude "*.bin"
+
+# 指定下载目录
+modelscope download --model "AI-ModelScope/opt-125" --local_dir "./opt-125m"
+```
+
+可以指定放置下载文件的本地目录，否则文件会被放置到与第一种方法相同的缓存目录下：
+
+```bash
+# 文件被放置到缓存目录下
+modelscope download --model "AI-ModelScope/opt-125"
+
+# 文件被放置到指定的本地目录下
+modelscope download --model "AI-ModelScope/opt-125" --local_dir "./opt-125m"
+```
+
 下载数据集文件的方法类似于 [`datasets` 库](#transformers-库和-datasets-库)。这里以数据集 MMLU 的子集 Abstract Algebra 为例，注意不同的数据集拥有不同的可用子集。首次加载时，仓库中的数据集文件会被下载到缓存目录下，即 PVC 的 `.cache/modelscope/hub/datasets/mmlu/abstract_algebra/` 路径下。
 
 ```python
@@ -420,7 +475,7 @@ from modelscope.msdatasets import MsDataset
 dataset = MsDataset.load("mmlu", subset_name="abstract_algebra")
 ```
 
-对于受保护的或私有的模型或数据集，需要提供拥有访问权限的用户的 token：
+对于受保护的或私有的模型或数据集，需要提供拥有读权限的用户的 token：
 
 ```python
 from modelscope import HubApi

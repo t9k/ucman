@@ -12,9 +12,12 @@ LLM（大型语言模型）是当前 AI 领域备受瞩目的研究和应用领�
 
 本教程演示如何使用 DeepSpeedJob 以简单快速的方式启动 Megatron-LM GPT-3 系列（125M、1.3B、13B 和 175B）模型的预训练任务。
 
+本教程对应示例 <a target="_blank" rel="noopener noreferrer" href="https://github.com/t9k/examples/tree/master/deepspeed/megatron-gpt">Megatron-DeepSpeed GPT
+</a>。
+
 ## 准备工作
 
-创建一个名为 megatron、大小 250 GiB 以上的 PVC，然后创建一个同样名为 megatron 的 JupyterLab 应用挂载该 PVC，镜像选用 PyTorch 2 类型，计算资源申请 16 个 CPU（核心）、32 GiB 内存。
+创建一个名为 megatron、大小 250 GiB 以上的 PVC，然后部署一个同样名为 megatron 的 JupyterLab 应用挂载该 PVC，镜像选用 PyTorch 2 类型，计算资源申请 16 个 CPU（核心）、32 GiB 内存。
 
 进入 JupyterLab，启动一个终端，执行以下命令以克隆必要的仓库：
 
@@ -34,13 +37,12 @@ git clone https://github.com/t9k/examples.git
 
 </aside>
 
-选用 enwiki（英文维基百科）作为数据集，使用脚本下载数据集并进行预处理：
+选用 enwiki（英文维基百科）作为数据集，安装必要的 Python 库，下载最新的 Wikipedia dump、抽取文本并合并文件：
 
 ```bash
 pip install wikiextractor
 cd examples/deepspeed/megatron-gpt/dataset
 python download_wiki.py en
-./preprocess_wiki.sh
 ```
 
 然后使用这一数据集重新训练类 GPT-2 的 tokenzier：
@@ -48,6 +50,13 @@ python download_wiki.py en
 ```bash
 cd ../tokenizer
 python train_tokenizer.py ../dataset/wiki-en/all wiki-en-tokenizer
+```
+
+接着预处理数据集：
+
+```bash
+cd ../dataset
+./preprocess_wiki.sh
 ```
 
 ## 启动训练
@@ -87,63 +96,35 @@ kubectl logs $POD -f
   <img alt="tensorboard" src="../../assets/task/train-model/llm-large-scale-pretraining/tensorboard.png" />
 </figure>
 
+<aside class="note tip">
+<div class="title">提示</div>
+
+你也可以部署一个 [TensorBoard 应用](../../app/tensorboard.md)，展示的内容是相同的。
+
+</aside>
+
 训练完成之后，模型文件将保存到 `output/gpt-125m/model` 路径下，后续用于<a target="_blank" rel="noopener noreferrer" href="https://github.com/t9k/examples/tree/master/deepspeed/megatron-gpt#%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90">文本生成</a>或进一步的微调。
 
 ## 使用其他训练配置
 
-`examples/deepspeed/megatron-gpt/training` 路径下有多个 YAML 配置文件，分别对应不同模型参数量的不同并行训练策略。例如 `gpt-13b-4xdp-4xpp-4xtp.yaml` 对应 13B 模型、4 度数据并行、4 度流水线并行以及 4 度张量并行。用户可以选择其中任意一个 YAML 配置文件创建 DeepSpeedJob，只要确保有足够的计算资源可用。
+`examples/deepspeed/megatron-gpt/training` 路径下有多个 YAML 配置文件，分别对应不同模型参数量的不同并行训练策略，细节如下表所示：
 
-下表总结了训练 125M 和 1.3B 模型的主要参数上的差异：
+| 参数量 | 训练 token 量 | 数据集 | 配置文件                      | 并行策略                               | GPU 使用（参考） | 预计时间* |
+| ------ | ------------- | ------ | ----------------------------- | -------------------------------------- | ---------------- | --------- |
+| 125M   | 2.5B          | enwiki | `gpt-125m.yaml`               | -                                      | 1x A100 40GB     | ~8h       |
+|        |               |        | `gpt-125m-2xdp.yaml`          | 2x数据并行                             | 2x A100 40GB     | ~4h       |
+|        |               |        | `gpt-125m-4xdp.yaml`          | 4x数据并行                             | 4x A100 40GB     | ~2h       |
+| 1.3B   | 26B           | enwiki | `gpt-1-3b-4xdp.yaml`          | 4x数据并行                             | 4x A100 40GB     | ~8d       |
+|        |               |        | `gpt-1-3b-8xdp.yaml`          | 8x数据并行                             | 8x A100 40GB     | ~4d       |
+|        |               |        | `gpt-1-3b-4xdp-4xpp.yaml`     | 4x数据并行 + 4x流水线并行              | 2x 8x A100 40GB  |           |
+| 13B    | 260B          | enwiki | `gpt-13b-4xdp-4xpp.yaml`      | 4x数据并行 + 4x流水线并行              | 2x 8x A100 80GB  |           |
+|        |               |        | `gpt-13b-4xdp-8xpp.yaml`      | 4x数据并行 + 8x流水线并行              | 4x 8x A100 80GB  |           |
+|        |               |        | `gpt-13b-4xdp-4xpp-4xtp.yaml` | 4x数据并行 + 4x流水线并行 + 4x张量并行 | 8x 8x A100 80GB  |           |
+| 175B   | 3.5T          |        | (WIP)                         |                                        |                  |           |
 
-<table>
-  <tr>
-    <td>模型参数量</td>
-    <td>125M</td>
-    <td>1.3B</td>
-    <td>13B</td>
-    <td>175B</td>
-  </tr>
-  <tr>
-    <td>并行方式</td>
-    <td>- / 2x DP / 4x DP</td>
-    <td>4x DP / 8x DP / 4x DP + 4xPP</td>
-    <td>4x DP + 4xPP / 4x DP + 8x PP / 4x DP + 4x PP + 4x TP</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>GPU 使用总数</td>
-    <td>1 / 2 / 4</td>
-    <td>4 / 8 / 16</td>
-    <td>16 / 32 / 32</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>模型层数 / hidden size / 注意力头数</td>
-    <td>12 / 768 / 12</td>
-    <td>24 / 2048 / 16</td>
-    <td>40 / 5120 / 40</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>训练的 token 数量</td>
-    <td>2.5e9</td>
-    <td>2.6e10</td>
-    <td>2.6e11</td>
-    <td>3.5e12</td>
-  </tr>
-  <tr>
-    <td>学习率</td>
-    <td>6e-4</td>
-    <td>2e-4</td>
-    <td>1e-4</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>预计时间*</td>
-    <td>~60min</td>
-    <td>~12h</td>
-    <td></td>
-    <td></td>
-  </tr>
-</table>
-<p style="color: gray; text-align: center; font-size: 14px">*预计时间为参考值，与具体的硬件环境有关，这里以 A100 SXM4 80GB GPU 节点 + IB 网络连接为例。</p>
+<p style="color: gray; font-size: 14px">*预计时间为参考值，与具体的硬件环境有关，这里以 A100 PCIE 40GB GPU 节点为例</p>
+
+## 参考
+
+* <a target="_blank" rel="noopener noreferrer" href="https://github.com/NVIDIA/Megatron-LM">Megatron-LM</a>
+* <a target="_blank" rel="noopener noreferrer" href="https://github.com/microsoft/Megatron-DeepSpeed">Megatron-DeepSpeed</a>

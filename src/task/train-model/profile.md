@@ -94,3 +94,9 @@ Memory View 展示了内存使用曲线图、内存事件（分配和释放）�
 </figure>
 
 TensorBoard 所展示的数据和提供的功能还远不止这些，请参阅<a target="_blank" rel="noopener noreferrer" href="https://pytorch.org/tutorials/intermediate/tensorboard_profiler_tutorial.html">官方教程</a>以了解更多。这些数据应当能为用户分析和改进性能提供非常有用的帮助。
+
+## 参考
+
+* <a target="_blank" rel="noopener noreferrer" href="https://pytorch.org/tutorials/beginner/profiler.html">Profiling your PyTorch Module</a>
+* <a target="_blank" rel="noopener noreferrer" href="https://pytorch.org/tutorials/recipes/recipes/profiler_recipe.html">PyTorch Profiler</a>
+* <a target="_blank" rel="noopener noreferrer" href="https://pytorch.org/docs/stable/profiler.html">torch.profiler</a>

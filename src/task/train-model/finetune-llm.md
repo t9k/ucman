@@ -12,7 +12,7 @@
 
 本示例使用 DeepSpeedJob 进行 LLM 的 RLHF 微调。
 
-## 准备
+## 准备工作
 
 在项目中创建一个名为 `llama-factory`、大小 250 GiB 以上的 PVC，然后创建一个同样名为 `llama-factory` 的 Notebook 挂载该 PVC（镜像类型和模板不限）。
 

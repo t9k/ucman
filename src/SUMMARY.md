@@ -37,9 +37,10 @@
 * [任务](task/index.md)
     * [上传和下载文件](task/upload-and-download-file.md)
     * [训练模型](task/train-model/index.md)
-        * [进行数据并行训练](task/train-model/pytorch-training-parallel.md)
+        * [进行数据并行训练](task/train-model/dp-training.md)
         * [进行 LLM 大规模预训练](task/train-model/llm-large-scale-pretraining.md)
         * [分析性能](task/train-model/profile.md)
-        <!-- * [使用 Job Manager 应用启动训练](task/train-model/start-training-by-job-manager.md) -->
+        <!-- * [微调 LLM](task/train-model/finetune-llm.md) -->
+        <!-- * [使用 Job Manager](task/train-model/use-job-manager.md) -->
     * [部署模型推理服务](task/deploy-model/index.md)
-        * [部署 LLM 推理服务](task/deploy-model/using-vllm-app.md)
+        * [部署 LLM 推理服务](task/deploy-model/deploy-llm.md)

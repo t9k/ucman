@@ -2,13 +2,13 @@
 
 CodeServer 是一个可以通过浏览器访问的 VSCode 服务。本教程演示如何部署 CodeServer 应用。
 
-点击 **CodeServer** 应用，进入 README 页面：
+点击 **CodeServer** 应用，进入 App 详情页面：
 
 <figure class="screenshot">
   <img alt="select-codeserver" src="../assets/app/select-codeserver.png" />
 </figure>
 
-在 README 页面，你可以看到如何配置 CodeServer，这包含了示例 YAML 及参数说明。确认信息后，点击右上角的**立刻部署**进入创建页面：
+在 App 详情页面，你可以看到如何配置 CodeServer，这包含了示例 YAML 及参数说明。确认信息后，点击右上角的**立刻部署**进入创建页面：
 
 <figure class="screenshot">
   <img alt="readme-codeserver" src="../assets/app/readme-codeserver.png" />

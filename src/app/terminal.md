@@ -2,13 +2,13 @@
 
 Terminal 是一个通过 Web 使用的终端应用。用户可以在浏览器中连接到该终端以进行各项工作，包括使用 kubectl 管理 K8s 资源。本教程演示如何部署 Terminal 应用。
 
-点击 **Terminal** 应用，进入 README 页面：
+点击 **Terminal** 应用，进入 App 详情页面：
 
 <figure class="screenshot">
   <img alt="select-terminal" src="../assets/app/select-terminal.png" />
 </figure>
 
-在 README 页面，你可以看到如何配置应用，这包含了示例 YAML 和参数说明。确认信息后，点击右上角的**立刻部署**进入创建页面：
+在 App 详情页面，你可以看到如何配置应用，这包含了示例 YAML 和参数说明。确认信息后，点击右上角的**立刻部署**进入创建页面：
 
 <figure class="screenshot">
   <img alt="readme-terminal" src="../assets/app/readme-terminal.png" />

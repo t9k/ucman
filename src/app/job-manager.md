@@ -2,13 +2,13 @@
 
 Job Manager 是一个用于管理 <a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/modules/jobs/index.html">Job</a> 的控制台，可执行创建 Job、查看 Job 状态、监控 Job 事件等操作。
 
-点击 **Job Manager** 应用，进入 README 页面：
+点击 **Job Manager** 应用，进入 App 详情页面：
 
 <figure class="screenshot">
   <img alt="select-job-manager" src="../assets/app/select-job-manager.png" />
 </figure>
 
-在 README 页面，你可以看到如何配置应用，这包含了示例 YAML 和参数说明。确认信息后，点击右上角的**立刻部署**进入创建页面：
+在 App 详情页面，你可以看到如何配置应用，这包含了示例 YAML 和参数说明。确认信息后，点击右上角的**立刻部署**进入创建页面：
 
 <figure class="screenshot">
   <img alt="readme-job-manager" src="../assets/app/readme-job-manager.png" />

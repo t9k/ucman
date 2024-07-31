@@ -4,13 +4,13 @@
 
 JupyterLab 系列应用包括 JupyterLab (CPU)、JupyterLab (NVIDIA GPU)、JupyterLab (Enflame GCU)、和 JupyterLab (Hygon DCU)，它们之间的区别仅在于支持不同的加速设备。本教程演示如何部署 JupyterLab (CPU) 应用。
 
-点击 **JupyterLab (CPU)** 应用，进入 README 页面：
+点击 **JupyterLab (CPU)** 应用，进入 App 详情页面：
 
 <figure class="screenshot">
   <img alt="select-jupyter-lab" src="../assets/app/select-jupyter-lab.png" />
 </figure>
 
-在 README 页面，你可以看到如何配置应用，这包含了可用镜像列表、示例 YAML 和参数说明。确认信息后，点击右上角的**立刻部署**进入创建页面：
+在 App 详情页面，你可以看到如何配置应用，这包含了可用镜像列表、示例 YAML 和参数说明。确认信息后，点击右上角的**立刻部署**进入创建页面：
 
 <figure class="screenshot">
   <img alt="readme-jupyter-lab" src="../assets/app/readme-jupyter-lab.png" />

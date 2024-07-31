@@ -2,13 +2,13 @@
 
 TensorBoard 是 TensorFlow 的可视化工具，它可以展示你的 TensorFlow 网络模型（以及其他框架的模型）运行过程中的各种可视化数据。本教程演示如何部署 TensorBoard 应用。
 
-点击 **TensorBoard** 应用，进入 README 页面：
+点击 **TensorBoard** 应用，进入 App 详情页面：
 
 <figure class="screenshot">
   <img alt="select-tensorboard" src="../assets/app/select-tensorboard.png" />
 </figure>
 
-在 README 页面，你可以看到如何配置 TensorBoard，这包含了示例 YAML 及参数说明。确认信息后，点击右上角的**立刻部署**进入创建页面：
+在 App 详情页面，你可以看到如何配置 TensorBoard，这包含了示例 YAML 及参数说明。确认信息后，点击右上角的**立刻部署**进入创建页面：
 
 <figure class="screenshot">
   <img alt="readme-tensorboard" src="../assets/app/readme-tensorboard.png" />

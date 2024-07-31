@@ -2,7 +2,7 @@
 
 <a target="_blank" rel="noopener noreferrer" href="https://www.postgresql.org/">PostgreSQL</a> 是一个开源对象关系数据库，以可靠性和数据完整性而闻名。本教程演示部署一个 PostgreSQL 应用。
 
-点击 **PostgreSQL** 应用，进入 README 页面：
+点击 **PostgreSQL** 应用，进入 App 详情页面：
 
 <figure class="screenshot">
   <img alt="select-postgresql" src="../assets/app/select-postgresql.png" />

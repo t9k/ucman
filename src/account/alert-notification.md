@@ -12,13 +12,13 @@
   <img alt="alert-detailed" src="../assets/account/alert-detailed.png" />
 </figure>
 
-点击上方的**通知**标签页，可以设置告警信息的订阅状态：
+点击上方的**通知**标签页，填写接收通知的邮箱地址，然后可以设置告警信息的订阅状态：
 
 <figure class="screenshot">
   <img alt="subscribe-alert" src="../assets/account/subscribe-alert.png" />
 </figure>
 
-填写邮箱地址，勾选你想订阅的告警信息，点击最下方的**保存修改**。被订阅的告警信息触发后，TensorStack AI 平台会发送邮件到指定的邮箱地址：
+订阅你关心的告警信息。被订阅的告警信息触发后，TensorStack AI 平台会发送邮件到指定的邮箱地址：
 
 <figure class="screenshot">
   <img alt="subscribed-alert" src="../assets/account/subscribed-alert.png" />

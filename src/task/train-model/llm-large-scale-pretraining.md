@@ -10,23 +10,7 @@ LLM（大型语言模型）是当前 AI 领域备受瞩目的研究和应用领�
 
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/microsoft/DeepSpeed">DeepSpeed</a> 是目前最受欢迎的大规模分布式训练框架，而平台提供了 [DeepSpeedJob](../modules/jobs/deepspeedjob.md)，这是专为使用 DeepSpeed 框架的分布式训练而设计的 Job 类型。
 
-本教程演示如何使用 DeepSpeedJob 以简单快速的方式启动 Megatron-LM GPT-3 系列（125M、1.3B、13B 和 175B）模型的预训练任务。
-
-本教程对应示例 <a target="_blank" rel="noopener noreferrer" href="https://github.com/t9k/examples/tree/master/deepspeed/megatron-gpt">Megatron-DeepSpeed GPT
-</a>。
-
-## 准备工作
-
-创建一个名为 megatron、大小 250 GiB 以上的 PVC，然后部署一个同样名为 megatron 的 JupyterLab 应用挂载该 PVC，镜像选用 PyTorch 2 类型，计算资源申请 16 个 CPU（核心）、32 GiB 内存。
-
-进入 JupyterLab，启动一个终端，执行以下命令以克隆必要的仓库：
-
-```bash
-cd ~
-git clone https://github.com/microsoft/Megatron-DeepSpeed.git && cd Megatron-DeepSpeed && git reset --hard e7bff5ec80badd387abf0e52ae392d169cc738a6 && cd ..
-git clone https://github.com/NVIDIA/Megatron-LM.git && cd Megatron-LM && git reset --hard 040eac9414ccbd1301ae16369c3044c5632b7e14 && cd ..
-git clone https://github.com/t9k/examples.git
-```
+本教程演示使用 DeepSpeedJob 以简单快速的方式启动 Megatron-LM GPT-3 系列（125M、1.3B、13B 和 175B）模型的预训练任务。本教程对应示例 <a target="_blank" rel="noopener noreferrer" href="https://github.com/t9k/examples/tree/master/deepspeed/megatron-gpt">Megatron-DeepSpeed GPT</a>。
 
 <aside class="note info">
 <div class="title">Megatron-LM</div>
@@ -37,73 +21,65 @@ git clone https://github.com/t9k/examples.git
 
 </aside>
 
-选用 enwiki（英文维基百科）作为数据集，安装必要的 Python 库，下载最新的 Wikipedia dump、抽取文本并合并文件：
+本教程的应用架构如下图所示：
 
-```bash
-pip install wikiextractor
-cd examples/deepspeed/megatron-gpt/dataset
-python download_wiki.py en
-```
-
-然后使用这一数据集重新训练类 GPT-2 的 tokenzier：
-
-```bash
-cd ../tokenizer
-python train_tokenizer.py ../dataset/wiki-en/all wiki-en-tokenizer
-```
-
-接着预处理数据集：
-
-```bash
-cd ../dataset
-./preprocess_wiki.sh
-```
-
-## 启动训练
-
-使用以下 YAML 配置文件创建 DeepSpeedJob 以启动 125M 模型的训练：
-
-```bash
-# 数据并行训练 125M 参数的 GPT 模型
-kubectl create -f \
-  examples/deepspeed/megatron-gpt/training/gpt-125m-4xdp.yaml
-```
-
-<aside class="note info">
-<div class="title">DeepSpeedJob</div>
-
-这里仅使用到 DeepSpeedJob 的基本功能，DeepSpeedJob 还提供了其他高级功能，例如：
-
-1. 失败重启，以自动处理长时间训练过程中的故障场景（例如 GPU 故障）；
-2. 弹性训练，以有效利用 GPU 集群的可用计算资源。
-
-</aside>
-
-通过以下命令查看训练过程中打印的日志：
-
-```bash
-POD=$(kubectl get dj gpt-125m -o jsonpath="{.status.tasks[0].replicas[0].name}")
-kubectl logs $POD -f
-```
-
-<figure class="screenshot">
-  <img alt="log" src="../../assets/task/train-model/llm-large-scale-pretraining/log.png" />
+<figure class="architecture">
+  <img alt="app-arch" src="../../assets/task/train-model/llm-large-scale-pretraining/app-arch.drawio.svg" />
 </figure>
 
-训练过程中产生的 TensorBoard 日志文件保存在 `output/gpt-125m/tensorboard` 路径下，可以在 JupyterLab 中创建一个 TensorBoard 实例以查看：
+## 运行示例
+
+创建一个名为 megatron、大小 250 GiB 以上的 PVC，然后部署一个同样名为 megatron 的 JupyterLab 应用挂载该 PVC，镜像选用 PyTorch 2 类型，计算资源申请 16 个 CPU（核心）、32 GiB 内存。
+
+进入 JupyterLab，启动一个终端，前往<a target="_blank" rel="noopener noreferrer" href="https://github.com/t9k/examples/tree/master/deepspeed/megatron-gpt">本教程对应的示例</a>，参照其 README 文档进行操作。
+
+## 查看训练信息
+
+训练开始后，部署一个 [Job Manager 应用](../../app/job-manager.md)（如有 Job Manager 则直接复用），进入 Job Manager，可以看到名为 **gpt-125m** 的 DeepSpeedJob 正在运行，点击其**名称**进入详情页面：
+
+<figure class="screenshot">
+    <img alt="running" src="../../assets/task/train-model/llm-large-scale-pretraining/running.png" />
+</figure>
+
+可以看到刚才创建的 DeepSpeedJob 的基本信息、状况信息和事件信息：
+
+<figure class="screenshot">
+    <img alt="details" src="../../assets/task/train-model/llm-large-scale-pretraining/details.png" />
+</figure>
+
+点击上方的**副本**标签页，查看 DeepSpeedJob 的 Pod 信息；点击副本右侧的 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 16a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2Z"></path></svg></span>**&nbsp;> 日志**以查看训练脚本执行过程中的日志输出：
+
+<figure class="screenshot">
+    <img alt="replicas" src="../../assets/task/train-model/llm-large-scale-pretraining/replicas.png" />
+</figure>
+
+<figure class="screenshot">
+    <img alt="view-log" src="../../assets/task/train-model/llm-large-scale-pretraining/view-log.png" />
+</figure>
+
+点击上方的**资源监测**标签页，查看 DeepSpeedJob 运行过程中使用集群计算资源、网络资源和存储资源的情况：
+
+<figure class="screenshot">
+    <img alt="resources" src="../../assets/task/train-model/llm-large-scale-pretraining/resources.png" />
+</figure>
+
+一段时间之后，DeepSpeedJob 的状态变为 **Succeeded**，表示训练成功完成。
+
+<figure class="screenshot">
+    <img alt="done" src="../../assets/task/train-model/llm-large-scale-pretraining/done.png" />
+</figure>
+
+训练完成之后，模型文件将保存到 `output/gpt-125m/model` 路径下，后续用于<a target="_blank" rel="noopener noreferrer" href="https://github.com/t9k/examples/tree/master/deepspeed/megatron-gpt#%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90">文本生成</a>或进一步的微调。
+
+若 DeepSpeedJob 在运行过程中出错，其状态会变为 **Error**，并在事件信息和 Pod 信息部分显示错误信息，此时需要根据给出的错误信息进行问题排查。
+
+## 查看训练指标
+
+训练产生的 tfevents 文件保存在 `output/gpt-125m/tensorboard` 路径下，可以[在 JupyterLab 中创建一个 TensorBoard 实例](./dp-training.md#查看训练指标)或部署一个 [TensorBoard 应用](../../app/tensorboard.md)以查看：
 
 <figure class="screenshot">
   <img alt="tensorboard" src="../../assets/task/train-model/llm-large-scale-pretraining/tensorboard.png" />
 </figure>
-
-<aside class="note tip">
-<div class="title">提示</div>
-
-你也可以部署一个 [TensorBoard 应用](../../app/tensorboard.md)，展示的内容是相同的。
-
-</aside>
-
-训练完成之后，模型文件将保存到 `output/gpt-125m/model` 路径下，后续用于<a target="_blank" rel="noopener noreferrer" href="https://github.com/t9k/examples/tree/master/deepspeed/megatron-gpt#%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90">文本生成</a>或进一步的微调。
 
 ## 使用其他训练配置
 
@@ -128,3 +104,4 @@ kubectl logs $POD -f
 
 * <a target="_blank" rel="noopener noreferrer" href="https://github.com/NVIDIA/Megatron-LM">Megatron-LM</a>
 * <a target="_blank" rel="noopener noreferrer" href="https://github.com/microsoft/Megatron-DeepSpeed">Megatron-DeepSpeed</a>
+* <a target="_blank" rel="noopener noreferrer" href="https://github.com/microsoft/DeepSpeed">DeepSpeed</a>

@@ -1,8 +1,12 @@
 # 进行数据并行训练
 
-本教程演示如何使用 <a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/modules/jobs/pytorchtrainingjob.html">PyTorchTrainingJob</a> 对 PyTorch 模型进行多工作器同步训练（使用 <a target="_blank" rel="noopener noreferrer" href="https://pytorch.org/docs/stable/generated/torch.nn.parallel.DistributedDataParallel.html">`torch.nn.parallel.DistributedDataParallel`</a> 分布式数据并行模块）。
+本教程演示使用 <a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/modules/jobs/pytorchtrainingjob.html">PyTorchTrainingJob</a> 对 PyTorch 模型进行多工作器同步训练（使用 <a target="_blank" rel="noopener noreferrer" href="https://pytorch.org/docs/stable/generated/torch.nn.parallel.DistributedDataParallel.html">`torch.nn.parallel.DistributedDataParallel`</a> 分布式数据并行模块）。本教程对应示例<a target="_blank" rel="noopener noreferrer" href="https://github.com/t9k/tutorial-examples/tree/master/job/pytorchtrainingjob/ddp">使用 PyTorchTrainingJob 进行数据并行训练</a>。
 
-本教程对应示例<a target="_blank" rel="noopener noreferrer" href="https://github.com/t9k/tutorial-examples/tree/master/job/pytorchtrainingjob/ddp">使用 PyTorchTrainingJob 进行数据并行训练</a>。
+本教程的应用架构如下图所示：
+
+<figure class="architecture">
+  <img alt="app-arch" src="../../assets/task/train-model/dp-training/app-arch.drawio.svg" />
+</figure>
 
 ## 运行示例
 
@@ -64,7 +68,7 @@ git clone https://github.com/t9k/tutorial-examples.git
 
 ## 查看训练指标
 
-训练产生的 tfevents 文件保存在 PVC 中。回到 JupyterLab，创建一个 TensorBoard 实例：
+训练产生的 tfevents 文件保存在 PVC 中。回到 JupyterLab，创建一个 TensorBoard 实例。点击 TensorBoard 图标：
 
 <figure class="screenshot">
     <img alt="tensorboard1" src="../../assets/task/train-model/dp-training/tensorboard1.png" />

@@ -18,6 +18,7 @@
     * [部署 TensorBoard](app/tensorboard.md)
     * [部署 Job Manager](app/job-manager.md)
     * [部署 PostgreSQL](app/postgresql.md)
+    <!-- * [应用列表](app/list.md) -->
     
 * [网络服务](network/index.md)
     * [查看 Service](network/service.md)
@@ -43,4 +44,4 @@
         <!-- * [微调 LLM](task/train-model/finetune-llm.md) -->
         <!-- * [使用 Job Manager](task/train-model/use-job-manager.md) -->
     * [部署模型推理服务](task/deploy-model/index.md)
-        * [部署 LLM 推理服务](task/deploy-model/deploy-llm.md)
+        * [部署 LLM 推理服务和聊天服务](task/deploy-model/deploy-llm.md)

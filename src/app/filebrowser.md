@@ -1,6 +1,6 @@
 # 部署 FileBrowser
 
-FileBrowser 在指定目录中提供了一个文件管理 UI，可用于上传、删除、预览、重命名和编辑文件。本教程演示如何部署 FileBrowser 应用。
+FileBrowser 在指定目录中提供了一个文件管理 UI，可用于上传、删除、预览、重命名和编辑文件。本教程演示部署 FileBrowser 应用。
 
 点击 **FileBrowser** 应用，进入 App 详情页面：
 

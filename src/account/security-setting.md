@@ -6,7 +6,7 @@
   <img alt="security-setting" src="../assets/account/security-setting.png" />
 </figure>
 
-安全设置页面提供了两个功能，修改密码和管理 API Key。这里我们只演示如何管理 API Key。
+安全设置页面提供了两个功能，修改密码和管理 API Key。这里我们只演示管理 API Key。
 
 初次使用时，需要点击**管理 API Key** 的**启用**，输入密码来开启 API Key 功能。然后，点击**生成 APIKey** 进入创建页面：
 

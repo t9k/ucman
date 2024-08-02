@@ -2,7 +2,7 @@
 
 <a target="_blank" rel="noopener noreferrer" href="https://jupyterlab.readthedocs.io/en/latest/">JupyterLab</a> 是一款非常流行的机器学习开发工具，它通过友好易用的 Web 界面提供交互式计算环境，支持多种编程语言和执行环境，在机器学习、AI、数据处理、数值模拟、统计建模、数据可视化等领域被广泛使用。
 
-JupyterLab 系列应用包括 JupyterLab (CPU)、JupyterLab (NVIDIA GPU)、JupyterLab (Enflame GCU)、和 JupyterLab (Hygon DCU)，它们之间的区别仅在于支持不同的加速设备。本教程演示如何部署 JupyterLab (CPU) 应用。
+JupyterLab 系列应用包括 JupyterLab (CPU)、JupyterLab (NVIDIA GPU)、JupyterLab (Enflame GCU)、和 JupyterLab (Hygon DCU)，它们之间的区别仅在于支持不同的加速设备。本教程演示部署 JupyterLab (CPU) 应用。
 
 点击 **JupyterLab (CPU)** 应用，进入 App 详情页面：
 

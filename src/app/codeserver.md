@@ -1,6 +1,6 @@
 # 部署 CodeServer
 
-CodeServer 是一个可以通过浏览器访问的 VSCode 服务。本教程演示如何部署 CodeServer 应用。
+CodeServer 是一个可以通过浏览器访问的 VSCode 服务。本教程演示部署 CodeServer 应用。
 
 点击 **CodeServer** 应用，进入 App 详情页面：
 

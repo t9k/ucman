@@ -2,7 +2,7 @@
 
 PyTorch 提供的 <a target="_blank" rel="noopener noreferrer" href="https://pytorch.org/docs/stable/profiler.html">profiler 工具</a>允许在训练和推理过程中收集性能指标，帮助开发者识别代码中的性能瓶颈和优化机会。它可以测量 CPU 和 GPU 上的操作执行时间、内存使用情况以及其他硬件利用率指标。通过使用 profiler，用户可以详细分析每个操作的耗时，追踪张量形状和类型，并生成可视化报告来直观地展示性能数据。这使得开发者能够更好地理解模型的运行特性，从而进行针对性的优化，提高模型的训练和推理效率。用户在 [JupyterLab 应用](../../app/jupyter-lab.md)中可以方便地使用这一工具。
 
-本教程演示如何在 JupyterLab 应用中对[进行 LLM 大规模预训练](./llm-large-scale-pretraining.md)中的训练进行性能分析。
+本教程演示在 JupyterLab 应用中对[进行 LLM 大规模预训练](./llm-large-scale-pretraining.md)中的训练进行性能分析。
 
 ## 准备工作
 

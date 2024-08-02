@@ -1,6 +1,6 @@
 # 部署 Terminal
 
-Terminal 是一个通过 Web 使用的终端应用。用户可以在浏览器中连接到该终端以进行各项工作，包括使用 kubectl 管理 K8s 资源。本教程演示如何部署 Terminal 应用。
+Terminal 是一个通过 Web 使用的终端应用。用户可以在浏览器中连接到该终端以进行各项工作，包括使用 kubectl 管理 K8s 资源。本教程演示部署 Terminal 应用。
 
 点击 **Terminal** 应用，进入 App 详情页面：
 

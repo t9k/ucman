@@ -1,10 +1,16 @@
-# 部署 LLM 推理服务
+# 部署 LLM 推理服务和聊天服务
 
-本教程演示如何使用 vLLM 应用以简单快速的方式部署 Meta-Llama-3.1-8B-Instruct 模型为推理服务。
+本教程演示使用 vLLM 应用简单快速地将 Meta-Llama-3.1-8B-Instruct 模型部署为推理服务，再使用 NextChat 应用提供一个简洁美观并且提供扩展功能的聊天 UI。
+
+本教程的应用架构如下图所示：
+
+<figure class="architecture">
+  <img alt="app-arch" src="../../assets/task/deploy-model/deploy-llm/app-arch.drawio.svg" />
+</figure>
 
 ## 准备工作
 
-创建一个名为 vllm、大小 18GiB 的存储卷，然后部署一个任意的 JupyterLab 应用挂载该存储卷。
+创建一个名为 vllm、大小 18GiB 的 PVC，然后部署一个任意的 JupyterLab 应用挂载该 PVC。
 
 进入 JupyterLab 应用，启动一个终端，执行以下命令以下载模型文件：
 
@@ -73,7 +79,7 @@ env: []
 
 ## 部署 NextChat 应用
 
-为了让聊天有一个简洁而美观的 UI 界面，我们可以使用 NextChat 应用。进入应用目录，点击 **NextChat** 应用：
+为了让聊天有一个简洁而美观的 UI，我们可以使用 NextChat 应用。进入应用目录，点击 **NextChat** 应用：
 
 <figure class="screenshot">
   <img alt="catalog-nextchat" src="../../assets/task/deploy-model/deploy-llm/catalog-nextchat.png" />
@@ -116,16 +122,17 @@ env: []
 
 在本地的终端中执行上述命令，然后在浏览器中访问相应的地址进入 UI，在设置中填写模型被部署的名称并选择该模型：
 
-<figure class="screenshot">
-  <img alt="nextchat-config" src="../../assets/task/deploy-model/deploy-llm/nextchat-config.png" />
+<figure class="screenshot" style="text-align: center;">
+  <img alt="nextchat-config" src="../../assets/task/deploy-model/deploy-llm/nextchat-config.png" width="80%" />
 </figure>
 
 然后就可以开始聊天了！
 
-<figure class="screenshot">
-  <img alt="nextchat-chat" src="../../assets/task/deploy-model/deploy-llm/nextchat-chat.png" />
+<figure class="screenshot" style="text-align: center;">
+  <img alt="nextchat-chat" src="../../assets/task/deploy-model/deploy-llm/nextchat-chat.png" width="80%" />
 </figure>
 
 ## 参考
 
-* <a target="_blank" rel="noopener noreferrer" href="https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web">NextChat: https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web</a>
+* NextChat：<a target="_blank" rel="noopener noreferrer" href="https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web">https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web</a>
+* vLLM：<a target="_blank" rel="noopener noreferrer" href="https://github.com/vllm-project/vllm">https://github.com/vllm-project/vllm</a>

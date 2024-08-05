@@ -29,7 +29,7 @@
     * [创建 ConfigMap](auxiliary/configmap.md)
 
 * [账户设置](account/index.md)
-    * [查看账户信息](account/view-profile.md)
+    * [账户信息](account/view-profile.md)
     * [项目管理](account/project-management.md)
     * [安全设置](account/security-setting.md)
     * [查看账单](account/view-bill.md)

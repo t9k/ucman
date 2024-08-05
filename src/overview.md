@@ -32,7 +32,7 @@ AI 集群的拥有者可以使用这套软件，构建自己的 AI 私有云或 
 
 <figure class="architecture">
   <img alt="t9k-arch" src="./assets/overview/t9k-arch.png" />
-  <figcaption>图 1：TensorStack AI 计算平台构建了一个高效的 AI 基础设施能力。API 层提供了可扩展、可编程、云原生的系统服务；应用层（Apps）为多样化的应用场景提供全面、完善的支撑。用户可根据需求，安装各种 Apps（IDE、LLM 开发框架、并行训练管理、推理服务管理、资源管理工具、完整的 AI 应用等），满足 AI 研究、开发和应用等业务需求。</figcaption>
+  <figcaption>图 1：TensorStack AI 计算平台为 AI 集群提供先进的 AI 基础设施能力。API 层提供了可扩展、可编程、云原生的系统服务；应用层（Apps）为多样化的应用场景提供全面、完善的支撑。用户可根据需求，安装各种 Apps（IDE、LLM 开发框架、并行训练管理、推理服务管理、资源管理工具、完整的 AI 应用等），满足 AI 研究、开发和应用等业务需求。</figcaption>
 </figure>
 
 ## 用户控制台（User Console）

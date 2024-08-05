@@ -357,13 +357,15 @@
 <p>用户在完成某一项任务时可以根据自己的偏好和任务的性质，灵活使用多个应用，进而高效地完成模型开发、训练、部署，AI 应用构建和部署等任务，全面开展与 AI 有关的工作，如下图示意：</p>
 <figure class="architecture">
   <img alt="app" src="app/../assets/app/app.drawio.svg" />
+  <figcaption>图 1：用户可以根据自己的偏好和任务的性质，灵活地使用多个 Apps 完成工作任务。</figcaption>
 </figure>
 <p>例如：</p>
 <p>1）在任务 <a href="app/../task/train-model/dp-training.html">进行数据并行训练</a> 中：</p>
 <ul>
 <li>用户在 JupyterLab 应用中进行交互式开发；</li>
+<li>在 Job Manager 中查看和管理运行的 PyTorchTrainingJob；</li>
 <li>JupyterLab、TensorBoard 和 PyTorchTrainingJob 挂载同一个 PVC，通过文件系统共享数据；</li>
-<li>在 JupyterLab 中拉取的训练代码可以被 PyTorchTrainingJob 执行；</li>
+<li>用户在 JupyterLab 中拉取的训练代码可以被 PyTorchTrainingJob 执行；</li>
 <li>PyTorchTrainingJob 中产生的 <code>tfevents</code> 日志文件可以被 TensorBoard 应用所读取并可视化展示。</li>
 </ul>
 <p>2） 在任务 <a href="app/../task/deploy-model/deploy-llm.html">部署 LLM 推理服务和聊天服务</a> 中：</p>
@@ -376,11 +378,13 @@
 <p>点击左侧导航菜单的<strong>应用</strong>，查看所有运行中（已经部署）的应用：</p>
 <figure class="screenshot">
   <img alt="list-app" src="app/../assets/app/list-app.png" />
+  <figcaption>图 2：查看所有运行中（已经部署）的应用。</figcaption>
 </figure>
 <h2 id="安装-apps"><a class="header" href="#安装-apps">安装 Apps</a></h2>
 <p>点击上图右上角的<strong>部署应用</strong>，查看所有可部署的应用：</p>
 <figure class="screenshot">
   <img alt="app-catalog" src="app/../assets/app/app-catalog.png" />
+  <figcaption>图 3：查看所有可部署的应用。</figcaption>
 </figure>
 <h2 id="下一步-4"><a class="header" href="#下一步-4">下一步</a></h2>
 <ul>

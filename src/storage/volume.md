@@ -19,3 +19,8 @@
 <figure class="screenshot">
   <img alt="created-pvc" src="../assets/storage/created-pvc.png" />
 </figure>
+
+## 下一步
+
+- [部署 Apps](../app/index.md)
+- 或者，了解 [创建存储适配器（StorageShim)](./adapter.md)

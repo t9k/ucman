@@ -12,6 +12,7 @@
 
 <figure class="architecture">
   <img alt="app" src="../assets/app/app.drawio.svg" />
+  <figcaption>图 1：用户可以根据自己的偏好和任务的性质，灵活地使用多个 Apps 完成工作任务。</figcaption>
 </figure>
 
 例如：
@@ -19,8 +20,9 @@
 1）在任务 [进行数据并行训练](../task/train-model/dp-training.md) 中：
 
 - 用户在 JupyterLab 应用中进行交互式开发；
+- 在 Job Manager 中查看和管理运行的 PyTorchTrainingJob；
 - JupyterLab、TensorBoard 和 PyTorchTrainingJob 挂载同一个 PVC，通过文件系统共享数据；
-- 在 JupyterLab 中拉取的训练代码可以被 PyTorchTrainingJob 执行；
+- 用户在 JupyterLab 中拉取的训练代码可以被 PyTorchTrainingJob 执行；
 - PyTorchTrainingJob 中产生的 `tfevents` 日志文件可以被 TensorBoard 应用所读取并可视化展示。
 
 2） 在任务 [部署 LLM 推理服务和聊天服务](../task/deploy-model/deploy-llm.md) 中：
@@ -35,6 +37,7 @@
 
 <figure class="screenshot">
   <img alt="list-app" src="../assets/app/list-app.png" />
+  <figcaption>图 2：查看所有运行中（已经部署）的应用。</figcaption>
 </figure>
 
 ## 安装 Apps
@@ -43,6 +46,7 @@
 
 <figure class="screenshot">
   <img alt="app-catalog" src="../assets/app/app-catalog.png" />
+  <figcaption>图 3：查看所有可部署的应用。</figcaption>
 </figure>
 
 ## 下一步

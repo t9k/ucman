@@ -289,6 +289,11 @@
 <h1 id="存储"><a class="header" href="#存储">存储</a></h1>
 <p>存储负责为应用提供数据持久化。它包括存储卷和适配器两种资源，这些资源确保应用能够可靠地存储和访问数据。存储卷为应用提供了持久化的数据存储空间，而适配器则帮助应用连接和使用不同类型的外部存储系统（例如 S3）。</p>
 <p>通过有效管理这些存储资源，用户能够灵活地处理大规模模型、数据集文件和其他 AI 开发过程中产生的数据，从而支持各种 AI 应用的高效运行和数据密集型任务的顺利进行。</p>
+<h2 id="下一步-2"><a class="header" href="#下一步-2">下一步</a></h2>
+<ul>
+<li><a href="storage/./volume.html">创建 PVC</a></li>
+<li>或者，了解 <a href="storage/../app/index.html">部署 Apps</a> </li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
 <h1 id="创建-pvc"><a class="header" href="#创建-pvc">创建 PVC</a></h1>
 <p><a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/modules/storage/pvc.html">PVC</a> 是一种 Kubernetes 原生资源，是对存储的需求声明。用户可以请求特定大小和访问模式的存储，而不必关心存储的具体实现。本章演示创建一个 PVC。</p>
@@ -304,6 +309,11 @@
 <figure class="screenshot">
   <img alt="created-pvc" src="storage/../assets/storage/created-pvc.png" />
 </figure>
+<h2 id="下一步-3"><a class="header" href="#下一步-3">下一步</a></h2>
+<ul>
+<li><a href="storage/../app/index.html">部署 Apps</a></li>
+<li>或者，了解 <a href="storage/./adapter.html">创建存储适配器（StorageShim)</a></li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
 <h1 id="创建-storageshim"><a class="header" href="#创建-storageshim">创建 StorageShim</a></h1>
 <p><a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/modules/storage/storageshim.html">StorageShim</a> 用于将已有的存储系统以 PVC 的形式提供给用户使用，例如将分布式文件系统的某个子目录作为一个 PVC 使用。</p>
@@ -340,20 +350,40 @@
 <p>点击右上角的创建即可完成适配器的创建。</p>
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
 <h1 id="应用"><a class="header" href="#应用">应用</a></h1>
-<p>应用是平台用以提供各种功能的核心资源。这里的应用既包括直接 AI 模型驱动的应用程序（AI 应用），例如 vLLM、Open WebUI、Stable Diffusion WebUI，也包含在 AI 研究、开发过程中可能使用到的软件、工具，例如 JupyterLab、TensorBoard、Dify。利用这些应用，用户能够完成模型开发、训练和部署，AI 应用构建和部署，与 AI 模型交互等任务，全面开展与 AI 有关的工作。</p>
+<h2 id="概念"><a class="header" href="#概念">概念</a></h2>
+<p><strong>应用（Apps）</strong> 是平台用以提供各种能力的模块化功能。这里的 Apps 既包括直接 AI 模型驱动的应用程序（AI 应用），例如 vLLM、Open WebUI、Stable Diffusion WebUI，也包含在 AI 研究、开发过程中可能使用到的软件、工具，例如 JupyterLab、TensorBoard、Dify。利用这些 Apps，用户能够完成模型开发、训练和部署，AI 应用构建和部署，与 AI 模型交互等任务，全面开展与 AI 有关的工作。</p>
 <p>用户在完成某一项任务时经常需要使用多个应用，并且这些应用以共享存储、网络调用等方式进行协作，下面是一个示意图：</p>
 <figure class="architecture">
   <img alt="app" src="app/../assets/app/app.drawio.svg" />
 </figure>
-<p>例如在任务<a href="app/../task/train-model/dp-training.html">进行数据并行训练</a>中，JupyterLab 应用、TensorBoard 应用和 PyTorchTrainingJob 资源共享存储，即挂载同一个 PVC，这样由 JupyterLab 应用拉取的训练代码可以被 PyTorchTrainingJob 所执行，由 PyTorchTrainingJob 产生的 tfevents 文件可以被 JupyterLab 应用和 TensorBoard 应用所读取并可视化展示。在任务<a href="app/../task/deploy-model/deploy-llm.html">部署 LLM 推理服务和聊天服务</a>中，JupyterLab 应用和 vLLM 应用共享存储，由 JupyterLab 应用下载的模型文件可以被 vLLM 应用所加载；NextChat 应用调用 vLLM 应用的 LLM 推理服务，从而用户可以在一个简洁美观的 UI 中与 LLM 聊天。</p>
-<p>点击左侧导航菜单的<strong>应用</strong>，查看所有已经部署的应用：</p>
+<p>例如：</p>
+<p>1）在任务 <a href="app/../task/train-model/dp-training.html">进行数据并行训练</a> 中：</p>
+<ul>
+<li>JupyterLab 应用、TensorBoard 应用和 PyTorchTrainingJob 共享存储，即挂载同一个 PVC；</li>
+<li>用户在 JupyterLab 应用中进行交互式开发；</li>
+<li>在 JupyterLab 中拉取的训练代码可以被 PyTorchTrainingJob 所执行；</li>
+<li>PyTorchTrainingJob 中产生的 <code>tfevents</code> 文件可以被 TensorBoard 应用所读取并可视化展示。</li>
+</ul>
+<p>2） 在任务 <a href="app/../task/deploy-model/deploy-llm.html">部署 LLM 推理服务和聊天服务</a> 中：</p>
+<ul>
+<li>JupyterLab 应用和 vLLM 应用共享存储，由 JupyterLab 应用下载的模型文件可以被 vLLM 应用所加载；</li>
+<li>NextChat 应用调用 vLLM 应用的 LLM 推理服务，从而用户可以在一个简洁美观的 UI 中与 LLM 聊天。</li>
+</ul>
+<h2 id="运行中的-apps"><a class="header" href="#运行中的-apps">运行中的 Apps</a></h2>
+<p>点击左侧导航菜单的<strong>应用</strong>，查看所有运行中（已经部署）的应用：</p>
 <figure class="screenshot">
   <img alt="list-app" src="app/../assets/app/list-app.png" />
 </figure>
+<h2 id="安装-apps"><a class="header" href="#安装-apps">安装 Apps</a></h2>
 <p>点击上图右上角的<strong>部署应用</strong>，查看所有可部署的应用：</p>
 <figure class="screenshot">
   <img alt="app-catalog" src="app/../assets/app/app-catalog.png" />
 </figure>
+<h2 id="下一步-4"><a class="header" href="#下一步-4">下一步</a></h2>
+<ul>
+<li><a href="app/jupyter-lab.html">部署 JupyterLab</a></li>
+<li>了解 <a href="app/../network/index.html">网络服务</a></li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
 <h1 id="部署-jupyterlab"><a class="header" href="#部署-jupyterlab">部署 JupyterLab</a></h1>
 <p><a target="_blank" rel="noopener noreferrer" href="https://jupyterlab.readthedocs.io/en/latest/">JupyterLab</a> 是一款非常流行的机器学习开发工具，它通过友好易用的 Web 界面提供交互式计算环境，支持多种编程语言和执行环境，在机器学习、AI、数据处理、数值模拟、统计建模、数据可视化等领域被广泛使用。</p>
@@ -436,7 +466,7 @@
 <figure class="screenshot">
   <img alt="ui-filebrowser" src="app/../assets/app/ui-filebrowser.png" />
 </figure>
-<h2 id="下一步-2"><a class="header" href="#下一步-2">下一步</a></h2>
+<h2 id="下一步-5"><a class="header" href="#下一步-5">下一步</a></h2>
 <ul>
 <li>学习如何<a href="app/../task/upload-and-download-file.html">上传和下载文件</a></li>
 </ul>
@@ -509,7 +539,7 @@
 <figure class="screenshot">
   <img alt="ui-job-manager" src="app/../assets/app/ui-job-manager.png" />
 </figure>
-<h2 id="下一步-3"><a class="header" href="#下一步-3">下一步</a></h2>
+<h2 id="下一步-6"><a class="header" href="#下一步-6">下一步</a></h2>
 <ul>
 <li>了解 <a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/modules/jobs/index.html">Job 的定义</a></li>
 <li>使用 Job <a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/tasks/model-training.html">运行模型训练</a></li>

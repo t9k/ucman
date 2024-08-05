@@ -220,31 +220,31 @@
 <p><strong>用户控制台（User Console）</strong> 是 TensorStack AI 计算平台的 <strong>应用层</strong> 入口，为 <strong>AI 集群使用者</strong> 提供了一个集中使用集群功能的图形化使用界面。</p>
 <p><strong>应用（Apps）</strong> 是 User Console 的核心，作为用户使用平台提供的所有功能的主要入口。无论是进行 AI 研究、开发还是部署，用户都是通过部署和使用相应的 Apps 来完成。例如：</p>
 <ul>
-<li>AI 研究员可能通过 <strong>JupyterLab 应用</strong> 作为其日常开发环境，使用 <strong>Job Manager 应用</strong> 运行和管理并行训练任务。</li>
+<li>AI 研究员可能通过 <strong><a href="./app/jupyter-lab.html">JupyterLab 应用</a></strong> 作为其日常开发环境，使用 <strong><a href="./app/job-manager.html">Job Manager 应用</a></strong> 运行和管理并行训练任务。</li>
 <li>AI 应用工程师可能使用 <strong>vLLM 应用</strong> 或 <strong>Stable Diffusion WebUI 应用</strong> 来部署和测试 AI 模型。</li>
 </ul>
 <aside class="note info">
 <div class="title">应用（Apps）为中心</div>
 <p>这种以 Apps 为中心的设计使得用户：</p>
 <ol>
-<li>能够直观地访问和管理他们所需的所有 AI 相关工具和服务。</li>
-<li>根据自己的偏好和习惯，及工作的性质，灵活的选择合适的 Apps。</li>
+<li>能够直观地访问和管理他们所需的所有 AI 相关工具和服务；</li>
+<li>根据自己的偏好和习惯，及工作的性质，灵活的选择合适的 Apps；</li>
 <li>可方便的通过安装新的 Apps 来获得能力扩展，随时使用 AI 领域的各种新技术个工具。</li>
 </ol>
 </aside>
 <p>围绕 Apps，User Console 的其他功能都为其提供方便的支持。</p>
 <ul>
-<li><strong>持久卷（PV + PVC）</strong> 和 <strong>适配器（StorageShim）</strong> 支持应用能够持久化保存数据，存储模型、数据集和训练数据等。</li>
-<li>网络服务如 <strong>Service</strong> 和 <strong>Ingress</strong>，为应用提供内部通信和外部访问的能力，使得应用能够相互协作并对外提供服务。</li>
+<li><strong>持久卷（PV + PVC）</strong> 和 <strong>适配器（StorageShim）</strong> 支持应用能够持久化保存数据，存储模型、数据集和训练数据等；</li>
+<li>网络服务如 <strong>Service</strong> 和 <strong>Ingress</strong>，为应用提供内部通信和外部访问的能力，使得应用能够相互协作并对外提供服务；</li>
 <li>辅助资源如 <strong>Secret</strong> 和 <strong>ConfigMap</strong> 则为应用提供配置管理和敏感信息保护，确保应用能够安全且灵活地运行。</li>
 </ul>
 <p>除此之外，User Console 还提供了账户设置功能，帮助用户管理账户的项目和 API Key，接受账单和来自平台的告警信息。</p>
 <h3 id="使用流程"><a class="header" href="#使用流程">使用流程</a></h3>
 <p>用户使用 User Console 的基本交互流程如下：</p>
 <ol>
-<li>用户登陆系统</li>
-<li>用户在项目中部署并使用 Apps，必要时创建存储、网络和辅助资源等</li>
-<li>用户在 Apps 中完成工作（创建计算任务，部署推理服务，使用推理服务，等等）</li>
+<li>登陆系统；</li>
+<li>在项目中部署并使用 Apps，必要时创建存储、网络和辅助资源等；</li>
+<li>在 Apps 中完成工作（创建计算任务，部署推理服务，使用推理服务，等等）。</li>
 </ol>
 <figure class="architecture">
   <img alt="use-user-console" src="./assets/overview/use-user-console.drawio.svg" />
@@ -362,15 +362,15 @@
 <p>例如：</p>
 <p>1）在任务 <a href="app/../task/train-model/dp-training.html">进行数据并行训练</a> 中：</p>
 <ul>
-<li>用户在 JupyterLab 应用中进行交互式开发；</li>
-<li>在 Job Manager 中查看和管理运行的 PyTorchTrainingJob；</li>
-<li>JupyterLab、TensorBoard 和 PyTorchTrainingJob 挂载同一个 PVC，通过文件系统共享数据；</li>
+<li>用户在 <a href="app/./jupyter-lab.html">JupyterLab</a> 中进行交互式开发；</li>
+<li>在 <a href="app/./job-manager.html">Job Manager</a> 中查看和管理运行的 PyTorchTrainingJob；</li>
+<li>JupyterLab、<a href="app/./tensorboard.html">TensorBoard</a> 和 PyTorchTrainingJob 挂载同一个 PVC，通过文件系统共享数据；</li>
 <li>用户在 JupyterLab 中拉取的训练代码可以被 PyTorchTrainingJob 执行；</li>
 <li>PyTorchTrainingJob 中产生的 <code>tfevents</code> 日志文件可以被 TensorBoard 应用所读取并可视化展示。</li>
 </ul>
 <p>2） 在任务 <a href="app/../task/deploy-model/deploy-llm.html">部署 LLM 推理服务和聊天服务</a> 中：</p>
 <ul>
-<li>JupyterLab 和 vLLM 共享存储，在 JupyterLab 中下载的模型文件可以被 vLLM 应用所加载；</li>
+<li><a href="app/./jupyter-lab.html">JupyterLab</a> 和 vLLM 共享存储，在 JupyterLab 中下载的模型文件可以被 vLLM 应用所加载；</li>
 <li>NextChat 调用 vLLM 的 LLM 推理服务 API；</li>
 <li>用户通过 NextChat 提供的简洁美观的 UI 中与 vLLM 部署的 LLM 聊天。</li>
 </ul>

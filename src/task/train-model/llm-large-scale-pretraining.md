@@ -24,7 +24,7 @@ LLM（大型语言模型）是当前 AI 领域备受瞩目的研究和应用领�
 本教程的应用架构如下图所示：
 
 <figure class="architecture">
-  <img alt="app-arch" src="../../assets/task/train-model/llm-large-scale-pretraining/app-arch.drawio.svg" />
+  <img alt="app-arch" src="../../assets/task/train-model/llm-large-scale-pretraining/app-arch-simple.drawio.svg" />
 </figure>
 
 ## 运行示例

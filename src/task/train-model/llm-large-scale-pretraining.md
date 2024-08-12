@@ -21,7 +21,7 @@ LLM（大型语言模型）是当前 AI 领域备受瞩目的研究和应用领�
 
 </aside>
 
-本教程的应用架构如下图所示：
+本教程的 Apps 架构如下图所示：
 
 <figure class="architecture">
   <img alt="app-arch" src="../../assets/task/train-model/llm-large-scale-pretraining/app-arch-simple.drawio.svg" />
@@ -29,13 +29,13 @@ LLM（大型语言模型）是当前 AI 领域备受瞩目的研究和应用领�
 
 ## 运行示例
 
-创建一个名为 megatron、大小 250 GiB 以上的 PVC，然后部署一个同样名为 megatron 的 JupyterLab 应用挂载该 PVC，镜像选用 PyTorch 2 类型，计算资源申请 16 个 CPU（核心）、32 GiB 内存。
+创建一个名为 megatron、大小 250 GiB 以上的 PVC，然后部署一个同样名为 megatron 的 JupyterLab App挂载该 PVC，镜像选用 PyTorch 2 类型，计算资源申请 16 个 CPU（核心）、32 GiB 内存。
 
 进入 JupyterLab，启动一个终端，前往<a target="_blank" rel="noopener noreferrer" href="https://github.com/t9k/examples/tree/master/deepspeed/megatron-gpt">本教程对应的示例</a>，参照其 README 文档进行操作。
 
 ## 查看训练信息
 
-训练开始后，部署一个 [Job Manager 应用](../../app/job-manager.md)（如有 Job Manager 则直接复用），进入 Job Manager，可以看到名为 **gpt-125m** 的 DeepSpeedJob 正在运行，点击其**名称**进入详情页面：
+训练开始后，部署一个 [Job Manager App](../../app/job-manager.md)（如有 Job Manager 则直接复用），进入 Job Manager，可以看到名为 **gpt-125m** 的 DeepSpeedJob 正在运行，点击其**名称**进入详情页面：
 
 <figure class="screenshot">
     <img alt="running" src="../../assets/task/train-model/llm-large-scale-pretraining/running.png" />
@@ -75,7 +75,7 @@ LLM（大型语言模型）是当前 AI 领域备受瞩目的研究和应用领�
 
 ## 查看训练指标
 
-训练产生的 tfevents 文件保存在 `output/gpt-125m/tensorboard` 路径下，可以[在 JupyterLab 中创建一个 TensorBoard 实例](./dp-training.md#查看训练指标)或部署一个 [TensorBoard 应用](../../app/tensorboard.md)以查看：
+训练产生的 tfevents 文件保存在 `output/gpt-125m/tensorboard` 路径下，可以[在 JupyterLab 中创建一个 TensorBoard 实例](./dp-training.md#查看训练指标)或部署一个 [TensorBoard App](../../app/tensorboard.md)以查看：
 
 <figure class="screenshot">
   <img alt="tensorboard" src="../../assets/task/train-model/llm-large-scale-pretraining/tensorboard.png" />

@@ -28,38 +28,38 @@ AI 集群的拥有者可以使用这套软件，构建自己的 AI 私有云或 
 
 </aside>
 
-通过先进的架构和丰富的 API + 应用，TensorStack AI 计算平台合理地隐藏了分布式并行、异构计算、加速计算等技术的复杂细节，提高了抽象层次，并为 AI 领域的各种计算提供了针对性的支持，极大地提升了 AI 技术研究、开发、应用的工作效率。
+通过先进的架构和丰富的 API + Apps，TensorStack AI 计算平台合理地隐藏了分布式并行、异构计算、加速计算等技术的复杂细节，提高了抽象层次，并为 AI 领域的各种计算提供了针对性的支持，极大地提升了 AI 技术研究、开发、应用的工作效率。
 
 <figure class="architecture">
   <img alt="t9k-arch" src="./assets/overview/t9k-arch.png" />
-  <figcaption>图 1：TensorStack AI 计算平台为 AI 集群提供先进的 AI 基础设施能力。API 层提供了可扩展、可编程、云原生的系统服务；应用层（Apps）为多样化的应用场景提供全面、完善的支撑。用户可根据需求，安装各种 Apps（IDE、LLM 开发框架、并行训练管理、推理服务管理、资源管理工具、完整的 AI 应用等），满足 AI 研究、开发和应用等业务需求。</figcaption>
+  <figcaption>图 1：TensorStack AI 计算平台为 AI 集群提供先进的 AI 基础设施能力。API 层提供了可扩展、可编程、云原生的系统服务；Apps 层为多样化的应用场景提供全面、完善的支撑。用户可根据需求，部署各种 Apps（IDE、LLM 开发框架、并行训练管理、推理服务管理、资源管理工具、完整的 AI 应用等），满足 AI 研究、开发和应用等业务需求。</figcaption>
 </figure>
 
-## 用户控制台（User Console）
+## User Console
 
-**用户控制台（User Console）** 是 TensorStack AI 计算平台的 **应用层** 入口，为 **AI 集群使用者** 提供了一个集中使用集群功能的图形化使用界面。
+<b>User Console（用户控制台）</b>是 TensorStack AI 计算平台的 **Apps 层**入口，为 **AI 集群使用者**提供了一个集中使用集群功能的图形化使用界面。
 
-**应用（Apps）** 是 User Console 的核心，作为用户使用平台提供的所有功能的主要入口。无论是进行 AI 研究、开发还是部署，用户都是通过部署和使用相应的 Apps 来完成。例如：
+<b>Apps（应用）</b>是 User Console 的核心，作为用户使用平台提供的所有功能的主要入口。无论是进行 AI 研究、开发还是部署，用户都是通过部署和使用相应的 Apps 来完成。例如：
 
-- AI 研究员可能通过 **[JupyterLab 应用](./app/jupyter-lab.md)** 作为其日常开发环境，使用 **[Job Manager 应用](./app/job-manager.md)** 运行和管理并行训练任务。
-- AI 应用工程师可能使用 **vLLM 应用** 或 **Stable Diffusion WebUI 应用** 来部署和测试 AI 模型。
+- AI 研究员可能通过 [JupyterLab App](./app/jupyter-lab.md) 作为其日常开发环境，使用 [Job Manager App](./app/job-manager.md) 运行和管理并行训练任务。
+- AI 应用工程师可能使用 vLLM App 或 Stable Diffusion WebUI App 来部署和测试 AI 模型。
 
 <aside class="note info">
-<div class="title">应用（Apps）为中心</div>
+<div class="title">Apps 为中心</div>
 
 这种以 Apps 为中心的设计使得用户：
 
 1. 能够直观地访问和管理他们所需的所有 AI 相关工具和服务；
 2. 根据自己的偏好和习惯，及工作的性质，灵活的选择合适的 Apps；
-3. 可方便的通过安装新的 Apps 来获得能力扩展，随时使用 AI 领域的各种新技术个工具。
+3. 可方便的通过部署新的 Apps 来获得能力扩展，随时使用 AI 领域的各种新技术个工具。
 
 </aside>
 
 围绕 Apps，User Console 的其他功能都为其提供方便的支持。
 
-- **持久卷（PV + PVC）** 和 **适配器（StorageShim）** 支持应用能够持久化保存数据，存储模型、数据集和训练数据等；
-- 网络服务如 **Service** 和 **Ingress**，为应用提供内部通信和外部访问的能力，使得应用能够相互协作并对外提供服务；
-- 辅助资源如 **Secret** 和 **ConfigMap** 则为应用提供配置管理和敏感信息保护，确保应用能够安全且灵活地运行。
+- **持久卷（PV + PVC）** 和<b>适配器（StorageShim）</b>支持 Apps 能够持久化保存数据，存储模型、数据集和训练数据等；
+- 网络服务如 **Service** 和 **Ingress**，为 Apps 提供内部通信和外部访问的能力，使得 Apps 能够相互协作并对外提供服务；
+- 辅助资源如 **Secret** 和 **ConfigMap** 则为 Apps 提供配置管理和敏感信息保护，确保 Apps 能够安全且灵活地运行。
 
 除此之外，User Console 还提供了账户设置功能，帮助用户管理账户的项目和 API Key，接受账单和来自平台的告警信息。
 

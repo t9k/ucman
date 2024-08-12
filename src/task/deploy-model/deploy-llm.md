@@ -1,8 +1,8 @@
 # 部署 LLM 推理服务和聊天服务
 
-本教程演示使用 vLLM 应用简单快速地将 Meta-Llama-3.1-8B-Instruct 模型部署为推理服务，再使用 NextChat 应用提供一个简洁美观并且提供扩展功能的聊天 UI。
+本教程演示使用 vLLM App 简单快速地将 Meta-Llama-3.1-8B-Instruct 模型部署为推理服务，再使用 NextChat App 提供一个简洁美观并且提供扩展功能的聊天 UI。
 
-本教程的应用架构如下图所示：
+本教程的 Apps 架构如下图所示：
 
 <figure class="architecture">
   <img alt="app-arch" src="../../assets/task/deploy-model/deploy-llm/app-arch.drawio.svg" />
@@ -10,9 +10,9 @@
 
 ## 准备工作
 
-创建一个名为 vllm、大小 18GiB 的 PVC，然后部署一个任意的 JupyterLab 应用挂载该 PVC。
+创建一个名为 vllm、大小 18GiB 的 PVC，然后部署一个任意的 JupyterLab App 挂载该 PVC。
 
-进入 JupyterLab 应用，启动一个终端，执行以下命令以下载模型文件：
+进入 JupyterLab App，启动一个终端，执行以下命令以下载模型文件：
 
 ```bash
 pip install modelscope
@@ -21,15 +21,15 @@ MODEL_NAME=Meta-Llama-3.1-8B-Instruct
 modelscope download --model "LLM-Research/$MODEL_NAME" --exclude "original/*" --local_dir "./$MODEL_NAME"
 ```
 
-## 部署 vLLM 应用
+## 部署 vLLM App
 
-进入应用目录，点击 **vLLM** 应用，进入 README 页面：
+进入应用目录，点击 **vLLM** App，进入 README 页面：
 
 <figure class="screenshot">
   <img alt="catalog-vllm" src="../../assets/task/deploy-model/deploy-llm/catalog-vllm.png" />
 </figure>
 
-README 给出了应用介绍、使用方法、配置示例和参数说明，根据这些信息写出 YAML 配置如下：
+README 给出了 Apps 介绍、使用方法、配置示例和参数说明，根据这些信息写出 YAML 配置如下：
 
 ```yaml
 replicaCount: 1
@@ -56,7 +56,7 @@ model:
 env: []
 ```
 
-使用上述配置部署 vLLM 应用，待应用就绪后，查看其信息：
+使用上述配置部署 vLLM App，待 App 就绪后，查看其信息：
 
 <figure class="screenshot">
   <img alt="vllm-info" src="../../assets/task/deploy-model/deploy-llm/vllm-info.png" />
@@ -73,13 +73,13 @@ env: []
 <aside class="note tip">
 <div class="title">提示</div>
 
-上述操作同时记载于 vLLM (Llama 3.1) 应用的使用方法，该应用是 vLLM 应用的变体，专门用于部署 Llama 3.1 系列模型。本教程选择更加通用的 vLLM 应用作为演示，vLLM 应用可以部署大多数流行的开源模型。
+上述操作同时记载于 vLLM (Llama 3.1) App 的使用方法，该 App 是 vLLM App 的变体，专门用于部署 Llama 3.1 系列模型。本教程选择更加通用的 vLLM App 作为演示，vLLM App 可以部署大多数流行的开源模型。
 
 </aside>
 
-## 部署 NextChat 应用
+## 部署 NextChat App
 
-为了让聊天有一个简洁而美观的 UI，我们可以使用 NextChat 应用。进入应用目录，点击 **NextChat** 应用：
+为了让聊天有一个简洁而美观的 UI，我们可以使用 NextChat App。进入应用目录，点击 **NextChat** App：
 
 <figure class="screenshot">
   <img alt="catalog-nextchat" src="../../assets/task/deploy-model/deploy-llm/catalog-nextchat.png" />
@@ -109,12 +109,12 @@ llm:
   provider: "openai"
   apiKey: "any"
   openai:
-    baseUrl: "http://<ENDPOINT>"  # 根据 vLLM 应用的信息获取服务端点
+    baseUrl: "http://<ENDPOINT>"  # 根据 vLLM App 的信息获取服务端点
 
 env: []
 ```
 
-使用上述配置部署 NextChat 应用，待应用就绪后，查看其信息：
+使用上述配置部署 NextChat App，待 App 就绪后，查看其信息：
 
 <figure class="screenshot">
   <img alt="nextchat-info" src="../../assets/task/deploy-model/deploy-llm/nextchat-info.png" />

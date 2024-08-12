@@ -34,4 +34,4 @@ User Console 首页包含以下元素：
 ## 下一步
 
 - [创建集群存储](./storage/index.md)，或者
-- [部署应用](./app/index.md)
+- [部署 Apps](./app/index.md#部署-apps)

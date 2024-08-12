@@ -1,8 +1,8 @@
 # 部署 PostgreSQL
 
-<a target="_blank" rel="noopener noreferrer" href="https://www.postgresql.org/">PostgreSQL</a> 是一个开源对象关系数据库，以可靠性和数据完整性而闻名。本教程演示部署一个 PostgreSQL 应用。
+<a target="_blank" rel="noopener noreferrer" href="https://www.postgresql.org/">PostgreSQL</a> 是一个开源对象关系数据库，以可靠性和数据完整性而闻名。本教程演示部署一个 PostgreSQL App。
 
-点击 **PostgreSQL** 应用，进入 App 详情页面：
+点击 **PostgreSQL** App，进入 App 详情页面：
 
 <figure class="screenshot">
   <img alt="select-postgresql" src="../assets/app/select-postgresql.png" />
@@ -26,10 +26,10 @@
   <img alt="yaml-postgresql" src="../assets/app/yaml-postgresql.png" />
 </figure>
 
-等待创建成功的 PostgreSQL 应用就绪：
+等待创建成功的 PostgreSQL App 就绪：
 
 <figure class="screenshot">
   <img alt="wait-for-postgresql" src="../assets/app/wait-for-postgresql.png" />
 </figure>
 
-PostgreSQL 应用没有 UI，因此无法直接通过链接访问。
+PostgreSQL App 没有 UI，因此无法直接通过链接访问。

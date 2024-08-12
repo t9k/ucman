@@ -1,15 +1,15 @@
 # 上传和下载文件
 
-通过 <a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/modules/storage/pvc.html">PVC</a> 使用集群存储非常方便，它可以作为存储卷被挂载到 Jupyter Lab 应用、Job、MLService 等各种工作负载的 Pod 中。例如在进行模型训练时，你可以把训练脚本以及训练数据存放到 PVC，然后挂载在 Job 的 Pod 中。
+通过 <a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/modules/storage/pvc.html">PVC</a> 使用集群存储非常方便，它可以作为存储卷被挂载到 Jupyter Lab App、Job、MLService 等各种工作负载的 Pod 中。例如在进行模型训练时，你可以把训练脚本以及训练数据存放到 PVC，然后挂载在 Job 的 Pod 中。
 
 本教程将分场景介绍从集群外部下载/上传文件到 PVC，以及从 PVC 上传/下载文件到集群外部的若干方法。
 
-由于下面的方法需要使用到一些命令行工具或 Python 库，而 [Jupyter Lab 应用](../app/jupyter-lab.md)提供了终端并且预装了这些命令行工具和 Python 库，因此我们推荐创建一个 Jupyter Lab 应用挂载 PVC，然后在其终端中进行操作。
+由于下面的方法需要使用到一些命令行工具或 Python 库，而 [Jupyter Lab](../app/jupyter-lab.md) App 提供了终端并且预装了这些命令行工具和 Python 库，因此我们推荐创建一个 Jupyter Lab App 挂载 PVC，然后在其终端中进行操作。
 
 <aside class="note tip">
 <div class="title">提示</div>
 
-对于使用命令行工具 `wget`（或 `curl`）、`git` 或 `kubectl` 的方法，也可以在 [Terminal 应用](../app/terminal.md)中进行操作。
+对于使用命令行工具 `wget`（或 `curl`）、`git` 或 `kubectl` 的方法，也可以在 [Terminal](../app/terminal.md) App 中进行操作。
 
 </aside>
 
@@ -36,17 +36,17 @@ NFS 类型的 PVC 不可扩容。
 
 </aside>
 
-### Jupyter Lab 应用 UI
+### Jupyter Lab App UI
 
-将 PVC 挂载到 [Jupyter Lab 应用](../app/jupyter-lab.md)上，本地文件系统和 PVC 之间的文件上传下载可以直接在 UI 中进行操作：
+将 PVC 挂载到 [Jupyter Lab](../app/jupyter-lab.md) App 上，本地文件系统和 PVC 之间的文件上传下载可以直接在 UI 中进行操作：
 
 <figure class="screenshot">
   <img alt="notebook-upload-download" src="../assets/task/upload-and-download-file/notebook-upload-download.png" />
 </figure>
 
-### FileBrowser 应用 UI
+### FileBrowser App UI
 
-将 PVC 挂载到 [FileBrowser 应用](../app/filebrowser.md)上，本地文件系统和 PVC 之间的文件上传下载可以直接在 UI 中进行操作：
+将 PVC 挂载到 [FileBrowser](../app/filebrowser.md) App 上，本地文件系统和 PVC 之间的文件上传下载可以直接在 UI 中进行操作：
 
 <figure class="screenshot">
   <img alt="file-browser-upload-download" src="../assets/task/upload-and-download-file/file-browser-upload-download.png" />
@@ -55,7 +55,7 @@ NFS 类型的 PVC 不可扩容。
 <aside class="note">
 <div class="title">注意</div>
 
-* Jupyter Lab 应用不限制上传或下载的单个文件的大小（根据管理员配置，FileBrowser 有可能限制上传的单个文件的大小）；但上传过程容易因为网络波动而出错，建议 > ~5GB（也取决于具体网络环境）的单个文件使用其他方法上传。
+* Jupyter Lab App 不限制上传或下载的单个文件的大小（根据管理员配置，FileBrowser 有可能限制上传的单个文件的大小）；但上传过程容易因为网络波动而出错，建议 > ~5GB（也取决于具体网络环境）的单个文件使用其他方法上传。
 * 可以一次上传或下载多个文件；但在文件数量较多（> ~50）的情况下容易出错，推荐打包成压缩文件再上传或下载。
 
 </aside>
@@ -185,7 +185,7 @@ kubectl create -f upload-git.yaml
 Hugging Face 模型或数据集本身就是一个 Git 仓库，因此可以参照 [Git 仓库](#git-仓库)的方法。需要注意的是：
 
 * Git 仓库的 HTTPS URL 为 `https://huggingface.co/<OWNER>/<MODEL_OR_DATASET_NAME>`，例如模型 `facebook/opt-125m` 的 HTTPS URL 为 `https://huggingface.co/facebook/opt-125m`。
-* Git LFS 被用于管理大于 10MB 的文件（Jupyter Lab 应用已经安装了 Git LFS，并在启动时进行了初始化）。如要推送大于 10MB 的文件，请先通过 Git LFS 追踪该文件：
+* Git LFS 被用于管理大于 10MB 的文件（Jupyter Lab App 已经安装了 Git LFS，并在启动时进行了初始化）。如要推送大于 10MB 的文件，请先通过 Git LFS 追踪该文件：
 
     ```bash
     git lfs track large_file
@@ -397,7 +397,7 @@ kubectl create -f upload-hf.yaml
 与 [Hugging Face](#git-命令-1) 类似，除了：
 
 * Git 仓库的 HTTPS URL 为 `https://www.modelscope.cn/<OWNER>/<MODEL_OR_DATASET_NAME>.git`，例如模型 `AI-ModelScope/opt-125` 的 HTTPS URL 为 `https://www.modelscope.cn/AI-ModelScope/opt-125.git`。
-* Git LFS 被用于管理大于 100MB 的文件（Jupyter Lab 应用已经安装了 Git LFS，并在启动时进行了初始化）。如要推送大于 100MB 的文件，请先通过 Git LFS 追踪该文件：
+* Git LFS 被用于管理大于 100MB 的文件（Jupyter Lab App 已经安装了 Git LFS，并在启动时进行了初始化）。如要推送大于 100MB 的文件，请先通过 Git LFS 追踪该文件：
 
     ```bash
     git lfs track large_file

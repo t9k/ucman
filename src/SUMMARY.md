@@ -10,7 +10,7 @@
     * [创建 PVC](storage/volume.md)
     * [创建 StorageShim](storage/adapter.md)
 
-* [应用](app/index.md)
+* [Apps](app/index.md)
     * [部署 JupyterLab](app/jupyter-lab.md)
     * [部署 Terminal](app/terminal.md)
     * [部署 FileBrowser](app/filebrowser.md)
@@ -18,7 +18,7 @@
     * [部署 TensorBoard](app/tensorboard.md)
     * [部署 Job Manager](app/job-manager.md)
     * [部署 PostgreSQL](app/postgresql.md)
-    <!-- * [应用列表](app/list.md) -->
+    <!-- * [Apps 列表](app/list.md) -->
     
 * [网络服务](network/index.md)
     * [查看 Service](network/service.md)

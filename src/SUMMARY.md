@@ -41,7 +41,7 @@
         * [进行数据并行训练](task/train-model/dp-training.md)
         * [进行 LLM 大规模预训练](task/train-model/llm-large-scale-pretraining.md)
         * [分析性能](task/train-model/profile.md)
-        <!-- * [微调 LLM](task/train-model/finetune-llm.md) -->
+        * [指令微调 LLM](task/train-model/llm-instruction-tuning.md)
         <!-- * [使用 Job Manager](task/train-model/use-job-manager.md) -->
     * [部署模型推理服务](task/deploy-model/index.md)
         * [部署 LLM 推理服务和聊天服务](task/deploy-model/deploy-llm.md)

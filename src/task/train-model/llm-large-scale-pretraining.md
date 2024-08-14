@@ -10,7 +10,7 @@ LLM（大型语言模型）是当前 AI 领域备受瞩目的研究和应用领�
 
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/microsoft/DeepSpeed">DeepSpeed</a> 是目前最受欢迎的大规模分布式训练框架，而平台提供了 [DeepSpeedJob](../modules/jobs/deepspeedjob.md)，这是专为使用 DeepSpeed 框架的分布式训练而设计的 Job 类型。
 
-本教程演示使用 DeepSpeedJob 以简单快速的方式启动 Megatron-LM GPT-3 系列（125M、1.3B、13B 和 175B）模型的预训练任务。本教程对应示例 <a target="_blank" rel="noopener noreferrer" href="https://github.com/t9k/examples/tree/master/deepspeed/megatron-gpt">Megatron-DeepSpeed GPT</a>。
+本教程演示使用 <a target="_blank" rel="noopener noreferrer" href="https://github.com/microsoft/Megatron-DeepSpeed">Megatron-DeepSpeed</a> 和 DeepSpeedJob 以简单快速的方式进行 Megatron-LM GPT-3 系列（125M、1.3B、13B 和 175B）模型的预训练。本教程对应示例 <a target="_blank" rel="noopener noreferrer" href="https://github.com/t9k/examples/tree/master/deepspeed/megatron-gpt">examples/deepspeed/megatron-gpt</a>。
 
 <aside class="note info">
 <div class="title">Megatron-LM</div>
@@ -18,6 +18,13 @@ LLM（大型语言模型）是当前 AI 领域备受瞩目的研究和应用领�
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/NVIDIA/Megatron-LM">Megatron-LM</a> 是 NVIDIA 应用深度学习研究团队开发的大型 transformer 代码库，用于高效地训练多达 1 trillion 参数的 LLM，并实现了多种并行技术。<a target="_blank" rel="noopener noreferrer" href="https://github.com/microsoft/Megatron-DeepSpeed">Megatron-DeepSpeed</a> 是 DeepSpeed 版本的 Megatron-LM，其增加了对几个功能的额外支持，如 MoE 训练、课程学习、3D 并行性等。
 
 本示例所使用的训练代码即来自这两个项目。
+
+</aside>
+
+<aside class="note">
+<div class="title">注意</div>
+
+本教程仅作为演示预训练 LLM 的目的，不保证下面的训练配置是最优的，亦不保证训练得到的模型达到某个性能指标。
 
 </aside>
 
@@ -29,7 +36,7 @@ LLM（大型语言模型）是当前 AI 领域备受瞩目的研究和应用领�
 
 ## 运行示例
 
-创建一个名为 megatron、大小 250 GiB 以上的 PVC，然后部署一个同样名为 megatron 的 JupyterLab App挂载该 PVC，镜像选用 PyTorch 2 类型，计算资源申请 16 个 CPU（核心）、32 GiB 内存。
+创建一个名为 megatron、大小 250 GiB 的 PVC，然后部署一个同样名为 megatron 的 JupyterLab App 挂载该 PVC，镜像选用 PyTorch 2 类型，计算资源申请 16 个 CPU（核心）、32 GiB 内存。
 
 进入 JupyterLab，启动一个终端，前往<a target="_blank" rel="noopener noreferrer" href="https://github.com/t9k/examples/tree/master/deepspeed/megatron-gpt">本教程对应的示例</a>，参照其 README 文档进行操作。
 
@@ -102,6 +109,6 @@ LLM（大型语言模型）是当前 AI 领域备受瞩目的研究和应用领�
 
 ## 参考
 
-* <a target="_blank" rel="noopener noreferrer" href="https://github.com/NVIDIA/Megatron-LM">Megatron-LM</a>
-* <a target="_blank" rel="noopener noreferrer" href="https://github.com/microsoft/Megatron-DeepSpeed">Megatron-DeepSpeed</a>
-* <a target="_blank" rel="noopener noreferrer" href="https://github.com/microsoft/DeepSpeed">DeepSpeed</a>
+* Megatron-LM：<https://github.com/NVIDIA/Megatron-LM>
+* Megatron-DeepSpeed：<https://github.com/microsoft/Megatron-DeepSpeed>
+* DeepSpeed：<https://github.com/microsoft/DeepSpeed>

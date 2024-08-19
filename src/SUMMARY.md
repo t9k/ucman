@@ -11,14 +11,15 @@
     * [创建 StorageShim](storage/adapter.md)
 
 * [Apps](app/index.md)
-    * [部署 JupyterLab](app/jupyter-lab.md)
-    * [部署 Terminal](app/terminal.md)
-    * [部署 FileBrowser](app/filebrowser.md)
-    * [部署 CodeServer](app/codeserver.md)
-    * [部署 TensorBoard](app/tensorboard.md)
-    * [部署 Job Manager](app/job-manager.md)
-    * [部署 PostgreSQL](app/postgresql.md)
-    <!-- * [Apps 列表](app/list.md) -->
+    * [部署和删除 Apps](app/deploy-and-delete-app.md)<!-- * [管理 Apps](app/manage-app.md) -->
+    * [Apps 列表](app/list.md)
+    * [JupyterLab](app/jupyter-lab.md)
+    * [TensorBoard](app/tensorboard.md)
+    <!-- * [Terminal](app/terminal.md)
+    * [FileBrowser](app/filebrowser.md)
+    * [CodeServer](app/codeserver.md)
+    * [Job Manager](app/job-manager.md)
+    * [PostgreSQL](app/postgresql.md) -->
     
 * [网络服务](network/index.md)
     * [查看 Service](network/service.md)

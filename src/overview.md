@@ -2,7 +2,7 @@
 
 ## 目标读者
 
-本书《TensorStack AI 计算平台 - User Console 用户手册》 的目标读者是 “TensorStack AI 计算平台” 的使用者，包括：
+本书《TensorStack AI 计算平台 - User Console 用户手册》 的目标读者是“TensorStack AI 计算平台”的使用者，包括：
 
 - AI 研究人员
 - 建模工程师
@@ -37,7 +37,7 @@ AI 集群的拥有者可以使用这套软件，构建自己的 AI 私有云或 
 
 ## User Console
 
-<b>User Console（用户控制台）</b>是 TensorStack AI 计算平台的 **Apps 层**入口，为 **AI 集群使用者**提供了一个集中使用集群功能的图形化使用界面。
+“User Console（用户控制台）”是 TensorStack AI 计算平台的 **Apps 层**入口，为 **AI 集群使用者**提供了一个集中使用集群功能的图形化使用界面。
 
 <b>Apps（应用）</b>是 User Console 的核心，作为用户使用平台提供的所有功能的主要入口。无论是进行 AI 研究、开发还是部署，用户都是通过部署和使用相应的 Apps 来完成。例如：
 
@@ -76,6 +76,20 @@ AI 集群的拥有者可以使用这套软件，构建自己的 AI 私有云或 
   <figcaption>图 2：用户登陆系统后在项目中部署并使用 Apps 完成工作。</figcaption>
 </figure>
 
+### 准备工作
+
+在开始使用 User Console 之前，你需要：
+
+1. 了解<a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/modules/security/account.html">账户</a>和<a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/modules/security/project.html">项目</a>的概念。
+1. 拥有一个账户，且该账户是至少一个项目的成员。
+
+<aside class="note tip">
+<div class="title">提示</div>
+
+如果你没有账户或不是任何项目的成员，请联系平台的管理员。
+
+</aside>
+
 ## 下一步
 
-进入 [User Console 首页](./homepage.md)
+* 进入 [User Console 首页](./homepage.md)

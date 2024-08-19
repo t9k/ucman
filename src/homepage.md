@@ -1,13 +1,6 @@
 # 首页
 
-首页是 “用户控制台（User Console）” 的起时界面，为用户提供功能快速入口，及账户的基本统计信息。
-
-## 概述
-
-在开始使用 “User Console” 前，你需要：
-
-1. 了解 <a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/modules/security/account.html">账户</a> 和 <a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/modules/security/project.html">项目</a> 的概念。
-1. 拥有一个账户，且该账户至少是一个项目的成员。
+首页是 User Console 的起始界面，为用户提供功能快速入口，及账户的基本统计信息。
 
 User Console 首页包含以下元素：
 
@@ -29,9 +22,9 @@ User Console 首页包含以下元素：
 
 蓝色面包屑导航栏的左侧可以显示/隐藏左侧导航菜单，右侧是手动刷新按键和自动刷新的开关。
 
-左侧导航菜单和中间区域对应的各项功能在下文介绍。
+左侧导航菜单和中间区域对应的各项功能在后面介绍。
 
 ## 下一步
 
-- [创建集群存储](./storage/index.md)，或者
-- [部署 Apps](./app/index.md#部署-apps)
+- [创建集群存储](./storage/index.md)
+- [了解和使用 Apps](./app/index.md)

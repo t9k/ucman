@@ -6,5 +6,5 @@
 
 ## 下一步
 
-- [创建 PVC](./volume.md)，或者
-- 了解 [部署 Apps](../app/index.md) 
+- [创建 PVC](./volume.md)
+- [了解和使用 Apps](../app/index.md)

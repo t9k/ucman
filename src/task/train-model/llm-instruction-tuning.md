@@ -34,7 +34,7 @@
 
 ## 运行示例
 
-创建一个名为 llama-factory、大小 60 GiB 的 PVC，然后部署一个同样名为 llama-factory 的 JupyterLab App 挂载该 PVC，镜像选用 PyTorch 2 类型，计算资源申请 16 个 CPU（核心）、32 GiB 内存和 1 个 NVIDIA GPU（需要 40GB 显存）。
+创建一个名为 llama-factory、大小 60 GiB 的 PVC，然后安装一个同样名为 llama-factory 的 JupyterLab App 挂载该 PVC，镜像选用 PyTorch 2 类型，计算资源申请 16 个 CPU（核心）、32 GiB 内存和 1 个 NVIDIA GPU（需要 40GB 显存）。
 
 进入 JupyterLab，启动一个终端，前往<a target="_blank" rel="noopener noreferrer" href="https://github.com/t9k/examples/tree/master/llama-factory">本教程对应的示例</a>，参照其 README 文档（对应 8B 模型的部分）进行操作。
 
@@ -169,7 +169,7 @@ Assistant: 我很抱歉听到你晚上睡眠不好。我明白这个问题对你
 
 ## 部署 LLM 推理服务
 
-进一步地，可以使用 vLLM App 将 SFT 模型或 DPO 模型部署为推理服务。请参照[部署 vLLM App](../deploy-model/deploy-llm.md#部署-vllm-app)进行操作，注意将 `model.volume.existingClaim` 字段的值设为 `llama-factory`，将 `model.volume.subPath` 字段的值设为 `models/Meta-Llama-3.1-8B-sft` 或 `models/Meta-Llama-3.1-8B-dpo`。
+进一步地，可以使用 vLLM App 将 SFT 模型或 DPO 模型部署为推理服务。请参照[安装 vLLM App](../deploy-model/deploy-llm.md#安装-vllm-app)进行操作，注意将 `model.volume.existingClaim` 字段的值设为 `llama-factory`，将 `model.volume.subPath` 字段的值设为 `models/Meta-Llama-3.1-8B-sft` 或 `models/Meta-Llama-3.1-8B-dpo`。
 
 ## 参考
 

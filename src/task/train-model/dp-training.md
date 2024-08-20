@@ -10,7 +10,7 @@
 
 ## 运行示例
 
-创建一个名为 tutorial、大小 1 Gi 的 [PVC](../../storage/volume.md)，然后部署一个同样名为 tutorial 的 [JupyterLab App](../../app/jupyter-lab.md)挂载该 PVC，镜像和资源不限。
+创建一个名为 tutorial、大小 1 Gi 的 [PVC](../../storage/volume.md)，然后安装一个同样名为 tutorial 的 [JupyterLab App](../../app/jupyter-lab.md)挂载该 PVC，镜像和资源不限。
 
 进入 JupyterLab，启动一个终端，执行以下命令以克隆 `t9k/tutorial-examples` 仓库。
 
@@ -30,7 +30,7 @@ git clone https://github.com/t9k/tutorial-examples.git
 
 ## 查看训练信息
 
-训练开始后，部署一个 [Job Manager App](../../app/job-manager.md)（如有 Job Manager 则直接复用），进入 Job Manager，可以看到名为 **torch-mnist-trainingjob** 的 PyTorchTrainingJob 正在运行，点击其**名称**进入详情页面：
+训练开始后，安装一个 [Job Manager App](../../app/job-manager.md)（如有 Job Manager 则直接复用），进入 Job Manager，可以看到名为 **torch-mnist-trainingjob** 的 PyTorchTrainingJob 正在运行，点击其**名称**进入详情页面：
 
 <figure class="screenshot">
     <img alt="running" src="../../assets/task/train-model/dp-training/running.png" />
@@ -96,6 +96,6 @@ JupyterLab 的 TensorBoard 实例的自动更新无效，请点击右上角的 *
 <aside class="note tip">
 <div class="title">提示</div>
 
-你也可以部署一个 [TensorBoard App](../../app/tensorboard.md)，展示的内容是相同的。
+你也可以安装一个 [TensorBoard App](../../app/tensorboard.md)，展示的内容是相同的。
 
 </aside>

@@ -24,7 +24,7 @@ NFS 类型的 PVC 不可扩容。
 
 ## 准备工作
 
-* 完成教程[部署 Jupyter Lab](../app/jupyter-lab.md)、[部署 Terminal](../app/terminal.md) 和[部署 FileBrowser](../app/filebrowser.md)
+* 完成教程[安装 Jupyter Lab](../app/jupyter-lab.md)、[安装 Terminal](../app/terminal.md) 和[安装 FileBrowser](../app/filebrowser.md)
 * 了解 <a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/modules/auxiliary/datacube.html">DataCube 的概念</a>
 
 ## 本地文件系统

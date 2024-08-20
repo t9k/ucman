@@ -10,7 +10,7 @@
 
 ## 准备工作
 
-创建一个名为 vllm、大小 18GiB 的 PVC，然后部署一个任意的 JupyterLab App 挂载该 PVC。
+创建一个名为 vllm、大小 18GiB 的 PVC，然后安装一个任意的 JupyterLab App 挂载该 PVC。
 
 进入 JupyterLab App，启动一个终端，执行以下命令以下载模型文件：
 
@@ -21,7 +21,7 @@ MODEL_NAME=Meta-Llama-3.1-8B-Instruct
 modelscope download --model "LLM-Research/$MODEL_NAME" --exclude "original/*" --local_dir "./$MODEL_NAME"
 ```
 
-## 部署 vLLM App
+## 安装 vLLM App
 
 进入应用目录，点击 **vLLM** App，进入 README 页面：
 
@@ -56,7 +56,7 @@ model:
 env: []
 ```
 
-使用上述配置部署 vLLM App，待 App 就绪后，查看其信息：
+使用上述配置安装 vLLM App，待 App 就绪后，查看其信息：
 
 <figure class="screenshot">
   <img alt="vllm-info" src="../../assets/task/deploy-model/deploy-llm/vllm-info.png" />
@@ -77,7 +77,7 @@ env: []
 
 </aside>
 
-## 部署 NextChat App
+## 安装 NextChat App
 
 为了让聊天有一个简洁而美观的 UI，我们可以使用 NextChat App。进入应用目录，点击 **NextChat** App：
 
@@ -114,7 +114,7 @@ llm:
 env: []
 ```
 
-使用上述配置部署 NextChat App，待 App 就绪后，查看其信息：
+使用上述配置安装 NextChat App，待 App 就绪后，查看其信息：
 
 <figure class="screenshot">
   <img alt="nextchat-info" src="../../assets/task/deploy-model/deploy-llm/nextchat-info.png" />

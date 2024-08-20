@@ -1,36 +1,28 @@
-# 部署 FileBrowser
+# FileBrowser
 
-FileBrowser 在指定目录中提供了一个文件管理 UI，可用于上传、删除、预览、重命名和编辑文件。本教程演示部署 FileBrowser App。
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/filebrowser/filebrowser">FileBrowser</a> 是一个轻量级的基于网络的文件管理系统，为用户提供了一个简单而功能强大的界面来管理服务器上的文件和目录。它允许用户通过网页浏览器远程访问、上传、下载、编辑和共享文件，无需使用复杂的 FTP 客户端或命令行工具。FileBrowser 支持多用户管理，可以为不同用户设置不同的访问权限，确保文件安全性。
 
-点击 **FileBrowser** App，进入 App 详情页面：
-
-<figure class="screenshot">
-  <img alt="select-filebrowser" src="../assets/app/select-filebrowser.png" />
-</figure>
-
-在 App 详情页面，你可以看到如何配置 FileBrowser，这包含了示例 YAML 及参数说明。确认信息后，点击右上角的**立刻部署**进入创建页面：
+在日常使用中，FileBrowser 的直观界面使文件管理变得简单高效。用户可以轻松执行拖放上传、创建文件夹、重命名文件等操作。它还提供了文件预览功能，支持多种文件格式的在线查看，如文本、图片、音频和视频。对于开发者和系统管理员来说，FileBrowser 的命令执行功能特别有用，允许用户在网页界面中直接运行服务器命令，简化了远程管理任务。
 
 <figure class="screenshot">
-  <img alt="readme-filebrowser" src="../assets/app/readme-filebrowser.png" />
+  <img alt="filebrowser" src="../assets/app/filebrowser/filebrowser-official.gif" />
 </figure>
 
-通过**表单**配置 FileBrowser。为 `spec.storageName` 字段赋值 `demo`，即之前创建的存储卷的名称。然后点击右上角的**部署**：
+## 使用方法
+
+待应用就绪后，点击右侧的 <span class="twemoji"><svg class="MuiSvgIcon-root MuiSvgIcon-colorPrimary MuiSvgIcon-fontSizeMedium css-jxtyyz" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="OpenInNewIcon"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3z"></path></svg></span> 进入网页 UI，即可管理文件。
 
 <figure class="screenshot">
-  <img alt="form-filebrowser" src="../assets/app/form-filebrowser.png" />
+  <img alt="filebrowser" src="../assets/app/filebrowser/filebrowser.png" />
 </figure>
 
-等待创建成功的 FileBrowser App 就绪：
+网页 UI 的使用方法简单直观，请用户自行尝试。
 
-<figure class="screenshot">
-  <img alt="wait-for-filebrowser" src="../assets/app/wait-for-filebrowser.png" />
-</figure>
+## 使用说明
 
-App 就绪后，点击右侧的 <span class="twemoji"><svg class="MuiSvgIcon-root MuiSvgIcon-colorPrimary MuiSvgIcon-fontSizeMedium css-jxtyyz" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="OpenInNewIcon"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3z"></path></svg></span>，即可使用该 App：
-
-<figure class="screenshot">
-  <img alt="ui-filebrowser" src="../assets/app/ui-filebrowser.png" />
-</figure>
+* 在 App 的容器环境中，用户的 uid:gid 为 1000:1000（fsgroup 为 2000），这意味着没有权限修改所有者和所有组都是 root 的文件（这些文件可能是由挂载了同一个 PVC 且使用 root 用户的 Job 产生的）。
+* 根据管理员配置，App 有可能限制上传的单个文件的大小；上传过程容易因为网络波动而出错，建议 > ~5GB（也取决于具体网络环境）的单个文件使用其他方法上传。
+* 可以一次上传或下载多个文件；但在文件数量较多（> ~50）的情况下容易出错，推荐打包成压缩文件再上传或下载。
 
 ## 下一步
 

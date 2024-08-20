@@ -2,7 +2,7 @@
 
 ## 概念
 
-<b>Apps（应用）</b>是平台提供各种能力的功能模块，用户可根据自己的需求进行部署和使用。
+<b>Apps（应用）</b>是平台提供各种能力的功能模块，用户可根据自己的需求进行安装和使用。
 
 这里的 Apps 既包括直接 AI 模型驱动的应用程序，例如 vLLM、Open WebUI、Stable Diffusion WebUI，也包含在 AI 研究、开发过程中可能使用到的软件、工具，例如 JupyterLab、PyCharm、TensorBoard、Dify 等。
 
@@ -33,5 +33,5 @@
 
 ## 下一步
 
-- [部署 JupyterLab](jupyter-lab.md)
+- [安装 JupyterLab](jupyter-lab.md)
 - 了解 [网络服务](../network/index.md)

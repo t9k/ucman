@@ -1,0 +1,630 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>DeepSpeedJob - TensorStack AI 计算平台 - User Console 用户手册</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../theme/sidebar.css">
+        <link rel="stylesheet" href="../../theme/custom.css">
+        <link rel="stylesheet" href="../../theme/version-dropdown.css">
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../overview.html">概述</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../../homepage.html"><strong aria-hidden="true">1.</strong> 首页</a></li><li class="chapter-item expanded "><a href="../../app/index.html"><strong aria-hidden="true">2.</strong> Apps</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../app/install-app.html"><strong aria-hidden="true">2.1.</strong> 安装 Apps</a></li><li class="chapter-item expanded "><a href="../../app/uninstall-app.html"><strong aria-hidden="true">2.2.</strong> 卸载 Apps</a></li><li class="chapter-item expanded "><a href="../../app/manage-app.html"><strong aria-hidden="true">2.3.</strong> 管理 Apps</a></li><li class="chapter-item expanded "><a href="../../app/app-list.html"><strong aria-hidden="true">2.4.</strong> Apps 列表</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../app/codeserver.html"><strong aria-hidden="true">2.4.1.</strong> Code Server</a></li><li class="chapter-item expanded "><a href="../../app/filebrowser.html"><strong aria-hidden="true">2.4.2.</strong> File Browser</a></li><li class="chapter-item expanded "><a href="../../app/jupyter-lab.html"><strong aria-hidden="true">2.4.3.</strong> JupyterLab</a></li><li class="chapter-item expanded "><a href="../../app/tensorboard.html"><strong aria-hidden="true">2.4.4.</strong> TensorBoard</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../api/index.html"><strong aria-hidden="true">3.</strong> APIs</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../api/job/index.html"><strong aria-hidden="true">3.1.</strong> T9k Job</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../api/job/genericjob.html"><strong aria-hidden="true">3.1.1.</strong> GenericJob</a></li><li class="chapter-item expanded "><a href="../../api/job/pytorchtrainingjob.html"><strong aria-hidden="true">3.1.2.</strong> PyTorchTrainingJob</a></li><li class="chapter-item expanded "><a href="../../api/job/tensorflowtrainingjob.html"><strong aria-hidden="true">3.1.3.</strong> TensorFlowTrainingJob</a></li><li class="chapter-item expanded "><a href="../../api/job/deepspeedjob.html" class="active"><strong aria-hidden="true">3.1.4.</strong> DeepSpeedJob</a></li><li class="chapter-item expanded "><a href="../../api/job/colossalaijob.html"><strong aria-hidden="true">3.1.5.</strong> ColossalAIJob</a></li><li class="chapter-item expanded "><a href="../../api/job/xgboosttrainingjob.html"><strong aria-hidden="true">3.1.6.</strong> XGBoostTrainingJob</a></li><li class="chapter-item expanded "><a href="../../api/job/mpijob.html"><strong aria-hidden="true">3.1.7.</strong> MPIJob</a></li><li class="chapter-item expanded "><a href="../../api/job/beamjob.html"><strong aria-hidden="true">3.1.8.</strong> BeamJob</a></li></ol></li><li class="chapter-item expanded "><a href="../../api/service/index.html"><strong aria-hidden="true">3.2.</strong> T9k Service</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../api/service/simplemlservice.html"><strong aria-hidden="true">3.2.1.</strong> SimpleMLService</a></li><li class="chapter-item expanded "><a href="../../api/service/mlservice.html"><strong aria-hidden="true">3.2.2.</strong> MLService</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../api/service/mlservice-logger.html"><strong aria-hidden="true">3.2.2.1.</strong> 日志收集</a></li></ol></li><li class="chapter-item expanded "><a href="../../api/service/storage.html"><strong aria-hidden="true">3.2.3.</strong> 模型存储</a></li></ol></li><li class="chapter-item expanded "><a href="../../api/storage/index.html"><strong aria-hidden="true">3.3.</strong> 存储</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../api/storage/pvc.html"><strong aria-hidden="true">3.3.1.</strong> PVC</a></li><li class="chapter-item expanded "><a href="../../api/storage/storageshim.html"><strong aria-hidden="true">3.3.2.</strong> StorageShim</a></li></ol></li><li class="chapter-item expanded "><a href="../../api/network/index.html"><strong aria-hidden="true">3.4.</strong> 网络服务</a></li><li class="chapter-item expanded "><a href="../../api/auxiliary/index.html"><strong aria-hidden="true">3.5.</strong> 辅助</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../api/auxiliary/secret.html"><strong aria-hidden="true">3.5.1.</strong> Secret</a></li><li class="chapter-item expanded "><a href="../../api/auxiliary/configmap.html"><strong aria-hidden="true">3.5.2.</strong> ConfigMap</a></li><li class="chapter-item expanded "><a href="../../api/auxiliary/imagebuilder.html"><strong aria-hidden="true">3.5.3.</strong> ImageBuilder</a></li><li class="chapter-item expanded "><a href="../../api/auxiliary/datacube.html"><strong aria-hidden="true">3.5.4.</strong> DataCube</a></li><li class="chapter-item expanded "><a href="../../api/auxiliary/serviceaccounttoken.html"><strong aria-hidden="true">3.5.5.</strong> ServiceAccountToken</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../account/index.html"><strong aria-hidden="true">4.</strong> 账户设置</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../account/view-profile.html"><strong aria-hidden="true">4.1.</strong> 账户信息</a></li><li class="chapter-item expanded "><a href="../../account/project-management.html"><strong aria-hidden="true">4.2.</strong> 项目管理</a></li><li class="chapter-item expanded "><a href="../../account/security-setting.html"><strong aria-hidden="true">4.3.</strong> 安全设置</a></li><li class="chapter-item expanded "><a href="../../account/view-bill.html"><strong aria-hidden="true">4.4.</strong> 查看账单</a></li><li class="chapter-item expanded "><a href="../../account/alert-notification.html"><strong aria-hidden="true">4.5.</strong> 告警通知</a></li></ol></li><li class="chapter-item expanded "><a href="../../task/index.html"><strong aria-hidden="true">5.</strong> 任务</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../task/manage-storage-network-and-auxiliary/index.html"><strong aria-hidden="true">5.1.</strong> 管理存储、网络服务和辅助资源</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../task/manage-storage-network-and-auxiliary/pvc.html"><strong aria-hidden="true">5.1.1.</strong> 创建 PVC</a></li><li class="chapter-item expanded "><a href="../../task/manage-storage-network-and-auxiliary/storageshim.html"><strong aria-hidden="true">5.1.2.</strong> 创建 StorageShim</a></li><li class="chapter-item expanded "><a href="../../task/manage-storage-network-and-auxiliary/service.html"><strong aria-hidden="true">5.1.3.</strong> 查看 Service</a></li><li class="chapter-item expanded "><a href="../../task/manage-storage-network-and-auxiliary/ingress.html"><strong aria-hidden="true">5.1.4.</strong> 查看 Ingress</a></li><li class="chapter-item expanded "><a href="../../task/manage-storage-network-and-auxiliary/secret.html"><strong aria-hidden="true">5.1.5.</strong> 创建 Secret</a></li><li class="chapter-item expanded "><a href="../../task/manage-storage-network-and-auxiliary/configmap.html"><strong aria-hidden="true">5.1.6.</strong> 创建 ConfigMap</a></li></ol></li><li class="chapter-item expanded "><a href="../../task/train-model/index.html"><strong aria-hidden="true">5.2.</strong> 训练模型</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../task/train-model/dp-training.html"><strong aria-hidden="true">5.2.1.</strong> 进行数据并行训练</a></li><li class="chapter-item expanded "><a href="../../task/train-model/llm-large-scale-pretraining.html"><strong aria-hidden="true">5.2.2.</strong> 进行 LLM 大规模预训练</a></li><li class="chapter-item expanded "><a href="../../task/train-model/profile.html"><strong aria-hidden="true">5.2.3.</strong> 分析性能</a></li><li class="chapter-item expanded "><a href="../../task/train-model/llm-instruction-tuning.html"><strong aria-hidden="true">5.2.4.</strong> 指令微调 LLM</a></li></ol></li><li class="chapter-item expanded "><a href="../../task/deploy-model/index.html"><strong aria-hidden="true">5.3.</strong> 部署模型推理服务</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../task/deploy-model/deploy-llm.html"><strong aria-hidden="true">5.3.1.</strong> 部署 LLM 推理服务和聊天服务</a></li></ol></li><li class="chapter-item expanded "><a href="../../task/theme/index.html"><strong aria-hidden="true">5.4.</strong> 专题</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../task/theme/upload-and-download-file.html"><strong aria-hidden="true">5.4.1.</strong> 上传和下载文件</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../references/index.html"><strong aria-hidden="true">6.</strong> 参考</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../references/api-reference/index.html"><strong aria-hidden="true">6.1.</strong> API 参考</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../references/api-reference/project.html"><strong aria-hidden="true">6.1.1.</strong> Project</a></li><li class="chapter-item expanded "><a href="../../references/api-reference/genericjob.html"><strong aria-hidden="true">6.1.2.</strong> GenericJob</a></li><li class="chapter-item expanded "><a href="../../references/api-reference/tensorflowtrainingjob.html"><strong aria-hidden="true">6.1.3.</strong> TensorFlowTrainingJob</a></li><li class="chapter-item expanded "><a href="../../references/api-reference/pytorchtrainingjob.html"><strong aria-hidden="true">6.1.4.</strong> PyTorchTrainingJob</a></li><li class="chapter-item expanded "><a href="../../references/api-reference/xgboosttrainingjob.html"><strong aria-hidden="true">6.1.5.</strong> XGBoostTrainingJob</a></li><li class="chapter-item expanded "><a href="../../references/api-reference/colossalaijob.html"><strong aria-hidden="true">6.1.6.</strong> ColossalAIJob</a></li><li class="chapter-item expanded "><a href="../../references/api-reference/deepspeedjob.html"><strong aria-hidden="true">6.1.7.</strong> DeepSpeedJob</a></li><li class="chapter-item expanded "><a href="../../references/api-reference/mpijob.html"><strong aria-hidden="true">6.1.8.</strong> MPIJob</a></li><li class="chapter-item expanded "><a href="../../references/api-reference/beamjob.html"><strong aria-hidden="true">6.1.9.</strong> BeamJob</a></li><li class="chapter-item expanded "><a href="../../references/api-reference/tensorboard.html"><strong aria-hidden="true">6.1.10.</strong> TensorBoard</a></li><li class="chapter-item expanded "><a href="../../references/api-reference/notebook.html"><strong aria-hidden="true">6.1.11.</strong> Notebook</a></li><li class="chapter-item expanded "><a href="../../references/api-reference/autotune.html"><strong aria-hidden="true">6.1.12.</strong> AutoTuneExperiment</a></li><li class="chapter-item expanded "><a href="../../references/api-reference/explorer.html"><strong aria-hidden="true">6.1.13.</strong> Explorer</a></li><li class="chapter-item expanded "><a href="../../references/api-reference/storageshim.html"><strong aria-hidden="true">6.1.14.</strong> StorageShim</a></li><li class="chapter-item expanded "><a href="../../references/api-reference/scheduler.html"><strong aria-hidden="true">6.1.15.</strong> Scheduler</a></li><li class="chapter-item expanded "><a href="../../references/api-reference/workflow.html"><strong aria-hidden="true">6.1.16.</strong> Workflow</a></li><li class="chapter-item expanded "><a href="../../references/api-reference/workflowtrigger.html"><strong aria-hidden="true">6.1.17.</strong> WorkflowTrigger</a></li><li class="chapter-item expanded "><a href="../../references/api-reference/simplemlservice.html"><strong aria-hidden="true">6.1.18.</strong> SimpleMLService</a></li><li class="chapter-item expanded "><a href="../../references/api-reference/mlservice.html"><strong aria-hidden="true">6.1.19.</strong> MLService</a></li><li class="chapter-item expanded "><a href="../../references/api-reference/virtualserver.html"><strong aria-hidden="true">6.1.20.</strong> VirtualServer</a></li><li class="chapter-item expanded "><a href="../../references/api-reference/datacube.html"><strong aria-hidden="true">6.1.21.</strong> DataCube</a></li><li class="chapter-item expanded "><a href="../../references/api-reference/serviceaccounttoken.html"><strong aria-hidden="true">6.1.22.</strong> ServiceAccountToken</a></li></ol></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        <!-- custom code for adding release version dropdown menu -->
+                        <div class="version-dropdown">
+                            <button id="release-version" class="icon-button" type="button" title="Release version" aria-label="Release version" aria-haspopup="true" aria-expanded="false" aria-controls="release-versions">
+                                <i class="fa fa-book"></i>
+                            </button>
+                            <div class="version-dropdown-content">
+                                <a href="https://t9k.github.io/user-manuals/latest/index.html"target="_blank" rel="noopener noreferrer">latest</a>
+                                <a href="https://t9k.github.io/user-manuals/v20240206/index.html"target="_blank" rel="noopener noreferrer">v20240206</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h1 class="menu-title">TensorStack AI 计算平台 - User Console 用户手册</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="sidetoc"><nav class="pagetoc"></nav></div>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="deepspeedjob"><a class="header" href="#deepspeedjob">DeepSpeedJob</a></h1>
+<p>DeepSpeedJob 是服务于 <a target="_blank" rel="noopener noreferrer" href="https://www.deepspeed.ai/">DeepSpeed</a> 分布式训练框架的 T9k Job。</p>
+<p>你可以较为方便地使用 DeepSpeedJob 为 DeepSpeed 训练脚本提供训练环境，并监控训练进程。</p>
+<h2 id="创建-deepspeedjob"><a class="header" href="#创建-deepspeedjob">创建 DeepSpeedJob</a></h2>
+<p>下面是一个基本的 DeepSpeedJob 示例：</p>
+<pre><code class="language-yaml">apiVersion: batch.tensorstack.dev/v1beta1
+kind: DeepspeedJob
+metadata:
+  name: deepspeed-example
+spec:
+  config:
+    slotPerWorker: 1
+    run:
+      python: /t9k/mnt/train.py
+  worker:
+    replicas: 4
+    template:
+      spec:
+        restartPolicy: OnFailure
+        containers:
+        - image: deepspeed/deepspeed:v072_torch112_cu117
+          imagePullPolicy: IfNotPresent
+          name: worker
+          resources:
+            limits:
+              cpu: 4
+              memory: 4Gi
+            requests:
+              cpu: 2
+              memory: 2Gi
+          volumeMounts:
+          - mountPath: /t9k/mnt
+            name: code
+        volumes:
+        - name: code
+          persistentVolumeClaim:
+            claimName: deepspeed
+</code></pre>
+<p>在该例中：</p>
+<ul>
+<li>创建 4 个训练副本，这些副本会启动 <code>sshd</code> 服务。</li>
+<li>第一个副本会启动 <code>deepspeed</code> 程序，该程序会通过 <code>pdsh</code>（或其他方式）访问 4 个副本，并在每个副本上运行 <code>/t9k/mnt/train.py</code> 脚本。</li>
+</ul>
+<aside class="note">
+<div class="title">注意</div>
+<p>一个副本中可以创建多个容器，DeepSpeedJob 需要确定哪一个容器才是训练容器。如果 <code>spec.worker.template</code> 中包含 <code>name</code> 为 <code>worker</code> 的 container，则该容器为训练容器；如果没有，会选取第一个 container 作为训练容器。</p>
+<p>DeepSpeedJob 中的执行程序应是使用 DeepSpeed 框架的程序，否则可能达不到训练效果。</p>
+<p>用户挂载文件时，需要避开下列路径，否则会导致 DeepSpeedJob 不能正常运行：<code>/root/.ssh</code>、<code>/t9k/hostfile</code>、<code>/root/.deepspeed_env</code>。</p>
+</aside>
+<h2 id="副本设置"><a class="header" href="#副本设置">副本设置</a></h2>
+<p>DeepSpeedJob 副本运行环境和命令可以通过 <code>spec.worker.template</code> 进行配置，可配置内容包括镜像、运行命令、资源配置、环境变量等。</p>
+<h3 id="资源配置"><a class="header" href="#资源配置">资源配置</a></h3>
+<p>副本资源配置通过 <code>spec.worker.template.spec.containers[*].resources</code> 字段指定。</p>
+<p>DeepSpeedJob 的资源配置包括两部分：</p>
+<ul>
+<li>资源请求量（<code>requests</code>）：创建该副本时，节点上至少应具有这些数量的资源。如果集群中所有节点都不满足副本的资源请求量，则副本的创建可能会被阻塞；或者如果副本的优先级较高，则有可能驱逐节点上其他工作负载来为副本空出可用的资源。</li>
+<li>资源上限（<code>limits</code>）：该副本在运行期间，最多可以使用的资源数量。比如：如果副本在运行时申请分配超过上限的内存，则有可能出现 <code>OOMKILLED</code> 错误。（注：资源上限不能小于资源请求量）</li>
+</ul>
+<p>在下面的示例中，DeepSpeedJob 中每个副本设置了以下资源配置：</p>
+<ul>
+<li>资源请求量：2 个 cpu 核心、2Gi 内存；</li>
+<li>资源上限：4 个 cpu 核心、4Gi 内存。</li>
+</ul>
+<pre><code class="language-yaml">apiVersion: batch.tensorstack.dev/v1beta1
+kind: DeepSpeedJob
+metadata:
+  name: deepspeed-example
+spec:
+  worker:
+    replicas: 4
+    template:
+      spec:
+        containers:
+        - resources:
+            limits:
+              cpu: 4
+              memory: 4Gi
+            requests:
+              cpu: 2
+              memory: 2Gi
+</code></pre>
+<h4 id="共享内存"><a class="header" href="#共享内存">共享内存</a></h4>
+<p>在进行多节点任务时，可以按照如下方式修改 DeepSpeedJob 来使用共享内存：</p>
+<pre><code class="language-yaml">apiVersion: batch.tensorstack.dev/v1beta1
+kind: DeepSpeedJob
+metadata:
+  name: deepspeed-example
+spec:
+  worker:
+    replicas: 4
+    template:
+      spec:
+        containers:
+        - ...
+          volumeMounts:
+            - mountPath: /dev/shm
+              name: dshm
+        volumes:
+        - name: dshm
+          emptyDir:
+            medium: Memory
+            sizeLimit: &quot;1Gi&quot;
+</code></pre>
+<p>在该例中：</p>
+<ul>
+<li>在 <code>spec.worker.template.spec.volumes</code> 中增加一项，名称为 <code>dshm</code>，其中限制共享内存最大为 <code>1Gi</code>；</li>
+<li>在 <code>spec.worker.template.spec.containers[*].volumeMounts</code> 中增加一项，将上述 <code>dshm</code> 绑定到 <code>/dev/shm</code> 路径。</li>
+</ul>
+<aside class="note tip">
+<div class="title">提示</div>
+<p>如果当前副本中设置了内存资源上限，则共享内存的大小不能超过副本的内存上限；如果副本没有设置内存资源上限，则共享内存的大小最大可以设置为当前所在节点内存的最大容量。</p>
+</aside>
+<h3 id="环境变量"><a class="header" href="#环境变量">环境变量</a></h3>
+<p>副本环境变量通过 <code>spec.worker.template.spec.containers[*].env</code> 字段指定。DeepSpeedJob 支持直接设置环境变量内容和引用其他资源字段作为环境变量两种方式。</p>
+<p>在下面的示例中，DeepSpeedJob 给副本设置了两个环境变量：<code>ENV_DIRECT</code> 和 <code>ENV_REFERENCED</code>。其中 <code>ENV_DIRECT</code> 环境变量被直接设置为 <code>env-value</code>，<code>ENV_REFERENCED</code> 环境变量引用了 <code>secret-name</code> Secret 的 <code>key-in-secret</code> 字段的内容。</p>
+<pre><code class="language-yaml">apiVersion: batch.tensorstack.dev/v1beta1
+kind: DeepSpeedJob
+metadata:
+  name: deepspeed-example
+spec:
+  worker:
+    replicas: 4
+    template:
+      spec:
+        containers:
+          - env:
+            - name: ENV_DIRECT
+              value: env-value
+            - name: ENV_REFERENCED
+              valueFrom:
+                secretKeyRef:
+                  name: secret-name
+                  key: key-in-secret
+</code></pre>
+<aside class="note tip">
+<div class="title">提示</div>
+<p>环境变量常被用于：</p>
+<ol>
+<li>设置网络代理：<code>HTTP_PROXY</code> 和 <code>HTTPS_PROXY</code>；</li>
+<li>设置额外的 Python 包和模块路径：<code>PYTHONPATH</code>；</li>
+<li>设置 C 语言静态库和共享库路径：<code>LIBRARY_PATH</code> 和 <code>LD_LIBRARY_PATH</code>；</li>
+<li>...</li>
+</ol>
+</aside>
+<aside class="note tip">
+<div class="title">提示</div>
+<p>更多环境变量相关配置，请参考 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/tasks/inject-data-application/">Inject Data Into Applications
+</a>。</p>
+</aside>
+<h2 id="训练配置"><a class="header" href="#训练配置">训练配置</a></h2>
+<p>DeepSpeedJob 在 <code>spec.config</code> 中配置如何执行训练。有以下参数可以设置：</p>
+<ul>
+<li><code>run</code>：如何启动训练，以下三个参数只能填写一个，否则报错：
+<ul>
+<li><code>python</code>：使用 Python 脚本进行训练。指定 Python 文件以及启动参数。</li>
+<li><code>module</code>：使用 Python module 进行训练。指定 Python module 以及启动参数。</li>
+<li><code>exec</code>：使用可执行文件/命令进行训练。指定可执行文件以及启动参数。</li>
+</ul>
+</li>
+<li><code>slotsPerWorker</code>：每一个副本上设置多少个“插槽”。“插槽”是继承自 MPI 中的概念，表示一个副本上可以运行多少个训练进程。一般来说该值被设为每个副本分配的 GPU 数量。例如当创建了一个 <code>replica</code> 为 4 的任务，并且给每个副本分配了 2 个 <code>nvidia.com/gpu</code>，则应该将 <code>slotsPerWorker</code> 设为 2，这样最后一共会运行 <code>4 * 2 = 8</code> 个训练进程。</li>
+<li><code>localRank</code>：是否传递 <code>LOCAL_RANK</code> 环境变量，默认为 <code>true</code>。</li>
+<li><code>autotune</code>：启用超参数调优，可以设置为 <code>none</code>、<code>run</code>、<code>tune</code>，默认为 <code>none</code>。<code>none</code> 为不启动超参数调优；<code>tune</code> 只查找最合适的超参数组合，但是不执行训练；<code>run</code> 查找最合适的超参数组合，并用该超参数执行训练。</li>
+<li><code>otherArgs</code>：设置其他 DeepSpeed 参数，详见下文。</li>
+</ul>
+<h3 id="otherargs"><a class="header" href="#otherargs">otherArgs</a></h3>
+<p>DeepSpeedJob 希望提供用户足够的灵活性，所以支持用户通过 <code>otherArgs</code> 字段设置传入 DeepSpeed 的参数。config 中的配置实际上也是通过 DeepSpeed 参数实现的，以下列出除了在配置文件中指定的参数之外的其他可用参数：</p>
+<ul>
+<li><code>--launcher</code>： 多节点训练使用的启动器后端，目前的选项包括 PDSH、OpenMPI、MVAPICH、SLURM、MPICH。（默认：<code>pdsh</code>）。目前 DeepSpeedJob 只支持 <code>pdsh</code>。</li>
+<li><code>--no_ssh_check</code>：多节点训练时不执行 ssh 检查。</li>
+<li><code>--save_pid</code>： 在 <code>/tmp/&lt;main-pid&gt;.ds</code> 处保存包含启动器进程 ID（pid），其中 <code>&lt;main-pid&gt;</code> 是第一个调用 DeepSpeed 的进程的 pid。PDSH 模式下不支持。</li>
+<li><code>--enable_each_rank_log</code>： 将每个 Rank 的 stdout 和 stderr 重定向到不同的日志文件。PDSH 模式下不支持。</li>
+<li><code>--bind_cores_to_rank</code>：将每个 Rank 绑定到主机的不同核心。PDSH 模式下不支持。</li>
+<li><code>--bind_core_list</code>：要绑定的核心列表，以逗号分隔。例如 <code>1,3-5,7 =&gt; [1,3,4,5,7]</code>。 未指定时，系统上的所有核心都将被绑定。PDSH 模式下不支持。</li>
+</ul>
+<aside class="note info">
+<div class="title">信息</div>
+<p>config 中的配置实际上是通过 DeepSpeed 参数实现的，而 <code>otherArgs</code> 可以指定任意值，所以可能会造成冲突。以下列出了会导致冲突的参数，请勿在 <code>otherArgs</code> 中设置：</p>
+<ul>
+<li><code>--no_local_rank</code>：与 <code>spec.config.localRank</code> 字段冲突。</li>
+<li><code>--autotuning</code>：与 <code>spec.config.autotune</code> 字段冲突。</li>
+<li><code>--module</code> 和 <code>--no_python</code>：与 <code>spec.config.autotune</code> 字段冲突。</li>
+</ul>
+</aside>
+<h2 id="训练的成功和失败判定"><a class="header" href="#训练的成功和失败判定">训练的成功和失败判定</a></h2>
+<p>DeepSpeedJob 分布式训练框架中，第一个训练副本（下文记为 <code>worker-0</code>）是分布式任务的主节点。当 <code>worker-0</code> 成功结束，则 DeepSpeedJob 训练成功；反之，当 <code>worker-0</code> 执行失败，DeepSpeedJob 训练失败。</p>
+<p>如果一次训练执行时间过长，用户可能需要考虑代码是否需要优化、是否需要分配更多资源等问题。DeepSpeedJob 可以设置最长执行时间（由 <code>spec.runPolicy.activeDeadlineSeconds</code> 字段指定），当超过这个执行时间后，训练失败。</p>
+<h2 id="清除策略"><a class="header" href="#清除策略">清除策略</a></h2>
+<p>在训练完毕后，可能有些副本仍处于运行状态。这些运行的副本仍然会占用集群资源，DeepSpeedJob 提供清除策略，可以在训练结束后删除这些训练副本。</p>
+<p>DeepSpeedJob 提供以下三种策略：</p>
+<ul>
+<li><code>None</code>：不删除副本。</li>
+<li><code>All</code>：删除所有副本。</li>
+<li><code>Unfinished</code>：只删除未结束的副本。</li>
+</ul>
+<aside class="note tip">
+<div class="title">提示</div>
+<p>已结束的副本不会继续消耗集群资源，因此在一定程度上，<code>Unfinished</code> 策略比 <code>All</code> 策略更优。但这并不总是适用，由于一个项目的资源配额的计算不考虑 Pod 是否已经结束，对于资源紧张的项目，如果确定不需要通过日志来调试 Job，则可以使用 <code>All</code> 策略。</p>
+</aside>
+<pre><code>`None` 策略主要用于训练脚本调试阶段。如果需要从副本中读取训练日志，则可以选用此策略。但由于这些副本可能占用资源并影响后续训练，建议你在调试完毕后手动删除这些副本或删除整个 DeepSpeedJob。
+</code></pre>
+<h2 id="调度策略"><a class="header" href="#调度策略">调度策略</a></h2>
+<p>目前 DeepSpeedJob 支持两种调度策略：</p>
+<ol>
+<li>Kubernetes 的<a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler/#kube-scheduler">默认调度器</a></li>
+<li><a href="../../../../t9k-scheduler/">T9k Scheduler</a></li>
+</ol>
+<p>调度策略通过 CRD 的 <code>spec.scheduler</code> 字段设置：</p>
+<ul>
+<li>不设置 <code>spec.scheduler</code> 字段，则默认使用 Kubernetes 的默认调度策略。</li>
+<li>设置 <code>spec.scheduler.t9kScheduler</code> 字段，则使用 T9k Scheduler 调度器。</li>
+</ul>
+<p>在下面的示例中，MPIJob 启用 T9k Scheduler 调度器，将副本插入 <code>default</code> 队列中等待调度，其优先级为 50。</p>
+<pre><code class="language-yaml">...
+spec:
+  scheduler:
+    t9kScheduler:
+      queue: default
+      priority: 50
+</code></pre>
+<aside class="note info">
+<div class="title">信息</div>
+<p>队列和优先级都是 T9k Scheduler 的概念，具体含义请参阅 <a href="../scheduling/index.html">T9k Scheduler</a>。</p>
+</aside>
+<h2 id="调试模式"><a class="header" href="#调试模式">调试模式</a></h2>
+<p>DeepSpeedJob 支持调试模式。在该模式下，训练环境会被部署好，但不会启动训练，用户可以连入副本测试环境或脚本。</p>
+<p>该模式可以通过 <code>spec.runMode.debug</code> 字段来设置：</p>
+<ul>
+<li><code>spec.runMode.debug.enabled</code> 表示是否启用调试模式。</li>
+<li><code>spec.runMode.debug.replicaSpecs</code> 表示如何配置各个副本的调试模式：
+<ul>
+<li><code>spec.runMode.debug.replicaSpecs.type</code> 表示作用于的副本类型。</li>
+<li><code>spec.runMode.debug.replicaSpecs.skipInitContainer</code> 表示让副本的 InitContainer 失效，默认为 <code>false</code>。</li>
+<li><code>spec.runMode.debug.replicaSpecs.command</code> 表示副本在等待调试的时候执行的命令，默认为 <code>/usr/sbin/sshd -D</code>。</li>
+<li>如果不填写 <code>spec.runMode.debug.replicaSpecs</code> 字段，则表示所有副本都使用默认设置。</li>
+</ul>
+</li>
+</ul>
+<p>在下面的示例中：</p>
+<ul>
+<li>示例一：开启了调试模式，并配置 worker 跳过 InitContainer，并执行 <code>sleep inf</code>。</li>
+<li>示例二：开启了调试模式，副本使用默认调试设置，即不跳过 InitContainer，并执行 <code>/usr/sbin/sshd -D</code>。</li>
+</ul>
+<pre><code class="language-yaml"># 示例一
+...
+spec:
+  runMode:
+    debug:
+      enabled: true
+      replicaSpecs:
+        - type: worker
+          skipInitContainer: true
+          command: [&quot;sleep&quot;, &quot;inf&quot;]
+
+---
+# 示例二
+...
+spec:
+  runMode:
+    debug:
+      enabled: true
+</code></pre>
+<h2 id="暂停模式"><a class="header" href="#暂停模式">暂停模式</a></h2>
+<p>DeepSpeedJob 支持暂停模式。在该模式下，删除（或不创建）副本，停止训练。</p>
+<p>该模式可以通过 <code>spec.runMode.pause</code> 字段来设置：</p>
+<ul>
+<li><code>spec.runMode.pause.enabled</code> 表示是否启用暂停模式。</li>
+<li><code>spec.runMode.pause.resumeSpecs</code> 表示结束暂停后，如何恢复各个副本：
+<ul>
+<li><code>spec.runMode.pause.resumeSpecs.type</code> 表示作用于的副本类型。</li>
+<li><code>spec.runMode.pause.resumeSpecs.skipInitContainer</code> 表示让副本的 InitContainer 失效，默认为 <code>false</code>。</li>
+<li><code>spec.runMode.pause.resumeSpecs.command</code> 和 <code>spec.runMode.pause.resumeSpecs.args</code> 表示副本在恢复运行时候执行的命令，默认使用 <code>spec.replicaSpecs[0].template</code> 中的命令。</li>
+<li>如果不填写 <code>spec.runMode.pause.resumeSpecs</code> 字段，则表示所有副本都使用默认设置。</li>
+</ul>
+</li>
+</ul>
+<p>用户可以随时修改 <code>spec.runMode.pause.enabled</code> 来控制任务暂停，但是不可以更改 <code>spec.runMode.pause.resumeSpecs</code>，所以如果有暂停 DeepSpeedJob 的需求，请提前设置好恢复设置。</p>
+<p>在下面的示例中：</p>
+<ul>
+<li>示例一：开启了暂停模式，并配置 worker 跳过 InitContainer，并执行 <code>/usr/bin/sshd</code>。</li>
+<li>示例二：开启了暂停模式，副本使用默认恢复设置，即不跳过 InitContainer，并执行 <code>spec.replicaSpecs[0].template</code> 中设置的命令。</li>
+</ul>
+<pre><code class="language-yaml"># 示例一
+...
+spec:
+  runMode:
+    pause:
+      enabled: true
+      resumeSpecs:
+        - type: worker
+          skipInitContainer: true
+          command: [&quot;/usr/bin/sshd&quot;]
+
+---
+# 示例二
+...
+spec:
+  runMode:
+    pause:
+      enabled: true
+</code></pre>
+<h2 id="deepspeedjob-状态"><a class="header" href="#deepspeedjob-状态">DeepSpeedJob 状态</a></h2>
+<h3 id="deepspeedjob-的状态和阶段"><a class="header" href="#deepspeedjob-的状态和阶段">DeepSpeedJob 的状态和阶段</a></h3>
+<p><code>status.conditions</code> 字段用于描述当前 DeepSpeedJob 的状态，包括以下 5 种类型：</p>
+<ol>
+<li><code>Initialized</code>：DeepSpeedJob 已经成功创建各子资源，完成初始化。</li>
+<li><code>Running</code>：开始执行任务。</li>
+<li><code>ReplicaFailure</code>：有一个或多个副本出现错误。</li>
+<li><code>Completed</code>：DeepSpeedJob 成功。</li>
+<li><code>Failed</code>：DeepSpeedJob 失败。</li>
+</ol>
+<p><code>status.phase</code> 字段用于描述当前 DeepSpeedJob 所处的阶段，DeepSpeedJob 的整个生命周期主要有以下几个阶段：</p>
+<ol>
+<li><code>Pending</code>：DeepSpeedJob 刚刚创建，等待副本启动。</li>
+<li><code>Running</code>：副本创建成功，开始执行任务。</li>
+<li><code>Succeeded</code>：DeepSpeedJob 成功。</li>
+<li><code>Failed</code>：DeepSpeedJob 失败。</li>
+<li><code>Unknown</code>：控制器无法获得 DeepSpeedJob 的阶段。</li>
+</ol>
+<p>在下面的示例中，DeepSpeedJob 所有子资源创建成功，所以类型为 <code>Initalized</code> 的 <code>condition</code> 被设为 <code>True</code>；DeepSpeedJob 运行结束，所以类型为 <code>Completed</code> 的 <code>condition</code> 被设置为 <code>True</code>；但是 DeepSpeedJob 的训练结果是失败的，所以类型为 <code>Failed</code> 的 <code>condition</code> 被设置为 <code>True</code>。当前 DeepSpeedJob 运行阶段为 <code>Failed</code>。</p>
+<pre><code class="language-yaml">...
+status:
+  conditions:
+    - lastTransitionTime: &quot;2021-01-18T02:36:09Z&quot;
+      status: &quot;True&quot;
+      message: &quot;The job has been initialized successfully.&quot;
+      reason: &quot;-&quot;
+      type: Initializing
+    - lastTransitionTime: &quot;2021-01-18T02:36:09Z&quot;
+      status: &quot;True&quot;
+      message: &quot;All pods are running normally.&quot;
+      reason: &quot;-&quot;
+      type: Running
+    - lastTransitionTime: &quot;2021-01-18T02:36:09Z&quot;
+      status: &quot;False&quot;
+      message: &quot;All pods are running normally.&quot;
+      reason: &quot;-&quot;
+      type: ReplicaFailure
+    - lastTransitionTime: &quot;2021-01-18T02:36:31Z&quot;
+      status: &quot;False&quot;
+      message: &quot;The job exited with an error code.&quot;
+      reason: &quot;Failed&quot;
+      type: Completed
+    - lastTransitionTime: &quot;2021-01-18T02:36:31Z&quot;
+      status: &quot;True&quot;
+      message: &quot;The job exited with an error code.&quot;
+      reason: &quot;Failed&quot;
+      type: Failed
+  phase: Failed
+</code></pre>
+<h3 id="副本的状态"><a class="header" href="#副本的状态">副本的状态</a></h3>
+<p><code>status.tasks</code> 字段用来记录副本的状态，记录的内容主要包括：</p>
+<ul>
+<li>副本的重启次数（同一种角色的副本的重启次数之和）</li>
+<li>副本当前的运行阶段</li>
+<li>副本在集群中对应的 Pod 的索引信息</li>
+</ul>
+<p>在下面的示例中，DeepSpeedJob 创建了 2 个训练副本，当前均处于 <code>Running</code> 阶段，分别运行在 <code>deepspeed-example-worker-0</code> 和 <code>deepspeed-example-worker-1</code> 这 2 个 Pod 上。</p>
+<pre><code class="language-yaml">...
+status:
+  tasks:
+  - type: worker
+    restartCount: 0
+    status:
+    - phase: Running
+      name: deepspeed-example-worker-0
+      uid: e3ec2ee3-6645-4e21-993f-1e472b94e0ae
+      containers: []
+    - phase: Running
+      name: deepspeed-example-worker-1
+      uid: 908a93f0-7b8b-491e-85d5-3da0abcb4ca4
+      containers: []
+</code></pre>
+<h3 id="副本状态统计"><a class="header" href="#副本状态统计">副本状态统计</a></h3>
+<p><code>status.aggregate</code> 字段统计了各个阶段的副本数量。</p>
+<p>在下面的示例中，DeepSpeedJob 创建了 3 个副本，其中 1 个处于 <code>Pending</code> 阶段，另外两个处于 <code>Running</code> 阶段。</p>
+<pre><code class="language-yaml">...
+status:
+  aggregate:
+    creating: 0
+    deleted: 0
+    failed: 0
+    pending: 1
+    running: 2
+    succeeded: 0
+    unknown: 0
+...
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../api/job/tensorflowtrainingjob.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../../api/job/colossalaijob.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../api/job/tensorflowtrainingjob.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../../api/job/colossalaijob.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../../theme/sidebar.js"></script>
+
+
+    </div>
+    </body>
+</html>

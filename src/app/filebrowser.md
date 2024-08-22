@@ -1,11 +1,11 @@
-# FileBrowser
+# File Browser
 
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/filebrowser/filebrowser">FileBrowser</a> 是一个轻量级的基于网络的文件管理系统，为用户提供了一个简单而功能强大的界面来管理服务器上的文件和目录。它允许用户通过网页浏览器远程访问、上传、下载、编辑和共享文件，无需使用复杂的 FTP 客户端或命令行工具。FileBrowser 支持多用户管理，可以为不同用户设置不同的访问权限，确保文件安全性。
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/filebrowser/filebrowser">File Browser</a> 是一个轻量级的基于网络的文件管理系统，为用户提供了一个简单而功能强大的界面来管理服务器上的文件和目录。它允许用户通过网页浏览器远程访问、上传、下载、编辑和共享文件，无需使用复杂的 FTP 客户端或命令行工具。File Browser 支持多用户管理，可以为不同用户设置不同的访问权限，确保文件安全性。
 
-在日常使用中，FileBrowser 的直观界面使文件管理变得简单高效。用户可以轻松执行拖放上传、创建文件夹、重命名文件等操作。它还提供了文件预览功能，支持多种文件格式的在线查看，如文本、图片、音频和视频。对于开发者和系统管理员来说，FileBrowser 的命令执行功能特别有用，允许用户在网页界面中直接运行服务器命令，简化了远程管理任务。
+在日常使用中，File Browser 的直观界面使文件管理变得简单高效。用户可以轻松执行拖放上传、创建文件夹、重命名文件等操作。它还提供了文件预览功能，支持多种文件格式的在线查看，如文本、图片、音频和视频。对于开发者和系统管理员来说，File Browser 的命令执行功能特别有用，允许用户在网页界面中直接运行服务器命令，简化了远程管理任务。
 
 <figure class="screenshot">
-  <img alt="filebrowser" src="../assets/app/filebrowser/filebrowser-official.gif" />
+  <img alt="filebrowser-official" src="../assets/app/filebrowser/filebrowser-official.gif" />
 </figure>
 
 ## 使用方法

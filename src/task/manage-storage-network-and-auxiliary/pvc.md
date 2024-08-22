@@ -5,19 +5,20 @@
 点击菜单**存储 > 存储卷**，打开 PVC 的列表页面。然后点击右上角**创建 PVC**，进入 PVC 创建页面：
 
 <figure class="screenshot">
-  <img alt="list-pvc" src="../assets/storage/list-pvc.png" />
+  <img alt="list-pvc" src="../../assets/task/manage-storage-network-and-auxiliary/storage/list-pvc.png" />
 </figure>
+
 
 填写 PVC 的名称、存储空间大小，选择访问模式、存储类，确认右上角选择的项目，然后点击右上方的**创建**：
 
 <figure class="screenshot">
-  <img alt="create-pvc" src="../assets/storage/create-pvc.png" />
+  <img alt="create-pvc" src="../../assets/task/manage-storage-network-and-auxiliary/storage/create-pvc.png" />
 </figure>
 
 回到存储卷列表，可以看到刚创建的 PVC：
 
 <figure class="screenshot">
-  <img alt="created-pvc" src="../assets/storage/created-pvc.png" />
+  <img alt="created-pvc" src="../../assets/task/manage-storage-network-and-auxiliary/storage/created-pvc.png" />
 </figure>
 
 ## 下一步

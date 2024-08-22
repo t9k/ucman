@@ -4,10 +4,10 @@
 
 | App                                          | 分类     | 简介                                                                                                                       |
 | -------------------------------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------- |
-| [CodeServer](./codeserver.md)                | IDE      | CodeServer 是一个基于浏览器的 VSCode 环境。                                                                                |
+| [Code Server](./codeserver.md)               | IDE      | Code Server 是一个基于浏览器的 VSCode 环境。                                                                               |
 | ComfyUI                                      | AI       | ComfyUI 是一个功能强大且模块化的 Stable Diffusion 图形用户界面和后端，支持基于图、节点和流程图设计和执行高级流水线。       |
 | Dify                                         | AI       | Dify 是一个开源 LLM 应用开发平台，提供直观的界面，支持 AI 工作流、RAG 管道、Agent 和模型管理，便于从原型到生产的快速开发。 |
-| FileBrowser                                  | Tool     | FileBrowser 为指定目录提供了一个文件管理界面，用于上传、删除、预览、重命名和编辑文件。                                     |
+| [File Browser](./filebrowser.md)             | Tool     | File Browser 为指定目录提供了一个文件管理界面，用于上传、删除、预览、重命名和编辑文件。                                    |
 | Fish Speech                                  | AI       | Fish Speech 是一套全新的 TTS 解决方案，支持无微调的音色克隆。                                                              |
 | GPT Researcher                               | AI       | GPT Researcher 是一个智能体代理，专门用于各种任务的综合在线研究。                                                          |
 | Job Manager                                  | Tool     | Job Manager 是一个计算作业管理控制台，支持作业创建、状态查看和事件监控等功能。                                             |
@@ -29,7 +29,7 @@
 | Service Manager                              | Tool     | Service Manager 是一个推理服务管理控制台。                                                                                 |
 | Stable Diffusion WebUI aki                   | AI       | Stable Diffusion WebUI aki 是基于开源项目 Stable Diffusion WebUI 的整合包，由 bilibili@秋葉 aaaki 制作。                   |
 | [TensorBoard](./tensorboard.md)              | Tool     | TensorBoard 是 TensorFlow 的可视化工具，展示模型训练过程中的各种数据。                                                     |
-| Terminal                                     | Tool     | Terminal 是一个在浏览器中直接打开和操作的集群终端，便于管理集群。                                                          |
+| [Terminal](./terminal.md)                    | Tool     | Terminal 是一个在浏览器中直接打开和操作的集群终端，便于管理集群。                                                          |
 | vLLM                                         | AI       | vLLM 是一个高吞吐量和内存高效的 LLM 推理和服务引擎。                                                                       |
 | vLLM (Llama 3.1)                             | AI       | 使用 vLLM 部署 Llama 3.1 系列模型。                                                                                        |
 | vLLM (Enflame GCU)                           | AI       | vLLM (Enflame GCU) 是一个高吞吐量和内存高效的 LLM 推理和服务引擎，适用于燧原 GCU。                                         |

@@ -12,11 +12,11 @@
 点击**辅助 > ConfigMap**，查看已有的 ConfigMap：
 
 <figure class="screenshot">
-  <img alt="list-configmap" src="../assets/auxiliary/list-configmap.png" />
+  <img alt="list-configmap" src="../../assets/task/manage-storage-network-and-auxiliary/auxiliary/list-configmap.png" />
 </figure>
 
 点击右上角的**创建**，进入创建页面。填写 ConfigMap 名称、标签和数据（这些数据的值来自于管理员），点击右上角的**创建**，即可完成 ConfigMap 的创建：
 
 <figure class="screenshot">
-  <img alt="create-configmap" src="../assets/auxiliary/create-configmap.png" />
+  <img alt="create-configmap" src="../../assets/task/manage-storage-network-and-auxiliary/auxiliary/create-configmap.png" />
 </figure>

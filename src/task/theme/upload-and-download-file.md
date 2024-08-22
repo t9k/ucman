@@ -4,12 +4,12 @@
 
 本教程将分场景介绍从集群外部下载/上传文件到 PVC，以及从 PVC 上传/下载文件到集群外部的若干方法。
 
-由于下面的方法需要使用到一些命令行工具或 Python 库，而 [Jupyter Lab](../app/jupyter-lab.md) App 提供了终端并且预装了这些命令行工具和 Python 库，因此我们推荐创建一个 Jupyter Lab App 挂载 PVC，然后在其终端中进行操作。
+由于下面的方法需要使用到一些命令行工具或 Python 库，而 [Jupyter Lab](../../../app/jupyter-lab.md) App 提供了终端并且预装了这些命令行工具和 Python 库，因此我们推荐创建一个 Jupyter Lab App 挂载 PVC，然后在其终端中进行操作。
 
 <aside class="note tip">
 <div class="title">提示</div>
 
-对于使用命令行工具 `wget`（或 `curl`）、`git` 或 `kubectl` 的方法，也可以在 [Terminal](../app/terminal.md) App 中进行操作。
+对于使用命令行工具 `wget`（或 `curl`）、`git` 或 `kubectl` 的方法，也可以在 [Terminal](../../../app/terminal.md) App 中进行操作。
 
 </aside>
 
@@ -24,7 +24,7 @@ NFS 类型的 PVC 不可扩容。
 
 ## 准备工作
 
-* 完成教程[安装 Jupyter Lab](../app/jupyter-lab.md)、[安装 Terminal](../app/terminal.md) 和[安装 FileBrowser](../app/filebrowser.md)
+* 完成教程[安装 Jupyter Lab](../../../app/jupyter-lab.md)、[安装 Terminal](../../../app/terminal.md) 和[安装 File Browser](../../../app/filebrowser.md)
 * 了解 <a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/modules/auxiliary/datacube.html">DataCube 的概念</a>
 
 ## 本地文件系统
@@ -38,24 +38,24 @@ NFS 类型的 PVC 不可扩容。
 
 ### Jupyter Lab App UI
 
-将 PVC 挂载到 [Jupyter Lab](../app/jupyter-lab.md) App 上，本地文件系统和 PVC 之间的文件上传下载可以直接在 UI 中进行操作：
+将 PVC 挂载到 [Jupyter Lab](../../../app/jupyter-lab.md) App 上，本地文件系统和 PVC 之间的文件上传下载可以直接在 UI 中进行操作：
 
 <figure class="screenshot">
-  <img alt="notebook-upload-download" src="../assets/task/upload-and-download-file/notebook-upload-download.png" />
+  <img alt="notebook-upload-download" src="../../assets/task/theme/upload-and-download-file/notebook-upload-download.png" />
 </figure>
 
-### FileBrowser App UI
+### File Browser App UI
 
-将 PVC 挂载到 [FileBrowser](../app/filebrowser.md) App 上，本地文件系统和 PVC 之间的文件上传下载可以直接在 UI 中进行操作：
+将 PVC 挂载到 [File Browser](../../../app/filebrowser.md) App 上，本地文件系统和 PVC 之间的文件上传下载可以直接在 UI 中进行操作：
 
 <figure class="screenshot">
-  <img alt="file-browser-upload-download" src="../assets/task/upload-and-download-file/file-browser-upload-download.png" />
+  <img alt="file-browser-upload-download" src="../../assets/task/theme/upload-and-download-file/file-browser-upload-download.png" />
 </figure>
 
 <aside class="note">
 <div class="title">注意</div>
 
-* Jupyter Lab App 不限制上传或下载的单个文件的大小（根据管理员配置，FileBrowser 有可能限制上传的单个文件的大小）；但上传过程容易因为网络波动而出错，建议 > ~5GB（也取决于具体网络环境）的单个文件使用其他方法上传。
+* Jupyter Lab App 不限制上传或下载的单个文件的大小（根据管理员配置，File Browser 有可能限制上传的单个文件的大小）；但上传过程容易因为网络波动而出错，建议 > ~5GB（也取决于具体网络环境）的单个文件使用其他方法上传。
 * 可以一次上传或下载多个文件；但在文件数量较多（> ~50）的情况下容易出错，推荐打包成压缩文件再上传或下载。
 
 </aside>
@@ -97,7 +97,7 @@ rclone 支持的云存储提供商请参阅 <a target="_blank" rel="noopener nor
 <details><summary><code class="hljs">download-s3.yaml</code></summary>
 
 ```yaml
-{{#include ../assets/task/upload-and-download-file/download-s3.yaml}}
+{{#include ../../assets/task/theme/upload-and-download-file/download-s3.yaml}}
 ```
 
 </details>
@@ -105,7 +105,7 @@ rclone 支持的云存储提供商请参阅 <a target="_blank" rel="noopener nor
 <details><summary><code class="hljs">upload-s3.yaml</code></summary>
 
 ```yaml
-{{#include ../assets/task/upload-and-download-file/upload-s3.yaml}}
+{{#include ../../assets/task/theme/upload-and-download-file/upload-s3.yaml}}
 ```
 
 </details>
@@ -156,7 +156,7 @@ git push
 <details><summary><code class="hljs">download-git.yaml</code></summary>
 
 ```yaml
-{{#include ../assets/task/upload-and-download-file/download-git.yaml}}
+{{#include ../../assets/task/theme/upload-and-download-file/download-git.yaml}}
 ```
 
 </details>
@@ -164,7 +164,7 @@ git push
 <details><summary><code class="hljs">upload-git.yaml</code></summary>
 
 ```yaml
-{{#include ../assets/task/upload-and-download-file/upload-git.yaml}}
+{{#include ../../assets/task/theme/upload-and-download-file/upload-git.yaml}}
 ```
 
 </details>
@@ -215,11 +215,11 @@ Hugging Face 模型或数据集本身就是一个 Git 仓库，因此可以参�
 可以使用 <a target="_blank" rel="noopener noreferrer" href="https://github.com/huggingface/transformers">`transformers` 库</a>下载和上传模型文件以及 tokenizer 文件。使用浏览器访问模型 `facebook/opt-125m` 的 <a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/facebook/opt-125m/tree/main">Files 标签页</a>。点击 **Use in Transformers**，按照提示进行操作，即在 Python 程序中调用 `transformers` 库加载模型。首次加载时，仓库中的模型文件和 tokenizer 文件会被下载到缓存目录下，即 PVC 的 `.cache/huggingface/hub/models--facebook--opt-125m/` 路径下。
 
 <figure class="screenshot">
-  <img alt="use-in-transformers" src="../assets/task/upload-and-download-file/use-in-transformers.png" />
+  <img alt="use-in-transformers" src="../../assets/task/theme/upload-and-download-file/use-in-transformers.png" />
 </figure>
 
 <figure class="screenshot">
-  <img alt="use-in-transformers-detail" src="../assets/task/upload-and-download-file/use-in-transformers-detail.png" />
+  <img alt="use-in-transformers-detail" src="../../assets/task/theme/upload-and-download-file/use-in-transformers-detail.png" />
 </figure>
 
 ```python
@@ -368,7 +368,7 @@ curl --header "Authorization: Bearer <HF_TOKEN>" -L https://huggingface.co/meta-
 <details><summary><code class="hljs">download-hf.yaml</code></summary>
 
 ```yaml
-{{#include ../assets/task/upload-and-download-file/download-hf.yaml}}
+{{#include ../../assets/task/theme/upload-and-download-file/download-hf.yaml}}
 ```
 
 </details>
@@ -376,7 +376,7 @@ curl --header "Authorization: Bearer <HF_TOKEN>" -L https://huggingface.co/meta-
 <details><summary><code class="hljs">upload-hf.yaml</code></summary>
 
 ```yaml
-{{#include ../assets/task/upload-and-download-file/upload-hf.yaml}}
+{{#include ../../assets/task/theme/upload-and-download-file/upload-hf.yaml}}
 ```
 
 </details>

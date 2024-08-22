@@ -1,8 +1,8 @@
-# CodeServer
+# Code Server
 
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/coder/code-server">CodeServer</a> 是一个基于浏览器的开源开发环境，它将 Visual Studio Code 的强大功能带到了云端。这个工具允许开发者通过网页访问完整的 VS Code 编辑器，无需在本地安装任何软件。CodeServer 支持多种编程语言和框架，并且可以在远程服务器或云平台上运行，使得开发者能够在任何设备上进行编码工作。
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/coder/code-server">Code Server</a> 是一个基于浏览器的开源开发环境，它将 Visual Studio Code 的强大功能带到了云端。这个工具允许开发者通过网页访问完整的 VS Code 编辑器，无需在本地安装任何软件。Code Server 支持多种编程语言和框架，并且可以在远程服务器或云平台上运行，使得开发者能够在任何设备上进行编码工作。
 
-在实际应用中，CodeServer 特别适合远程工作和协作开发场景。它支持多人同时编辑同一项目，并且可以轻松集成版本控制系统如 Git。CodeServer 还保留了 VS Code 的插件生态系统，用户可以安装和使用各种扩展来增强开发体验。此外，由于代码和开发环境都在服务器上，CodeServer 可以帮助团队统一开发环境，减少因本地环境差异导致的问题。
+在实际应用中，Code Server 特别适合远程工作和协作开发场景。它支持多人同时编辑同一项目，并且可以轻松集成版本控制系统如 Git。Code Server 还保留了 VS Code 的插件生态系统，用户可以安装和使用各种扩展来增强开发体验。此外，由于代码和开发环境都在服务器上，Code Server 可以帮助团队统一开发环境，减少因本地环境差异导致的问题。
 
 ![](../assets/app/codeserver/codeserver-official.png)
 

@@ -26,13 +26,11 @@
 
 ## 使用说明
 
-* 使用 PVC 作为 TensorBoard 数据源时，通过 `logDir.pvc[@].subPath` 字段指定 PVC 中的子路径，该路径必须是一个目录，**位于该目录及其子目录下的所有 tfevents 文件**都将被可视化展示。
-
-* 你也可以[在 JupyterLab App 中创建 TensorBoard 示例](./jupyter-lab.md#tensorboard-插件)，展示的内容是相同的。
+你也可以[在 JupyterLab App 中创建 TensorBoard 示例](./jupyter-lab.md#tensorboard-插件)，展示的内容是相同的。
 
 ## 下一步
 
-在下列任务中学习使用 JupyterLab App：
+在下列任务中学习使用 TensorBoard App：
 
 * [进行数据并行训练](../task/train-model/dp-training.md)
 * [进行 LLM 大规模预训练](../task/train-model/llm-large-scale-pretraining.md)

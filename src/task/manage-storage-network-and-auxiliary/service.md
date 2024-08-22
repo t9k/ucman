@@ -5,11 +5,11 @@
 点击**网络服务 > Service**，查看已有的 Service：
 
 <figure class="screenshot">
-  <img alt="list-service" src="../assets/network/list-service.png" />
+  <img alt="list-service" src="../../assets/task/manage-storage-network-and-auxiliary/network/list-service.png" />
 </figure>
 
 例如，安装 PostgreSQL App 时，会自动创建以下 Service：
 
 <figure class="screenshot">
-  <img alt="create-service" src="../assets/network/create-service.png" />
+  <img alt="create-service" src="../../assets/task/manage-storage-network-and-auxiliary/network/create-service.png" />
 </figure>

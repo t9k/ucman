@@ -1,6 +1,6 @@
 # 进行数据并行训练
 
-本教程演示使用 <a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/modules/jobs/pytorchtrainingjob.html">PyTorchTrainingJob</a> 对 PyTorch 模型进行多工作器同步训练（使用 <a target="_blank" rel="noopener noreferrer" href="https://pytorch.org/docs/stable/generated/torch.nn.parallel.DistributedDataParallel.html">`torch.nn.parallel.DistributedDataParallel`</a> 分布式数据并行模块）。本教程对应示例<a target="_blank" rel="noopener noreferrer" href="https://github.com/t9k/tutorial-examples/tree/master/job/pytorchtrainingjob/ddp">使用 PyTorchTrainingJob 进行数据并行训练</a>。
+本教程演示使用 [PyTorchTrainingJob](../../api/job/pytorchtrainingjob.md) 对 PyTorch 模型进行多工作器同步训练（使用 <a target="_blank" rel="noopener noreferrer" href="https://pytorch.org/docs/stable/generated/torch.nn.parallel.DistributedDataParallel.html">`torch.nn.parallel.DistributedDataParallel`</a> 分布式数据并行模块）。本教程对应示例<a target="_blank" rel="noopener noreferrer" href="https://github.com/t9k/tutorial-examples/tree/master/job/pytorchtrainingjob/ddp">使用 PyTorchTrainingJob 进行数据并行训练</a>。
 
 本教程的 Apps 架构如下图所示：
 
@@ -10,7 +10,7 @@
 
 ## 运行示例
 
-创建一个名为 tutorial、大小 1 Gi 的 [PVC](../../storage/volume.md)，然后安装一个同样名为 tutorial 的 [JupyterLab App](../../app/jupyter-lab.md)挂载该 PVC，镜像和资源不限。
+创建一个名为 tutorial、大小 1 Gi 的 [PVC](../../storage/volume.md)，然后安装一个同样名为 tutorial 的 [JupyterLab App](../../app/jupyterlab.md)挂载该 PVC，镜像和资源不限。
 
 进入 JupyterLab，启动一个终端，执行以下命令以克隆 `t9k/tutorial-examples` 仓库。
 

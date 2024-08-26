@@ -255,7 +255,7 @@ spec:
         status: "True"
 ```
 
-如果所创建的资源类型是下列 [T9k Job](../jobs/index.md) 之一，系统将自动帮助填写 `successRules` 和 `failureRules`，以减轻你的负担：
+如果所创建的资源类型是下列 [T9k Job](../job/index.md) 之一，系统将自动帮助填写 `successRules` 和 `failureRules`，以减轻你的负担：
 
 * GenericJob
 * MPIJob
@@ -280,7 +280,7 @@ spec:
 
 ### T9k Job WorkflowTemplate
 
-T9k Workflow 系统对 [T9k Job](../jobs/index.md) 提供更进一步的原生支持，添加以下 WorkflowTemplate 类型：
+T9k Workflow 系统对 [T9k Job](../job/index.md) 提供更进一步的原生支持，添加以下 WorkflowTemplate 类型：
 
 * GenericJob
 * TensorFlowTrainingJob
@@ -304,7 +304,7 @@ T9k Workflow 系统对 [T9k Job](../jobs/index.md) 提供更进一步的原生�
 
 相比于在 Resource 类型中将资源的 `spec` 视作一个很长的字符串，添加原生类型支持的好处是在创建 WorkflowTemplate 时 T9k Job 的 `spec` 就会得到语法检查，能更早地发现错误，加深了 T9k Workflow 系统和 T9k Job 系统的集成配合。
 
-例如，创建一个 MPIJob 可以使用如下格式（其中 MPIJob 示例来自 [MPIJob 文档](../jobs/mpijob.md#创建-mpijob)）：
+例如，创建一个 MPIJob 可以使用如下格式（其中 MPIJob 示例来自 [MPIJob 文档](../job/mpijob.md#创建-mpijob)）：
 
 ```yaml
 apiVersion: batch.tensorstack.dev/v1beta1
@@ -392,7 +392,7 @@ b1   b2
 
 ## 指定参数
 
-你可以为 WorkflowTemplate 指定一些参数，并在 `spec` 中用 `$(params.<paramName>)` 来引用参数。[WorkflowRun](./workflowrun.md) 会在运行时为这些参数提供实际值。支持 `params` 的 WorkflowTemplate 类型有 Pod、SeqPod、DAG，详见[支持变量替换的 WorkflowTemplate 字段](../../../reference/tensorstack-resources/workflow-api/variable-substitution-rules.md#支持变量替换的-workflowtemplate-字段)。
+你可以为 WorkflowTemplate 指定一些参数，并在 `spec` 中用 `$(params.<paramName>)` 来引用参数。[WorkflowRun](./workflowrun.md) 会在运行时为这些参数提供实际值。支持 `params` 的 WorkflowTemplate 类型有 Pod、SeqPod、DAG，详见[支持变量替换的 WorkflowTemplate 字段]()。
 
 Pod WorkflowTemplate 示例：
 
@@ -443,7 +443,7 @@ spec:
           echo $(params.message)
 ```
 
-DAG WorkflowTemplate 在引用其他的 WorkflowTemplate 作为节点时，必须提供该节点需要的 `params`，可以是静态的字符串，也可以引用 DAG WorkflowTemplate 自身的 `params` 变量或[其他变量](../../../reference/tensorstack-resources/workflow-api/variable-substitution-rules.md)。示例：
+DAG WorkflowTemplate 在引用其他的 WorkflowTemplate 作为节点时，必须提供该节点需要的 `params`，可以是静态的字符串，也可以引用 DAG WorkflowTemplate 自身的 `params` 变量或[其他变量]()。示例：
 
 ```yaml
 apiVersion: batch.tensorstack.dev/v1beta1

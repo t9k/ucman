@@ -38,7 +38,7 @@ User Console 上可用的 JupyterLab Apps 是一个系列，包括 JupyterLab (C
 每个镜像包含 JupyterLab 和特定的环境（机器学习框架或 conda 环境），同时预装了一些 Python 包、命令行工具和平台工具：
 
 * 每个镜像预装的 Python 包各不相同，请执行 `pip list` 命令以查看。
-* 所有镜像均预装以下命令行工具：
+* 所有镜像均预装了以下命令行工具：
 
 | 名称    | 介绍                                                                   |
 | ------- | ---------------------------------------------------------------------- |
@@ -55,9 +55,9 @@ User Console 上可用的 JupyterLab Apps 是一个系列，包括 JupyterLab (C
 | wget    | 用于从网络上下载文件，支持 HTTP、HTTPS 和 FTP 协议。                   |
 | zip     | 用于创建和管理 ZIP 压缩文件。                                          |
 
-* 所有镜像均预装最新版本的<a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/tools/index.html">平台工具</a>。
+* 所有镜像均预装了最新版本的<a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/tools/index.html">平台工具</a>。
 
-### sudo 命令
+### 用户权限
 
 在 App 的容器环境中，用户的 uid:gid 为 1000:1000（由[镜像](#镜像)设置）（fsgroup 为 2000），这会导致系统级操作受到限制（权限不足）。例如，用户无法使用 `apt install` 命令安装开发所需的库，无法执行 `rm` 命令删除没有写权限的文件（这些文件可能是由挂载了同一个 PVC 且使用 root 用户的 Job 产生的）。在某些情况下，进行系统级操作是必要或便利的，解决方案是为 App 选用**标签带有 `-sudo` 后缀的镜像**，在需要提升权限的命令前加上 `sudo`，以 root 身份执行该命令。
 
@@ -80,8 +80,8 @@ TensorBoard 插件的使用方法请参阅<a target="_blank" rel="noopener noref
 
 在下列任务中学习使用 JupyterLab App：
 
-* [进行数据并行训练](../task/train-model/dp-training.md)
-* [进行 LLM 大规模预训练](../task/train-model/llm-large-scale-pretraining.md)
-* [分析性能](../task/train-model/profile.md)
-* [指令微调 LLM](../task/train-model/llm-instruction-tuning.md)
-* [部署 LLM 推理服务和聊天服务](../task/deploy-model/deploy-llm.md)
+* [进行数据并行训练](../guide/train-model/dp-training.md)
+* [进行 LLM 大规模预训练](../guide/train-model/llm-large-scale-pretraining.md)
+* [分析性能](../guide/train-model/profile.md)
+* [指令微调 LLM](../guide/train-model/llm-instruction-tuning.md)
+* [部署 LLM 推理服务和聊天服务](../guide/deploy-model/deploy-llm.md)

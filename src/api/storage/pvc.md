@@ -51,7 +51,7 @@ spec:
 
 在该例中，`pod-demo` 将 `pvc-demo` 作为一个数据卷（volume）来使用，其中容器 `myfrontend` 将该数据卷挂载到 `/var/www/html` 目录下。
 
-在 TensorStack AI 平台中，PVC 是通用的持久化存储资源，你在 [Notebook](../building/notebook.md)、[Job](../jobs/index.md)、[MLService](../deployment/index.md)、[Workflow](../workflows/index.md) 等 TensorStack 资源中都可以使用 PVC。以 Notebook 为例：
+在 TensorStack AI 平台中，PVC 是通用的持久化存储资源，你在 [JupyterLab](../../app/jupyterlab.md)、[Code Server](../../app/codeserver.md)、[File Browser](../../app/filebrowser.md)、[TensorBoard](../../app/tensorboard.md) 等 App，以及 Notebook、[T9k Job](../job/index.md)、[T9k Service](../service/index.md)、[Workflow](../workflow/index.md) 等 API 中都可以使用 PVC。以 Notebook 为例：
 
 ```yaml
 apiVersion: tensorstack.dev/v1beta1
@@ -82,7 +82,6 @@ spec:
 ```
 
 在该例中，`notebook-demo` 将 `pvc-demo` 作为一个数据卷（volume）来使用，其中容器 `notebook` 将该数据卷挂载到 `/t9k/mnt` 目录下。
-
 
 ## 生命周期
 
@@ -134,4 +133,4 @@ PVC 的生命周期独立于 Pod。一个 PVC 可以被多个 Pod 使用。当 P
 
 * 了解 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">PVC 的概念</a>
 * 了解 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/">PVC 的定义</a>
-* 如何[上传和下载文件](../../task/upload-and-download-file.md)到 PVC
+* 如何[上传和下载文件](../../guide/upload-and-download-file.md)到 PVC

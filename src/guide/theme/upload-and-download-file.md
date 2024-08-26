@@ -1,15 +1,15 @@
 # 上传和下载文件
 
-通过 <a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/modules/storage/pvc.html">PVC</a> 使用集群存储非常方便，它可以作为存储卷被挂载到 Jupyter Lab App、Job、MLService 等各种工作负载的 Pod 中。例如在进行模型训练时，你可以把训练脚本以及训练数据存放到 PVC，然后挂载在 Job 的 Pod 中。
+通过 [PVC](../../api/storage/pvc.md) 使用集群存储非常方便，它可以作为存储卷被挂载到 Jupyter Lab App、Job、MLService 等各种工作负载的 Pod 中。例如在进行模型训练时，你可以把训练脚本以及训练数据存放到 PVC，然后挂载在 Job 的 Pod 中。
 
 本教程将分场景介绍从集群外部下载/上传文件到 PVC，以及从 PVC 上传/下载文件到集群外部的若干方法。
 
-由于下面的方法需要使用到一些命令行工具或 Python 库，而 [Jupyter Lab](../../../app/jupyter-lab.md) App 提供了终端并且预装了这些命令行工具和 Python 库，因此我们推荐创建一个 Jupyter Lab App 挂载 PVC，然后在其终端中进行操作。
+由于下面的方法需要使用到一些命令行工具或 Python 库，而 [Jupyter Lab](../../app/jupyterlab.md) App 提供了终端并且预装了这些命令行工具和 Python 库，因此我们推荐创建一个 Jupyter Lab App 挂载 PVC，然后在其终端中进行操作。
 
 <aside class="note tip">
 <div class="title">提示</div>
 
-对于使用命令行工具 `wget`（或 `curl`）、`git` 或 `kubectl` 的方法，也可以在 [Terminal](../../../app/terminal.md) App 中进行操作。
+对于使用命令行工具 `wget`（或 `curl`）、`git` 或 `kubectl` 的方法，也可以在 [Terminal](../../app/terminal.md) App 中进行操作。
 
 </aside>
 
@@ -24,8 +24,8 @@ NFS 类型的 PVC 不可扩容。
 
 ## 准备工作
 
-* 完成教程[安装 Jupyter Lab](../../../app/jupyter-lab.md)、[安装 Terminal](../../../app/terminal.md) 和[安装 File Browser](../../../app/filebrowser.md)
-* 了解 <a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/modules/auxiliary/datacube.html">DataCube 的概念</a>
+* 了解 [JupyterLab](../../app/jupyterlab.md)、[Terminal](../../app/terminal.md) 和 [File Browser](../../app/filebrowser.md) App
+* 了解 <a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/modules/auxiliary/datacube.html">DataCube</a> API
 
 ## 本地文件系统
 
@@ -38,7 +38,7 @@ NFS 类型的 PVC 不可扩容。
 
 ### Jupyter Lab App UI
 
-将 PVC 挂载到 [Jupyter Lab](../../../app/jupyter-lab.md) App 上，本地文件系统和 PVC 之间的文件上传下载可以直接在 UI 中进行操作：
+将 PVC 挂载到 [JupyterLab](../../app/jupyterlab.md) App 上，本地文件系统和 PVC 之间的文件上传下载可以直接在 UI 中进行操作：
 
 <figure class="screenshot">
   <img alt="notebook-upload-download" src="../../assets/guide/theme/upload-and-download-file/notebook-upload-download.png" />
@@ -46,7 +46,7 @@ NFS 类型的 PVC 不可扩容。
 
 ### File Browser App UI
 
-将 PVC 挂载到 [File Browser](../../../app/filebrowser.md) App 上，本地文件系统和 PVC 之间的文件上传下载可以直接在 UI 中进行操作：
+将 PVC 挂载到 [File Browser](../../app/filebrowser.md) App 上，本地文件系统和 PVC 之间的文件上传下载可以直接在 UI 中进行操作：
 
 <figure class="screenshot">
   <img alt="file-browser-upload-download" src="../../assets/guide/theme/upload-and-download-file/file-browser-upload-download.png" />

@@ -311,7 +311,7 @@ spec:
 1. 通过 `spec.releases[*].predictor.storage` 可以设置当前 Release 的模型存储信息。
 2. 通过 `spec.transformer.storage` 可以设置 Transformer 的模型存储信息。
 
-详情请见 [模型存储](./storage.md)。
+详情请见[模型存储](./storage.md)。
 
 ## 更多配置
 
@@ -377,7 +377,7 @@ spec:
 
 ### 日志收集
 
-MLService 支持对预测请求进行日志收集，详情见[2.2.2.1日志收集](./mlservice-logger.md)
+MLService 支持对预测请求进行日志收集，详情见[日志收集](./mlservice-logger.md)
 
 ### 前处理及后处理
 
@@ -386,7 +386,7 @@ MLService 支持部署含有 `transformer` 模块的前处理（pre-processing�
 * 预处理：用户发向推理服务的原始数据，先经过 transformer 预处理，然后再被发送到推理服务。
 * 后处理：推理服务返回的预测结果，先经过 transformer 后处理，然后再返回给用户。
 
-用户可以使用 [Tensorstack SDK](../../../tools/python-sdk-t9k/index.md) 编写 transformer 代码，制作镜像，并基于该镜像创建含有 transformer 的推理服务。详细示例请参阅[制作并部署含有 Transformer 的模型推理服务](../../tasks/deploy-mlservice-transformer.md)。
+用户可以使用 [Tensorstack SDK](https://t9k.github.io/user-manuals/latest/tools/python-sdk-t9k/index.html) 编写 transformer 代码，制作镜像，并基于该镜像创建含有 transformer 的推理服务。详细示例请参阅[制作并部署含有 Transformer 的模型推理服务](https://t9k.github.io/user-manuals/latest/tasks/deploy-mlservice-transformer.html)。
 
 下文展示了一个使用 transformer 的推理服务：
 
@@ -447,7 +447,7 @@ spec:
 
 ### 调度器
 
-MLService 支持使用两种调度器：Kubernetes 默认调度器（默认）和 [T9k Scheduler](../../cluster/scheduling/index.md)。MLService 通过 `spec.scheduler` 字段设置调度器：
+MLService 支持使用两种调度器：Kubernetes 默认调度器（默认）和 [T9k Scheduler](https://t9k.github.io/user-manuals/latest/modules/computing-resources/scheduler/index.html)。MLService 通过 `spec.scheduler` 字段设置调度器：
 
 * 不设置 `spec.scheduler` 字段，则默认使用 Kubernetes 默认调度器。
 * 设置 `spec.scheduler.t9kScheduler` 字段，则使用 T9k Scheduler 调度器。

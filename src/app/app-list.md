@@ -11,10 +11,10 @@
 | Fish Speech                                  | AI       | Fish Speech 是一套全新的 TTS 解决方案，支持无微调的音色克隆。                                                              |
 | GPT Researcher                               | AI       | GPT Researcher 是一个智能体代理，专门用于各种任务的综合在线研究。                                                          |
 | Job Manager                                  | Tool     | Job Manager 是一个计算作业管理控制台，支持作业创建、状态查看和事件监控等功能。                                             |
-| [JupyterLab (CPU)](./jupyter-lab.md)         | IDE      | JupyterLab 是一个基于 Web 的交互式开发环境，用于代码开发和数据处理，支持数据科学、科学计算和机器学习等任务。               |
-| [JupyterLab (NVIDIA GPU)](./jupyter-lab.md)  | IDE      | JupyterLab (NVIDIA GPU) 是一个基于 Web 的交互式开发环境，适用于 NVIDIA GPU 的计算任务。                                    |
-| [JupyterLab (Enflame GCU)](./jupyter-lab.md) | IDE      | JupyterLab (Enflame GCU) 是一个基于 Web 的开发环境，适用于 Enflame GCU 的计算任务。                                        |
-| [JupyterLab (Hygon DCU)](./jupyter-lab.md)   | IDE      | JupyterLab (Hygon DCU) 是一个基于 Web 的开发环境，适用于 Hygon DCU 的计算任务。                                            |
+| [JupyterLab (CPU)](./jupyterlab.md)         | IDE      | JupyterLab 是一个基于 Web 的交互式开发环境，用于代码开发和数据处理，支持数据科学、科学计算和机器学习等任务。               |
+| [JupyterLab (NVIDIA GPU)](./jupyterlab.md)  | IDE      | JupyterLab (NVIDIA GPU) 是一个基于 Web 的交互式开发环境，适用于 NVIDIA GPU 的计算任务。                                    |
+| [JupyterLab (Enflame GCU)](./jupyterlab.md) | IDE      | JupyterLab (Enflame GCU) 是一个基于 Web 的开发环境，适用于 Enflame GCU 的计算任务。                                        |
+| [JupyterLab (Hygon DCU)](./jupyterlab.md)   | IDE      | JupyterLab (Hygon DCU) 是一个基于 Web 的开发环境，适用于 Hygon DCU 的计算任务。                                            |
 | Label Studio                                 | AI, Tool | Label Studio 是一个数据标注工具。                                                                                          |
 | Llama Board                                  | AI       | Llama Board 是 LLaMA-Factory 项目的网页 UI，用于（增量）预训练、指令微调和评估开源 LLM。                                   |
 | MongoDB                                      | Database | MongoDB 是一个开源的 NoSQL 数据库，使用 JSON 样式文档存储数据，支持自动扩展和高性能，适合开发云原生应用。                  |

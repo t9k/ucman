@@ -80,7 +80,7 @@ AI 集群的拥有者可以使用这套软件，构建自己的 AI 私有云或 
 
 在开始使用 User Console 之前，你需要：
 
-1. 了解<a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/modules/security/account.html">账户</a>和<a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/modules/security/project.html">项目</a>的概念。
+1. 了解[账户](./security/account.md)和[项目](./security/project.md)的概念。
 1. 拥有一个账户，且该账户是至少一个项目的成员。
 
 <aside class="note tip">
@@ -92,4 +92,6 @@ AI 集群的拥有者可以使用这套软件，构建自己的 AI 私有云或 
 
 ## 下一步
 
-* 进入 [User Console 首页](./homepage.md)
+* [了解和使用 Apps](./app/index.md)
+* [了解和使用 APIs](./api/index.md)
+* 进入 [User Console 首页](./guide/homepage.md)

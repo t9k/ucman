@@ -64,12 +64,11 @@ spec:
 
 在该例中，`pytorchtrainingjob-demo` 将 `pvc-demo` 和 `secret-demo` 均作为数据卷（volume）来使用，其中容器 `pytorch` 将两个数据卷分别挂载到 `/data` 和 `/secret` 目录下。因此，容器 `pytorch` 的 `/secret` 目录下将存在两个文件 `/secret/key1` 和 `/secret/key2`，文件内容是经过 base64 解码后的对应的值。
 
-
 ## Secret 用途
 
 TensorStack AI 平台通过 label `tensorstack.dev/resource` 来标识 Secret 的用途，主要有以下几种：
 
-* API Key：拥有 label `tensorstack.dev/resource: apikey`，用于存放 API Key，可在安全管理控制台创建 API Key。
+* API Key：拥有 label `tensorstack.dev/resource: apikey`，用于存放 API Key，可在创建 API Key。
 * S3-cfg：拥有 label `tensorstack.dev/resource: s3-cfg`，用于存放 S3 配置文件的内容，可从本地的 `$HOME/.s3cfg` 文件中获取。
 * S3-env：拥有 label `tensorstack.dev/resource: s3-env`，用于存放 S3 配置文件的每个字段，请从本地的 `$HOME/.s3cfg` 文件中获取。
 * Docker：拥有 label `tensorstack.dev/resource: docker`，用于存放 Docker 配置文件的内容，可从本地的 `$HOME/.docker/config.json` 文件中获取。

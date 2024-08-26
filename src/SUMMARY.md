@@ -4,8 +4,6 @@
 
 ---
 
-* [首页](homepage.md)
-
 * [Apps](app/index.md)
     * [安装 Apps](app/install-app.md)
     * [卸载 Apps](app/uninstall-app.md)
@@ -55,16 +53,15 @@
         * [CronWorkflowRun](api/workflow/cronworkflowrun.md)
         * [WorkflowTrigger](api/workflow/workflowtrigger.md)
 
-* [账户设置](account/index.md)
-    * [账户信息](account/view-profile.md)
-    * [项目管理](account/project-management.md)
-    * [安全设置](account/security-setting.md)
-    * [查看账单](account/view-bill.md)
-    * [告警通知](account/alert-notification.md)
+* [账户和安全](security/index.md)
+    * [账户](security/account.md)
+    * [项目](security/project.md)
 
 ---
 
 * [操作指南](guide/index.md)
+
+    * [首页](guide/homepage.md)
 
     * [管理存储、网络服务和辅助资源](guide/manage-storage-network-and-auxiliary/index.md)
         * [创建 PVC](guide/manage-storage-network-and-auxiliary/pvc.md)
@@ -86,6 +83,13 @@
 
     * [专题](guide/theme/index.md)
         * [上传和下载文件](guide/theme/upload-and-download-file.md)
+
+    * [设置账户](guide/account/index.md)
+        * [账户信息](guide/account/view-profile.md)
+        * [项目管理](guide/account/project-management.md)
+        * [安全设置](guide/account/security-setting.md)
+        * [查看账单](guide/account/view-bill.md)
+        * [告警通知](guide/account/alert-notification.md)
 
 ---
 

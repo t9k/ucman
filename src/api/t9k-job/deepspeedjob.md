@@ -247,7 +247,7 @@ DeepSpeedJob 提供以下三种策略：
 目前 DeepSpeedJob 支持两种调度策略：
 
 1. Kubernetes 的<a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler/#kube-scheduler">默认调度器</a>
-2. [T9k Scheduler](../../../../t9k-scheduler/)
+2. [T9k Scheduler]()
 
 调度策略通过 CRD 的 `spec.scheduler` 字段设置：
 
@@ -268,7 +268,7 @@ spec:
 <aside class="note info">
 <div class="title">信息</div>
 
-队列和优先级都是 T9k Scheduler 的概念，具体含义请参阅 [T9k Scheduler](../scheduling/index.md)。
+队列和优先级都是 T9k Scheduler 的概念，具体含义请参阅 [T9k Scheduler]()。
 
 </aside>
 

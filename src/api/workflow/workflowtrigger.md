@@ -12,8 +12,6 @@ Workflow Trigger 模块提供了 EventListener 和 WorkflowTrigger 自定义扩�
 <img alt="workflow-trigger-architecture" src="../../assets/api/workflow/workflow-trigger-architecture.drawio.svg"/>
 </figure>
 
-![](../../assets/api/workflow/)
-
 其中：
 
 * EventListener 作为事件入口接收 JSON 格式的 HTTP POST 请求，同时将请求信息转换成 <a target="_blank" rel="noopener noreferrer" href="https://github.com/cloudevents/spec">CloudEvents</a> 格式并转发至事件队列。

@@ -6,7 +6,7 @@
 
 本章演示创建 CephFS 类型的 StorageShim，将 CephFS 的一个子目录作为一个 PVC 使用。
 
-在开始之前，你需要依靠从管理员处获得的信息，先完成[创建 Secret](../auxiliary/secret.md) 和[创建 ConfigMap](../auxiliary/configmap.md)。
+在开始之前，你需要依靠从管理员处获得的信息，先完成[创建 Secret](secret.md) 和[创建 ConfigMap](configmap.md)。
 
 点击菜单**存储 > 适配器**，打开适配器的列表页面。然后点击右上角**创建 StorageShim**，进入创建页面：
 
@@ -36,7 +36,7 @@
 
 本章演示创建 CephFS 类型的 StorageShim，将 S3 的一个 bucket 或者 bucket 中的目录作为一个 PVC 使用。
 
-在开始之前，你需要获取 S3 服务的信息，并创建一个 [`S3-cfg` 类型的 Secret](../auxiliary/secret.md#s3-cfg-类型)。
+在开始之前，你需要获取 S3 服务的信息，并创建一个 [`S3-cfg` 类型的 Secret](secret.md#s3-cfg-类型)。
 
 进入 StorageShim 创建页面，并选择类型为 S3：
 

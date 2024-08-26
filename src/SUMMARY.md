@@ -31,20 +31,20 @@
         * [ImageBuilder](api/auxiliary/imagebuilder.md)
         * [DataCube](api/auxiliary/datacube.md)
         * [ServiceAccountToken](api/auxiliary/serviceaccounttoken.md)
-    * [T9k Job](api/job/index.md)
-        * [GenericJob](api/job/genericjob.md)
-        * [PyTorchTrainingJob](api/job/pytorchtrainingjob.md)
-        * [TensorFlowTrainingJob](api/job/tensorflowtrainingjob.md)
-        * [DeepSpeedJob](api/job/deepspeedjob.md)
-        * [ColossalAIJob](api/job/colossalaijob.md)
-        * [XGBoostTrainingJob](api/job/xgboosttrainingjob.md)
-        * [MPIJob](api/job/mpijob.md)
-        * [BeamJob](api/job/beamjob.md)
-    * [T9k Service](api/service/index.md)
-        * [SimpleMLService](api/service/simplemlservice.md)
-        * [MLService](api/service/mlservice.md)
-            * [日志收集](api/service/mlservice-logger.md)
-        * [模型存储](api/service/storage.md)
+    * [T9k Job](api/t9k-job/index.md)
+        * [GenericJob](api/t9k-job/genericjob.md)
+        * [PyTorchTrainingJob](api/t9k-job/pytorchtrainingjob.md)
+        * [TensorFlowTrainingJob](api/t9k-job/tensorflowtrainingjob.md)
+        * [DeepSpeedJob](api/t9k-job/deepspeedjob.md)
+        * [ColossalAIJob](api/t9k-job/colossalaijob.md)
+        * [XGBoostTrainingJob](api/t9k-job/xgboosttrainingjob.md)
+        * [MPIJob](api/t9k-job/mpijob.md)
+        * [BeamJob](api/t9k-job/beamjob.md)
+    * [T9k Service](api/t9k-service/index.md)
+        * [SimpleMLService](api/t9k-service/simplemlservice.md)
+        * [MLService](api/t9k-service/mlservice.md)
+            * [日志收集](api/t9k-service/mlservice-logger.md)
+        * [模型存储](api/t9k-service/storage.md)
     * [AutoTune](api/autotune/index.md)
         * [AutoTuneExperiment](api/autotune/autotuneexperiment.md)
         * [搜索空间](api/autotune/autotune-search-space.md)
@@ -65,6 +65,7 @@
 ---
 
 * [操作指南](guide/index.md)
+
     * [管理存储、网络服务和辅助资源](guide/manage-storage-network-and-auxiliary/index.md)
         * [创建 PVC](guide/manage-storage-network-and-auxiliary/pvc.md)
         * [创建 StorageShim](guide/manage-storage-network-and-auxiliary/storageshim.md)
@@ -72,16 +73,46 @@
         * [查看 Ingress](guide/manage-storage-network-and-auxiliary/ingress.md)
         * [创建 Secret](guide/manage-storage-network-and-auxiliary/secret.md)
         * [创建 ConfigMap](guide/manage-storage-network-and-auxiliary/configmap.md)
+
     * [训练模型](guide/train-model/index.md)
         * [进行数据并行训练](guide/train-model/dp-training.md)
         * [进行 LLM 大规模预训练](guide/train-model/llm-large-scale-pretraining.md)
         * [分析性能](guide/train-model/profile.md)
         * [指令微调 LLM](guide/train-model/llm-instruction-tuning.md)
         <!-- * [使用 Job Manager](guide/train-model/use-job-manager.md) -->
+
     * [部署模型推理服务](guide/deploy-model/index.md)
         * [部署 LLM 推理服务和聊天服务](guide/deploy-model/deploy-llm.md)
+
     * [专题](guide/theme/index.md)
         * [上传和下载文件](guide/theme/upload-and-download-file.md)
+
+---
+
+* [命令行工具和 SDK](tool/index.md)
+
+    * [命令行工具：t9k](tool/cli-t9k/index.md)
+        * [用户指南](tool/cli-t9k/guide.md)
+        * [命令](tool/cli-t9k/commands.md)
+
+    * [命令行工具：t9k-pf](tool/cli-t9k-pf/index.md)
+        * [用户指南](tool/cli-t9k-pf/guide.md)
+        * [命令](tool/cli-t9k-pf/commands.md)
+
+    * [Python SDK：t9k](tool/python-sdk-t9k/index.md)
+        * [用户指南](tool/python-sdk-t9k/guide.md)
+        * [API](tool/python-sdk-t9k/api/index.md)
+            * [t9k.ah](tool/python-sdk-t9k/api/t9k-ah.md)
+            * [t9k.ah.core](tool/python-sdk-t9k/api/t9k-ah-core.md)
+            * [t9k.config](tool/python-sdk-t9k/api/t9k-config.md)
+            * [t9k.em](tool/python-sdk-t9k/api/t9k-em.md)
+            * [t9k.tuner](tool/python-sdk-t9k/api/t9k-tuner.md)
+
+    <!-- * [Codepack](tool/codepack/index.md)
+        * [概念](tool/codepack/concepts.md)
+        * [Codepack 定义](tool/codepack/definition.md)
+        * [命令行工具](tool/codepack/cli.md)
+        * [示例](tool/codepack/example.md) -->
 
 * [参考](reference/index.md)
     * [API 参考](reference/api-reference/index.md)

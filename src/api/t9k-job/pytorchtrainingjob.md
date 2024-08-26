@@ -333,7 +333,7 @@ PyTorchTrainingJob 提供以下三种策略：
 目前 PyTorchTrainingJob 支持使用以下两种调度器：
 
 1. Kubernetes 的<a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler/#kube-scheduler">默认调度器</a>
-2. [T9k Scheduler 调度器](../scheduling/index.md)
+2. [T9k Scheduler 调度器]()
 
 调度器通过 `spec.scheduler` 字段设置：
 
@@ -354,29 +354,7 @@ spec:
 <aside class="note info">
 <div class="title">信息</div>
 
-队列和优先级都是 T9k Scheduler 的概念，具体含义请参阅 [T9k Scheduler](../scheduling/index.md)。
-
-</aside>
-
-## TensorBoard 的使用
-
-PyTorchTrainingJob 支持使用 TensorBoard 对训练过程和结果进行实时可视化（由 `spec.tensorboardSpec` 字段设置）。
-
-在下面的示例中，PyTorchTrainingJob 使用 `t9kpublic/tensorflow-2.11.0:cpu-sdk-0.5.2` 镜像创建一个 TensorBoard，可视化名为 `torch-tensorboard-pvc` 的 PVC 中 `/log` 路径下的模型数据。
-
-```yaml
-...
-spec:
-  tensorboardSpec:
-    image: t9kpublic/tensorflow-2.11.0:cpu-sdk-0.5.2
-    trainingLogFilesets:
-    - t9k://pvc/torch-tensorboard-pvc/log
-```
-
-<aside class="note info">
-<div class="title">信息</div>
-
-TensorBoard 的详细介绍请参阅 [TensorBoard](../building/tensorboard.md)。
+队列和优先级都是 T9k Scheduler 的概念，具体含义请参阅 [T9k Scheduler]()。
 
 </aside>
 

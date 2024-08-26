@@ -34,4 +34,3 @@
 ## 下一步
 
 - [安装 JupyterLab](jupyterlab.md)
-- 了解 [网络服务](../network/index.md)

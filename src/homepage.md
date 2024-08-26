@@ -26,5 +26,5 @@ User Console 首页包含以下元素：
 
 ## 下一步
 
-- [创建集群存储](./storage/index.md)
 - [了解和使用 Apps](./app/index.md)
+- [了解和使用 APIs](./api/index.md)

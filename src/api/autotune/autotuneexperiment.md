@@ -85,7 +85,7 @@ AutoTuneExperiment 支持对多种训练框架进行超参数的调优，包括 
 AutoTuneExperiment 通过设置 `spec.trainingConfig` 字段实现对上述框架的支持。其中：
 
 * `spec.trainingConfig.type` 可设置为 `tensorflow`、`pytorch` 和 `xgboost`，分别表示使用 TensorFlow、PyTorch 和 XGBoost 框架进行训练。
-* `spec.trainingConfig.tasks` 字段的设置请根据所使用的框架种类分别参阅 [TensorFlowTrainingJob](../job/tensorflowtrainingjob.md)、[PyTorchTrainingJob](../job/pytorchtrainingjob.md) 和 [XGBoostTrainingJob](../job/xgboosttrainingjob.md)。
+* `spec.trainingConfig.tasks` 字段的设置请根据所使用的框架种类分别参阅 [TensorFlowTrainingJob](../t9k-job/tensorflowtrainingjob.md)、[PyTorchTrainingJob](../t9k-job/pytorchtrainingjob.md) 和 [XGBoostTrainingJob](../t9k-job/xgboosttrainingjob.md)。
 
 ## 超参数调优算法
 

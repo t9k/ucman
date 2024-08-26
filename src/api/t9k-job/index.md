@@ -3,7 +3,7 @@
 TensorStack AI 平台定义了一系列 CRD（称为 Job）以支持<a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/Batch_processing">批处理（Batch Processing）</a>计算任务，特别是 AI 领域的大规模分布式并行训练类型性质的计算。
 
 <figure class="architecture">
-  <img alt="t9k-job" src="../../assets/api/job/jobs.drawio.svg" />
+  <img alt="t9k-job" src="../../assets/api/t9k-job/jobs.drawio.svg" />
   <figcaption>图 1：Job 系统的基本原理。用户提交 Job 的定义；Job Controller 1）分析 Job 定义；2）请求计算资源（CPU、RAM、GPU、高速网络、存储...）；3）启动、监控、暂停、继续 、终止、调试 Job。</figcaption>
 </figure>
 

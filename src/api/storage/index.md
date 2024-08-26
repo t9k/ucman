@@ -39,7 +39,7 @@ Block Storage Volumes（块存储卷）可作为高性能虚拟存储盘挂载�
 
 TensorStack 的存储卷（Storage Volumes）系统支持建立在 Kubernetes 的 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/storage/">Storage API</a> 基础之上，通过 API <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">Persistent Volumes</a>，<a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/storage/storage-classes/">Storage Class</a> 等提供用户接口。
 
-同时，为了支持一些特定场景的使用，TensorStack 提供 CRD [StorageShim](storageshim.md)，[Explorer](explorer.md) 以提供扩展支持。
+同时，为了支持一些特定场景的使用，TensorStack 提供 CRD [StorageShim](storageshim.md)，[Explorer]() 以提供扩展支持。
 
 例 1：获得集群中的存储类型：
 

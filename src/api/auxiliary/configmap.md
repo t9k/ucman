@@ -21,7 +21,7 @@ data:
 
 ## 使用 ConfigMap
 
-与 [PVC](./pvc.md) 类似，ConfigMap 可以以同样的方式作为数据卷被 Pod、Notebook、Job 等资源挂载。以 PyTorchTrainingJob 为例：
+与 [PVC](../storage/pvc.md) 类似，ConfigMap 可以以同样的方式作为数据卷被 Pod、Notebook、Job 等资源挂载。以 PyTorchTrainingJob 为例：
 
 ```yaml
 apiVersion: batch.tensorstack.dev/v1beta1

@@ -37,7 +37,7 @@ spec:
           args: ["Hello TensorStack!"]
 ```
 
-在该例中，`workflowTemplateSpec` 字段用于填写所要运行的 WorkflowTemplate 的规约，WorkflowTemplate 规约的写法详见 [WorkflowTemplateSpec](../../../reference/tensorstack-resources/workflow-api/workflowtemplate.md#workflowTemplateSpec)（坏链）。
+在该例中，`workflowTemplateSpec` 字段用于填写所要运行的 WorkflowTemplate 的规约，WorkflowTemplate 规约的写法详见 [WorkflowTemplateSpec]()。
 
 ## WorkflowRun 状态
 

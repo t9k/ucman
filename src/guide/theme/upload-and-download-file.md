@@ -363,7 +363,7 @@ curl --header "Authorization: Bearer <HF_TOKEN>" -L https://huggingface.co/meta-
 
 ### DataCube
 
-也可以使用平台提供的 [DataCube](../modules/auxiliary/datacube.md#hugging-face)，其在内部调用的就是 [`huggingface-cli` 命令](#huggingface-cli-命令和-huggingface_hub-库)。使用以下 YAML 配置文件创建 DataCube（修改 PVC 名称、PVC 路径、Secret 名称和 S3 URL）以下载和上传文件：
+也可以使用平台提供的 [DataCube](../../api/auxiliary/datacube.md)，其在内部调用的就是 [`huggingface-cli` 命令](#huggingface-cli-命令和-huggingface_hub-库)。使用以下 YAML 配置文件创建 DataCube（修改 PVC 名称、PVC 路径、Secret 名称和 S3 URL）以下载和上传文件：
 
 <details><summary><code class="hljs">download-hf.yaml</code></summary>
 

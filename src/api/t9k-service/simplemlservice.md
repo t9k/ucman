@@ -153,13 +153,13 @@ spec:
 SimpleMLService 支持使用两种调度器：
 
 * <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler/#kube-scheduler">Kubernetes 默认调度器</a>
-* [T9k Scheduler 调度器](../scheduling/index.md)
+* [T9k Scheduler 调度器]()
 
 通过 `spec.scheduler` 字段可以设置欲使用的调度器：
 * 不设置 `spec.scheduler` 字段，默认使用 Kubernetes 调度器。
 * 设置 `spec.scheduler.t9kScheduler` 字段，使用 T9k Scheduler 调度器。
 
-在下面的示例中，SimpleMLService 使用 T9k Scheduler 调度器，并申请使用 [队列](../scheduling/queue.md) `default` 中的资源。
+在下面的示例中，SimpleMLService 使用 T9k Scheduler 调度器，并申请使用 [队列]() `default` 中的资源。
 
 ```yaml
 spec:

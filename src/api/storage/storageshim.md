@@ -35,8 +35,7 @@ stringData:
   .s3cfg: <s3cfg>
 ```
 
-在该例中，StorageShim `storageshim-s3-demo` 被创建后，StorageShim 控制器将创建一个同名的 PVC `storageshim-s3-demo`，该 PVC 的根目录对应 S3 路径 `s3://bucket/path/subpath`，访问该 S3 路径的登录凭证存储在 Secret `s3-secret-demo` 中，该 Secret 必须为 [S3-cfg 类型](./secret.md#secret-用途)。
-
+在该例中，StorageShim `storageshim-s3-demo` 被创建后，StorageShim 控制器将创建一个同名的 PVC `storageshim-s3-demo`，该 PVC 的根目录对应 S3 路径 `s3://bucket/path/subpath`，访问该 S3 路径的登录凭证存储在 Secret `s3-secret-demo` 中，该 Secret 必须为 [S3-cfg 类型](../auxiliary/secret.md#secret-用途)。
 
 ### CephFS 类型
 
@@ -88,7 +87,7 @@ data:
   fsName: <fs-name>
 ```
 
-在该例中，StorageShim `storageshim-cephfs-demo` 被创建后，StorageShim 控制器将创建一个同名的 PVC `storageshim-cephfs-demo`，该 PVC 的根目录对应 CephFS 文件系统的子目录 `/cephfs/data/user/mydata`，访问该子目录的登录凭证存储在 Secret `ceph-client-key-demo` 中，该 Secret 必须为 [S3-cfg 类型](./secret.md#secret-用途)，该 CephFS 文件系统的相关信息存储在 ConfigMap `ceph-cluster-config-demo` 中。
+在该例中，StorageShim `storageshim-cephfs-demo` 被创建后，StorageShim 控制器将创建一个同名的 PVC `storageshim-cephfs-demo`，该 PVC 的根目录对应 CephFS 文件系统的子目录 `/cephfs/data/user/mydata`，访问该子目录的登录凭证存储在 Secret `ceph-client-key-demo` 中，该 Secret 必须为 [S3-cfg 类型](../auxiliary/secret.md#secret-用途)，该 CephFS 文件系统的相关信息存储在 ConfigMap `ceph-cluster-config-demo` 中。
 
 ## 下一步
 

@@ -6,7 +6,7 @@ PyTorch 提供的 <a target="_blank" rel="noopener noreferrer" href="https://pyt
 
 ## 准备工作
 
-在[进行 LLM 大规模预训练](../examples/start-llm-large-scale-pretraining.md)给出的准备工作的基础上，还需要修改 Megatron-DeepSpeed 的训练代码，用 profiler 上下文管理器包装训练循环的代码。直接使用 Notebook 的文本编辑器修改代码即可。
+在[进行 LLM 大规模预训练](./llm-large-scale-pretraining.md)给出的准备工作的基础上，还需要修改 Megatron-DeepSpeed 的训练代码，用 profiler 上下文管理器包装训练循环的代码。直接使用 Notebook 的文本编辑器修改代码即可。
 
 ```python
 # Megatron-DeepSpeed/megatron/training.py
@@ -72,8 +72,6 @@ Overview 展示了训练性能的总体情况，包含 GPU 的总体情况、不
 <figure class="screenshot">
   <img alt="overview" src="../../assets/guide/train-model/profile/overview.png" />
 </figure>
-
-![](../../assets/guide/train-model/profile/)
 
 Operator View 展示了所有 PyTorch 算子被调用的次数、花费的时间以及它的调用栈：
 

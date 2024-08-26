@@ -23,5 +23,4 @@
 
 ## 下一步
 
-- [安装 Apps](../app/index.md)
-- 或者，了解 [创建存储适配器（StorageShim)](./adapter.md)
+- 了解 [创建存储适配器（StorageShim)](./storageshim.md)

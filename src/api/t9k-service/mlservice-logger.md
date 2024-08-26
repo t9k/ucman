@@ -83,7 +83,7 @@ Data,
 <details><summary><code class="hljs">event-display.yaml</code></summary>
 
 ```yaml
-{{#include ../../assets/api/service/event-display.yaml}}
+{{#include ../../assets/api/t9k-service/event-display.yaml}}
 ```
 
 </details>
@@ -106,7 +106,7 @@ kubectl create -f event-display.yaml
 <details><summary><code class="hljs">mlservice.yaml</code></summary>
 
 ```yaml
-{{#include ../../assets/api/service/mlservice.yaml}}
+{{#include ../../assets/api/t9k-service/mlservice.yaml}}
 ```
 
 </details>
@@ -123,7 +123,7 @@ kubectl create -f event-display.yaml
 <details><summary><code class="hljs">terminal.log</code></summary>
 
 ```console
-{{#include ../../assets/api/service/terminal.log}}
+{{#include ../../assets/api/t9k-service/terminal.log}}
 ```
 
 </details>

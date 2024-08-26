@@ -13,6 +13,8 @@ smart-punctuation = true
 [output.html.fold]
 enable = false
 
+[output.linkcheck]
+
 [preprocessor.tabulate]
 command = "./util-tabulate.sh"
 

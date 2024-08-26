@@ -18,7 +18,7 @@ TensorStack AI 平台的模型部署模块可以帮助你快速地将训练完�
 模型部署模块的架构如下图：
 
 <figure class="architecture">
-  <img alt="architecture" src="../../assets/api/service/architecture.drawio.svg" class="architecture">
+  <img alt="architecture" src="../../assets/api/t9k-service/architecture.drawio.svg" class="architecture">
 </figure>
 
 根据用户提供的[模型存储](storage.md)位置和 AI 框架等设置，模型部署模块的控制器（controller）协调模型下载并启动模型推理服务。

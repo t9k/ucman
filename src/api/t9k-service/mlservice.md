@@ -10,7 +10,7 @@ MLService 用于在 TensorStack AI 平台上部署 AI 推理服务，其功能�
 - 可选的 `transformer` 定义前处理（pre-processing）和后处理（post-processing）计算。
 
 <figure class="architecture">
-  <img alt="mlservice-architecture" src="../../assets/api/service/mlservice-flow.drawio.svg" class="architecture">
+  <img alt="mlservice-architecture" src="../../assets/api/t9k-service/mlservice-flow.drawio.svg" class="architecture">
   <figcaption> 图 1: MLService 的组成。一个 MLService 由一个或多个模型服务版本（releases） 及前后处理模块（transformer，非必需）构成；不同的 release 和 transformer 可独立进行规模伸缩。</figcaption>
 </figure>
 

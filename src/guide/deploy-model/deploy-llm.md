@@ -5,7 +5,7 @@
 本教程的 Apps 架构如下图所示：
 
 <figure class="architecture">
-  <img alt="app-arch" src="../../assets/task/deploy-model/deploy-llm/app-arch.drawio.svg" />
+  <img alt="app-arch" src="../../assets/guide/deploy-model/deploy-llm/app-arch.drawio.svg" />
 </figure>
 
 ## 准备工作
@@ -26,7 +26,7 @@ modelscope download --model "LLM-Research/$MODEL_NAME" --exclude "original/*" --
 进入应用目录，点击 **vLLM** App，进入 README 页面：
 
 <figure class="screenshot">
-  <img alt="catalog-vllm" src="../../assets/task/deploy-model/deploy-llm/catalog-vllm.png" />
+  <img alt="catalog-vllm" src="../../assets/guide/deploy-model/deploy-llm/catalog-vllm.png" />
 </figure>
 
 README 给出了 Apps 介绍、使用方法、配置示例和参数说明，根据这些信息写出 YAML 配置如下：
@@ -59,13 +59,13 @@ env: []
 使用上述配置安装 vLLM App，待 App 就绪后，查看其信息：
 
 <figure class="screenshot">
-  <img alt="vllm-info" src="../../assets/task/deploy-model/deploy-llm/vllm-info.png" />
+  <img alt="vllm-info" src="../../assets/guide/deploy-model/deploy-llm/vllm-info.png" />
 </figure>
 
 回到 JupyterLab，在终端中执行上述命令：
 
 <figure class="screenshot">
-  <img alt="send-request" src="../../assets/task/deploy-model/deploy-llm/send-request.png" />
+  <img alt="send-request" src="../../assets/guide/deploy-model/deploy-llm/send-request.png" />
 </figure>
 
 可以看到推理服务正常返回响应。
@@ -82,7 +82,7 @@ env: []
 为了让聊天有一个简洁而美观的 UI，我们可以使用 NextChat App。进入应用目录，点击 **NextChat** App：
 
 <figure class="screenshot">
-  <img alt="catalog-nextchat" src="../../assets/task/deploy-model/deploy-llm/catalog-nextchat.png" />
+  <img alt="catalog-nextchat" src="../../assets/guide/deploy-model/deploy-llm/catalog-nextchat.png" />
 </figure>
 
 根据 README 写出 YAML 配置如下：
@@ -117,19 +117,19 @@ env: []
 使用上述配置安装 NextChat App，待 App 就绪后，查看其信息：
 
 <figure class="screenshot">
-  <img alt="nextchat-info" src="../../assets/task/deploy-model/deploy-llm/nextchat-info.png" />
+  <img alt="nextchat-info" src="../../assets/guide/deploy-model/deploy-llm/nextchat-info.png" />
 </figure>
 
 在本地的终端中执行上述命令，然后在浏览器中访问相应的地址进入 UI，在设置中填写模型被部署的名称并选择该模型：
 
 <figure class="screenshot" style="text-align: center;">
-  <img alt="nextchat-config" src="../../assets/task/deploy-model/deploy-llm/nextchat-config.png" width="80%" />
+  <img alt="nextchat-config" src="../../assets/guide/deploy-model/deploy-llm/nextchat-config.png" width="80%" />
 </figure>
 
 然后就可以开始聊天了！
 
 <figure class="screenshot" style="text-align: center;">
-  <img alt="nextchat-chat" src="../../assets/task/deploy-model/deploy-llm/nextchat-chat.png" width="80%" />
+  <img alt="nextchat-chat" src="../../assets/guide/deploy-model/deploy-llm/nextchat-chat.png" width="80%" />
 </figure>
 
 ## 参考

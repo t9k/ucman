@@ -41,7 +41,7 @@ NFS 类型的 PVC 不可扩容。
 将 PVC 挂载到 [Jupyter Lab](../../../app/jupyter-lab.md) App 上，本地文件系统和 PVC 之间的文件上传下载可以直接在 UI 中进行操作：
 
 <figure class="screenshot">
-  <img alt="notebook-upload-download" src="../../assets/task/theme/upload-and-download-file/notebook-upload-download.png" />
+  <img alt="notebook-upload-download" src="../../assets/guide/theme/upload-and-download-file/notebook-upload-download.png" />
 </figure>
 
 ### File Browser App UI
@@ -49,7 +49,7 @@ NFS 类型的 PVC 不可扩容。
 将 PVC 挂载到 [File Browser](../../../app/filebrowser.md) App 上，本地文件系统和 PVC 之间的文件上传下载可以直接在 UI 中进行操作：
 
 <figure class="screenshot">
-  <img alt="file-browser-upload-download" src="../../assets/task/theme/upload-and-download-file/file-browser-upload-download.png" />
+  <img alt="file-browser-upload-download" src="../../assets/guide/theme/upload-and-download-file/file-browser-upload-download.png" />
 </figure>
 
 <aside class="note">
@@ -97,7 +97,7 @@ rclone 支持的云存储提供商请参阅 <a target="_blank" rel="noopener nor
 <details><summary><code class="hljs">download-s3.yaml</code></summary>
 
 ```yaml
-{{#include ../../assets/task/theme/upload-and-download-file/download-s3.yaml}}
+{{#include ../../assets/guide/theme/upload-and-download-file/download-s3.yaml}}
 ```
 
 </details>
@@ -105,7 +105,7 @@ rclone 支持的云存储提供商请参阅 <a target="_blank" rel="noopener nor
 <details><summary><code class="hljs">upload-s3.yaml</code></summary>
 
 ```yaml
-{{#include ../../assets/task/theme/upload-and-download-file/upload-s3.yaml}}
+{{#include ../../assets/guide/theme/upload-and-download-file/upload-s3.yaml}}
 ```
 
 </details>
@@ -156,7 +156,7 @@ git push
 <details><summary><code class="hljs">download-git.yaml</code></summary>
 
 ```yaml
-{{#include ../../assets/task/theme/upload-and-download-file/download-git.yaml}}
+{{#include ../../assets/guide/theme/upload-and-download-file/download-git.yaml}}
 ```
 
 </details>
@@ -164,7 +164,7 @@ git push
 <details><summary><code class="hljs">upload-git.yaml</code></summary>
 
 ```yaml
-{{#include ../../assets/task/theme/upload-and-download-file/upload-git.yaml}}
+{{#include ../../assets/guide/theme/upload-and-download-file/upload-git.yaml}}
 ```
 
 </details>
@@ -215,11 +215,11 @@ Hugging Face 模型或数据集本身就是一个 Git 仓库，因此可以参�
 可以使用 <a target="_blank" rel="noopener noreferrer" href="https://github.com/huggingface/transformers">`transformers` 库</a>下载和上传模型文件以及 tokenizer 文件。使用浏览器访问模型 `facebook/opt-125m` 的 <a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/facebook/opt-125m/tree/main">Files 标签页</a>。点击 **Use in Transformers**，按照提示进行操作，即在 Python 程序中调用 `transformers` 库加载模型。首次加载时，仓库中的模型文件和 tokenizer 文件会被下载到缓存目录下，即 PVC 的 `.cache/huggingface/hub/models--facebook--opt-125m/` 路径下。
 
 <figure class="screenshot">
-  <img alt="use-in-transformers" src="../../assets/task/theme/upload-and-download-file/use-in-transformers.png" />
+  <img alt="use-in-transformers" src="../../assets/guide/theme/upload-and-download-file/use-in-transformers.png" />
 </figure>
 
 <figure class="screenshot">
-  <img alt="use-in-transformers-detail" src="../../assets/task/theme/upload-and-download-file/use-in-transformers-detail.png" />
+  <img alt="use-in-transformers-detail" src="../../assets/guide/theme/upload-and-download-file/use-in-transformers-detail.png" />
 </figure>
 
 ```python
@@ -368,7 +368,7 @@ curl --header "Authorization: Bearer <HF_TOKEN>" -L https://huggingface.co/meta-
 <details><summary><code class="hljs">download-hf.yaml</code></summary>
 
 ```yaml
-{{#include ../../assets/task/theme/upload-and-download-file/download-hf.yaml}}
+{{#include ../../assets/guide/theme/upload-and-download-file/download-hf.yaml}}
 ```
 
 </details>
@@ -376,7 +376,7 @@ curl --header "Authorization: Bearer <HF_TOKEN>" -L https://huggingface.co/meta-
 <details><summary><code class="hljs">upload-hf.yaml</code></summary>
 
 ```yaml
-{{#include ../../assets/task/theme/upload-and-download-file/upload-hf.yaml}}
+{{#include ../../assets/guide/theme/upload-and-download-file/upload-hf.yaml}}
 ```
 
 </details>

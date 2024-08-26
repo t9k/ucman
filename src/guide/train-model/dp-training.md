@@ -5,7 +5,7 @@
 本教程的 Apps 架构如下图所示：
 
 <figure class="architecture">
-  <img alt="app-arch" src="../../assets/task/train-model/dp-training/app-arch.drawio.svg" />
+  <img alt="app-arch" src="../../assets/guide/train-model/dp-training/app-arch.drawio.svg" />
 </figure>
 
 ## 运行示例
@@ -33,35 +33,35 @@ git clone https://github.com/t9k/tutorial-examples.git
 训练开始后，安装一个 [Job Manager App](../../app/job-manager.md)（如有 Job Manager 则直接复用），进入 Job Manager，可以看到名为 **torch-mnist-trainingjob** 的 PyTorchTrainingJob 正在运行，点击其**名称**进入详情页面：
 
 <figure class="screenshot">
-    <img alt="running" src="../../assets/task/train-model/dp-training/running.png" />
+    <img alt="running" src="../../assets/guide/train-model/dp-training/running.png" />
 </figure>
 
 可以看到刚才创建的 PyTorchTrainingJob 的基本信息、状况信息和事件信息：
 
 <figure class="screenshot">
-    <img alt="details" src="../../assets/task/train-model/dp-training/details.png" />
+    <img alt="details" src="../../assets/guide/train-model/dp-training/details.png" />
 </figure>
 
 点击上方的**副本**标签页，查看 PyTorchTrainingJob 的 Pod 信息；点击副本右侧的 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 16a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2Z"></path></svg></span>**&nbsp;> 日志**以查看训练脚本执行过程中的日志输出：
 
 <figure class="screenshot">
-    <img alt="replicas" src="../../assets/task/train-model/dp-training/replicas.png" />
+    <img alt="replicas" src="../../assets/guide/train-model/dp-training/replicas.png" />
 </figure>
 
 <figure class="screenshot">
-    <img alt="view-log" src="../../assets/task/train-model/dp-training/view-log.png" />
+    <img alt="view-log" src="../../assets/guide/train-model/dp-training/view-log.png" />
 </figure>
 
 点击上方的**资源监测**标签页，查看 PyTorchTrainingJob 运行过程中使用集群计算资源、网络资源和存储资源的情况：
 
 <figure class="screenshot">
-    <img alt="resources" src="../../assets/task/train-model/dp-training/resources.png" />
+    <img alt="resources" src="../../assets/guide/train-model/dp-training/resources.png" />
 </figure>
 
 一段时间之后，PyTorchTrainingJob 的状态变为 **Succeeded**，表示训练成功完成。
 
 <figure class="screenshot">
-    <img alt="done" src="../../assets/task/train-model/dp-training/done.png" />
+    <img alt="done" src="../../assets/guide/train-model/dp-training/done.png" />
 </figure>
 
 若 PyTorchTrainingJob 在运行过程中出错，其状态会变为 **Error**，并在事件信息和 Pod 信息部分显示错误信息，此时需要根据给出的错误信息进行问题排查。
@@ -71,19 +71,19 @@ git clone https://github.com/t9k/tutorial-examples.git
 训练产生的 tfevents 文件保存在 PVC 中。回到 JupyterLab，创建一个 TensorBoard 实例。点击 TensorBoard 图标：
 
 <figure class="screenshot">
-    <img alt="tensorboard1" src="../../assets/task/train-model/dp-training/tensorboard1.png" />
+    <img alt="tensorboard1" src="../../assets/guide/train-model/dp-training/tensorboard1.png" />
 </figure>
 
 直接点击 **Create TensorBoard**：
 
 <figure class="screenshot">
-    <img alt="tensorboard2" src="../../assets/task/train-model/dp-training/tensorboard2.png" />
+    <img alt="tensorboard2" src="../../assets/guide/train-model/dp-training/tensorboard2.png" />
 </figure>
 
 可以查看可视化展示的训练和验证指标：
 
 <figure class="screenshot">
-    <img alt="tensorboard3" src="../../assets/task/train-model/dp-training/tensorboard3.png" />
+    <img alt="tensorboard3" src="../../assets/guide/train-model/dp-training/tensorboard3.png" />
 </figure>
 
 <aside class="note">

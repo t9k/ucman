@@ -9,19 +9,19 @@
 点击**辅助 > Secret**，查看已有的 Secret：
 
 <figure class="screenshot">
-  <img alt="list-secret" src="../../assets/task/manage-storage-network-and-auxiliary/auxiliary/list-secret.png" />
+  <img alt="list-secret" src="../../assets/guide/manage-storage-network-and-auxiliary/auxiliary/list-secret.png" />
 </figure>
 
 点击右上角的创建，进入创建页面，并选择模板为 **Ceph Client**：
 
 <figure class="screenshot">
-  <img alt="create-secret-ceph-1" src="../../assets/task/manage-storage-network-and-auxiliary/auxiliary/create-secret-ceph-1.png" />
+  <img alt="create-secret-ceph-1" src="../../assets/guide/manage-storage-network-and-auxiliary/auxiliary/create-secret-ceph-1.png" />
 </figure>
 
 填写名称、userID 和 userKey，点击创建即可完成 Secret 的创建：
 
 <figure class="screenshot">
-  <img alt="create-secret-ceph-2" src="../../assets/task/manage-storage-network-and-auxiliary/auxiliary/create-secret-ceph-2.png" />
+  <img alt="create-secret-ceph-2" src="../../assets/guide/manage-storage-network-and-auxiliary/auxiliary/create-secret-ceph-2.png" />
 </figure>
 
 ## S3-cfg 类型
@@ -31,13 +31,13 @@
 点击**辅助 > Secret**，然后点击右上角的创建，进入创建页面，并选择模板为 **S3-cfg**：
 
 <figure class="screenshot">
-  <img alt="create-secret-s3cfg-1" src="../../assets/task/manage-storage-network-and-auxiliary/auxiliary/created-secret-s3cfg-1.png" />
+  <img alt="create-secret-s3cfg-1" src="../../assets/guide/manage-storage-network-and-auxiliary/auxiliary/created-secret-s3cfg-1.png" />
 </figure>
 
 首先修改资源的“名称”，然后查看“数据 > .s3cfg” 中的内容。这里已经提前写好了一个 S3 配置文件的模板，在此基础上修改 `host_base`，`host_bucket`，`access_key`，`secret_key` 四个字段的值，或者直接使用 S3 配置文件覆盖其中所有内容：
 
 <figure class="screenshot">
-  <img alt="create-secret-s3cfg-2" src="../../assets/task/manage-storage-network-and-auxiliary/auxiliary/created-secret-s3cfg-2.png" />
+  <img alt="create-secret-s3cfg-2" src="../../assets/guide/manage-storage-network-and-auxiliary/auxiliary/created-secret-s3cfg-2.png" />
 </figure>
 
 点击右上角的创建即可完成 Secret 的创建。

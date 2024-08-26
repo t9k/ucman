@@ -5,5 +5,5 @@
 点击**网络服务 > Ingress**，查看已有的 Ingress：
 
 <figure class="screenshot">
-  <img alt="list-ingress" src="../../assets/task/manage-storage-network-and-auxiliary/network/list-ingress.png" />
+  <img alt="list-ingress" src="../../assets/guide/manage-storage-network-and-auxiliary/network/list-ingress.png" />
 </figure>

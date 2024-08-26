@@ -3,7 +3,7 @@
 预训练 LLM 拥有对语言结构、语义直至语言所描述的世界和各种规律的全面理解，但它还不能遵循指令或者以我们期望的方式行事。为了使人类能够更有效地与 LLM 交互并从中获取所需的信息，赋予 LLM 对话能力（并使其对齐）变得至关重要。OpenAI 在论文<a target="_blank" rel="noopener noreferrer" href="https://arxiv.org/abs/2203.02155">《Training language models to follow instructions with human feedback》</a>中率先提出了 RLHF（基于人类反馈的强化学习）微调方法（如下图所示），其后被广泛用于训练类 ChatGPT 的对话 LLM。
 
 <figure style="display: block; margin-left: auto; margin-right: auto;">
-  <img alt="rlhf-method" src="../../assets/task/train-model/llm-instruction-tuning/rlhf-method.png" style="display: block; margin-left: auto; margin-right: auto;"/>
+  <img alt="rlhf-method" src="../../assets/guide/train-model/llm-instruction-tuning/rlhf-method.png" style="display: block; margin-left: auto; margin-right: auto;"/>
 </figure>
 
 <p style="color: gray; text-align: center; font-size: 14px">RLHF 方法的三步：（1）有监督微调；（2）训练奖励模型；（3）在此奖励模型上进行 PPO 强化学习。</p>
@@ -29,7 +29,7 @@
 本教程的 Apps 架构如下图所示：
 
 <figure class="architecture">
-  <img alt="app-arch" src="../../assets/task/train-model/llm-instruction-tuning/app-arch-simple.drawio.svg" />
+  <img alt="app-arch" src="../../assets/guide/train-model/llm-instruction-tuning/app-arch-simple.drawio.svg" />
 </figure>
 
 ## 运行示例
@@ -51,21 +51,21 @@ DPO 训练完成后，LoRA adapter 文件将保存在 `saves/llama3-1-8b/lora/dp
 SFT 训练完成后，使用 JupyterLab 的文件浏览器，前往 `saves/llama3-1-8b/lora/sft` 路径，打开 `training_loss.png` 文件以查看训练损失曲线，`training_eval_loss.png` 文件以查看验证损失曲线，`trainer_log.jsonl` 文件以查看训练日志。
 
 <figure class="architecture">
-    <img alt="sft-training-loss" src="../../assets/task/train-model/llm-instruction-tuning/sft-training-loss.png" width="80%" />
+    <img alt="sft-training-loss" src="../../assets/guide/train-model/llm-instruction-tuning/sft-training-loss.png" width="80%" />
 </figure>
 
 <figure class="architecture">
-    <img alt="sft-training-eval-loss" src="../../assets/task/train-model/llm-instruction-tuning/sft-training-eval-loss.png" width="80%" />
+    <img alt="sft-training-eval-loss" src="../../assets/guide/train-model/llm-instruction-tuning/sft-training-eval-loss.png" width="80%" />
 </figure>
 
 DPO 训练完成后，使用 JupyterLab 的文件浏览器，前往 `saves/llama3-1-8b/lora/dpo` 路径，打开 `training_loss.png` 文件以查看训练损失曲线，`training_rewards_accuracies.png` 文件以查看奖励/正确率曲线，`trainer_log.jsonl` 文件以查看训练日志。
 
 <figure class="architecture">
-    <img alt="dpo-training-loss" src="../../assets/task/train-model/llm-instruction-tuning/dpo-training-loss.png" width="80%" />
+    <img alt="dpo-training-loss" src="../../assets/guide/train-model/llm-instruction-tuning/dpo-training-loss.png" width="80%" />
 </figure>
 
 <figure class="architecture">
-    <img alt="dpo-training-rewards-accuracies" src="../../assets/task/train-model/llm-instruction-tuning/dpo-training-rewards-accuracies.png" width="80%" />
+    <img alt="dpo-training-rewards-accuracies" src="../../assets/guide/train-model/llm-instruction-tuning/dpo-training-rewards-accuracies.png" width="80%" />
 </figure>
 
 ## 与 LLM 聊天

@@ -31,7 +31,7 @@ LLM（大型语言模型）是当前 AI 领域备受瞩目的研究和应用领�
 本教程的 Apps 架构如下图所示：
 
 <figure class="architecture">
-  <img alt="app-arch" src="../../assets/task/train-model/llm-large-scale-pretraining/app-arch-simple.drawio.svg" />
+  <img alt="app-arch" src="../../assets/guide/train-model/llm-large-scale-pretraining/app-arch-simple.drawio.svg" />
 </figure>
 
 ## 运行示例
@@ -45,35 +45,35 @@ LLM（大型语言模型）是当前 AI 领域备受瞩目的研究和应用领�
 训练开始后，安装一个 [Job Manager App](../../app/job-manager.md)（如有 Job Manager 则直接复用），进入 Job Manager，可以看到名为 **gpt-125m** 的 DeepSpeedJob 正在运行，点击其**名称**进入详情页面：
 
 <figure class="screenshot">
-    <img alt="running" src="../../assets/task/train-model/llm-large-scale-pretraining/running.png" />
+    <img alt="running" src="../../assets/guide/train-model/llm-large-scale-pretraining/running.png" />
 </figure>
 
 可以看到刚才创建的 DeepSpeedJob 的基本信息、状况信息和事件信息：
 
 <figure class="screenshot">
-    <img alt="details" src="../../assets/task/train-model/llm-large-scale-pretraining/details.png" />
+    <img alt="details" src="../../assets/guide/train-model/llm-large-scale-pretraining/details.png" />
 </figure>
 
 点击上方的**副本**标签页，查看 DeepSpeedJob 的 Pod 信息；点击副本右侧的 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 16a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2Z"></path></svg></span>**&nbsp;> 日志**以查看训练脚本执行过程中的日志输出：
 
 <figure class="screenshot">
-    <img alt="replicas" src="../../assets/task/train-model/llm-large-scale-pretraining/replicas.png" />
+    <img alt="replicas" src="../../assets/guide/train-model/llm-large-scale-pretraining/replicas.png" />
 </figure>
 
 <figure class="screenshot">
-    <img alt="view-log" src="../../assets/task/train-model/llm-large-scale-pretraining/view-log.png" />
+    <img alt="view-log" src="../../assets/guide/train-model/llm-large-scale-pretraining/view-log.png" />
 </figure>
 
 点击上方的**资源监测**标签页，查看 DeepSpeedJob 运行过程中使用集群计算资源、网络资源和存储资源的情况：
 
 <figure class="screenshot">
-    <img alt="resources" src="../../assets/task/train-model/llm-large-scale-pretraining/resources.png" />
+    <img alt="resources" src="../../assets/guide/train-model/llm-large-scale-pretraining/resources.png" />
 </figure>
 
 一段时间之后，DeepSpeedJob 的状态变为 **Succeeded**，表示训练成功完成。
 
 <figure class="screenshot">
-    <img alt="done" src="../../assets/task/train-model/llm-large-scale-pretraining/done.png" />
+    <img alt="done" src="../../assets/guide/train-model/llm-large-scale-pretraining/done.png" />
 </figure>
 
 训练完成之后，模型文件将保存到 `output/gpt-125m/model` 路径下，后续用于<a target="_blank" rel="noopener noreferrer" href="https://github.com/t9k/examples/tree/master/deepspeed/megatron-gpt#%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90">文本生成</a>或进一步的微调。
@@ -85,7 +85,7 @@ LLM（大型语言模型）是当前 AI 领域备受瞩目的研究和应用领�
 训练产生的 tfevents 文件保存在 `output/gpt-125m/tensorboard` 路径下，可以[在 JupyterLab 中创建一个 TensorBoard 实例](./dp-training.md#查看训练指标)或安装一个 [TensorBoard App](../../app/tensorboard.md)以查看：
 
 <figure class="screenshot">
-  <img alt="tensorboard" src="../../assets/task/train-model/llm-large-scale-pretraining/tensorboard.png" />
+  <img alt="tensorboard" src="../../assets/guide/train-model/llm-large-scale-pretraining/tensorboard.png" />
 </figure>
 
 ## 使用其他训练配置

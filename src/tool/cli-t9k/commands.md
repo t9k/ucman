@@ -2,7 +2,7 @@
 
 ## autotune
 
-用于管理 [AutoTune](../../api/autotune/index.md)。
+用于管理 [AutoTune](../../api/other-workload/autotune/index.md)。
 
 <aside class="note info">
 <div class="title">信息</div>

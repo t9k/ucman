@@ -5,30 +5,30 @@
 ---
 
 * [Apps](app/index.md)
-    * [安装 Apps](app/install-app.md)
-    * [卸载 Apps](app/uninstall-app.md)
-    * [管理 Apps](app/manage-app.md)
-    * [Apps 列表](app/app-list.md)
-        * [Code Server](app/codeserver.md)
-        * [File Browser](app/filebrowser.md)
-        * [JupyterLab](app/jupyterlab.md)
-        * [TensorBoard](app/tensorboard.md)
-        * [Terminal](app/terminal.md)
-        * [Job Manager](app/job-manager.md)
-        * [Service Manager](app/service-manager.md)
-        <!-- * [PostgreSQL](app/postgresql.md) -->
+    * [Code Server](app/codeserver.md)
+    * [File Browser](app/filebrowser.md)
+    * [JupyterLab](app/jupyterlab.md)
+    * [TensorBoard](app/tensorboard.md)
+    * [Terminal](app/terminal.md)
+    * [Job Manager](app/job-manager.md)
+    * [Service Manager](app/service-manager.md)
+    <!-- * [PostgreSQL](app/postgresql.md) -->
 
 * [APIs](api/index.md)
+
     * [存储](api/storage/index.md)
         * [PVC](api/storage/pvc.md)
         * [StorageShim](api/storage/storageshim.md)
+
     * [网络服务](api/network/index.md)
+        * [Service](api/network/service.md)
+        * [Ingress](api/network/ingress.md)
+
     * [辅助](api/auxiliary/index.md)
         * [Secret](api/auxiliary/secret.md)
         * [ConfigMap](api/auxiliary/configmap.md)
-        * [ImageBuilder](api/auxiliary/imagebuilder.md)
-        * [DataCube](api/auxiliary/datacube.md)
         * [ServiceAccountToken](api/auxiliary/serviceaccounttoken.md)
+
     * [T9k Job](api/t9k-job/index.md)
         * [GenericJob](api/t9k-job/genericjob.md)
         * [PyTorchTrainingJob](api/t9k-job/pytorchtrainingjob.md)
@@ -38,15 +38,24 @@
         * [XGBoostTrainingJob](api/t9k-job/xgboosttrainingjob.md)
         * [MPIJob](api/t9k-job/mpijob.md)
         * [BeamJob](api/t9k-job/beamjob.md)
+
     * [T9k Service](api/t9k-service/index.md)
         * [SimpleMLService](api/t9k-service/simplemlservice.md)
         * [MLService](api/t9k-service/mlservice.md)
             * [日志收集](api/t9k-service/mlservice-logger.md)
         * [模型存储](api/t9k-service/storage.md)
-    * [AutoTune](api/autotune/index.md)
-        * [AutoTuneExperiment](api/autotune/autotuneexperiment.md)
-        * [搜索空间](api/autotune/autotune-search-space.md)
-        * [超参数调优算法](api/autotune/hpo-algorithm.md)
+
+    * [其他工作负载](api/other-workload/index.md)
+        * [AutoTune](api/other-workload/autotune/index.md)
+            * [AutoTuneExperiment](api/other-workload/autotune/autotuneexperiment.md)
+            * [搜索空间](api/other-workload/autotune/autotune-search-space.md)
+            * [超参数调优算法](api/other-workload/autotune/hpo-algorithm.md)
+        * [ImageBuilder](api/other-workload/imagebuilder.md)
+        * [DataCube](api/other-workload/datacube.md)
+        <!-- * [Notebook](api/other-workload/notebook.md)
+        * [Explorer](api/other-workload/explorer.md)
+        * [TensorBoard](api/other-workload/tensorboard.md) -->
+
     * [工作流](api/workflow/index.md)
         * [WorkflowTemplate](api/workflow/workflowtemplate.md)
         * [WorkflowRun](api/workflow/workflowrun.md)
@@ -62,6 +71,11 @@
 * [操作指南](guide/index.md)
 
     * [首页](guide/homepage.md)
+
+    * [管理 Apps](guide/manage-app/index.md)
+        * [安装 Apps](guide/manage-app/install-app.md)
+        * [卸载 Apps](guide/manage-app/uninstall-app.md)
+        <!-- * [查看 App 详情](app/manage-app.md) -->
 
     * [管理存储、网络服务和辅助资源](guide/manage-storage-network-and-auxiliary/index.md)
         * [创建 PVC](guide/manage-storage-network-and-auxiliary/pvc.md)
@@ -103,14 +117,14 @@
         * [用户指南](tool/cli-t9k-pf/guide.md)
         * [命令](tool/cli-t9k-pf/commands.md)
 
-    * [Python SDK：t9k](tool/python-sdk-t9k/index.md)
+    <!-- * [Python SDK：t9k](tool/python-sdk-t9k/index.md)
         * [用户指南](tool/python-sdk-t9k/guide.md)
         * [API](tool/python-sdk-t9k/api/index.md)
             * [t9k.ah](tool/python-sdk-t9k/api/t9k-ah.md)
             * [t9k.ah.core](tool/python-sdk-t9k/api/t9k-ah-core.md)
             * [t9k.config](tool/python-sdk-t9k/api/t9k-config.md)
             * [t9k.em](tool/python-sdk-t9k/api/t9k-em.md)
-            * [t9k.tuner](tool/python-sdk-t9k/api/t9k-tuner.md)
+            * [t9k.tuner](tool/python-sdk-t9k/api/t9k-tuner.md) -->
 
     <!-- * [Codepack](tool/codepack/index.md)
         * [概念](tool/codepack/concepts.md)

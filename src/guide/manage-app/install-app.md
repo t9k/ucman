@@ -7,13 +7,13 @@
 在左侧导航菜单点击**应用**进入 Apps 管理页面，这里展示了所有运行中的 Apps。点击右上角的**安装**进入应用目录：
 
 <figure class="screenshot">
-  <img alt="list-app" src="../assets/app/list-app.png" />
+  <img alt="list-app" src="../../assets/guide/manage-app/list-app.png" />
 </figure>
 
 应用目录展示了所有可安装的 Apps 和它们的简介，你可以点击左侧的**过滤选项**过滤显示的 App，或在上方的**搜索栏**输入名称以快速查找：
 
 <figure class="screenshot">
-  <img alt="app-catalog" src="../assets/app/app-catalog.png" />
+  <img alt="app-catalog" src="../../assets/guide/manage-app/app-catalog.png" />
 </figure>
 
 ## 选择并了解 App
@@ -21,7 +21,7 @@
 如果你想要进一步了解某个 App 的功能和使用方法是否满足需求，点击以查看它的 README 文档。这里以最常用的交互式开发环境（IDE）App JupyterLab (CPU) 为例，点击 **JupyterLab (CPU) 卡片**进入 README 文档页面：
 
 <figure class="screenshot">
-  <img alt="select-app" src="../assets/app/select-app.png" />
+  <img alt="select-app" src="../../assets/guide/manage-app/select-app.png" />
 </figure>
 
 App 的 README 主要包含三个方面的信息：
@@ -44,7 +44,7 @@ App 的 README 主要包含三个方面的信息：
 点击右上角的**立刻安装**进入安装页面：
 
 <figure class="screenshot">
-  <img alt="readme-app" src="../assets/app/readme-app.png" />
+  <img alt="readme-app" src="../../assets/guide/manage-app/readme-app.png" />
 </figure>
 
 ## 配置和安装 App
@@ -54,13 +54,13 @@ App 的 README 主要包含三个方面的信息：
 假定为 JupyterLab (CPU) App 选用 PyTorch 环境，申请 16 个 CPU（核心）、32 GiB 内存资源，挂载存储卷 `demo`。通过表单配置：
 
 <figure class="screenshot">
-  <img alt="form-app" src="../assets/app/form-app.png" />
+  <img alt="form-app" src="../../assets/guide/manage-app/form-app.png" />
 </figure>
 
 通过 YAML 编辑器配置：
 
 <figure class="screenshot">
-  <img alt="yaml-app" src="../assets/app/yaml-app.png" />
+  <img alt="yaml-app" src="../../assets/guide/manage-app/yaml-app.png" />
 </figure>
 
 不论以哪种方式，填写配置完成后，点击右上角的**安装**：
@@ -81,7 +81,7 @@ App 的 README 主要包含三个方面的信息：
 3. 应用启动后是否需要初始化（例如下载数据集、加载模型文件等）
 
 <figure class="screenshot">
-  <img alt="wait-for-app" src="../assets/app/wait-for-app.png" />
+  <img alt="wait-for-app" src="../../assets/guide/manage-app/wait-for-app.png" />
 </figure>
 
 ## 开始使用 App
@@ -89,7 +89,7 @@ App 的 README 主要包含三个方面的信息：
 待 App 就绪后，按照 README 提供的 App 的使用方法开始使用。对于 JupyterLab (CPU) App，即点击右侧的 <span class="twemoji"><svg class="MuiSvgIcon-root MuiSvgIcon-colorPrimary MuiSvgIcon-fontSizeMedium css-jxtyyz" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="OpenInNewIcon"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3z"></path></svg></span> 进入网页 UI，参阅 <a target="_blank" rel="noopener noreferrer" href="https://jupyterlab.readthedocs.io/en/latest/">JupyterLab Documentation</a> 或<a target="_blank" rel="noopener noreferrer" href="https://jupyterlab.pythonlang.cn/en/latest/">它的中文版本</a>进行操作。
 
 <figure class="screenshot">
-  <img alt="ui-app" src="../assets/app/ui-app.png" />
+  <img alt="ui-app" src="../../assets/guide/manage-app/ui-app.png" />
 </figure>
 
 ## 克隆 App
@@ -99,15 +99,15 @@ App 的 README 主要包含三个方面的信息：
 假定再安装一个 JupyterLab (CPU) App，挂载存储卷 `tutorial`，其他配置不变。点击运行中的 JupyterLab (CPU) App 右侧的 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 16a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2Z"></path></svg></span> **> 克隆**，进入安装页面，此时配置已经按照该 App 填写，因此修改 `pvc` 字段的值为 `tutorial` 即可。然后为了便于辨识，修改其**名称**为 `tutorial`。最后点击右上角的**安装**：
 
 <figure class="screenshot">
-  <img alt="clone-app" src="../assets/app/clone-app.png" />
+  <img alt="clone-app" src="../../assets/guide/manage-app/clone-app.png" />
 </figure>
 
 <figure class="screenshot">
-  <img alt="clone-form-app" src="../assets/app/clone-form-app.png" />
+  <img alt="clone-form-app" src="../../assets/guide/manage-app/clone-form-app.png" />
 </figure>
 
 <figure class="screenshot">
-  <img alt="cloned-app" src="../assets/app/cloned-app.png" />
+  <img alt="cloned-app" src="../../assets/guide/manage-app/cloned-app.png" />
 </figure>
 
 <aside class="note">

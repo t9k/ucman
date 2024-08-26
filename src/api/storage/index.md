@@ -78,5 +78,5 @@ spec:
 
 ## 参考
 
-* API reference [Explorer](../../reference/api-reference/explorer.md)
-* API reference [StorageShim](../../reference/api-reference/storageshim.md)
+* API 参考：[Explorer](../../reference/api-reference/explorer.md)
+* API 参考：[StorageShim](../../reference/api-reference/storageshim.md)

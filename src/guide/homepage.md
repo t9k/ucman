@@ -1,6 +1,6 @@
 # 首页
 
-首页是 User Console 的起始界面，为用户提供功能快速入口，及账户的基本统计信息。
+首页是 User Console 的起始界面，为用户提供功能快速入口，以及账户的基本统计信息。
 
 User Console 首页包含以下元素：
 
@@ -9,7 +9,7 @@ User Console 首页包含以下元素：
 1. 中间的各项功能和账户统计
 
 <figure class="screenshot">
-  <img alt="homepage" src="./assets/homepage.png" />
+  <img alt="homepage" src="../assets/guide/homepage.png" />
 </figure>
 
 顶部白色导航栏的右侧有一些快捷按键，分别提供了以下功能：

@@ -5,13 +5,13 @@
 在左侧导航菜单点击**应用**进入 Apps 管理页面，这里展示了所有运行中的 Apps。点击 App 右侧的 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 16a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2Z"></path></svg></span> **> 卸载**，确认以卸载相应的 App：
 
 <figure class="screenshot">
-  <img alt="delete-app-1" src="../assets/app/delete-app-1.png" />
+  <img alt="delete-app-1" src="../../assets/guide/manage-app/delete-app-1.png" />
 </figure>
 
 也可以点击 App 的名称进入其详情页面，点击右上角的**卸载**，确认以卸载相应的 App：
 
 <figure class="screenshot">
-  <img alt="delete-app-2" src="../assets/app/delete-app-2.png" />
+  <img alt="delete-app-2" src="../../assets/guide/manage-app/delete-app-2.png" />
 </figure>
 
 <aside class="note warning">

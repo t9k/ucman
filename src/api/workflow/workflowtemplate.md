@@ -304,7 +304,7 @@ T9k Workflow 系统对 [T9k Job](../t9k-job/index.md) 提供更进一步的原�
 
 相比于在 Resource 类型中将资源的 `spec` 视作一个很长的字符串，添加原生类型支持的好处是在创建 WorkflowTemplate 时 T9k Job 的 `spec` 就会得到语法检查，能更早地发现错误，加深了 T9k Workflow 系统和 T9k Job 系统的集成配合。
 
-例如，创建一个 MPIJob 可以使用如下格式（其中 MPIJob 示例来自 [MPIJob 文档](../job/mpijob.md#创建-mpijob)）：
+例如，创建一个 MPIJob 可以使用如下格式（其中 MPIJob 示例来自 [MPIJob 文档](../t9k-job/mpijob.md#创建-mpijob)）：
 
 ```yaml
 apiVersion: batch.tensorstack.dev/v1beta1

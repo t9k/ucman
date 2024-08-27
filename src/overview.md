@@ -32,14 +32,14 @@ AI 集群的拥有者可以使用这套软件，构建自己的 AI 私有云或 
 
 <figure class="architecture">
   <img alt="t9k-arch" src="./assets/overview/t9k-arch.png" />
-  <figcaption>图 1：TensorStack AI 计算平台为 AI 集群提供先进的 AI 基础设施能力。APIs 层提供了可扩展、可编程、云原生的系统服务；Apps 层为多样化的应用场景提供全面、完善的支撑。用户可根据需求，安装各种 Apps（IDE、LLM 开发框架、并行训练管理、推理服务管理、资源管理工具、完整的 AI 应用等），满足 AI 研究、开发和应用等业务需求。</figcaption>
+  <figcaption>图 1：TensorStack AI 计算平台为 AI 集群提供先进的 AI 基础设施能力。APIs 层提供了可扩展、可编程、云原生的系统服务；Apps 层为多样化的应用场景提供全面、完善的支撑。用户可根据需求，安装各种 App（IDE、LLM 开发框架、并行训练管理、推理服务管理、资源管理工具、完整的 AI 应用等），满足 AI 研究、开发和应用等业务需求。</figcaption>
 </figure>
 
 ## User Console
 
 “User Console（用户控制台）”是 TensorStack AI 计算平台的 **Apps 层**入口，为 **AI 集群使用者**提供了一个集中使用集群功能的图形化使用界面。
 
-<b>Apps（应用）</b>是 User Console 的核心，作为用户使用平台提供的所有功能的主要入口。无论是进行 AI 研究、开发还是部署，用户都是通过安装和使用相应的 Apps 来完成。例如：
+<b>Apps（应用）</b>是 User Console 的核心，作为用户使用平台提供的所有功能的主要入口。无论是进行 AI 研究、开发还是部署，用户都是通过安装和使用相应的 App 来完成。例如：
 
 - AI 研究员可能通过 [JupyterLab App](./app/jupyterlab.md) 作为其日常开发环境，使用 [Job Manager App](./app/job-manager.md) 运行和管理并行训练任务。
 - AI 应用工程师可能使用 vLLM App 或 Stable Diffusion WebUI App 来部署和测试 AI 模型。
@@ -50,8 +50,8 @@ AI 集群的拥有者可以使用这套软件，构建自己的 AI 私有云或 
 这种以 Apps 为中心的设计使得用户：
 
 1. 能够直观地访问和管理所需的所有 AI 相关工具和服务；
-2. 根据自己的偏好和习惯，以及工作的内容和性质，灵活地选择合适的 Apps；
-3. 可方便地通过安装新的 Apps 来获得能力扩展，随时使用 AI 领域的各种新技术和工具。
+2. 根据自己的偏好和习惯，以及工作的内容和性质，灵活地选择合适的 App；
+3. 可方便地通过安装新的 App 来获得能力扩展，随时使用 AI 领域的各种新技术和工具。
 
 </aside>
 

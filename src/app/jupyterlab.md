@@ -8,9 +8,9 @@
   <img alt="jupyterlab-official" src="../assets/app/jupyterlab/jupyterlab-official.png" />
 </figure>
 
-User Console 上可用的 JupyterLab Apps 是一个系列，包括 JupyterLab (CPU)、JupyterLab (NVIDIA GPU)、JupyterLab (Enflame GCU) 和 JupyterLab (Hygon DCU)，它们之间的区别仅在于支持不同的加速设备：
+User Console 上可用的 JupyterLab App 是一个系列，包括 JupyterLab (CPU)、JupyterLab (NVIDIA GPU)、JupyterLab (Enflame GCU) 和 JupyterLab (Hygon DCU)，它们之间的区别仅在于支持不同的加速设备：
 
-* 所有 Apps 均支持 CPU。
+* 所有 App 均支持 CPU。
 * JupyterLab (NVIDIA GPU) 另外支持 NVIDIA GPU。
 * JupyterLab (Enflame GCU) 另外支持燧原 GCU。
 * JupyterLab (Hygon DCU) 另外支持海光 DCU。

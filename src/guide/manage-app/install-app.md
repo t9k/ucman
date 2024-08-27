@@ -1,16 +1,16 @@
-# 安装 Apps
+# 安装 App
 
-本教程演示如何安装 Apps。
+本教程演示安装一个 App。
 
-## 查看可安装的 Apps
+## 查看可安装的 App
 
-在左侧导航菜单点击**应用**进入 Apps 管理页面，这里展示了所有运行中的 Apps。点击右上角的**安装**进入应用目录：
+在左侧导航菜单点击**应用**进入 App 管理页面，这里展示了所有已安装的 App。点击右上角的**安装**进入应用目录：
 
 <figure class="screenshot">
   <img alt="list-app" src="../../assets/guide/manage-app/list-app.png" />
 </figure>
 
-应用目录展示了所有可安装的 Apps 和它们的简介，你可以点击左侧的**过滤选项**过滤显示的 App，或在上方的**搜索栏**输入名称以快速查找：
+应用目录展示了所有可安装的 App 和它们的简介，你可以点击左侧的**过滤选项**过滤显示的 App，或在上方的**搜索栏**输入名称以快速查找：
 
 <figure class="screenshot">
   <img alt="app-catalog" src="../../assets/guide/manage-app/app-catalog.png" />
@@ -94,7 +94,7 @@ App 的 README 主要包含三个方面的信息：
 
 ## 克隆 App
 
-如要安装一个与运行中的某个 App 配置相同或相似的 App，可以选择克隆该运行中的 App，而无需重复上面的操作。
+如要安装一个与某个<u>已安装的 App</u> 配置相同或相似的 App，可以选择克隆该<u>已安装的 App</u>，而无需重复上面的操作。
 
 假定再安装一个 JupyterLab (CPU) App，挂载存储卷 `tutorial`，其他配置不变。点击运行中的 JupyterLab (CPU) App 右侧的 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 16a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2Z"></path></svg></span> **> 克隆**，进入安装页面，此时配置已经按照该 App 填写，因此修改 `pvc` 字段的值为 `tutorial` 即可。然后为了便于辨识，修改其**名称**为 `tutorial`。最后点击右上角的**安装**：
 

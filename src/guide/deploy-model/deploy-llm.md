@@ -29,7 +29,7 @@ modelscope download --model "LLM-Research/$MODEL_NAME" --exclude "original/*" --
   <img alt="catalog-vllm" src="../../assets/guide/deploy-model/deploy-llm/catalog-vllm.png" />
 </figure>
 
-README 给出了 Apps 介绍、使用方法、配置示例和参数说明，根据这些信息写出 YAML 配置如下：
+README 给出了 App 介绍、使用方法、配置示例和参数说明，根据这些信息写出 YAML 配置如下：
 
 ```yaml
 replicaCount: 1

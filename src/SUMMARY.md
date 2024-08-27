@@ -72,10 +72,10 @@
 
     * [首页](guide/homepage.md)
 
-    * [管理 Apps](guide/manage-app/index.md)
-        * [安装 Apps](guide/manage-app/install-app.md)
-        * [卸载 Apps](guide/manage-app/uninstall-app.md)
-        <!-- * [查看 App 详情](app/manage-app.md) -->
+    * [管理 App](guide/manage-app/index.md)
+        * [安装 App](guide/manage-app/install-app.md)
+        * [卸载 App](guide/manage-app/uninstall-app.md)
+        <!-- * [查看 App 详情](guide/manage-app/view-app-detail.md) -->
 
     * [管理存储、网络服务和辅助资源](guide/manage-storage-network-and-auxiliary/index.md)
         * [创建 PVC](guide/manage-storage-network-and-auxiliary/pvc.md)
@@ -93,6 +93,7 @@
         <!-- * [使用 Job Manager](guide/train-model/use-job-manager.md) -->
 
     * [部署模型推理服务](guide/deploy-model/index.md)
+        * [部署 PyTorch 模型](guide/deploy-model/deploy-pytorch.md)
         * [部署 LLM 推理服务和聊天服务](guide/deploy-model/deploy-llm.md)
 
     * [专题](guide/theme/index.md)

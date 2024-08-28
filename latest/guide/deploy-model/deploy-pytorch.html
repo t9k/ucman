@@ -188,6 +188,105 @@
                         <div class="sidetoc"><nav class="pagetoc"></nav></div>
                         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
 <h1 id="部署-pytorch-模型"><a class="header" href="#部署-pytorch-模型">部署 PyTorch 模型</a></h1>
+<p>本教程演示使用 <a href="../../api/t9k-service/mlservice.html">MLService</a> 将 PyTorch 模型归档（model archive）文件部署为推理服务（使用 <a target="_blank" rel="noopener noreferrer" href="https://github.com/pytorch/serve">TorchServe</a> 工具）。本教程对应示例<a target="_blank" rel="noopener noreferrer" href="https://github.com/t9k/tutorial-examples/tree/master/deployment/mlservice/torch-pvc">部署用于生产环境的模型推理服务（PyTorch 模型）</a>。</p>
+<p>本教程的 Apps 架构如下图所示：</p>
+<figure class="architecture">
+  <img alt="app-arch" src="../../assets/guide/deploy-model/deploy-pytorch/app-arch.drawio.svg" />
+</figure>
+<h2 id="准备工作"><a class="header" href="#准备工作">准备工作</a></h2>
+<p>创建一个名为 tutorial、大小 1 Gi 的 <a href="../../api/storage/pvc.html">PVC</a>，然后安装一个同样名为 tutorial 的 <a href="../../app/jupyterlab.html">JupyterLab</a> App 挂载该 PVC，镜像和资源不限。</p>
+<p>进入 JupyterLab，启动一个终端，执行以下命令以克隆 <code>t9k/tutorial-examples</code> 仓库：</p>
+<pre><code class="language-bash">cd ~
+git clone https://github.com/t9k/tutorial-examples.git
+</code></pre>
+<aside class="note tip">
+<div class="title">提示</div>
+<p>如果你在另一篇教程中完成过上述准备工作，直接复用即可。</p>
+</aside>
+<h2 id="创建-mlserviceruntime"><a class="header" href="#创建-mlserviceruntime">创建 MLServiceRuntime</a></h2>
+<p>安装一个 <a href="../../app/service-manager.html">Service Manager</a> App（如有 Service Manager 则直接复用），进入 Service Manager。在左侧导航菜单点击 <strong>MLServiceRuntime</strong> 进入 MLServiceRuntime 管理页面，这里展示了所有已创建的 MLServiceRuntime。点击右上角的<strong>创建</strong>进入创建页面：</p>
+<figure class="screenshot">
+    <img alt="create-runtime" src="../../assets/guide/deploy-model/deploy-pytorch/create-runtime.png" />
+</figure>
+<p>在 MLServiceRuntime 创建页面，填写配置如下：</p>
+<ul>
+<li><strong>名称</strong>填写 <code>torchserve</code></li>
+<li>打开<strong>启用</strong></li>
+<li><strong>镜像</strong>填写 <code>t9kpublic/pytorch-serve:0.4.2-cpu</code></li>
+<li><strong>参数</strong>填写 <code>torchserve &quot;--start&quot; &quot;--model-store=/var/lib/t9k/model&quot; &quot;--models={{if .MODEL_PATH}}{{.MODEL_PATH}}{{else}}all{{end}}&quot;</code></li>
+<li><strong>资源模板</strong>选择 <code>small</code></li>
+</ul>
+<p>然后点击<strong>创建</strong>：</p>
+<figure class="screenshot">
+    <img alt="create-runtime-details" src="../../assets/guide/deploy-model/deploy-pytorch/create-runtime-details.png" />
+</figure>
+<h2 id="启动推理服务创建-mlservice"><a class="header" href="#启动推理服务创建-mlservice">启动推理服务（创建 MLService）</a></h2>
+<p>在左侧导航菜单点击 <strong>MLService</strong> 进入 MLService 管理页面。点击右上角的<strong>创建</strong>进入创建页面：</p>
+<figure class="screenshot">
+    <img alt="create" src="../../assets/guide/deploy-model/deploy-pytorch/create.png" />
+</figure>
+<p>在 MLServiceRuntime 创建页面，填写配置如下：</p>
+<ul>
+<li>基本信息部分：
+<ul>
+<li><strong>名称</strong>填写 <code>torchserve-mnist</code></li>
+<li><strong>默认版本</strong>选择 <code>version1</code>（需要先填写 Release-1 部分的名称）</li>
+</ul>
+</li>
+<li>Release-1 部分：
+<ul>
+<li><strong>名称</strong>填写 <code>version1</code></li>
+<li><strong>最小副本数量</strong>填写 <code>1</code></li>
+<li><strong>MLServiceRuntime</strong>选择 <code>torchserve</code></li>
+<li>添加一个 <strong>MLServiceRuntime 参数</strong>，<strong>键</strong>填写 <code>MODEL_PATH</code>，<strong>值</strong>填写 <code>mnist=model.mar</code></li>
+<li>打开<strong>存储</strong>，<strong>类型</strong>选择 <code>PVC</code>，<strong>名称</strong>选择 <code>tutorial</code>，<strong>子路径</strong>填写 <code>tutorial-examples/deployment/mlservice/torch-pvc/</code>。</li>
+</ul>
+</li>
+</ul>
+<figure class="screenshot">
+    <img alt="create-details" src="../../assets/guide/deploy-model/deploy-pytorch/create-details.png" />
+</figure>
+<h2 id="查看推理服务信息查看-mlservice-详情"><a class="header" href="#查看推理服务信息查看-mlservice-详情">查看推理服务信息（查看 MLService 详情）</a></h2>
+<p>回到 MLService 管理页面，可以看到名为 <strong>torchserve-mnist</strong> 的 MLService，点击其<strong>名称</strong>进入详情页面：</p>
+<figure class="screenshot">
+    <img alt="created" src="../../assets/guide/deploy-model/deploy-pytorch/created.png" />
+</figure>
+<p>可以看到刚才创建的 MLService 的基本信息，以及 Release、状况和事件信息：</p>
+<figure class="screenshot">
+    <img alt="details" src="../../assets/guide/deploy-model/deploy-pytorch/details.png" />
+</figure>
+<p>点击上方的<strong>版本</strong>标签页，进一步查看各个版本的详细信息，包括 Runtime 信息、模型存储和 Pod 信息：</p>
+<figure class="screenshot">
+    <img alt="version" src="../../assets/guide/deploy-model/deploy-pytorch/version.png" />
+</figure>
+<p>点击上方的<strong>资源监测</strong>标签页，查看 MLService 运行过程中使用集群计算资源、网络资源和存储资源的情况：</p>
+<figure class="screenshot">
+    <img alt="resources" src="../../assets/guide/deploy-model/deploy-pytorch/resources.png" />
+</figure>
+<p>若 MLService 的状态为 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 13h-2V7h2m0 10h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2Z"></path></svg></span> False，且原因不是 PredictorNotReady，则需要根据状态和事件信息部分给出的错误信息进行问题排查。</p>
+<h2 id="测试推理服务"><a class="header" href="#测试推理服务">测试推理服务</a></h2>
+<p>待 MLService 的状态为 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9Z"></path></svg></span> True 后，回到 JupyterLab，在终端中执行以下命令，注意将 <code>&lt;MLSERVICE_URL&gt;</code> 替换为 MLService 的 URL（在 MLService 的详情页面复制得到）：</p>
+<pre><code class="language-bash">cd ~/tutorial-examples/deployment/mlservice/torch-pvc
+curl -T test_data/0.png &lt;MLSERVICE_URL&gt;/v1/models/mnist:predict # or use `1.png`, `2.png`
+</code></pre>
+<p>响应体应是一个类似于下面的 JSON，其预测了图片最有可能是的 5 个数字以及相应的概率：</p>
+<pre><code>{
+  &quot;0&quot;: 1.0,
+  &quot;2&quot;: 1.3369878815172598e-10,
+  &quot;6&quot;: 7.102208632401436e-14,
+  &quot;5&quot;: 5.859716330864836e-14,
+  &quot;9&quot;: 3.2580891499658536e-15
+}
+</code></pre>
+<h2 id="关闭推理服务删除-mlservice"><a class="header" href="#关闭推理服务删除-mlservice">关闭推理服务（删除 MLService）</a></h2>
+<p>回到 MLService 管理页面，点击 MLService 右侧的 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 16a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2Z"></path></svg></span> <strong>&gt; 删除</strong>，确认以删除 MLService：</p>
+<figure class="screenshot">
+    <img alt="delete" src="../../assets/guide/deploy-model/deploy-pytorch/delete.png" />
+</figure>
+<aside class="note tip">
+<div class="title">提示</div>
+<p>上述关于 MLService（和 MLServiceRuntime）的操作全部在 Service Manager 中进行。你也可以参照<a target="_blank" rel="noopener noreferrer" href="https://github.com/t9k/tutorial-examples/tree/master/deployment/mlservice/torch-pvc">本教程对应的示例</a>的 README 文档进行操作，继续在 JupyterLab 的终端中使用 <code>kubectl</code> 命令创建 MLServiceRuntime 和 MLService、监控服务状态、测试推理服务以及删除 MLService。</p>
+</aside>
 
                     </main>
 

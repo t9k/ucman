@@ -206,7 +206,7 @@ git clone https://github.com/t9k/tutorial-examples.git
 </figure>
 <p>在 PyTorchTrainingJob 创建页面，填写配置如下：</p>
 <ul>
-<li>基础信息部分：
+<li>基本信息部分：
 <ul>
 <li><strong>名称</strong>填写 <code>torch-mnist-trainingjob</code></li>
 <li>打开<strong>使用 TorchRun</strong>，<strong>最大重启次数</strong>填写 <code>3</code>，<strong>单节点最大进程数</strong>填写 <code>4</code></li>
@@ -215,7 +215,7 @@ git clone https://github.com/t9k/tutorial-examples.git
 <li>worker 部分：
 <ul>
 <li><strong>镜像</strong>填写 <code>t9kpublic/pytorch-1.13.0:sdk-0.5.2</code></li>
-<li><strong>参数</strong>填写 <code>[&quot;torch_mnist_trainingjob.py&quot;, &quot;--save_path&quot;, &quot;model_state_dict.pt&quot;, &quot;--log_dir&quot;, &quot;log&quot;, &quot;--backend&quot;, &quot;nccl&quot;]</code></li>
+<li><strong>参数</strong>填写 <code>torch_mnist_trainingjob.py &quot;--save_path=model_state_dict.pt&quot; &quot;--log_dir=log&quot; &quot;--backend=nccl&quot;</code></li>
 <li><strong>CPU 上限</strong>和<strong>内存上限</strong>分别填写 <code>8</code> 和 <code>16Gi</code>，<strong>CPU 请求值</strong>和<strong>内存请求值</strong>分别填写 <code>4</code> 和 <code>8Gi</code></li>
 <li><strong>GPU</strong> 选择 <code>nvidia.com/gpu</code>，<strong>GPU Value</strong> 填写 <code>4</code></li>
 <li><strong>工作目录</strong>填写 <code>/t9k/mnt/tutorial-examples/job/pytorchtrainingjob/ddp</code></li>
@@ -224,13 +224,43 @@ git clone https://github.com/t9k/tutorial-examples.git
 </li>
 </ul>
 <p>然后点击<strong>创建</strong>：</p>
-<p>图</p>
+<figure class="screenshot">
+    <img alt="create-details" src="../../assets/guide/train-model/dp-training/create-details.png" />
+</figure>
+<aside class="note">
+<div class="title">注意</div>
+<p>目前创建页面暂不支持 <code>Memory</code> 类型的卷，直接创建可能报错 Signal 7 (SIGBUS) received by PID x（共享内存不足）。</p>
+<p>临时的解决方案是点击<strong>预览 YAML</strong>，将：</p>
+<pre><code class="language-yaml">              volumeMounts:
+                - mountPath: /t9k/mnt
+                  name: data
+          volumes:
+            - name: data
+              persistentVolumeClaim:
+                claimName: tutorial
+</code></pre>
+<p>替换为：</p>
+<pre><code class="language-yaml">              volumeMounts:
+                - mountPath: /t9k/mnt
+                  name: data
+                - mountPath: /dev/shm
+                  name: dshm
+          volumes:
+            - name: data
+              persistentVolumeClaim:
+                claimName: tutorial
+            - name: dshm
+              emptyDir:
+                medium: Memory
+</code></pre>
+<p>再点击<strong>创建</strong>。</p>
+</aside>
 <h2 id="查看训练信息查看-pytorchtrainingjob-详情"><a class="header" href="#查看训练信息查看-pytorchtrainingjob-详情">查看训练信息（查看 PyTorchTrainingJob 详情）</a></h2>
 <p>回到 Job 管理页面，可以看到名为 <strong>torch-mnist-trainingjob</strong> 的 PyTorchTrainingJob 正在运行，点击其<strong>名称</strong>进入详情页面：</p>
 <figure class="screenshot">
     <img alt="running" src="../../assets/guide/train-model/dp-training/running.png" />
 </figure>
-<p>可以看到刚才创建的 PyTorchTrainingJob 的基本信息、状况信息和事件信息：</p>
+<p>可以看到刚才创建的 PyTorchTrainingJob 的基本信息，以及状况和事件信息：</p>
 <figure class="screenshot">
     <img alt="details" src="../../assets/guide/train-model/dp-training/details.png" />
 </figure>
@@ -273,7 +303,9 @@ git clone https://github.com/t9k/tutorial-examples.git
 </aside>
 <h2 id="删除-pytorchtrainingjob"><a class="header" href="#删除-pytorchtrainingjob">删除 PyTorchTrainingJob</a></h2>
 <p>回到 Job 管理页面，点击 PyTorchTrainingJob 右侧的 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 16a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2Z"></path></svg></span> <strong>&gt; 删除</strong>，确认以删除 PyTorchTrainingJob：</p>
-<p>图</p>
+<figure class="screenshot">
+    <img alt="delete" src="../../assets/guide/train-model/dp-training/delete.png" />
+</figure>
 <aside class="note">
 <div class="title">注意</div>
 <p>处于 Succeeded 或 Failed 状态的 Job 不会再占用计算资源，因此你不必（也不能）删除这样的 Job 以释放计算资源。</p>

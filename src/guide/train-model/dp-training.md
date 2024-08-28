@@ -29,12 +29,12 @@ git clone https://github.com/t9k/tutorial-examples.git
 
 在 PyTorchTrainingJob 创建页面，填写配置如下：
 
-* 基础信息部分：
+* 基本信息部分：
     * **名称**填写 `torch-mnist-trainingjob`
     * 打开**使用 TorchRun**，**最大重启次数**填写 `3`，**单节点最大进程数**填写 `4`
 * worker 部分：
     * **镜像**填写 `t9kpublic/pytorch-1.13.0:sdk-0.5.2`
-    * **参数**填写 `["torch_mnist_trainingjob.py", "--save_path", "model_state_dict.pt", "--log_dir", "log", "--backend", "nccl"]`
+    * **参数**填写 `torch_mnist_trainingjob.py "--save_path=model_state_dict.pt" "--log_dir=log" "--backend=nccl"`
     * **CPU 上限**和**内存上限**分别填写 `8` 和 `16Gi`，**CPU 请求值**和**内存请求值**分别填写 `4` 和 `8Gi`
     * **GPU** 选择 `nvidia.com/gpu`，**GPU Value** 填写 `4`
     * **工作目录**填写 `/t9k/mnt/tutorial-examples/job/pytorchtrainingjob/ddp`
@@ -42,7 +42,47 @@ git clone https://github.com/t9k/tutorial-examples.git
 
 然后点击**创建**：
 
-图
+<figure class="screenshot">
+    <img alt="create-details" src="../../assets/guide/train-model/dp-training/create-details.png" />
+</figure>
+
+<aside class="note">
+<div class="title">注意</div>
+
+目前创建页面暂不支持 `Memory` 类型的卷，直接创建可能报错 Signal 7 (SIGBUS) received by PID x（共享内存不足）。
+
+临时的解决方案是点击**预览 YAML**，将：
+
+```yaml
+              volumeMounts:
+                - mountPath: /t9k/mnt
+                  name: data
+          volumes:
+            - name: data
+              persistentVolumeClaim:
+                claimName: tutorial
+```
+
+替换为：
+
+```yaml
+              volumeMounts:
+                - mountPath: /t9k/mnt
+                  name: data
+                - mountPath: /dev/shm
+                  name: dshm
+          volumes:
+            - name: data
+              persistentVolumeClaim:
+                claimName: tutorial
+            - name: dshm
+              emptyDir:
+                medium: Memory
+```
+
+再点击**创建**。
+
+</aside>
 
 ## 查看训练信息（查看 PyTorchTrainingJob 详情）
 
@@ -52,7 +92,7 @@ git clone https://github.com/t9k/tutorial-examples.git
     <img alt="running" src="../../assets/guide/train-model/dp-training/running.png" />
 </figure>
 
-可以看到刚才创建的 PyTorchTrainingJob 的基本信息、状况信息和事件信息：
+可以看到刚才创建的 PyTorchTrainingJob 的基本信息，以及状况和事件信息：
 
 <figure class="screenshot">
     <img alt="details" src="../../assets/guide/train-model/dp-training/details.png" />
@@ -120,7 +160,9 @@ JupyterLab 的 TensorBoard 实例的自动更新无效，请点击右上角的 *
 
 回到 Job 管理页面，点击 PyTorchTrainingJob 右侧的 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 16a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2Z"></path></svg></span> **> 删除**，确认以删除 PyTorchTrainingJob：
 
-图
+<figure class="screenshot">
+    <img alt="delete" src="../../assets/guide/train-model/dp-training/delete.png" />
+</figure>
 
 <aside class="note">
 <div class="title">注意</div>

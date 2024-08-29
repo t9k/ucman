@@ -68,6 +68,8 @@ git clone https://github.com/t9k/tutorial-examples.git
     * 添加一个 **MLServiceRuntime 参数**，**键**填写 `MODEL_PATH`，**值**填写 `mnist=model.mar`
     * 打开**存储**，**类型**选择 `PVC`，**名称**选择 `tutorial`，**子路径**填写 `tutorial-examples/deployment/mlservice/torch-pvc/`。
 
+然后点击**创建**：
+
 <figure class="screenshot">
     <img alt="create-details" src="../../assets/guide/deploy-model/deploy-pytorch/create-details.png" />
 </figure>

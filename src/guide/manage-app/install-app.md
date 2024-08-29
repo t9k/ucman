@@ -63,7 +63,7 @@ App 的 README 主要包含三个方面的信息：
   <img alt="yaml-app" src="../../assets/guide/manage-app/yaml-app.png" />
 </figure>
 
-不论以哪种方式，填写配置完成后，点击右上角的**安装**：
+不论以哪种方式，填写配置完成后，点击右上角的**安装**。
 
 <aside class="note tip">
 <div class="title">提示</div>

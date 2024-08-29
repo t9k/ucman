@@ -78,12 +78,12 @@
         <!-- * [查看 App 详情](guide/manage-app/view-app-detail.md) -->
 
     * [管理存储、网络服务和辅助资源](guide/manage-storage-network-and-auxiliary/index.md)
-        * [创建 PVC](guide/manage-storage-network-and-auxiliary/pvc.md)
+        * [管理 PVC](guide/manage-storage-network-and-auxiliary/pvc.md)
         * [创建 StorageShim](guide/manage-storage-network-and-auxiliary/storageshim.md)
         * [查看 Service](guide/manage-storage-network-and-auxiliary/service.md)
         * [查看 Ingress](guide/manage-storage-network-and-auxiliary/ingress.md)
-        * [创建 Secret](guide/manage-storage-network-and-auxiliary/secret.md)
-        * [创建 ConfigMap](guide/manage-storage-network-and-auxiliary/configmap.md)
+        * [管理 Secret](guide/manage-storage-network-and-auxiliary/secret.md)
+        * [管理 ConfigMap](guide/manage-storage-network-and-auxiliary/configmap.md)
 
     * [训练模型](guide/train-model/index.md)
         * [进行数据并行训练](guide/train-model/dp-training.md)
@@ -98,6 +98,7 @@
 
     * [专题](guide/theme/index.md)
         * [上传和下载文件](guide/theme/upload-and-download-file.md)
+        <!-- * [使用 JupyterLab 的常见场景](guide/theme/jupyterlab.md) -->
 
     * [设置账户](guide/account/index.md)
         * [账户信息](guide/account/view-profile.md)

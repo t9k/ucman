@@ -73,10 +73,8 @@ spec:
 | -------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | ----------------------------------------------------------------------- |
 | <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims">PVC</a> | Kubernetes  | 动态申请集群持久存储；用户可日常创建此 Resource 以申请存储资源          |
 | <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/storage/storage-classes/">Storage Class</a>                 | Kubernetes  | 指明存储的类别；管理员创建，用户创建 PVC 时引用                         |
-| [StorageShim](../../reference/api-reference/storageshim.md)                                                                                       | TensorStack | 对各种存储系统的便捷支持，为用户自动创建 PVC；用户可日常创建此 Resource |
-| [Explorer](../../reference/api-reference/explorer.md)                                                                                             | TensorStack | 文件浏览器，查看和管理 PVC 中的文件                                     |
+| [StorageShim](../../reference/api-reference/storageshim.md)                                                                                        | TensorStack | 对各种存储系统的便捷支持，为用户自动创建 PVC；用户可日常创建此 Resource |
 
 ## 参考
 
-* API 参考：[Explorer](../../reference/api-reference/explorer.md)
 * API 参考：[StorageShim](../../reference/api-reference/storageshim.md)

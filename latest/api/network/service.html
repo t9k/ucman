@@ -188,6 +188,67 @@
                         <div class="sidetoc"><nav class="pagetoc"></nav></div>
                         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
 <h1 id="service"><a class="header" href="#service">Service</a></h1>
+<p>Service 是一种 Kubernetes 原生资源，用于访问一个或多个 Pod。它为一组 Pod 提供了一个稳定的 IP 地址和 DNS 名称，以便其他应用程序或用户可以访问它们。Service 允许 Pod 动态添加或删除，而不会影响服务的可用性。Service 还支持负载均衡，可以将请求分配给多个 Pod 以提高可扩展性和可靠性。</p>
+<h2 id="创建-service"><a class="header" href="#创建-service">创建 Service</a></h2>
+<p>下面是一个基本的 Service 示例：</p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    app: nginx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+</code></pre>
+<p>其中：</p>
+<ul>
+<li><code>spec.selector</code> 字段表示该 Service 指向一组拥有标签 <code>app: nignx</code> 的 Pod</li>
+<li><code>spec.ports</code> 字段表示该 Service 本身对外提供服务的端口（<code>port</code>）为 80，指向的 Pod 的端口（<code>targetPort</code>）也为 80</li>
+</ul>
+<p>下面是该 Service 指向的一组 Pod 的示例，以 <a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/">Deployment</a> 的形式运行：</p>
+<pre><code class="language-yaml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+</code></pre>
+<p>在该例中，Deployment 一共会创建 3 个 Pod，每个 Pod 都拥有标签 <code>app: nginx</code>，且在 80 端口提供服务。因此，上述 Service 会将流量均匀分布到这 3 个 Pod 中。</p>
+<h2 id="使用-service"><a class="header" href="#使用-service">使用 Service</a></h2>
+<p>创建 Service 后，其他应用程序可以从<strong>集群内部</strong>根据 Service 的名称和命名空间访问该 Service，访问地址为 <code>http://&lt;service-name&gt;.&lt;service-namespace&gt;:&lt;service-port&gt;</code>。</p>
+<p>例如，上节中的 Service 示例可以在集群内部通过如下命令访问：</p>
+<pre><code class="language-bash">curl -G http://nginx-service.default:80
+</code></pre>
+<p>注：如果应用程序与 Service 处于同一命名空间，可以省略地址中的命名空间部分，形如 <code>http://&lt;service-name&gt;:&lt;service-port&gt;</code>。</p>
+<h2 id="service-类型"><a class="header" href="#service-类型">Service 类型</a></h2>
+<p>Service 支持以下几种类型：</p>
+<ul>
+<li><code>ClusterIP</code>：<code>ClusterIP</code> 是最常见的 Service 类型，也是默认类型。<code>ClusterIP</code> 类型的 Service 只能从集群内部访问，不允许从集群外部访问；</li>
+<li><code>NodePort</code>：<code>NodePort</code> 允许在每个节点上公开一个端口，以便从集群外部根据节点的 IP 和端口访问 Service；</li>
+<li><code>LoadBalancer</code>：<code>LoadBalancer</code> 使用外部负载均衡器将流量分配到 Service 上。它需要在云提供商上创建负载均衡器，然后将流量转发到Service。</li>
+<li><code>ExternalName</code>：<code>ExternalName</code> 将 Service 映射到另一个服务的地址（例如 api.example.com）。它通常用于连接到外部服务。</li>
+</ul>
+<h2 id="下一步"><a class="header" href="#下一步">下一步</a></h2>
+<ul>
+<li>了解 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/services-networking/service/">Service 的概念</a></li>
+<li>了解 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/kubernetes-api/service-resources/service-v1/">Service 的定义</a></li>
+</ul>
 
                     </main>
 

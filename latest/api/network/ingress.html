@@ -188,6 +188,54 @@
                         <div class="sidetoc"><nav class="pagetoc"></nav></div>
                         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
 <h1 id="ingress"><a class="header" href="#ingress">Ingress</a></h1>
+<p>Ingress 是一种 Kubernetes 原生资源，用于提供从集群外部到集群内服务的 HTTP 和 HTTPS 路由。</p>
+<h2 id="创建-ingress"><a class="header" href="#创建-ingress">创建 Ingress</a></h2>
+<p>下面是一个基本的 Ingress 示例：</p>
+<pre><code class="language-yaml">apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-example
+spec:
+  rules:
+  - host: foo.example.com
+    http:
+      paths:
+      - path: /testpath
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx-service
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - foo.example.com
+    secretName: my-tls-secret
+</code></pre>
+<p>在该例中，当用户从<strong>集群外部</strong>访问地址 <code>https://foo.example.com/testpath</code> 时，Ingress 会将请求转发至名为 <code>nginx-service</code> 的 Service 的 80 端口。</p>
+<p>为了支持 HTTPS 协议，该 Ingress 需要配置如下格式的 Secret：</p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: Secret
+metadata:
+  name: my-tls-secret
+data:
+  tls.crt: &lt;base64 encoded cert&gt;
+  tls.key: &lt;base64 encoded key&gt;
+type: kubernetes.io/tls
+</code></pre>
+<h2 id="使用-ingress"><a class="header" href="#使用-ingress">使用 Ingress</a></h2>
+<p>创建 Ingress 后，还需要为 Ingress 定义中的域名配置 DNS 解析，才能支持用户正常访问。当 Ingress 控制器为 <a href="https://kubernetes.github.io/ingress-nginx/">Ingress NGINX Controller</a> 时，Ingress 定义中的域名需要解析到集群 ingress 节点的 IP 地址。</p>
+<p>例如，可以通过以下命令得到集群 ingress 节点的 IP 地址为 <code>100.1.2.3</code>：</p>
+<pre><code>$ kubectl get node -l node-role.kubernetes.io/ingress -o wide
+NAME                 STATUS   ROLES     AGE    VERSION    INTERNAL-IP
+ingress-node-name    Ready    ingress   536d   v1.28.6    100.1.2.3
+</code></pre>
+<p>那么，对于上节中的 Ingress 示例，应当配置域名 <code>foo.example.com</code> 解析到地址 <code>100.1.2.3</code>。</p>
+<h2 id="下一步"><a class="header" href="#下一步">下一步</a></h2>
+<ul>
+<li>了解 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/services-networking/ingress/">Ingress 的概念</a></li>
+<li>了解 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/kubernetes-api/service-resources/ingress-v1/">Ingress 的定义</a></li>
+</ul>
 
                     </main>
 

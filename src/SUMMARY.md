@@ -90,7 +90,6 @@
         * [进行 LLM 大规模预训练](guide/train-model/llm-large-scale-pretraining.md)
         * [分析性能](guide/train-model/profile.md)
         * [指令微调 LLM](guide/train-model/llm-instruction-tuning.md)
-        <!-- * [使用 Job Manager](guide/train-model/use-job-manager.md) -->
 
     * [部署模型推理服务](guide/deploy-model/index.md)
         * [部署 PyTorch 模型](guide/deploy-model/deploy-pytorch.md)
@@ -98,7 +97,8 @@
 
     * [专题](guide/theme/index.md)
         * [上传和下载文件](guide/theme/upload-and-download-file.md)
-        <!-- * [使用 JupyterLab 的常见场景](guide/theme/jupyterlab.md) -->
+        * [App 使用中的常见问题](guide/theme/faq-in-app.md)
+        * [JupyterLab 使用中的常见问题](guide/theme/faq-in-jupyterlab.md)
 
     * [设置账户](guide/account/index.md)
         * [账户信息](guide/account/view-profile.md)

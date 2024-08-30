@@ -8,7 +8,7 @@
   <img alt="jupyterlab-official" src="../assets/app/jupyterlab/jupyterlab-official.png" />
 </figure>
 
-User Console 上可用的 JupyterLab App 是一个系列，包括 JupyterLab (CPU)、JupyterLab (NVIDIA GPU)、JupyterLab (Enflame GCU) 和 JupyterLab (Hygon DCU)，它们之间的区别仅在于支持不同的加速设备：
+JupyterLab Apps 是一个系列，包括 JupyterLab (CPU)、JupyterLab (NVIDIA GPU)、JupyterLab (Enflame GCU) 和 JupyterLab (Hygon DCU)，它们之间的区别仅在于支持不同的加速设备：
 
 * 所有 App 均支持 CPU。
 * JupyterLab (NVIDIA GPU) 另外支持 NVIDIA GPU。
@@ -16,6 +16,8 @@ User Console 上可用的 JupyterLab App 是一个系列，包括 JupyterLab (CP
 * JupyterLab (Hygon DCU) 另外支持海光 DCU。
 
 请根据集群的可用资源和自己的需求选择合适的 App。
+
+本手册的其他文档中提及的“JupyterLab App”指代 JupyterLab Apps 中最简单（不支持加速设备）的 JupyterLab (CPU) App。
 
 ## 使用方法
 
@@ -33,7 +35,7 @@ User Console 上可用的 JupyterLab App 是一个系列，包括 JupyterLab (CP
 
 ### 镜像
 
-每个 App 可以选用的镜像请参阅相应的 README。
+每个 App 可以选用的镜像请参阅相应 [README](../guide/manage-app/install-app.md#选择并了解-app) 的镜像列表部分。
 
 每个镜像包含 JupyterLab 和特定的环境（机器学习框架或 conda 环境），同时预装了一些 Python 包、命令行工具和平台工具：
 
@@ -55,11 +57,15 @@ User Console 上可用的 JupyterLab App 是一个系列，包括 JupyterLab (CP
 | wget    | 用于从网络上下载文件，支持 HTTP、HTTPS 和 FTP 协议。                   |
 | zip     | 用于创建和管理 ZIP 压缩文件。                                          |
 
-* 所有镜像均预装了最新版本的<a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/tools/index.html">平台工具</a>。
+* 所有镜像均预装了最新版本的[平台工具](../tool/index.md)。
+
+### 挂载的 PVC
+
+App 通常
 
 ### 用户权限
 
-在 App 的容器环境中，用户的 uid:gid 为 1000:1000（由[镜像](#镜像)设置）（fsgroup 为 2000），这会导致系统级操作受到限制（权限不足）。例如，用户无法使用 `apt install` 命令安装开发所需的库，无法执行 `rm` 命令删除没有写权限的文件（这些文件可能是由挂载了同一个 PVC 且使用 root 用户的 Job 产生的）。在某些情况下，进行系统级操作是必要或便利的，解决方案是为 App 选用**标签带有 `-sudo` 后缀的镜像**，在需要提升权限的命令前加上 `sudo`，以 root 身份执行该命令。
+在 App 的容器环境中，用户的 uid:gid 为 1000:1000（由[镜像](#镜像)设置）（fsgroup 为 2000），这会导致系统级操作受到限制（权限不足）。例如，用户无法使用 `apt install` 命令安装开发所需的库，无法执行 `rm` 命令删除没有写权限的文件（这些文件可能是由挂载了同一个 PVC 且使用 root 用户的 Job 产生的）。在某些情况下，进行系统级操作是必要或便利的，解决方案是为 App 选用**标签带有 `-sudo` 后缀**的镜像，在需要提升权限的命令前加上 `sudo`，以 root 身份执行该命令。
 
 <aside class="note warning">
 <div class="title">警告</div>
@@ -75,6 +81,10 @@ User Console 上可用的 JupyterLab App 是一个系列，包括 JupyterLab (CP
 TensorBoard 插件的使用方法请参阅<a target="_blank" rel="noopener noreferrer" href="https://github.com/HFAiLab/jupyterlab_tensorboard_pro/blob/v4.x/README.zh-cn.md#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E">使用说明</a>。
 
 你也可以选择安装一个 [TensorBoard](./tensorboard.md) App，展示的内容是相同的。
+
+## 常见问题
+
+请参阅[JupyterLab 使用中的常见问题](../guide/theme/faq-in-jupyterlab.md)。
 
 ## 下一步
 

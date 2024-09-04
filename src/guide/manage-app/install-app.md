@@ -113,8 +113,19 @@ App 的 README 主要包含三个方面的信息：
 <aside class="note">
 <div class="title">注意</div>
 
-用户可以修改 App 的默认名称，该名称仅有便于用户辨识的作用，并不是 App 的唯一标识符；App 的名称可以任意重名。这可以类比到在某些智能手机系统或桌面中，你可以安装两个微信，并且可以将第二个微信重命名为“微信”、“微信2”、“QQ”或其他任意的名称。
+用户可以修改 App 的原始名称，该名称仅有便于用户辨识的作用，并不是 App 的唯一标识符；App 的名称可以任意重名。这可以类比到在某些智能手机系统或桌面中，你可以安装两个微信，并且可以将第二个微信重命名为“微信”、“微信2”、“QQ”或其他任意的名称。
 
 本文档将上面安装的第一个 App 称为“JupyterLab (CPU) App”，第二个 App 称为“名称为 `tutorial` 的 JupyterLab (CPU) App”。
+
+</aside>
+
+<aside class="note tip">
+<div class="title">提示</div>
+
+用户可以在 App 管理页面点击 App 右侧的 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 16a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2Z"></path></svg></span> **> 修改名称**以修改 App 的名称：
+
+<figure class="screenshot">
+  <img alt="rename-app" src="../../assets/guide/manage-app/rename-app.png" />
+</figure>
 
 </aside>

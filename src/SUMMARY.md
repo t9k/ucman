@@ -72,7 +72,7 @@
     * [管理 App](guide/manage-app/index.md)
         * [安装 App](guide/manage-app/install-app.md)
         * [卸载 App](guide/manage-app/uninstall-app.md)
-        <!-- * [查看 App 详情](guide/manage-app/view-app-detail.md) -->
+        * [查看 App 详情](guide/manage-app/view-app-detail.md)
 
     * [管理存储、网络服务和辅助资源](guide/manage-storage-network-and-auxiliary/index.md)
         * [管理 PVC](guide/manage-storage-network-and-auxiliary/pvc.md)
@@ -94,8 +94,8 @@
 
     * [专题](guide/theme/index.md)
         * [上传和下载文件](guide/theme/upload-and-download-file.md)
+        * [App 使用中的常见问题](guide/theme/faq-in-app-usage.md)
         * [JupyterLab 使用中的常见问题](guide/theme/faq-in-jupyterlab-usage.md)
-        <!-- * [App 使用中的常见问题](guide/theme/faq-in-app-usage.md) -->
 
     * [设置账户](guide/account/index.md)
         * [账户信息](guide/account/view-profile.md)

@@ -79,7 +79,7 @@ TensorStack AI 平台通过 label `tensorstack.dev/resource` 来标识 Secret �
 例如：
 
 * SSH Public Key 类型的 Secret 可用于 [Notebook SSH 访问]()
-* Docker 类型的 Secret 可用于 [ImageBuilder](../other-workload/imagebuilder.md) 构建并上传镜像
+* Docker 类型的 Secret 可用于 [ImageBuilder](../imagebuilder.md) 构建并上传镜像
 * S3-cfg 类型的 Secret 可用于创建 [S3 类型的 StorageShim](../storage/storageshim.md#s3-类型)
 * Ceph Client 类型的 Secret 可用于创建 [CephFS 类型的 StorageShim](../storage/storageshim.md#cephfs-类型)
 

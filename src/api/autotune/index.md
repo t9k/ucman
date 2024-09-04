@@ -10,7 +10,7 @@
 ## 基本结构
 
 <figure>
-  <img alt="structure" src="../../../assets/api/other-workload/autotune/structure.drawio.svg" width="550" />
+  <img alt="structure" src="../../../assets/api/autotune/structure.drawio.svg" width="550" />
 </figure>
 
 在上述结构图中：

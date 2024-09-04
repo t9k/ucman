@@ -45,22 +45,19 @@
             * [日志收集](api/t9k-service/mlservice-logger.md)
         * [模型存储](api/t9k-service/storage.md)
 
-    * [其他工作负载](api/other-workload/index.md)
-        * [AutoTune](api/other-workload/autotune/index.md)
-            * [AutoTuneExperiment](api/other-workload/autotune/autotuneexperiment.md)
-            * [搜索空间](api/other-workload/autotune/autotune-search-space.md)
-            * [超参数调优算法](api/other-workload/autotune/hpo-algorithm.md)
-        * [ImageBuilder](api/other-workload/imagebuilder.md)
-        * [DataCube](api/other-workload/datacube.md)
-        <!-- * [Notebook](api/other-workload/notebook.md)
-        * [Explorer](api/other-workload/explorer.md)
-        * [TensorBoard](api/other-workload/tensorboard.md) -->
-
     * [工作流](api/workflow/index.md)
         * [WorkflowTemplate](api/workflow/workflowtemplate.md)
         * [WorkflowRun](api/workflow/workflowrun.md)
         * [CronWorkflowRun](api/workflow/cronworkflowrun.md)
         * [WorkflowTrigger](api/workflow/workflowtrigger.md)
+
+    * [AutoTune](api/autotune/index.md)
+        * [AutoTuneExperiment](api/autotune/autotuneexperiment.md)
+        * [搜索空间](api/autotune/autotune-search-space.md)
+        * [超参数调优算法](api/autotune/hpo-algorithm.md)
+
+    * [ImageBuilder](api/imagebuilder.md)
+    * [DataCube](api/datacube.md)
 
 * [账户和安全](security/index.md)
     * [账户](security/account.md)

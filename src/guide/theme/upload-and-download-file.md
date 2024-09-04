@@ -25,7 +25,7 @@ NFS 类型的 PVC 不可扩容。
 ## 准备工作
 
 * 了解 [JupyterLab](../../app/jupyterlab.md)、[Terminal](../../app/terminal.md) 和 [File Browser](../../app/filebrowser.md) App
-* 了解 [DataCube](../../api/other-workload/datacube.md) API
+* 了解 [DataCube](../../api/datacube.md) API
 
 ## 本地文件系统
 
@@ -100,7 +100,7 @@ rclone 支持的云存储提供商请参阅 <a target="_blank" rel="noopener nor
 
 ### DataCube
 
-对于 Amazon S3 也可以使用平台提供的 [DataCube](../../api/other-workload/datacube.md)。使用以下 YAML 配置文件创建 DataCube（修改 PVC 名称、PVC 路径、Secret 名称和 S3 URL）以下载和上传文件：
+对于 Amazon S3 也可以使用平台提供的 [DataCube](../../api/datacube.md)。使用以下 YAML 配置文件创建 DataCube（修改 PVC 名称、PVC 路径、Secret 名称和 S3 URL）以下载和上传文件：
 
 <details><summary><code class="hljs">download-s3.yaml</code></summary>
 
@@ -159,7 +159,7 @@ git push
 
 ### DataCube
 
-也可以使用平台提供的 [DataCube](../../api/other-workload/datacube.md)。使用以下 YAML 配置文件创建 DataCube（修改 PVC 名称、PVC 路径、Secret 名称和 S3 URL）以克隆（或拉取）和推送提交到 Git 仓库：
+也可以使用平台提供的 [DataCube](../../api/datacube.md)。使用以下 YAML 配置文件创建 DataCube（修改 PVC 名称、PVC 路径、Secret 名称和 S3 URL）以克隆（或拉取）和推送提交到 Git 仓库：
 
 <details><summary><code class="hljs">download-git.yaml</code></summary>
 
@@ -371,7 +371,7 @@ curl --header "Authorization: Bearer <HF_TOKEN>" -L https://huggingface.co/meta-
 
 ### DataCube
 
-也可以使用平台提供的 [DataCube](../../api/other-workload/datacube.md)，其在内部调用的就是 [`huggingface-cli` 命令](#huggingface-cli-命令和-huggingface_hub-库)。使用以下 YAML 配置文件创建 DataCube（修改 PVC 名称、PVC 路径、Secret 名称和 S3 URL）以下载和上传文件：
+也可以使用平台提供的 [DataCube](../../api/datacube.md)，其在内部调用的就是 [`huggingface-cli` 命令](#huggingface-cli-命令和-huggingface_hub-库)。使用以下 YAML 配置文件创建 DataCube（修改 PVC 名称、PVC 路径、Secret 名称和 S3 URL）以下载和上传文件：
 
 <details><summary><code class="hljs">download-hf.yaml</code></summary>
 

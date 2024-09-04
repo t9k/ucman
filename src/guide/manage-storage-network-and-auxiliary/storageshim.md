@@ -4,9 +4,33 @@
 
 ## CephFS 类型
 
-本章演示创建 CephFS 类型的 StorageShim，将 CephFS 的一个子目录作为一个 PVC 使用。
+本章演示创建 CephFS 类型的 StorageShim，将 CephFS 的一个子目录作为一个 PVC 使用。创建 CephFS 类型的 StorageShim 需要用到一个包含 Ceph 服务器信息的 ConfigMap 和一个保存了 Ceph 客户端信息的 Secret。
 
-在开始之前，你需要依靠从管理员处获得的信息，先完成[创建 Secret](secret.md) 和[创建 ConfigMap](configmap.md)。
+<aside class="note info">
+<div class="title">信息</div>
+
+1. ConfigMap 可以是管理员创建的“公共配置”，也可以是用户个人创建的“私有配置”。使用“公共配置”是较为常见的场景，因此用户在创建 StorageShim 时，建议首先确认是否存在可选择的“公共配置”，如果没有，再自行创建“私有配置”。
+1. 创建 ConfigMap 和 Secret 所需的信息可以联系集群管理员获取。
+
+</aside>
+
+点击**辅助 > ConfigMap**，然后点击右上角的**创建**，进入创建页面。填写 ConfigMap 名称、标签和数据，点击右上角的**创建**，完成 ConfigMap 的创建：
+
+<figure class="screenshot">
+  <img alt="create-configmap" src="../../assets/guide/manage-storage-network-and-auxiliary/storage/create-configmap.png" />
+</figure>
+
+点击**辅助 > Secret**，然后点击右上角的**创建**，进入创建页面，并选择模板为 **Ceph Client**：
+
+<figure class="screenshot">
+  <img alt="create-secret-ceph-1" src="../../assets/guide/manage-storage-network-and-auxiliary/storage/create-secret-ceph-1.png" />
+</figure>
+
+填写名称、userID 和 userKey，点击创建完成 Secret 的创建：
+
+<figure class="screenshot">
+  <img alt="create-secret-ceph-2" src="../../assets/guide/manage-storage-network-and-auxiliary/storage/create-secret-ceph-2.png" />
+</figure>
 
 点击菜单**存储 > 适配器**，打开适配器的列表页面。然后点击右上角**创建 StorageShim**，进入创建页面：
 
@@ -14,7 +38,7 @@
   <img alt="list-storageshim" src="../../assets/guide/manage-storage-network-and-auxiliary/storage/list-storageshim.png" />
 </figure>
 
-选择类型为 CephFS，并选择提前创建好的 Ceph 服务器 ConfigMap 和 Ceph 客户端 Secret。其中的 ConfigMap 可以是管理员创建的公共配置，或者自己创建的私有配置：
+选择类型为 CephFS，并选择提前准备好的 Ceph 服务器 ConfigMap 和 Ceph 客户端 Secret：
 
 <figure class="screenshot">
   <img alt="create-storageshim-ceph-1" src="../../assets/guide/manage-storage-network-and-auxiliary/storage/create-storageshim-ceph-1.png" />
@@ -34,9 +58,13 @@
 
 ## S3 类型
 
-本章演示创建 CephFS 类型的 StorageShim，将 S3 的一个 bucket 或者 bucket 中的目录作为一个 PVC 使用。
+本章演示创建 CephFS 类型的 StorageShim，将 S3 的一个 bucket 或者 bucket 中的目录作为一个 PVC 使用。创建 S3 类型的 StorageShim 需要用到一个 `S3-cfg` 类型的 Secret。
 
-在开始之前，你需要获取 S3 服务的信息，并创建一个 [`S3-cfg` 类型的 Secret](secret.md#s3-cfg-类型)。
+获取 S3 服务的信息，点击**辅助 > Secret**，创建一个`S3-cfg` 类型的 Secret：
+
+<figure class="screenshot">
+  <img alt="create-secret-s3cfg-2" src="../../assets/guide/manage-storage-network-and-auxiliary/storage/created-secret-s3cfg-2.png" />
+</figure>
 
 进入 StorageShim 创建页面，并选择类型为 S3：
 

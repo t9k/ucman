@@ -12,6 +12,7 @@
     * [Terminal](app/terminal.md)
     * [Job Manager](app/job-manager.md)
     * [Service Manager](app/service-manager.md)
+    * [Virtual Machine](app/virtual-machine.md)
     <!-- * [PostgreSQL](app/postgresql.md) -->
 
 * [APIs](api/index.md)

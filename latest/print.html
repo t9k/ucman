@@ -7578,13 +7578,31 @@ spec:
 <h1 id="创建-storageshim-1"><a class="header" href="#创建-storageshim-1">创建 StorageShim</a></h1>
 <p><a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/modules/storage/storageshim.html">StorageShim</a> 用于将已有的存储系统以 PVC 的形式提供给用户使用，例如将分布式文件系统的某个子目录作为一个 PVC 使用。</p>
 <h2 id="cephfs-类型-1"><a class="header" href="#cephfs-类型-1">CephFS 类型</a></h2>
-<p>本章演示创建 CephFS 类型的 StorageShim，将 CephFS 的一个子目录作为一个 PVC 使用。</p>
-<p>在开始之前，你需要依靠从管理员处获得的信息，先完成<a href="guide/manage-storage-network-and-auxiliary/secret.html">创建 Secret</a> 和<a href="guide/manage-storage-network-and-auxiliary/configmap.html">创建 ConfigMap</a>。</p>
+<p>本章演示创建 CephFS 类型的 StorageShim，将 CephFS 的一个子目录作为一个 PVC 使用。创建 CephFS 类型的 StorageShim 需要用到一个包含 Ceph 服务器信息的 ConfigMap 和一个保存了 Ceph 客户端信息的 Secret。</p>
+<aside class="note info">
+<div class="title">信息</div>
+<ol>
+<li>ConfigMap 可以是管理员创建的“公共配置”，也可以是用户个人创建的“私有配置”。使用“公共配置”是较为常见的场景，因此用户在创建 StorageShim 时，建议首先确认是否存在可选择的“公共配置”，如果没有，再自行创建“私有配置”。</li>
+<li>创建 ConfigMap 和 Secret 所需的信息可以联系集群管理员获取。</li>
+</ol>
+</aside>
+<p>点击<strong>辅助 &gt; ConfigMap</strong>，然后点击右上角的<strong>创建</strong>，进入创建页面。填写 ConfigMap 名称、标签和数据，点击右上角的<strong>创建</strong>，完成 ConfigMap 的创建：</p>
+<figure class="screenshot">
+  <img alt="create-configmap" src="guide/manage-storage-network-and-auxiliary/../../assets/guide/manage-storage-network-and-auxiliary/storage/create-configmap.png" />
+</figure>
+<p>点击<strong>辅助 &gt; Secret</strong>，然后点击右上角的<strong>创建</strong>，进入创建页面，并选择模板为 <strong>Ceph Client</strong>：</p>
+<figure class="screenshot">
+  <img alt="create-secret-ceph-1" src="guide/manage-storage-network-and-auxiliary/../../assets/guide/manage-storage-network-and-auxiliary/storage/create-secret-ceph-1.png" />
+</figure>
+<p>填写名称、userID 和 userKey，点击创建完成 Secret 的创建：</p>
+<figure class="screenshot">
+  <img alt="create-secret-ceph-2" src="guide/manage-storage-network-and-auxiliary/../../assets/guide/manage-storage-network-and-auxiliary/storage/create-secret-ceph-2.png" />
+</figure>
 <p>点击菜单<strong>存储 &gt; 适配器</strong>，打开适配器的列表页面。然后点击右上角<strong>创建 StorageShim</strong>，进入创建页面：</p>
 <figure class="screenshot">
   <img alt="list-storageshim" src="guide/manage-storage-network-and-auxiliary/../../assets/guide/manage-storage-network-and-auxiliary/storage/list-storageshim.png" />
 </figure>
-<p>选择类型为 CephFS，并选择提前创建好的 Ceph 服务器 ConfigMap 和 Ceph 客户端 Secret。其中的 ConfigMap 可以是管理员创建的公共配置，或者自己创建的私有配置：</p>
+<p>选择类型为 CephFS，并选择提前准备好的 Ceph 服务器 ConfigMap 和 Ceph 客户端 Secret：</p>
 <figure class="screenshot">
   <img alt="create-storageshim-ceph-1" src="guide/manage-storage-network-and-auxiliary/../../assets/guide/manage-storage-network-and-auxiliary/storage/create-storageshim-ceph-1.png" />
 </figure>
@@ -7597,8 +7615,11 @@ spec:
   <img alt="created-storageshim" src="guide/manage-storage-network-and-auxiliary/../../assets/guide/manage-storage-network-and-auxiliary/storage/created-storageshim.png" />
 </figure>
 <h2 id="s3-类型-1"><a class="header" href="#s3-类型-1">S3 类型</a></h2>
-<p>本章演示创建 CephFS 类型的 StorageShim，将 S3 的一个 bucket 或者 bucket 中的目录作为一个 PVC 使用。</p>
-<p>在开始之前，你需要获取 S3 服务的信息，并创建一个 <a href="guide/manage-storage-network-and-auxiliary/secret.html#s3-cfg-%E7%B1%BB%E5%9E%8B"><code>S3-cfg</code> 类型的 Secret</a>。</p>
+<p>本章演示创建 CephFS 类型的 StorageShim，将 S3 的一个 bucket 或者 bucket 中的目录作为一个 PVC 使用。创建 S3 类型的 StorageShim 需要用到一个 <code>S3-cfg</code> 类型的 Secret。</p>
+<p>获取 S3 服务的信息，点击<strong>辅助 &gt; Secret</strong>，创建一个<code>S3-cfg</code> 类型的 Secret：</p>
+<figure class="screenshot">
+  <img alt="create-secret-s3cfg-2" src="guide/manage-storage-network-and-auxiliary/../../assets/guide/manage-storage-network-and-auxiliary/storage/created-secret-s3cfg-2.png" />
+</figure>
 <p>进入 StorageShim 创建页面，并选择类型为 S3：</p>
 <figure class="screenshot">
   <img alt="create-storageshim-s3-1" src="guide/manage-storage-network-and-auxiliary/../../assets/guide/manage-storage-network-and-auxiliary/storage/create-storageshim-s3-1.png" />

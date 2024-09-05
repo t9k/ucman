@@ -138,10 +138,10 @@ kubectl create -f image-builder.yaml
 
 #### 准备工作
 
-安装一个 Virtual Machine，需要添加一下配置：
+安装一个 Virtual Machine，需要修改以下配置：
 
-1. 暴露 5901 端口
-2. pvc 设置相对大一些
+1. 暴露 5901 端口。
+2. 当前示例所使用的系统镜像为 2.6Gi，设置 5Gi PVC 来容纳系统文件和桌面管理软件。如果用户所使用的桌面管理程序需要更大的磁盘空间，请自行设置更大的 PVC。
 
 ```yaml
 rootDisk:

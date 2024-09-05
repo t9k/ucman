@@ -509,7 +509,7 @@ spec:
 <li>预处理：用户发向推理服务的原始数据，先经过 transformer 预处理，然后再被发送到推理服务。</li>
 <li>后处理：推理服务返回的预测结果，先经过 transformer 后处理，然后再返回给用户。</li>
 </ul>
-<p>用户可以使用 <a href="https://t9k.github.io/user-manuals/latest/tools/python-sdk-t9k/index.html">Tensorstack SDK</a> 编写 transformer 代码，制作镜像，并基于该镜像创建含有 transformer 的推理服务。详细示例请参阅<a href="https://t9k.github.io/user-manuals/latest/tasks/deploy-mlservice-transformer.html">制作并部署含有 Transformer 的模型推理服务</a>。</p>
+<p>用户可以使用 <a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/tools/python-sdk-t9k/index.html">Tensorstack SDK</a> 编写 transformer 代码，制作镜像，并基于该镜像创建含有 transformer 的推理服务。详细示例请参阅<a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/tasks/deploy-mlservice-transformer.html">制作并部署含有 Transformer 的模型推理服务</a>。</p>
 <p>下文展示了一个使用 transformer 的推理服务：</p>
 <pre><code class="language-yaml">apiVersion: tensorstack.dev/v1beta1
 kind: MLService
@@ -557,7 +557,7 @@ spec:
 </code></pre>
 <p>在上面的示例中，我们设置了工作负载数量的范围为 <code>[1,3]</code>，自动伸缩指标(metric)为 <code>rps</code>，自动伸缩目标(target)为 <code>100</code>。这意味着当每个工作负载每秒处理的请求数量（requests-per-second）达到 100 时，负载会开始扩容，且扩容最大数量为 3，最小数量为 1。</p>
 <h3 id="调度器"><a class="header" href="#调度器">调度器</a></h3>
-<p>MLService 支持使用两种调度器：Kubernetes 默认调度器（默认）和 <a href="https://t9k.github.io/user-manuals/latest/modules/computing-resources/scheduler/index.html">T9k Scheduler</a>。MLService 通过 <code>spec.scheduler</code> 字段设置调度器：</p>
+<p>MLService 支持使用两种调度器：Kubernetes 默认调度器（默认）和 <a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/modules/computing-resources/scheduler/index.html">T9k Scheduler</a>。MLService 通过 <code>spec.scheduler</code> 字段设置调度器：</p>
 <ul>
 <li>不设置 <code>spec.scheduler</code> 字段，则默认使用 Kubernetes 默认调度器。</li>
 <li>设置 <code>spec.scheduler.t9kScheduler</code> 字段，则使用 T9k Scheduler 调度器。</li>

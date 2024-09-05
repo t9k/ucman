@@ -188,42 +188,42 @@
                         <div class="sidetoc"><nav class="pagetoc"></nav></div>
                         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
 <h1 id="virtual-machine"><a class="header" href="#virtual-machine">Virtual Machine</a></h1>
-<p><a href="https://kubevirt.io/">kubevirt</a> 是一个强大的虚拟化工具，它允许用户在 Kubernetes 容器化环境下启动一个虚拟机，并利用 Kubernetes 的扩展能力，让用户可以轻松地使用和管理虚拟机。</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://kubevirt.io/">kubevirt</a> 是一个强大的虚拟化工具，它允许用户在 Kubernetes 容器化环境下启动一个虚拟机，并利用 Kubernetes 的扩展能力，让用户可以轻松地使用和管理虚拟机。</p>
 <p>Virtual Machine 是一个基于 kubevirt 的虚拟机 App，允许用户快速部署一个虚拟机。</p>
 <h2 id="使用方法"><a class="header" href="#使用方法">使用方法</a></h2>
 <h3 id="连接虚拟机终端"><a class="header" href="#连接虚拟机终端">连接虚拟机终端</a></h3>
-<p>用户需同时安装 0.1.5 版本以上的 Terminal。</p>
-<p>待 Virtual Machine App 就绪后，点击右侧 <strong>操作 &gt; 查看信息</strong> 查看应用信息，找到其中连接虚拟机终端所需使用的命令，其格式为：</p>
+<p>用户需要同时安装 0.1.5 版本以上的 <a href="./terminal.html">Terminal</a> App。</p>
+<p>待 Virtual Machine App 就绪后，点击右侧的<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 16a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2Z"></path></svg></span> <strong>&gt; 查看信息</strong>，复制连接虚拟机终端的命令，其格式为：</p>
 <pre><code class="language-bash">kubectl virt console &lt;virtual-machine-name&gt; -n &lt;namespace&gt;
 </code></pre>
-<p>待 Terminal App 就绪后，点击右侧的 <span class="twemoji"><svg class="MuiSvgIcon-root MuiSvgIcon-colorPrimary MuiSvgIcon-fontSizeMedium css-jxtyyz" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="OpenInNewIcon"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3z"></path></svg></span> 进如 Terminal 网页 UI：</p>
+<p>待 Terminal App 就绪后，点击右侧的 <span class="twemoji"><svg class="MuiSvgIcon-root MuiSvgIcon-colorPrimary MuiSvgIcon-fontSizeMedium css-jxtyyz" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="OpenInNewIcon"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3z"></path></svg></span> 进入 Terminal 网页 UI：</p>
 <figure class="screenshot">
   <img alt="ui-terminal" src="../assets/app/terminal/terminal.png" />
 </figure>
-<p>在终端中输入从 Virtual Machine App 中获取到的终端连接命令，连接到虚拟机终端。</p>
+<p>粘贴并执行上述命令，以连接虚拟机终端。</p>
 <h3 id="使用图形界面"><a class="header" href="#使用图形界面">使用图形界面</a></h3>
-<p>参考<a href="#%E5%AE%89%E8%A3%85%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2">安装图形界面</a>设置 Virtual Machine 安装配置、安装图形桌面。</p>
-<p>在本地执行以下命令：</p>
+<p>请参照<a href="#%E5%AE%89%E8%A3%85%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2">安装图形界面</a>配置 Virtual Machine App 并安装图形桌面。</p>
+<p>在本地终端执行以下命令：</p>
 <pre><code class="language-bash">t9k-pf service &lt;virtual-machine-name&gt; 5901:5901 -n &lt;namespace&gt; -k
 </code></pre>
-<p>上述命令会将远程桌面端口暴露在本地 5901 端口。</p>
-<aside class="note info">
-<div class="title">说明</div>
+<p>上述命令会将远程桌面端口暴露在本地的 5901 端口。</p>
+<aside class="note tip">
+<div class="title">提示</div>
 <ol>
-<li>虚拟机名称可以从 <strong>操作 &gt; 查看信息</strong> 中获取，参考<a href="#%E8%BF%9E%E6%8E%A5%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%BB%88%E7%AB%AF">连接虚拟机终端</a>。</li>
-<li>上述命令需要使用 API Key，其生成方式参考 <a href="../security/account.html#api-key">API Key</a>。</li>
+<li>虚拟机名称可以从<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 16a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2Z"></path></svg></span> <strong>&gt; 查看信息</strong>中获取，参阅<a href="#%E8%BF%9E%E6%8E%A5%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%BB%88%E7%AB%AF">连接虚拟机终端</a>。</li>
+<li>上述命令需要使用 API Key，其生成方式参阅 <a href="../security/account.html#api-key">API Key</a>。</li>
 </ol>
 </aside>
 <p>在本地打开一个 VNC Client，输入 VNC 地址 <code>localhost:5901</code> 即可打开远程桌面。</p>
 <aside class="note info">
-<div class="title">说明</div>
+<div class="title">信息</div>
 <p>Windows 系统中，常见的 VNC Client 有 RealVNC、TightVNC 等。</p>
-<p>Mac 系统中自带 VNC Client 功能：打开 Finder，从菜单栏点击 <strong>Go -&gt; Connect to Server…</strong>（或在 Finder 中使用快捷键 <strong>Command + K</strong>）。</p>
+<p>Mac 系统自带 VNC Client 功能：打开 Finder，从菜单栏点击 <strong>Go -&gt; Connect to Server…</strong>（或在 Finder 中使用快捷键 <strong>Command + K</strong>）。</p>
 </aside>
 <h2 id="使用说明"><a class="header" href="#使用说明">使用说明</a></h2>
 <h3 id="定制系统镜像"><a class="header" href="#定制系统镜像">定制系统镜像</a></h3>
 <h4 id="准备工作"><a class="header" href="#准备工作">准备工作</a></h4>
-<p>安装一个 Virtual Machine，选择合适的基础镜像：</p>
+<p>安装一个 Virtual Machine App，选择合适的基础镜像：</p>
 <pre><code class="language-yaml">rootDisk:
   dataVolume:
     enabled: true
@@ -240,18 +240,20 @@
         requests:
           storage: 5Gi
 </code></pre>
-<p>说明：</p>
+<aside class="note">
+<div class="title">注意</div>
 <p>最终系统镜像的大小与 PVC 大小相关，系统镜像的保存原理为将整个系统盘打包成一个容器镜像，上传到 oci 仓库。PVC 中未使用的空间也被算作磁盘空间。所以请设置合适的 PVC 大小，减少后续拉取镜像的时间。</p>
+</aside>
 <h4 id="内容定制"><a class="header" href="#内容定制">内容定制</a></h4>
-<p>待 Virtual Machine 就绪后，<a href="#%E8%BF%9E%E6%8E%A5%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%BB%88%E7%AB%AF">连接到虚拟机终端</a>，本节后续操作都是在虚拟机终端中进行。</p>
-<p>用户可以在虚拟机中执行安装软件、修改系统配置等操作，只要这些操作的最终修改发生在系统盘中，则可以被记录在新镜像中。</p>
+<p>待 Virtual Machine App 就绪后，<a href="#%E8%BF%9E%E6%8E%A5%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%BB%88%E7%AB%AF">连接到虚拟机终端</a>，本节后续操作都是在虚拟机终端中进行。</p>
+<p>用户可以在虚拟机中执行安装软件、修改系统配置等操作，只要这些操作的最终修改发生在系统盘中，就可以被记录在新镜像中。</p>
 <h4 id="镜像上传"><a class="header" href="#镜像上传">镜像上传</a></h4>
 <p>安装一个 JupyterLab App，绑定虚拟机所使用的 PVC（PVC 名称可以从 Virtual Machine App 的详情页面获取）。</p>
-<p>待 JupyterLab App 就绪后，进入 JupyterLab UI，在工作目录下创建 Dockerfile 文件，内容为：</p>
+<p>待 JupyterLab App 就绪后，进入网页 UI，在工作目录下创建 Dockerfile 文件，内容为：</p>
 <pre><code class="language-dockerfile">FROM scratch
 ADD disk.img /disk/
 </code></pre>
-<p>使用如下 YAML 创建 ImageBuilder 构建镜像：</p>
+<p>使用如下 YAML 配置创建 ImageBuilder 构建镜像：</p>
 <pre><code class="language-yaml"># image-builder.yaml
 apiVersion: tensorstack.dev/v1beta1
 kind: ImageBuilder
@@ -279,10 +281,10 @@ spec:
 <p>在 Image Builder 执行完毕后，系统镜像会被上传并保存为 <code>t9kpublic/vm-jupyter:0.0.1</code>，在下次创建 Virtual Machine App 时可以直接设置 <code>rootDisk.dataVolume.fromOCIRegistry.image</code> 字段使用该镜像。</p>
 <h3 id="安装图形界面"><a class="header" href="#安装图形界面">安装图形界面</a></h3>
 <h4 id="准备工作-1"><a class="header" href="#准备工作-1">准备工作</a></h4>
-<p>安装一个 Virtual Machine，需要添加一下配置：</p>
+<p>安装一个 Virtual Machine App，需要进行如下配置：</p>
 <ol>
 <li>暴露 5901 端口</li>
-<li>pvc 设置相对大一些</li>
+<li>增加 PVC 的大小（大于默认的 3Gi）</li>
 </ol>
 <pre><code class="language-yaml">rootDisk:
   dataVolume:
@@ -306,20 +308,21 @@ network:
     port: 5901
     protocol: &quot;TCP&quot;
 </code></pre>
+<p>本示例中的系统镜像大小为 2.6Gi，因此配置 5Gi 的 PVC 以容纳系统文件和桌面管理软件。如果用户的桌面管理程序需要更多的磁盘空间，请根据需求自行调整 PVC 大小。</p>
 <h4 id="安装桌面并启动"><a class="header" href="#安装桌面并启动">安装桌面并启动</a></h4>
-<p>待 Virtual Machine 就绪后，<a href="#%E8%BF%9E%E6%8E%A5%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%BB%88%E7%AB%AF">连接到虚拟机终端</a>，本节后续操作都是在虚拟机终端中进行。</p>
-<p>安装 xfce 和 vnc server：</p>
+<p>待 Virtual Machine App 就绪后，<a href="#%E8%BF%9E%E6%8E%A5%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%BB%88%E7%AB%AF">连接到虚拟机终端</a>，本节后续操作都是在虚拟机终端中进行。</p>
+<p>安装 xfce4 和 vnc server：</p>
 <pre><code class="language-bash">sudo apt install xfce4 xfce4-goodies tightvncserver
 </code></pre>
 <p>安装 xfce4 时，需要选择一个 Desktop Manager，其中：</p>
 <ol>
 <li>gdm3 提供更全面的桌面功能，但需要消耗更多资源</li>
-<li>lightdm 则是一种轻量化的桌面管理服务</li>
+<li>lightdm 则是更轻量化的桌面管理服务</li>
 </ol>
 <p>用户可以根据需要进行选择。</p>
-<aside class="note info">
-<div class="title">apt 换源</div>
-<p>在国内，通常无法访问 apt 默认源，执行以下代码进行 apt 换源：</p>
+<aside class="note tip">
+<div class="title">提示</div>
+<p>在国内，通常无法访问 apt 默认源，执行以下命令以更换 apt 源：</p>
 <pre><code class="language-bash">sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
 sudo sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list
 sudo apt-get update
@@ -328,7 +331,7 @@ sudo apt-get update
 <p>启动 vncserver 进行初始化（设置密码等）：</p>
 <pre><code class="language-bash">vncserver
 </code></pre>
-<p>关闭 vncserver，设置使用 xfce 提供桌面：</p>
+<p>关闭 vncserver，设置使用 xfce4 桌面：</p>
 <pre><code class="language-bash">​​vncserver -kill :1
 echo startxfce4 &gt;&gt; ~/.vnc/xstartup
 </code></pre>
@@ -340,7 +343,7 @@ echo startxfce4 &gt;&gt; ~/.vnc/xstartup
 sudo apt install tightvncserver gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal xserver-xorg-core -y
 </code></pre>
 <p>vncserver 初始化操作与前一节相同。</p>
-<p>修改 ~/.vnc/xstartup 文件，以使用 gnome 桌面：</p>
+<p>修改 <code>~/.vnc/xstartup</code> 文件，以使用 gnome 桌面：</p>
 <pre><code class="language-bash">#!/bin/bash
 
 unset SESSION_MANAGER

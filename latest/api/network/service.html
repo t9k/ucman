@@ -208,7 +208,7 @@ spec:
 <li><code>spec.selector</code> 字段表示该 Service 指向一组拥有标签 <code>app: nignx</code> 的 Pod</li>
 <li><code>spec.ports</code> 字段表示该 Service 本身对外提供服务的端口（<code>port</code>）为 80，指向的 Pod 的端口（<code>targetPort</code>）也为 80</li>
 </ul>
-<p>下面是该 Service 指向的一组 Pod 的示例，以 <a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/">Deployment</a> 的形式运行：</p>
+<p>下面是该 Service 指向的一组 Pod 的示例，以 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/">Deployment</a> 的形式运行：</p>
 <pre><code class="language-yaml">apiVersion: apps/v1
 kind: Deployment
 metadata:

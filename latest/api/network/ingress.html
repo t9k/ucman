@@ -224,7 +224,7 @@ data:
 type: kubernetes.io/tls
 </code></pre>
 <h2 id="使用-ingress"><a class="header" href="#使用-ingress">使用 Ingress</a></h2>
-<p>创建 Ingress 后，还需要为 Ingress 定义中的域名配置 DNS 解析，才能支持用户正常访问。当 Ingress 控制器为 <a href="https://kubernetes.github.io/ingress-nginx/">Ingress NGINX Controller</a> 时，Ingress 定义中的域名需要解析到集群 ingress 节点的 IP 地址。</p>
+<p>创建 Ingress 后，还需要为 Ingress 定义中的域名配置 DNS 解析，才能支持用户正常访问。当 Ingress 控制器为 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.github.io/ingress-nginx/">Ingress NGINX Controller</a> 时，Ingress 定义中的域名需要解析到集群 ingress 节点的 IP 地址。</p>
 <p>例如，可以通过以下命令得到集群 ingress 节点的 IP 地址为 <code>100.1.2.3</code>：</p>
 <pre><code>$ kubectl get node -l node-role.kubernetes.io/ingress -o wide
 NAME                 STATUS   ROLES     AGE    VERSION    INTERNAL-IP

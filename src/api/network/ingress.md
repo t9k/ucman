@@ -46,7 +46,7 @@ type: kubernetes.io/tls
 
 ## 使用 Ingress
 
-创建 Ingress 后，还需要为 Ingress 定义中的域名配置 DNS 解析，才能支持用户正常访问。当 Ingress 控制器为 [Ingress NGINX Controller](https://kubernetes.github.io/ingress-nginx/) 时，Ingress 定义中的域名需要解析到集群 ingress 节点的 IP 地址。
+创建 Ingress 后，还需要为 Ingress 定义中的域名配置 DNS 解析，才能支持用户正常访问。当 Ingress 控制器为 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.github.io/ingress-nginx/">Ingress NGINX Controller</a> 时，Ingress 定义中的域名需要解析到集群 ingress 节点的 IP 地址。
 
 例如，可以通过以下命令得到集群 ingress 节点的 IP 地址为 `100.1.2.3`：
 

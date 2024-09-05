@@ -111,8 +111,8 @@ storage:
 
 ## 参考
 
-* [S3](https://aws.amazon.com/s3/)
-* [s3cmd](https://s3tools.org/s3cmd)
+* <a target="_blank" rel="noopener noreferrer" href="https://aws.amazon.com/s3/">S3</a>
+* <a target="_blank" rel="noopener noreferrer" href="https://s3tools.org/s3cmd">s3cmd</a>
 * [PVC](../storage/pvc.md)
 * API 参考：[Storage in MLService](../../reference/api-reference/mlservice.md#storage)
 * API 参考：[Storage in SimpleMLService](../../reference/api-reference/simplemlservice.md#storage)

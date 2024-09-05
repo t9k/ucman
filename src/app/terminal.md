@@ -1,6 +1,6 @@
 # Terminal
 
-[ttyd](https://github.com/tsl0922/ttyd) 是一个简单而强大的工具，它允许用户通过 HTTP 或 HTTPS 协议在 web 浏览器中访问远程服务器的终端，无需安装额外的客户端软件。ttyd 支持多种终端程序，如 sh、bash、zsh 等，使用户可以在熟悉的 shell 环境中工作。
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/tsl0922/ttyd">ttyd</a> 是一个简单而强大的工具，它允许用户通过 HTTP 或 HTTPS 协议在 web 浏览器中访问远程服务器的终端，无需安装额外的客户端软件。ttyd 支持多种终端程序，如 sh、bash、zsh 等，使用户可以在熟悉的 shell 环境中工作。
 
 Terminal 是一个基于 ttyd 的 web 终端 App，允许用户在浏览器中访问并执行命令。Terminal 预装了多种常用的命令行工具（如 kubectl、tmux、helm 和 vim），支持多种 shell 环境（如 sh、bash 和 zsh），可设置定期 ping 以保持长连接，并且可以挂载 PVC。
 
@@ -40,8 +40,8 @@ web 终端的使用方法与本地终端类似：在提示符后面输入命令�
 
     进一步参阅：
 
-    * [Bash 快捷键大全](https://www.runoob.com/w3cnote/bash-shortcut.html)
-    * [Bash 脚本教程](https://wangdoc.com/bash/)
-    * [Zsh 开发指南](https://zshguide.readthedocs.io)
+    * <a target="_blank" rel="noopener noreferrer" href="https://www.runoob.com/w3cnote/bash-shortcut.html">Bash 快捷键大全</a>
+    * <a target="_blank" rel="noopener noreferrer" href="https://wangdoc.com/bash/">Bash 脚本教程</a>
+    * <a target="_blank" rel="noopener noreferrer" href="https://zshguide.readthedocs.io">Zsh 开发指南</a>
 
 * 在使用上，Terminal App、[JupyterLab](./jupyterlab.md) App 的终端和 [Code Server](./codeserver.md) App 的终端几乎没有区别，除了预装的软件不同，Terminal 可以选用多种 shell 环境，以及 JupyterLab 和 Code Server 可以同时打开多个终端。

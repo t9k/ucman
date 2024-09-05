@@ -146,7 +146,7 @@ spec:
 
 在该例中：
 * 将 Pod 的 8080 端口映射到 Service 的 80 端口，协议是 TCP。
-* Service 的 Type 是 [ClusterIP](https://kubernetes.io/docs/concepts/services-networking/service/#type-clusterip)。
+* Service 的 Type 是 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/services-networking/service/#type-clusterip">ClusterIP</a>。
 
 ## 调度器
 

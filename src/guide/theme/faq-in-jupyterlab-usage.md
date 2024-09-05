@@ -50,7 +50,7 @@ du <DIR> -h --max-depth=1  # 额外展示深度不大于 1 的子目录占用的
 
 然后正常执行 conda 命令即可。
 
-conda 的使用方法请参阅 [User guide](https://docs.conda.io/projects/conda/en/stable/user-guide/index.html)。
+conda 的使用方法请参阅 <a target="_blank" rel="noopener noreferrer" href="https://docs.conda.io/projects/conda/en/stable/user-guide/index.html">User guide</a>。
 
 <aside class="note">
 <div class="title">注意</div>

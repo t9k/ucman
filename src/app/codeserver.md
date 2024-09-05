@@ -14,7 +14,7 @@
   <img alt="codeserver" src="../assets/app/codeserver/codeserver.png" />
 </figure>
 
-网页 UI 的使用方法请参阅 [Visual Studio Code Docs](https://code.visualstudio.com/docs) 和 [Visual Studio Code for the Web](https://code.visualstudio.com/docs/editor/vscode-web)。
+网页 UI 的使用方法请参阅 <a target="_blank" rel="noopener noreferrer" href="https://code.visualstudio.com/docs">Visual Studio Code Docs</a> 和 <a target="_blank" rel="noopener noreferrer" href="https://code.visualstudio.com/docs/editor/vscode-web">Visual Studio Code for the Web</a>。
 
 ## 使用说明
 

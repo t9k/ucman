@@ -13,6 +13,7 @@
     * [Job Manager](app/job-manager.md)
     * [Service Manager](app/service-manager.md)
     * [Virtual Machine](app/virtual-machine.md)
+    * [Workflow](app/workflow.md)
     <!-- * [PostgreSQL](app/postgresql.md) -->
 
 * [APIs](api/index.md)
@@ -24,6 +25,7 @@
     * [网络服务](api/network/index.md)
         * [Service](api/network/service.md)
         * [Ingress](api/network/ingress.md)
+        * [Gateway API](api/network/gateway-api.md)
 
     * [辅助](api/auxiliary/index.md)
         * [Secret](api/auxiliary/secret.md)

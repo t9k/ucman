@@ -65,6 +65,7 @@
 | vLLM (Llama 3.1)                            | AI       | 使用 vLLM 部署 Llama 3.1 系列模型。                                                                                        |
 | vLLM (Enflame GCU)                          | AI       | vLLM (Enflame GCU) 是一个高吞吐量和内存高效的 LLM 推理和服务引擎，适用于燧原 GCU。                                         |
 | vLLM (Hygon DCU)                            | AI       | vLLM (Hygon DCU) 是一个高吞吐量和内存高效的 LLM 推理和服务引擎，适用于海光 DCU。                                           |
+| [Workflow](./workflow.md)                   | Tool     | Workflow 是一个工作流管理控制台，支持工作流创建、状态查看和事件监控等功能。                                             |
 
 
 ## 下一步

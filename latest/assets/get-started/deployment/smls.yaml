@@ -1,0 +1,18 @@
+apiVersion: tensorstack.dev/v1beta1
+kind: SimpleMLService
+metadata:
+  name: mnist
+spec:
+  replicas: 1
+  storage:
+    pvc:
+      mountPath: /var/lib/t9k/models
+      name: mnist
+      subPath: .
+  pytorch:
+    image: pytorch/torchserve:0.9.0-cpu
+    modelsFlag: "mnist=mnist.mar"
+    resources: 
+      requests:
+        cpu: 1
+        memory: 1Gi

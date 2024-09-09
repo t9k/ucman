@@ -2,6 +2,11 @@
 
 [概述](./overview.md)
 
+* [快速开始](get-started/index.md)
+    * [训练你的第一个模型](get-started/training-first-model.md)<!--在 notebook 完成训练-->
+    * [进行并行训练](get-started/parallel-training.md)<!--使用 job 进行并行训练-->
+    * [部署模型](get-started/deploy-model.md)<!--保存数据集和模型文件-->
+
 ---
 
 * [Apps](app/index.md)
@@ -28,7 +33,7 @@
     * [辅助](api/auxiliary/index.md)
         * [Secret](api/auxiliary/secret.md)
         * [ConfigMap](api/auxiliary/configmap.md)
-        * [ServiceAccountToken](api/auxiliary/serviceaccounttoken.md)
+        <!-- * [ServiceAccountToken](api/auxiliary/serviceaccounttoken.md) -->
 
     * [T9k Job](api/t9k-job/index.md)
         * [GenericJob](api/t9k-job/genericjob.md)
@@ -68,7 +73,7 @@
 
 * [操作指南](guide/index.md)
 
-    * [首页](guide/homepage.md)
+    * [User Console 首页](guide/homepage.md)
 
     * [管理 App](guide/manage-app/index.md)
         * [安装 App](guide/manage-app/install-app.md)
@@ -78,10 +83,18 @@
     * [管理存储、网络服务和辅助资源](guide/manage-storage-network-and-auxiliary/index.md)
         * [管理 PVC](guide/manage-storage-network-and-auxiliary/pvc.md)
         * [创建 StorageShim](guide/manage-storage-network-and-auxiliary/storageshim.md)
+        
         * [查看 Service](guide/manage-storage-network-and-auxiliary/service.md)
         * [查看 Ingress](guide/manage-storage-network-and-auxiliary/ingress.md)
         * [管理 Secret](guide/manage-storage-network-and-auxiliary/secret.md)
         * [管理 ConfigMap](guide/manage-storage-network-and-auxiliary/configmap.md)
+
+    * [设置账户](guide/account/index.md)
+        * [账户信息](guide/account/view-profile.md)
+        * [项目管理](guide/account/project-management.md)
+        * [安全设置](guide/account/security-setting.md)
+        * [查看账单](guide/account/view-bill.md)
+        * [告警通知](guide/account/alert-notification.md)
 
     * [训练模型](guide/train-model/index.md)
         * [进行数据并行训练](guide/train-model/dp-training.md)
@@ -95,15 +108,6 @@
 
     * [专题](guide/theme/index.md)
         * [上传和下载文件](guide/theme/upload-and-download-file.md)
-        * [App 使用中的常见问题](guide/theme/faq-in-app-usage.md)
-        * [JupyterLab 使用中的常见问题](guide/theme/faq-in-jupyterlab-usage.md)
-
-    * [设置账户](guide/account/index.md)
-        * [账户信息](guide/account/view-profile.md)
-        * [项目管理](guide/account/project-management.md)
-        * [安全设置](guide/account/security-setting.md)
-        * [查看账单](guide/account/view-bill.md)
-        * [告警通知](guide/account/alert-notification.md)
 
 ---
 
@@ -133,6 +137,9 @@
         * [示例](tool/codepack/example.md) -->
 
 * [参考](reference/index.md)
+    * [常见问题](reference/faq/index.md)
+        * [App 使用中的常见问题](reference/faq/faq-in-app-usage.md)
+        * [JupyterLab 使用中的常见问题](reference/faq/faq-in-jupyterlab-usage.md)
     * [API 参考](reference/api-reference/index.md)
         * [Project](reference/api-reference/project.md)
         * [GenericJob](reference/api-reference/genericjob.md)

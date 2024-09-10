@@ -245,7 +245,7 @@ spec:
 </code></pre>
 <p>其中 <code>my-gateway</code> 的 <code>/test</code> 路径将被转发到 <code>nginx-service</code> 这个 Service。</p>
 <p>通过以下命令查看该 Gateway 的 IP 地址为 <code>100.1.2.3</code>：</p>
-<pre><code class="language-yaml">$ kubectl get gateway my-gateway
+<pre><code class="language-bash">$ kubectl get gateway my-gateway
 NAME         CLASS    ADDRESS      PROGRAMMED   AGE
 my-gateway   cilium   100.1.2.3    True         13d
 </code></pre>
@@ -298,7 +298,7 @@ spec:
 <li><code>tls-gateway</code> 的 <code>/test</code> 路径将被转发到 <code>nginx-service</code> 这个 Service。</li>
 </ul>
 <p>通过以下命令查看该 Gateway 的 IP 地址为 <code>100.1.2.3</code>：</p>
-<pre><code class="language-yaml">$ kubectl get gateway tls-gateway
+<pre><code class="language-bash">$ kubectl get gateway tls-gateway
 NAME          CLASS    ADDRESS      PROGRAMMED   AGE
 tls-gateway   cilium   100.1.2.3    True         13d
 </code></pre>

@@ -232,8 +232,8 @@ spec:
 <p>在该例中：</p>
 <ul>
 <li>使用 TensorFlowTrainingJob 进行训练（由 <code>trainingConfig</code> 字段指定，详细配置方法请参阅<a href="#%E8%AE%AD%E7%BB%83%E6%A1%86%E6%9E%B6%E6%94%AF%E6%8C%81">训练框架支持</a>）。</li>
-<li>使用 TPE 算法进行超参数调优，算法的参数为 <code>{&quot;optimize_mode&quot;: &quot;minimize&quot;, &quot;constant_liar_type&quot;: &quot;min&quot;}</code>（由 <code>tuner</code> 字段指定，更多参数请参阅<a href="./hpo-algorithm.html">超参数调优算法</a>）。</li>
-<li>超参数的搜索空间为 <code>{&quot;batch_size&quot;: {&quot;_type&quot;: &quot;choice&quot;, &quot;_value&quot;: [512, 1024, 2048, 4096, 8092]},&quot;learning_rate&quot;: {&quot;_type&quot;: &quot;choice&quot;, &quot;_value&quot;: [0.0001, 0.001, 0.01, 0.1]}}</code>（由 <code>searchSpace</code> 字段指定，搜索空间的格式及含义请参阅<a href="./autotune-search-space.html">搜索空间</a>）。</li>
+<li>使用 TPE 算法进行超参数调优，算法的参数为 <code>{&quot;optimize_mode&quot;: &quot;minimize&quot;, &quot;constant_liar_type&quot;: &quot;min&quot;}</code>（由 <code>tuner</code> 字段指定，更多参数请参阅<a href="#%E8%B6%85%E5%8F%82%E6%95%B0%E8%B0%83%E4%BC%98%E7%AE%97%E6%B3%95">超参数调优算法</a>）。</li>
+<li>超参数的搜索空间为 <code>{&quot;batch_size&quot;: {&quot;_type&quot;: &quot;choice&quot;, &quot;_value&quot;: [512, 1024, 2048, 4096, 8092]},&quot;learning_rate&quot;: {&quot;_type&quot;: &quot;choice&quot;, &quot;_value&quot;: [0.0001, 0.001, 0.01, 0.1]}}</code>（由 <code>searchSpace</code> 字段指定，搜索空间的格式及含义请参阅<a href="#%E6%90%9C%E7%B4%A2%E7%A9%BA%E9%97%B4">搜索空间</a>）。</li>
 <li>可以同时测试 3 组超参数，最大测试次数为 50（分别由 <code>trialConcurrency</code> 和 <code>maxTrialNum</code> 字段指定），实验的最大执行时间为 2 小时（7200 秒，由 <code>maxExecSeconds</code> 字段指定），如果时间超出，实验进入 <code>TIMEOUT</code> 状态。</li>
 </ul>
 <h2 id="aistore-的使用"><a class="header" href="#aistore-的使用">AIStore 的使用</a></h2>

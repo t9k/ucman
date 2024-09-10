@@ -188,6 +188,16 @@
                         <div class="sidetoc"><nav class="pagetoc"></nav></div>
                         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
 <h1 id="app-使用中的常见问题"><a class="header" href="#app-使用中的常见问题">App 使用中的常见问题</a></h1>
+<h2 id="app-处于-notready-状态"><a class="header" href="#app-处于-notready-状态">App 处于 NotReady 状态</a></h2>
+<p>App 处于 NotReady 状态有非常多可能的原因，请<a href="../../guide/manage-app/view-app-detail.html">进入 App 的详情页面</a>，点击<strong>状态</strong>右侧的<strong>诊断</strong>查看诊断结果以尝试定位原因。下表汇总了一些常见的原因和相应的诊断结果示例：</p>
+<div class="table-wrapper"><table><thead><tr><th>原因</th><th>诊断结果示例（Pod 状态）</th></tr></thead><tbody>
+<tr><td>集群的所有节点均没有足够的资源</td><td>0/10 nodes are available: 1 node(s) had untolerated taint {node-role.kubernetes.io/control-plane: }, 2 node(s) were unschedulable, 3 Insufficient memory, 4 Insufficient cpu, 5 Insufficient nvidia.com/gpu.</td></tr>
+<tr><td>超出项目的资源限额</td><td>exceeded quota: demo, requested: cpu=4, used: cpu=6, limited: cpu=8</td></tr>
+</tbody></table>
+</div><aside class="note tip">
+<div class="title">提示</div>
+<p>分析诊断结果可能需要具备一定的 Kubernetes 基础并且了解 App 的资源清单，如果你有任何疑问，请询问平台的管理员。</p>
+</aside>
 
                     </main>
 

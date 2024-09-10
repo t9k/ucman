@@ -70,7 +70,7 @@ TensorStack AI 平台通过 label `tensorstack.dev/resource` 来标识 Secret �
 
 * API Key：拥有 label `tensorstack.dev/resource: apikey`，用于存放 API Key，可在创建 API Key。
 * S3-cfg：拥有 label `tensorstack.dev/resource: s3-cfg`，用于存放 S3 配置文件的内容，可从本地的 `$HOME/.s3cfg` 文件中获取。
-* S3-env：拥有 label `tensorstack.dev/resource: s3-env`，用于存放 S3 配置文件的每个字段，请从本地的 `$HOME/.s3cfg` 文件中获取。
+* S3-env：拥有 label `tensorstack.dev/resource: s3-env`，用于存放 S3 配置文件的每个字段，可从本地的 `$HOME/.s3cfg` 文件中获取。
 * Docker：拥有 label `tensorstack.dev/resource: docker`，用于存放 Docker 配置文件的内容，可从本地的 `$HOME/.docker/config.json` 文件中获取。
 * SSH Public Key：拥有 label `tensorstack.dev/resource: ssh`，用于存放 SSH 公钥，可从本地的 `$HOME/.ssh/id_rsa.pub` 文件中获取。
 * Ceph Client：拥有 label `tensorstack.dev/resource: ceph-client`，用于存放 Ceph 客户端配置，可从管理员处获取。
@@ -87,3 +87,4 @@ TensorStack AI 平台通过 label `tensorstack.dev/resource` 来标识 Secret �
 
 * 了解 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/configuration/configmap/">Secret 的概念</a>
 * 了解 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/secret-v1/">Secret 的定义</a>
+* 了解如何[管理 Secret](../../guide/manage-storage-network-and-auxiliary/secret.md)

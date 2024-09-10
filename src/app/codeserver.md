@@ -28,5 +28,4 @@
 | ssh  | 用于安全地远程访问和管理服务器。                         |
 | wget | 用于从网络上下载文件，支持 HTTP、HTTPS 和 FTP 协议。     |
 
-* 在 App 的容器环境中，用户的 uid:gid 为 1000:1000（fsgroup 为 2000），这意味着系统级操作受到限制（权限不足）。
-* App 最多可以使用 0.2 个 CPU（核心）和 200 MiB 内存资源，不可使用 GPU 等加速设备。
+* 在 App 的容器环境中，用户的 uid:gid 为 1000:1000（fsgroup 为 2000），没有 root 权限。其他 App 在同一个 PVC 中产生的数据，Code Server 可能因为 uid 和 gid 不同而无法访问。

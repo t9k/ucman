@@ -59,17 +59,15 @@
         * [CronWorkflowRun](api/workflow/cronworkflowrun.md)
         * [WorkflowTrigger](api/workflow/workflowtrigger.md)
 
-    * [AutoTune](api/autotune/index.md)
-        * [AutoTuneExperiment](api/autotune/autotuneexperiment.md)
-        * [搜索空间](api/autotune/autotune-search-space.md)
-        * [超参数调优算法](api/autotune/hpo-algorithm.md)
-
+    * [AutoTuneExperiment](api/autotuneexperiment.md)
     * [ImageBuilder](api/imagebuilder.md)
     * [DataCube](api/datacube.md)
 
 * [账户和安全](security/index.md)
     * [账户](security/account.md)
     * [项目](security/project.md)
+    * [告警通知](security/alert.md)
+    * [账单](security/bills.md)
 
 ---
 

@@ -238,9 +238,9 @@ DeepSpeedJob 提供以下三种策略：
 
 已结束的副本不会继续消耗集群资源，因此在一定程度上，`Unfinished` 策略比 `All` 策略更优。但这并不总是适用，由于一个项目的资源配额的计算不考虑 Pod 是否已经结束，对于资源紧张的项目，如果确定不需要通过日志来调试 Job，则可以使用 `All` 策略。
 
+`None` 策略主要用于训练脚本调试阶段。如果需要从副本中读取训练日志，则可以选用此策略。但由于这些副本可能占用资源并影响后续训练，建议你在调试完毕后手动删除这些副本或删除整个 DeepSpeedJob。
+
 </aside>
-    
-    `None` 策略主要用于训练脚本调试阶段。如果需要从副本中读取训练日志，则可以选用此策略。但由于这些副本可能占用资源并影响后续训练，建议你在调试完毕后手动删除这些副本或删除整个 DeepSpeedJob。
 
 ## 调度策略
 
@@ -378,31 +378,35 @@ spec:
 ...
 status:
   conditions:
-    - lastTransitionTime: "2021-01-18T02:36:09Z"
-      status: "True"
-      message: "The job has been initialized successfully."
-      reason: "-"
-      type: Initializing
-    - lastTransitionTime: "2021-01-18T02:36:09Z"
-      status: "True"
-      message: "All pods are running normally."
-      reason: "-"
-      type: Running
-    - lastTransitionTime: "2021-01-18T02:36:09Z"
-      status: "False"
-      message: "All pods are running normally."
-      reason: "-"
-      type: ReplicaFailure
-    - lastTransitionTime: "2021-01-18T02:36:31Z"
-      status: "False"
-      message: "The job exited with an error code."
-      reason: "Failed"
-      type: Completed
-    - lastTransitionTime: "2021-01-18T02:36:31Z"
-      status: "True"
-      message: "The job exited with an error code."
-      reason: "Failed"
-      type: Failed
+  - lastTransitionTime: "2023-11-20T08:25:09Z"
+    message: The job has been initialized successfully.
+    reason: '-'
+    status: "True"
+    type: Initialized
+  - lastTransitionTime: "2023-11-22T03:14:05Z"
+    message: 'DeepSpeedJob baichuan2-sft has failed: baichuan2-sft-worker-0 failed
+      with exit code 137'
+    reason: Failed
+    status: "False"
+    type: Running
+  - lastTransitionTime: "2023-11-22T03:14:05Z"
+    message: 'DeepSpeedJob baichuan2-sft has failed: baichuan2-sft-worker-0 failed
+      with exit code 137'
+    reason: Failed
+    status: "True"
+    type: Failed
+  - lastTransitionTime: "2023-11-22T03:14:05Z"
+    message: 'DeepSpeedJob baichuan2-sft has failed: baichuan2-sft-worker-0 failed
+      with exit code 137'
+    reason: Failed
+    status: "True"
+    type: Completed
+  - lastTransitionTime: "2023-11-22T03:14:05Z"
+    message: 'DeepSpeedJob baichuan2-sft has failed: baichuan2-sft-worker-0 failed
+      with exit code 137'
+    reason: Failed
+    status: "True"
+    type: ReplicaFailure
   phase: Failed
 ```
 

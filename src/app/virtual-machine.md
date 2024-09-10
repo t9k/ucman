@@ -96,7 +96,11 @@ rootDisk:
 
 #### 镜像上传
 
-安装一个 JupyterLab App，绑定虚拟机所使用的 PVC（PVC 名称可以从 Virtual Machine App 的详情页面获取）。
+安装一个 JupyterLab App，绑定 Vritual Machine App 自动创建的 PVC（PVC 名称可以从 App 的详情页面获取）：
+
+<figure class="screenshot">
+  <img alt="" src="../assets/app/virtual-machine/details.png" />
+</figure>
 
 待 JupyterLab App 就绪后，进入网页 UI，在工作目录下创建 Dockerfile 文件，内容为：
 
@@ -141,7 +145,7 @@ kubectl create -f image-builder.yaml
 
 #### 准备工作
 
-安装一个 Virtual Machine App，需要进行如下配置：
+安装一个 Virtual Machine App，修改如下配置：
 
 1. 暴露 5901 端口
 2. 增加 PVC 的大小（大于默认的 3Gi）
@@ -184,8 +188,8 @@ sudo apt install xfce4 xfce4-goodies tightvncserver
 
 安装 xfce4 时，需要选择一个 Desktop Manager，其中：
 
-1. gdm3 提供更全面的桌面功能，但需要消耗更多资源
-2. lightdm 则是更轻量化的桌面管理服务
+1. gdm3 提供更全面的桌面功能，但需要消耗更多资源。
+2. lightdm 则是更轻量化的桌面管理服务。
 
 用户可以根据需要进行选择。
 

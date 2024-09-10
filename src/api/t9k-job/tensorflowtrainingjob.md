@@ -38,7 +38,7 @@ spec:
 在该例中：
 
 * 创建 4 个副本（由 `spec.replicaSpecs[*].replicas` 字段指定），副本的角色为 `worker`（由 `spec.replicaSpecs[*].type` 字段指定）。
-* 每个副本使用 `tensorflow/tensorflow:2.11.0` 镜像，执行命令 `python dist_mnist.py`（由 `spec.replicaSpecs<a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/workloads/pods/#pod-templates">*].template` 字段指定，此处的填写方式参考 [PodTemplate</a>）。
+* 每个副本使用 `tensorflow/tensorflow:2.11.0` 镜像，执行命令 `python dist_mnist.py`（由 `spec.replicaSpecs[*].template` 字段指定，此处的填写方式参考 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/workloads/pods/#pod-templates">PodTemplate</a>）。
 * 当副本失败后，会自动重启（由 `spec.replicaSpecs[*].restartPolicy` 字段指定）。
 
 <aside class="note">
@@ -227,9 +227,9 @@ TensorFlowTrainingJob 提供以下三种策略：
 
 已结束的副本不会继续消耗集群资源，因此在一定程度上，`Unfinished` 策略比 `All` 策略更优。但这并不总是适用，由于一个项目的资源配额的计算不考虑 Pod 是否已经结束，对于资源紧张的项目，如果确定不需要通过日志来调试 Job，则可以使用 `All` 策略。
 
+`None` 策略主要用于训练脚本调试阶段。如果需要从副本中读取训练日志，则可以选用此策略。但由于这些副本可能占用资源并影响后续训练，建议你在调试完毕后手动删除这些副本或删除整个 TensorFlowTrainingJob。
+
 </aside>
-    
-    `None` 策略主要用于训练脚本调试阶段。如果需要从副本中读取训练日志，则可以选用此策略。但由于这些副本可能占用资源并影响后续训练，建议你在调试完毕后手动删除这些副本或删除整个 TensorFlowTrainingJob。
 
 ## 调度器
 

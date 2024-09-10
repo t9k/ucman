@@ -355,38 +355,38 @@ spec:
 6. `Failed`：ColossalAIJob 失败。
 7. `Unknown`：控制器无法获得 ColossalAIJob 的阶段。
 
-在下面的示例中，ColossalAIJob 所有子资源创建成功，所以类型为 `Initalized` 的 `condition` 被设为 `True`；ColossalAIJob 运行结束，所以类型为 `Completed` 的 `condition` 被设置为 `True`；但是 ColossalAIJob 的训练结果是失败的，所以类型为 `Failed` 的 `condition` 被设置为 `True`。当前 ColossalAIJob 运行阶段为 `Failed`。
+在下面的示例中，ColossalAIJob 所有子资源创建成功，所以类型为 `Initalized` 的 `condition` 被设为 `True`；ColossalAIJob 运行结束，所以类型为 `Completed` 的 `condition` 被设置为 `True`。
 
 ```yaml
 ...
 status:
   conditions:
-    - lastTransitionTime: "2021-01-18T02:36:09Z"
-      status: "True"
-      message: "The job has been initialized successfully."
-      reason: "-"
-      type: Initializing
-    - lastTransitionTime: "2021-01-18T02:36:09Z"
-      status: "True"
-      message: "All pods are running normally."
-      reason: "-"
-      type: Running
-    - lastTransitionTime: "2021-01-18T02:36:09Z"
-      status: "False"
-      message: "All pods are running normally."
-      reason: "-"
-      type: ReplicaFailure
-    - lastTransitionTime: "2021-01-18T02:36:31Z"
-      status: "False"
-      message: "The job exited with an error code."
-      reason: "Failed"
-      type: Completed
-    - lastTransitionTime: "2021-01-18T02:36:31Z"
-      status: "True"
-      message: "The job exited with an error code."
-      reason: "Failed"
-      type: Failed
-  phase: Failed
+  - lastTransitionTime: "2024-09-10T02:01:36Z"
+    message: The job has been initialized successfully.
+    reason: '-'
+    status: "True"
+    type: Initialized
+  - lastTransitionTime: "2024-09-10T02:01:51Z"
+    message: The job has finished successfully.
+    reason: Succeeded
+    status: "False"
+    type: Running
+  - lastTransitionTime: "2024-09-10T02:01:51Z"
+    message: The job has finished successfully.
+    reason: Succeeded
+    status: "False"
+    type: Failed
+  - lastTransitionTime: "2024-09-10T02:01:51Z"
+    message: The job has finished successfully.
+    reason: Succeeded
+    status: "True"
+    type: Completed
+  - lastTransitionTime: "2024-09-10T02:01:51Z"
+    message: The job has finished successfully
+    reason: Finished
+    status: "False"
+    type: ReplicaFailure
+  phase: Succeeded
 ```
 
 ### 副本的状态

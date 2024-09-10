@@ -24,7 +24,7 @@
 
 ## 使用说明
 
-你也可以[在 JupyterLab App 中创建 TensorBoard 示例](./jupyterlab.md#tensorboard-插件)，展示的内容是相同的。
+你也可以在 [JupyterLab App](./jupyterlab.md#tensorboard-插件) 中创建 TensorBoard，展示的内容是相同的。
 
 ## 下一步
 

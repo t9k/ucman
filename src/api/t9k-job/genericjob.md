@@ -219,7 +219,7 @@ GenericJob 重启机制通过 `spec.replicaSpecs[*].restartPolicy` 字段指定:
 * `spec.replicaSpecs[*].restartPolicy.policy` 表示当前副本所使用的重启策略，可以设置为 `Never`、`OnFailure` 或 `Always`。
 * `spec.replicaSpecs[*].restartPolicy.limit` 表示当前副本的最大重启次数。
 
-不同的类型可以使用不同的重启策略，比如 `master` 使用 `Always`，`worker` 使用 `OnFailure`。
+可以对不同类型的副本使用不同的重启策略，比如 `master` 使用 `Always`，`worker` 使用 `OnFailure`。
 
 ## 成功和失败
 
@@ -230,7 +230,8 @@ GenericJob 的成功和失败条件是通过 `spec.successRules` 和 `spec.failu
     * 每个条件是一个由若干副本组成的集合，如果这些副本都执行完成，则该条件达成。
 * `spec.failureRules` 数组包含 GenericJob 的所有失败条件，其中
     * 任意一个条件达成则 GenericJob 失败。
-    * 每个条件是一个由若干副本组成的集合，如果这些副本都失败或者重启次数耗尽，则该条件达成。
+    * 每个条件是一个由若干副本组成的集合，如果这些副本都失败，则该条件达成。
+* 此外，如果重启次数耗尽，且无法达成任何一个成功条件，则任务失败。
 
 在下面的示例中，记录了 3 种 GenericJob 成功的判定条件：
 
@@ -432,31 +433,31 @@ spec:
 ...
 status:
   conditions:
-    - lastTransitionTime: "2021-01-18T02:36:09Z"
-      status: "True"
-      message: "The job has been initialized successfully."
-      reason: "-"
-      type: Initializing
-    - lastTransitionTime: "2021-01-18T02:36:09Z"
-      status: "True"
-      message: "All pods are running normally."
-      reason: "-"
-      type: Running
-    - lastTransitionTime: "2021-01-18T02:36:09Z"
-      status: "False"
-      message: "All pods are running normally."
-      reason: "-"
-      type: ReplicaFailure
-    - lastTransitionTime: "2021-01-18T02:36:31Z"
-      status: "False"
-      message: 'The job is failed with rule: { "worker": [0] }'
-      reason: "Failed"
-      type: Completed
-    - lastTransitionTime: "2021-01-18T02:36:31Z"
-      status: "True"
-      message: 'The job is failed with rule: { "worker": [0] }'
-      reason: "Failed"
-      type: Failed
+  - lastTransitionTime: "2024-09-09T09:56:52Z"
+    message: The job has been initialized successfully.
+    reason: '-'
+    status: "True"
+    type: Initialized
+  - lastTransitionTime: "2024-09-09T09:57:23Z"
+    message: 'The job is failed with rule: {"worker":["0"]}'
+    reason: Failed
+    status: "False"
+    type: Running
+  - lastTransitionTime: "2024-09-09T09:57:23Z"
+    message: 'The job is failed with rule: {"worker":["0"]}'
+    reason: Failed
+    status: "True"
+    type: Failed
+  - lastTransitionTime: "2024-09-09T09:57:23Z"
+    message: 'The job is failed with rule: {"worker":["0"]}'
+    reason: Failed
+    status: "True"
+    type: Completed
+  - lastTransitionTime: "2024-09-09T09:57:21Z"
+    message: Pod[job-sample-8961e-worker-0] exited with error code 127
+    reason: ErrorInPod
+    status: "True"
+    type: ReplicaFailure
   phase: Failed
 ```
 
@@ -465,7 +466,7 @@ status:
 `status.tasks` 字段用来记录副本的状态，记录的内容主要包括：
 
 * 副本的重启次数（同一种类型的副本的重启次数之和）；
-* 副本当前的运行阶段，此处的“运行阶段”在 K8s Pod 的 5 个阶段的基础上，添加了 `Creating` 和 `Deleted` 分别表示正在创建和已删除；
+* 副本当前的运行阶段，此处的“运行阶段”在 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase">K8s Pod 的 5 个阶段</a>的基础上，添加了 `Creating` 和 `Deleted` 分别表示正在创建和已删除；
 * 副本在集群中对应的 Pod 的索引信息。
 
 在下面的示例中，GenericJob 创建了 2 个类型为 `worker` 的副本，这 2 个副本的重启次数之和为 3，当前均处于 `Running` 阶段，分别运行在 `generic-example-worker-0` 和 `generic-example-worker-1` 这 2 个 Pod 上。

@@ -2,7 +2,7 @@
 
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/tsl0922/ttyd">ttyd</a> 是一个简单而强大的工具，它允许用户通过 HTTP 或 HTTPS 协议在 web 浏览器中访问远程服务器的终端，无需安装额外的客户端软件。ttyd 支持多种终端程序，如 sh、bash、zsh 等，使用户可以在熟悉的 shell 环境中工作。
 
-Terminal 是一个基于 ttyd 的 web 终端 App，允许用户在浏览器中访问并执行命令。Terminal 预装了多种常用的命令行工具（如 kubectl、tmux、helm 和 vim），支持多种 shell 环境（如 sh、bash 和 zsh），可设置定期 ping 以保持长连接，并且可以挂载 PVC。
+Terminal 是一个基于 ttyd 的 web 终端 App，允许用户在浏览器中访问并执行命令。Terminal 预装了多种常用的命令行工具（如 kubectl、tmux、helm 和 vim），支持多种 shell 环境（如 sh、bash 和 zsh），并且可以挂载 PVC。
 
 ## 使用方法
 

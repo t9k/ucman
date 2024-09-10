@@ -193,7 +193,7 @@ PyTorchTrainingJob 的 `spec.replicaSpec[*].template` 字段使用 <a target="_b
 
 前面的示例中所使用的训练方法比较原始，即直接用 `python` 启动训练脚本，执行训练。
 
-PyTorch 在后续提供了 `torch.distributed.launch` 包和 `torchrun` 工具来更好地启动和管理训练，具体优点包括：支持**一机多进程**、**高容错**、**弹性伸缩训练规模**等。PyTorchTrainingJob 也支持使用 `torchrun` 启动训练来继承这些优点。
+PyTorch 在后续提供了 `torch.distributed.launch` 包和 `torchrun` 工具来更好地启动和管理训练，具有**支持一机多进程**、**高容错**、**弹性伸缩训练规模**等优点。PyTorchTrainingJob 也支持使用 `torchrun` 启动训练来继承这些优点。
 
 ```yaml
 spec:
@@ -237,7 +237,9 @@ spec:
     expectedReplicas: 7
 ```
 
-注：期望训练规模（`spec.elastic.expectedReplicas`）并不代表实际训练规模，当集群资源数量不足时，控制器可能无法创建足够的副本。
+期望训练规模（`spec.elastic.expectedReplicas`）并不代表实际训练规模，当集群资源数量不足时，控制器可能无法创建足够的副本。
+
+在训练启动后，用户可以在 [4,10] 之间调整期望训练规模。
 
 ### 最佳实践
 
@@ -246,7 +248,6 @@ spec:
 spec:
   torchrunConfig:
     enabled: false
-    minNodes: 1
     maxRestarts: 10
     procPerNode: "1"
     rdzvBackend: c10d
@@ -324,9 +325,9 @@ PyTorchTrainingJob 提供以下三种策略：
 
 已结束的副本不会继续消耗集群资源，因此在一定程度上，`Unfinished` 策略比 `All` 策略更优。但这并不总是适用，由于一个项目的资源配额的计算不考虑 Pod 是否已经结束，对于资源紧张的项目，如果确定不需要通过日志来调试 Job，则可以使用 `All` 策略。
 
+`None` 策略主要用于训练脚本调试阶段。如果需要从副本中读取训练日志，则可以选用此策略。但由于这些副本可能占用资源并影响后续训练，建议用户在调试完毕后手动删除这些副本或删除整个 PyTorchTrainingJob。
+
 </aside>
-    
-    `None` 策略主要用于训练脚本调试阶段。如果需要从副本中读取训练日志，则可以选用此策略。但由于这些副本可能占用资源并影响后续训练，建议用户在调试完毕后手动删除这些副本或删除整个 PyTorchTrainingJob。
 
 ## 调度器
 

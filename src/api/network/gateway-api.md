@@ -70,7 +70,7 @@ spec:
 
 通过以下命令查看该 Gateway 的 IP 地址为 `100.1.2.3`：
 
-```yaml
+```bash
 $ kubectl get gateway my-gateway
 NAME         CLASS    ADDRESS      PROGRAMMED   AGE
 my-gateway   cilium   100.1.2.3    True         13d
@@ -136,7 +136,7 @@ spec:
 
 通过以下命令查看该 Gateway 的 IP 地址为 `100.1.2.3`：
 
-```yaml
+```bash
 $ kubectl get gateway tls-gateway
 NAME          CLASS    ADDRESS      PROGRAMMED   AGE
 tls-gateway   cilium   100.1.2.3    True         13d

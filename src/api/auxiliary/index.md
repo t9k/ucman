@@ -6,4 +6,5 @@
 | ----------------------------------------------- | ----------- | ------------------------ |
 | [Secret](./secret.md)                           | Kubernetes  | 存储敏感信息并用于配置   |
 | [ConfigMap](./configmap.md)                     | Kubernetes  | 存储非敏感信息并用于配置 |
-| [ServiceAccountToken](./serviceaccounttoken.md) | TensorStack | 生成 kubeconfig          |
+
+<!-- | [ServiceAccountToken](./serviceaccounttoken.md) | TensorStack | 生成 kubeconfig          | -->

@@ -91,4 +91,4 @@ data:
 
 ## 下一步
 
-- [使用 StorageShim 适配 S3 服务](../../tasks/use-storageshim-s3.md)
+* 学习如何[管理 StorageShim](../../guide/manage-storage-network-and-auxiliary/storageshim.md)

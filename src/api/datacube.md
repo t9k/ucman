@@ -447,4 +447,4 @@ status:
 
 ## 参考
 
-* API 参考：[DataCube](../../reference/api-reference/datacube.md)
+* API 参考：[DataCube](../reference/api-reference/datacube.md)

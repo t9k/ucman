@@ -89,7 +89,7 @@ TensorBoard 插件的使用方法请参阅<a target="_blank" rel="noopener noref
 
 ## 常见问题
 
-请参阅 [JupyterLab 使用中的常见问题](../guide/theme/faq-in-jupyterlab-usage.md)。
+请参阅 [JupyterLab 使用中的常见问题](../reference/faq/faq-in-jupyterlab-usage.md)。
 
 ## 下一步
 

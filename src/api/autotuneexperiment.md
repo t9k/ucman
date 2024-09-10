@@ -49,8 +49,8 @@ spec:
 在该例中：
 
 * 使用 TensorFlowTrainingJob 进行训练（由 `trainingConfig` 字段指定，详细配置方法请参阅[训练框架支持](#训练框架支持)）。
-* 使用 TPE 算法进行超参数调优，算法的参数为 `{"optimize_mode": "minimize", "constant_liar_type": "min"}`（由 `tuner` 字段指定，更多参数请参阅[超参数调优算法](./hpo-algorithm.md)）。
-* 超参数的搜索空间为 `{"batch_size": {"_type": "choice", "_value": [512, 1024, 2048, 4096, 8092]},"learning_rate": {"_type": "choice", "_value": [0.0001, 0.001, 0.01, 0.1]}}`（由 `searchSpace` 字段指定，搜索空间的格式及含义请参阅[搜索空间](./autotune-search-space.md)）。
+* 使用 TPE 算法进行超参数调优，算法的参数为 `{"optimize_mode": "minimize", "constant_liar_type": "min"}`（由 `tuner` 字段指定，更多参数请参阅[超参数调优算法](#超参数调优算法)）。
+* 超参数的搜索空间为 `{"batch_size": {"_type": "choice", "_value": [512, 1024, 2048, 4096, 8092]},"learning_rate": {"_type": "choice", "_value": [0.0001, 0.001, 0.01, 0.1]}}`（由 `searchSpace` 字段指定，搜索空间的格式及含义请参阅[搜索空间](#搜索空间)）。
 * 可以同时测试 3 组超参数，最大测试次数为 50（分别由 `trialConcurrency` 和 `maxTrialNum` 字段指定），实验的最大执行时间为 2 小时（7200 秒，由 `maxExecSeconds` 字段指定），如果时间超出，实验进入 `TIMEOUT` 状态。
 
 ## AIStore 的使用

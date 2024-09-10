@@ -18,7 +18,6 @@ data:
 
 在该例中，`configmap-demo` 明文存储了两对键值对。
 
-
 ## 使用 ConfigMap
 
 与 [PVC](../storage/pvc.md) 类似，ConfigMap 可以以同样的方式作为数据卷被 Pod、Notebook、Job 等资源挂载。以 PyTorchTrainingJob 为例：
@@ -68,3 +67,4 @@ spec:
 
 * 了解 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/configuration/configmap/">ConfigMap 的概念</a>
 * 了解 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/config-map-v1/">ConfigMap 的定义</a>
+* 学习如何[管理 ConfigMap](../../guide/manage-storage-network-and-auxiliary/configmap.md)

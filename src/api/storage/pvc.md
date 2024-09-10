@@ -133,4 +133,5 @@ PVC 的生命周期独立于 Pod。一个 PVC 可以被多个 Pod 使用。当 P
 
 * 了解 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">PVC 的概念</a>
 * 了解 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/">PVC 的定义</a>
-* 如何[上传和下载文件](../../guide/theme/upload-and-download-file.md)到 PVC
+* 学习如何[管理 PVC](../../guide/manage-storage-network-and-auxiliary/pvc.md)
+* 学习如何[上传和下载文件](../../guide/theme/upload-and-download-file.md)到 PVC

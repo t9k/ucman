@@ -19,8 +19,8 @@
 
 在 PVC 创建页面，如下填写各个参数：
 
-* **Name** 填写 `mnist`。
-* **Size** 填写 `1Gi`。
+* **名称**填写 `mnist`。
+* **存储**填写 `1Gi`。
 
 其他参数保持默认即可。完成之后，点击右上角的**创建**。
 
@@ -36,7 +36,7 @@
 
 ## 安装 JupyterLab (CPU) App
 
-在左侧导航菜单中点击**应用**进入 App 管理页面，然后点击右上角的**安装**：
+在左侧导航菜单点击**应用**进入 App 管理页面，然后点击右上角的**安装**：
 
 <figure class="screenshot">
   <img alt="install-jupyterlab1" src="../assets/get-started/training-first-model/install-jupyterlab1.png" />
@@ -84,7 +84,7 @@
 <aside class="note tip">
 <div class="title">提示</div>
 
-如果你之前从未使用过 JupyterLab，建议在使用之前先阅读<a target="_blank" rel="noopener noreferrer" href="https://jupyterlab.readthedocs.io/en/stable/">官方文档</a>以熟悉 JupyterLab 的功能特性以及基本操作。
+如果你之前从未使用过 JupyterLab，建议在使用之前先阅读 <a target="_blank" rel="noopener noreferrer" href="https://jupyterlab.readthedocs.io/en/latest/">JupyterLab Documentation</a> 或<a target="_blank" rel="noopener noreferrer" href="https://jupyterlab.pythonlang.cn/en/latest/">它的中文版本</a>以熟悉 JupyterLab 的功能特性以及基本操作。
 
 </aside>
 

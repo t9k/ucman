@@ -115,7 +115,7 @@ App 的 README 主要包含三个方面的信息：
 
 用户可以修改 App 的原始名称，该名称仅有便于用户辨识的作用，并不是 App 的唯一标识符；App 的名称可以任意重名。这可以类比到在某些智能手机系统或桌面中，你可以安装两个微信，并且可以将第二个微信重命名为“微信”、“微信2”、“QQ”或其他任意的名称。
 
-本文档将上面安装的第一个 App 称为“JupyterLab (CPU) App”，第二个 App 称为“名称为 `tutorial` 的 JupyterLab (CPU) App”。
+本手册将上面安装的第一个 App 称为“JupyterLab (CPU) App”，第二个 App 称为“名称为 `tutorial` 的 JupyterLab (CPU) App”。
 
 </aside>
 

@@ -53,7 +53,7 @@ PyTorchTrainingJob 是服务于 PyTorch 并行训练框架的 Job。
   <img alt="create-job-detail" src="../assets/get-started/parallel-training/create-job-detail.png" />
 </figure>
 
-在跳转回到 Job 管理页面之后，等待刚才创建的 Job 就绪。第一次拉取镜像可能会花费较长的时间，具体取决于集群的网络状况。待 Job 开始运行之后，点击其**名称**进入详情页面。
+在跳转回到 Job 管理页面之后，等待刚才创建的 Job 就绪。第一次拉取镜像可能会花费较长的时间，具体取决于集群的网络状况。待 Job 开始运行后，点击其**名称**进入详情页面。
 
 <figure class="screenshot">
   <img alt="job-created" src="../assets/get-started/parallel-training/job-created.png" />
@@ -75,7 +75,7 @@ PyTorchTrainingJob 是服务于 PyTorch 并行训练框架的 Job。
   <img alt="job-log" src="../assets/get-started/parallel-training/job-log.png" />
 </figure>
 
-一段时间之后，Job 的状态变为 **Done**，表示训练已经成功完成。回到 JupyterLab (CPU) App 的网页 UI，将当前教程产生的所有文件移动到名为 `parallel-training` 的新文件夹下。
+一段时间之后，Job 的状态变为 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9Z"></path></svg></span> **Succeeded**，表示训练已经成功完成。回到 JupyterLab (CPU) App 的网页 UI，将当前教程产生的所有文件移动到名为 `parallel-training` 的新文件夹下。
 
 ## 下一步
 

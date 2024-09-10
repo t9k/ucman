@@ -4,7 +4,7 @@
 
 ## 如何上传下载文件
 
-请参阅[上传和下载文件的 Jupyter Lab App UI 部分](./upload-and-download-file.md#jupyter-lab-app-ui)。
+请参阅[上传和下载文件的 Jupyter Lab App UI 部分](../../guide/theme/upload-and-download-file.md#jupyter-lab-app-ui)。
 
 ## 如何查看挂载 PVC 的剩余存储空间
 
@@ -45,7 +45,7 @@ du <DIR> -h --max-depth=1  # 额外展示深度不大于 1 的子目录占用的
 选用**包含 conda 环境**的[镜像](../../app/jupyterlab.md#镜像)配置和安装 App。进入 JupyterLab，启动一个终端，可以看到 prompt 显示前缀 `(base)`，表示当前 conda 环境 base 已被激活：
 
 <figure class="screenshot">
-  <img alt="conda" src="../../assets/guide/theme/faq-in-jupyterlab-usage/conda.png" />
+  <img alt="conda" src="../../assets/reference/faq/faq-in-jupyterlab-usage/conda.png" />
 </figure>
 
 然后正常执行 conda 命令即可。

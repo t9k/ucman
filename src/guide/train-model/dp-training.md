@@ -21,7 +21,7 @@ git clone https://github.com/t9k/tutorial-examples.git
 
 ## 启动训练（创建 PyTorchTrainingJob）
 
-安装一个 [Job Manager](../../app/job-manager.md) App（如有 Job Manager 则直接复用），进入 Job Manager。在左侧导航菜单点击 **Job** 进入 Job 管理页面，这里展示了所有已创建的 Job。点击右上角的**创建**，然后点击 **PyTorch** 进入 PyTorchTrainingJob 创建页面：
+安装一个 [Job Manager](../../app/job-manager.md) App（如有 Job Manager 则直接复用），进入 Job Manager 的网页 UI（控制台）。在左侧导航菜单点击 **Job** 进入 Job 管理页面，这里展示了所有已创建的 Job。点击右上角的**创建**，然后点击 **PyTorch** 进入 PyTorchTrainingJob 创建页面：
 
 <figure class="screenshot">
     <img alt="create" src="../../assets/guide/train-model/dp-training/create.png" />

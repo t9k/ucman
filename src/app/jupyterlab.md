@@ -29,7 +29,7 @@ JupyterLab Apps 是一个系列，包括 JupyterLab (CPU)、JupyterLab (NVIDIA G
 
 网页 UI 的使用方法请参阅 <a target="_blank" rel="noopener noreferrer" href="https://jupyterlab.readthedocs.io/en/latest/">JupyterLab Documentation</a> 或<a target="_blank" rel="noopener noreferrer" href="https://jupyterlab.pythonlang.cn/en/latest/">它的中文版本</a>。
 
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/HFAiLab/jupyterlab_tensorboard_pro/blob/v4.x/README.zh-cn.md#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E">TensorBoard 插件](#tensorboard-插件)的使用方法请参阅[使用说明</a>。
+[TensorBoard 插件](#tensorboard-插件)的使用方法请参阅<a target="_blank" rel="noopener noreferrer" href="https://github.com/HFAiLab/jupyterlab_tensorboard_pro/blob/v4.x/README.zh-cn.md#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E">使用说明</a>。
 
 ## 使用说明
 

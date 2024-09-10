@@ -28,7 +28,7 @@ git clone https://github.com/t9k/tutorial-examples.git
 
 ## 创建 MLServiceRuntime
 
-安装一个 [Service Manager](../../app/service-manager.md) App（如有 Service Manager 则直接复用），进入 Service Manager。在左侧导航菜单点击 **MLServiceRuntime** 进入 MLServiceRuntime 管理页面，这里展示了所有已创建的 MLServiceRuntime。点击右上角的**创建**进入创建页面：
+安装一个 [Service Manager](../../app/service-manager.md) App（如有 Service Manager 则直接复用），进入 Service Manager 的网页 UI（控制台）。在左侧导航菜单点击 **MLServiceRuntime** 进入 MLServiceRuntime 管理页面，这里展示了所有已创建的 MLServiceRuntime。点击右上角的**创建**进入创建页面：
 
 <figure class="screenshot">
     <img alt="create-runtime" src="../../assets/guide/deploy-model/deploy-pytorch/create-runtime.png" />

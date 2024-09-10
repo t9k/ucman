@@ -89,7 +89,7 @@ torch-model-archiver --model-name mnist \
 
 ### 访问推理服务
 
-回到 JupyterLab (CPU) App 的网页 UI，在终端中执行以下命令以下载测试数据，并向推理服务发送请求。注意变量 `URL` 的值需要修改为实际部署的推理服务的地址。
+回到 JupyterLab (CPU) App 的网页 UI，在终端中执行以下命令以下载测试数据，并向推理服务发送请求。注意将 `<URL>` 替换为推理服务地址。
 
 ```sh
 # 下载测试图像文件

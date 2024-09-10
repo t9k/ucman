@@ -37,7 +37,7 @@ AI 集群的拥有者可以使用这套软件，构建自己的 AI 私有云或 
 
 ## User Console
 
-“User Console（用户控制台）”是 TensorStack AI 计算平台的 **Apps 层**入口，为 **AI 集群使用者**提供了一个集中使用集群功能的图形化使用界面。
+“User Console（用户控制台）”是 TensorStack AI 计算平台的用户交互界面，它为 AI 集群使用者提供了一个集中使用集群功能的图形化环境。
 
 <b>Apps（应用）</b>是 User Console 的核心，作为用户使用平台提供的所有功能的主要入口。无论是进行 AI 研究、开发还是部署，用户都是通过安装和使用相应的 App 来完成。例如：
 
@@ -55,11 +55,18 @@ AI 集群的拥有者可以使用这套软件，构建自己的 AI 私有云或 
 
 </aside>
 
-围绕 Apps，User Console 的其他功能都为其提供必要的支持：
+**APIs** 可以通过 User Console 直接或间接管理，它们或为 Apps 提供必要的支持：
 
-* **持久卷（PV + PVC）** 和<b>适配器（StorageShim）</b>为 Apps 持久化保存数据，存储模型、数据集和训练日志文件等；
-* 网络服务如 **Service** 和 **Ingress**，为 Apps 提供内部通信和外部访问的能力，使得 Apps 能够相互协作并对外提供服务；
+* 存储如**持久卷（PV + PVC）** 和<b>适配器（StorageShim）</b>为 Apps 持久化保存数据，存储模型、数据集和训练日志文件等。
+* 网络服务如 **Service** 和 **Ingress** 为 Apps 提供内部通信和外部访问的能力，使得 Apps 能够相互协作并对外提供服务。
 * 辅助资源如 **Secret** 和 **ConfigMap** 为 Apps 提供配置管理和敏感信息保护，确保 Apps 能够安全且灵活地运行。
+
+或作为工作负载执行某项具体任务：
+
+* Job 如 **PyTorchTrainingJob** 和 **DeepSpeedJob** 运行以 AI 模型训练为主的批处理计算任务。
+* 推理服务如 **MLService** 和 **SimpleMLService** 部署 AI 模型为推理服务。
+* 工作流 APIs 将多个平台操作步骤组合为一个工作流，进行集中管理和运行
+* **AutoTuneExperiment** 进行 AI 模型训练的自动超参数调优。
 
 除此之外，User Console 还提供了账户设置功能，帮助用户管理账户的项目和 API Key，接受账单和来自平台的告警信息。
 
@@ -92,6 +99,6 @@ AI 集群的拥有者可以使用这套软件，构建自己的 AI 私有云或 
 
 ## 下一步
 
-* [了解和使用 Apps](./app/index.md)
-* [了解和使用 APIs](./api/index.md)
-* 进入 [User Console 首页](./guide/homepage.md)
+* 跟随[快速开始](./get-started/index.md)的内容，快速上手平台的基本使用
+* 阅读 [Apps](./app/index.md) 和 [APIs](./api/index.md) 章节，了解平台提供的各种 App 和 API
+* 参照[操作指南](./guide/index.md)的教程，执行更多具体的操作，完成更加复杂的任务

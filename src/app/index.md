@@ -2,20 +2,20 @@
 
 ## 概念
 
-<b>Apps（应用）</b>是 TensorStack AI 平台的功能模块，用以提供各种能力。
+<b>Apps（应用）</b>是 TensorStack AI 平台在用户 “应用场景” 的扩展机制，用于支持多样性的应用场景及个人偏好，类似于智能手机上的 “应用商店” 机制。
 
 这里的 Apps 既包括由 AI 模型驱动的应用程序，例如 vLLM、Open WebUI、Stable Diffusion WebUI，也包含在 AI 研究、开发过程中可能使用到的软件、工具，例如 JupyterLab、TensorBoard、Dify。利用这些 Apps，用户能够高效地完成模型开发、训练和部署，AI 应用构建和部署等任务，全面开展与 AI 有关的工作。
 
-用户在完成某一项任务时可以根据任务的性质和自身的偏好，灵活地安装和使用多个 Apps，并且这些 Apps 可以通过共享存储、API 调用等方式进行协作，下面是一个示意图：
+用户在完成某一项任务时可以根据任务的性质和自身的偏好，灵活地安装和使用多个 Apps，并且这些 Apps 可以通过共享存储、API 调用等方式进行协作，如下图所示：
 
 <figure class="architecture">
   <img alt="app" src="../assets/app/app.drawio.svg" />
-  <figcaption>图 1：用户可以根据任务的性质和自身的偏好，灵活地安装和使用多个 Apps 完成工作任务。</figcaption>
+  <figcaption>图 1：用户可以根据任务的性质和自身的偏好，灵活地安装和使用多个 Apps 完成工作。这些 Apps 可以通过共享存储、API 调用等方式进行协作。</figcaption>
 </figure>
 
 例如：
 
-1）在任务[进行数据并行训练](../guide/train-model/dp-training.md)中：
+1）在任务 [进行数据并行训练](../guide/train-model/dp-training.md) 中：
 
 - 用户在 [JupyterLab](./jupyterlab.md) App 中进行交互式开发。
 - 用户在 [Job Manager](./job-manager.md) App 中查看运行的 PyTorchTrainingJob。
@@ -23,11 +23,20 @@
   - 用户在 JupyterLab 中拉取的训练代码可以被 PyTorchTrainingJob 执行。
   - PyTorchTrainingJob 中产生的 tfevents 日志文件可以被 TensorBoard 所读取并可视化展示。
 
-2）在任务[部署 LLM 推理服务和聊天服务](../guide/deploy-model/deploy-llm.md)中：
+2）在任务 [部署 LLM 推理服务和聊天服务](../guide/deploy-model/deploy-llm.md) 中：
 
 - [JupyterLab](./jupyterlab.md) App 和 vLLM App 共享存储，在 JupyterLab 中下载的模型文件可以被 vLLM 所加载。
 - NextChat 调用 vLLM 的 LLM 推理服务 API。
 - 用户通过 NextChat 提供的简洁美观的 UI 中与 vLLM 部署的 LLM 聊天。
+
+## Apps 目录
+
+在 User Console 中，用户可以方便的查看可安装的 Apps，并根据需求，随时安装、卸载各种 Apps。
+
+<figure class="screenshot">
+  <img alt="create-pvc1" src="../assets/app/apps-catalog.png"/>
+  <figcaption>图 2：应用目录展示了系统中可安装的 Apps。用户可根据需求，随时安装、卸载各种应用；集群管理员可控制（通过 Apps 注册流程）用户可见的 Apps 及其版本；系统支持一个 App 的多个版本同时存在。</figcaption>
+</figure>
 
 ## Apps 列表
 

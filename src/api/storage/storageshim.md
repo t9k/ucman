@@ -91,4 +91,5 @@ data:
 
 ## 下一步
 
-* 学习如何[管理 StorageShim](../../guide/manage-storage-network-and-auxiliary/storageshim.md)
+* API 参考：[StorageShim](../../reference/api-reference/storageshim.md)
+* 学习如何[创建 StorageShim](../../guide/manage-storage-network-and-auxiliary/storageshim.md)

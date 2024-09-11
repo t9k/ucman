@@ -189,15 +189,15 @@
                         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
 <h1 id="apps"><a class="header" href="#apps">Apps</a></h1>
 <h2 id="概念"><a class="header" href="#概念">概念</a></h2>
-<p><b>Apps（应用）</b>是 TensorStack AI 平台的功能模块，用以提供各种能力。</p>
+<p><b>Apps（应用）</b>是 TensorStack AI 平台在用户 “应用场景” 的扩展机制，用于支持多样性的应用场景及个人偏好，类似于智能手机上的 “应用商店” 机制。</p>
 <p>这里的 Apps 既包括由 AI 模型驱动的应用程序，例如 vLLM、Open WebUI、Stable Diffusion WebUI，也包含在 AI 研究、开发过程中可能使用到的软件、工具，例如 JupyterLab、TensorBoard、Dify。利用这些 Apps，用户能够高效地完成模型开发、训练和部署，AI 应用构建和部署等任务，全面开展与 AI 有关的工作。</p>
-<p>用户在完成某一项任务时可以根据任务的性质和自身的偏好，灵活地安装和使用多个 Apps，并且这些 Apps 可以通过共享存储、API 调用等方式进行协作，下面是一个示意图：</p>
+<p>用户在完成某一项任务时可以根据任务的性质和自身的偏好，灵活地安装和使用多个 Apps，并且这些 Apps 可以通过共享存储、API 调用等方式进行协作，如下图所示：</p>
 <figure class="architecture">
   <img alt="app" src="../assets/app/app.drawio.svg" />
-  <figcaption>图 1：用户可以根据任务的性质和自身的偏好，灵活地安装和使用多个 Apps 完成工作任务。</figcaption>
+  <figcaption>图 1：用户可以根据任务的性质和自身的偏好，灵活地安装和使用多个 Apps 完成工作。这些 Apps 可以通过共享存储、API 调用等方式进行协作。</figcaption>
 </figure>
 <p>例如：</p>
-<p>1）在任务<a href="../guide/train-model/dp-training.html">进行数据并行训练</a>中：</p>
+<p>1）在任务 <a href="../guide/train-model/dp-training.html">进行数据并行训练</a> 中：</p>
 <ul>
 <li>用户在 <a href="./jupyterlab.html">JupyterLab</a> App 中进行交互式开发。</li>
 <li>用户在 <a href="./job-manager.html">Job Manager</a> App 中查看运行的 PyTorchTrainingJob。</li>
@@ -208,12 +208,18 @@
 </ul>
 </li>
 </ul>
-<p>2）在任务<a href="../guide/deploy-model/deploy-llm.html">部署 LLM 推理服务和聊天服务</a>中：</p>
+<p>2）在任务 <a href="../guide/deploy-model/deploy-llm.html">部署 LLM 推理服务和聊天服务</a> 中：</p>
 <ul>
 <li><a href="./jupyterlab.html">JupyterLab</a> App 和 vLLM App 共享存储，在 JupyterLab 中下载的模型文件可以被 vLLM 所加载。</li>
 <li>NextChat 调用 vLLM 的 LLM 推理服务 API。</li>
 <li>用户通过 NextChat 提供的简洁美观的 UI 中与 vLLM 部署的 LLM 聊天。</li>
 </ul>
+<h2 id="apps-目录"><a class="header" href="#apps-目录">Apps 目录</a></h2>
+<p>在 User Console 中，用户可以方便的查看可安装的 Apps，并根据需求，随时安装、卸载各种 Apps。</p>
+<figure class="screenshot">
+  <img alt="create-pvc1" src="../assets/app/apps-catalog.png"/>
+  <figcaption>图 2：应用目录展示了系统中可安装的 Apps。用户可根据需求，随时安装、卸载各种应用；集群管理员可控制（通过 Apps 注册流程）用户可见的 Apps 及其版本；系统支持一个 App 的多个版本同时存在。</figcaption>
+</figure>
 <h2 id="apps-列表"><a class="header" href="#apps-列表">Apps 列表</a></h2>
 <p>这里给出所有可用（需要管理员注册）的 App 的列表，供用户参考。部分 App 提供了链接，这些链接指向的文档会在相应 README 的基础上提供更多的信息。</p>
 <div class="table-wrapper"><table><thead><tr><th>App</th><th>分类</th><th>简介</th></tr></thead><tbody>

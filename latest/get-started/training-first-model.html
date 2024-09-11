@@ -189,6 +189,12 @@
                         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
 <h1 id="训练你的第一个模型"><a class="header" href="#训练你的第一个模型">训练你的第一个模型</a></h1>
 <p>本教程带领你构建和训练一个最简单的 AI 模型。</p>
+<p>本教程是一个小规模的训练，通过 JupyterLab App 即可完成，主要步骤如下：</p>
+<ol>
+<li>通过创建 PVC 申请集群存储空间，用于保存训练脚本、数据、及模型等；</li>
+<li>安装 JupyterLab App，使用其作为 IDE；</li>
+<li>在 JupyterLab 中创建训练脚本，并运行这个训练。</li>
+</ol>
 <h2 id="创建-pvc"><a class="header" href="#创建-pvc">创建 PVC</a></h2>
 <p>首先需要创建一个用于存储文件的 PVC。进入 User Console，在左侧导航菜单点击<strong>存储 &gt; 存储卷</strong>进入 PVC 管理页面，然后点击右上角的<strong>创建 PVC</strong>：</p>
 <figure class="screenshot">

@@ -32,28 +32,24 @@ AI 集群的拥有者可以使用这套软件，构建自己的 AI 私有云或 
 
 <figure class="architecture">
   <img alt="t9k-arch" src="./assets/overview/t9k-arch.png" />
-  <figcaption>图 1：TensorStack AI 计算平台为 AI 集群提供先进的 AI 基础设施能力。APIs 层提供了可扩展、可编程、云原生的系统服务；Apps 层为多样化的应用场景提供全面、完善的支撑。用户可根据需求，安装各种 App（IDE、LLM 开发框架、并行训练管理、推理服务管理、资源管理工具、完整的 AI 应用等），满足 AI 研究、开发和应用等业务需求。</figcaption>
+  <figcaption>图 1：TensorStack AI 计算平台为 AI 集群提供先进的 AI 基础设施能力。APIs 层提供了可扩展、可编程、云原生的系统服务；Apps 层为多样化的应用场景提供全面、完善的支持：用户可根据需求，安装各种 Apps（IDE、LLM 开发框架、并行训练管理、推理服务管理、资源管理工具、完整的 AI 应用等），满足 AI 研究、开发和应用等业务需求。</figcaption>
 </figure>
 
 ## User Console
 
-“User Console（用户控制台）”是 TensorStack AI 计算平台的用户交互界面，它为 AI 集群使用者提供了一个集中使用集群功能的图形化环境。
+“User Console（用户控制台）” 是 TensorStack AI 计算平台的用户交互界面，它为 AI 集群使用者提供了一个集中使用集群功能的图形化环境。
 
 <b>Apps（应用）</b>是 User Console 的核心，作为用户使用平台提供的所有功能的主要入口。无论是进行 AI 研究、开发还是部署，用户都是通过安装和使用相应的 App 来完成。例如：
 
 - AI 研究员可能通过 [JupyterLab App](./app/jupyterlab.md) 作为其日常开发环境，使用 [Job Manager App](./app/job-manager.md) 运行和管理并行训练任务。
 - AI 应用工程师可能使用 vLLM App 或 Stable Diffusion WebUI App 来部署和测试 AI 模型。
 
-<aside class="note info">
-<div class="title">Apps 为中心</div>
 
-这种以 Apps 为中心的设计使得用户：
 
-1. 能够直观地访问和管理所需的所有 AI 相关工具和服务；
-2. 根据自己的偏好和习惯，以及工作的内容和性质，灵活地选择合适的 App；
-3. 可方便地通过安装新的 App 来获得能力扩展，随时使用 AI 领域的各种新技术和工具。
-
-</aside>
+<figure class="architecture">
+  <img alt="use-user-console" src="./assets/overview/use-user-console.drawio.svg" />
+  <figcaption>图 2：用户登陆系统后在项目中安装并使用 Apps 完成工作。</figcaption>
+</figure>
 
 **APIs** 可以通过 User Console 直接或间接管理，它们或为 Apps 提供必要的支持：
 
@@ -68,37 +64,22 @@ AI 集群的拥有者可以使用这套软件，构建自己的 AI 私有云或 
 * 工作流 APIs 将多个平台操作步骤组合为一个工作流，进行集中管理和运行
 * **AutoTuneExperiment** 进行 AI 模型训练的自动超参数调优。
 
-除此之外，User Console 还提供了账户设置功能，帮助用户管理账户的项目和 API Key，接受账单和来自平台的告警信息。
+<aside class="note info">
+<div class="title">Apps 为中心</div>
 
-### 使用流程
+这种以 Apps 为中心的设计使得用户：
 
-用户使用 User Console 的基本交互流程如下：
-
-1. 登录系统；
-2. 在项目中安装并使用 Apps，必要时创建存储、网络和辅助资源等；
-3. 在 Apps 中完成工作（创建计算任务，部署推理服务，使用推理服务，等等）。
-
-<figure class="architecture">
-  <img alt="use-user-console" src="./assets/overview/use-user-console.drawio.svg" />
-  <figcaption>图 2：用户登陆系统后在项目中安装并使用 Apps 完成工作。</figcaption>
-</figure>
-
-### 准备工作
-
-在开始使用 User Console 之前，你需要：
-
-1. 了解[账户](./security/account.md)和[项目](./security/project.md)的概念。
-1. 拥有一个账户，且该账户是至少一个项目的成员。
-
-<aside class="note tip">
-<div class="title">提示</div>
-
-如果你没有账户或不是任何项目的成员，请联系平台的管理员。
+1. 能够直观地访问和管理所需的所有 AI 相关工具和服务；
+2. 根据自己的偏好和习惯，以及工作的内容和性质，灵活地选择合适的 App；
+3. 可方便地通过安装新的 App 来获得能力扩展，随时使用 AI 领域的各种新技术和工具。
 
 </aside>
 
+除此之外，User Console 还提供了账户设置功能，帮助用户管理账户的项目和 API Key，接受账单和来自平台的告警信息。
+
+
 ## 下一步
 
-* 跟随[快速开始](./get-started/index.md)的内容，快速上手平台的基本使用
+* 跟随 [快速开始](./get-started/index.md) 的内容，快速上手平台的基本使用
 * 阅读 [Apps](./app/index.md) 和 [APIs](./api/index.md) 章节，了解平台提供的各种 App 和 API
-* 参照[操作指南](./guide/index.md)的教程，执行更多具体的操作，完成更加复杂的任务
+* 参照 [操作指南](./guide/index.md) 的教程，执行更多具体的操作，完成更加复杂的任务

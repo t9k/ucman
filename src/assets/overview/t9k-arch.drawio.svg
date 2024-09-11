@@ -1,34 +1,23 @@
-<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="630px" height="339px" viewBox="-0.5 -0.5 630 339" content="&lt;mxfile&gt;&lt;diagram id=&quot;2e8g62s9CVV5hNdLCoeZ&quot; name=&quot;Page-1&quot;&gt;7Vtbb6M4FP41fpzKYC7mEVKysw8jVequ9tkBN0F1cBZI086vXxtMEmNnmqbQqTalUms+7GP7fOf4egrQbP38R0U2qx88pwy4MH8G6Ba4rgPdQPyRyEuHhB7ugGVV5B0ED8B98ZP2JRW6LXJaK6yDGs5ZU2x0MONlSbNGw0hV8Z2e7YGzXAM2ZEkN4D4jzET/KfJm1aHYhwf8Oy2Wq75mB6ova9JnVkC9IjnfHUEoBWhWcd50qfXzjDKpPF0v8xNf9w2raNmcU8DtCjwRtlV9U+1qXvrOVnxb5lTmhwAlu1XR0PsNyeTXnaBXYKtmzcSbI5IPBWMzzngl3kteikxJ3VT8kfYgcFHQPjIzL5sjvHsEnpN61VYoJaoG0qqhzyc76exVJ2yO8jVtqheRRRVAoSqizM1xlbntDuQhF3XY6pg4pDISZTDLveyDTkVCqdWuYmRRccAa2c/iSVN18O9W8p5oqaX625bgbIiwYojUG1JaxS5I9rhs2fyWdVqPZTPLoikIs1eb+iBOAY5AikGMAPaBtKdE/k49kNyCZA7SEEQeiIWmYLwRDqiaIdTStURvnYDNJk/cCQwSCDDSWnr3Zw3SOUhmAM8sfRGJBIEkaRMJiMSnAEQi863UCY5B7FzSUQGaFAqwtYQeHfifsPtGdzLdo5SbWTyPsGJZildGH6QE6UOFGMRiBa+LPJeVWH1a9/oRnNDpHaF3QuQYTuhgaDohgu/3Qc/wwb9rWglkxsuaCyWMoHQxgs3b50jzmVCOqOddumdkQVmyN/tBC8YYHpF/42vcRIFBzVTM+K9PQDQXk696Vb0+nnH0SWRPgTHtYCh/xBda5rFcBAh4wXj2+NeqKDt4XrBebNcKWfVbtVpRRpriSS9nU5EqescLIfG0nwTRjYN0KTXfVhlVBY9n94Es5BmydEENqZa0MQS1pO27dBaPwes8irXORiZJ1khO3rKUEPRRlGEITzqibgWwfcZxj3CgQw8azuFZnMMfwTnCk0sH2d92gdt3+TDrteurh4fTi4hFD7ST4GESWlgmpq6eEzPTJCvD1nlPOfUIdHpQ59N1fINPN7AQ6o1AKJ6a0LsvQh3PXFhMRmg0LaEztq2bdqGSlstC6PgzkTuf426QnZTcQCMXOebWbTJy++OG6dn9Tqp8J5Ryhfzqzosi7wP5PeP047oWn54X6WMpHhyAnLvyHApyYXCDw6kWn47tjOWqifQjf0BkcBmRQ0Eu9KYk0tyoXzmRnj8YIIPwMiINQdifksivff1A/wF0xiHSEDQtkWds7K+LSM/X9e9GF3vkQFCIJ2PRtvG8ahb9nrU9i9FlLBqCMJyMxct2m+pe7Qiy3KtIAd/q9qZVXqg4cPMMbLcp25rWwJ3JVpVPgvn63O3J+68xxjhMByNsWQJsX1odX2RA5V/HW5ZfGem5Wxb3si3pqCawqfhTe//emsGalGT5ZQaH0ftDzMD5/WZwtcSH+oCPgo/0/zOOLP5/ARvIMe9crAEb/gjxGtaAjYGK33eVNZ8rvf3mqyzkmCflU11lWa7gLxuxzowTOXcUOwr5CADGIAlfj+u4jnEuGB78uIax+N5Eo5zt9OCTGEucytgfaTUQiJVf6oPIARH+shqr1aDQHLkns5qvo4phLEkfodOz4aGb4NJYEt+U5euixtvpWiIf4nxdSO8dMWLrc3oQGpBm21hEjulCY0Rj/eI+++3BqqPGcJoDbwSipE2EIBGfvFdG4EV1pXGXeHCDDi3bFTSOPYnXQ+h65/aHfwBA6X8=&lt;/diagram&gt;&lt;/mxfile&gt;">
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="630px" height="339px" viewBox="-0.5 -0.5 630 339" content="&lt;mxfile&gt;&lt;diagram id=&quot;2e8g62s9CVV5hNdLCoeZ&quot; name=&quot;Page-1&quot;&gt;7ZpLc6M4EIB/jY6TEojn0fbYM3vYqlRlt/YsGxlTwcgLsp3sr18JhEFIdvyAZGps5xBoRIP6625o1ABN1m8/crxZ/UkjkgIbRm8AfQe2bUHb4/+E5L2S+E5QCeI8iSoRbAQvyX+kPlNKt0lECimrRIzSlCUbVbigWUYWTJHhPKd7ddiSppEi2OCYaIKXBU516T9JxFaVNHBhI/9JknhVX9mC8sga14OloFjhiO5bIjQFaJJTyqqt9duEpMJ4ql1mR44ebiwnGTvnBLs6YYfTrZybvC/2Xk82p9ssImI8BGi8XyWMvGzwQhzdc7xctmLrlO9ZfHOZpOmEpjTn+xnN+KBxwXL6SmohsJFX/sRgmrGWvPpxeYSLVXlBoVGfkZzkjuSMvLVEcoY/CF0Tlr/zIfIo8uUp0t0sW7rbvoGHbFTJVm1wSA7E0mHig+7GpnxDmtVsYmQwsZcyMc9kp5ja+3cruI+Vrbj8P3XA+DsYz8DUB6EDRgGYhiAcg8ATkvEUjJxaK7+fUrE8s4uT24ypzFRAkpoBJE6TOOO7KVkKDcL+CY+JkRSvkygSFzG6iOpEPTC1gg5T5GhMrQDqTBG8HalzFOm8tvvfBcn5kAnNCsqt0rCZ90mGR82s/LXwLLhR+bVvApTiOUnHePEal/LOHfQRksh9chWAoafxGwqf+3HSIxFP+HJXzrqd5dTEdUCgpboAij9+hGTRSDx4uHie0sXrX6skq8SzJK3VHrWruJuTVs1JilmyUx9PJhPJU59pwi/RBFOdpOpg8sInC6laCrrNF0Se2H6idHQhR9OlKmI4jwnTFJXQDlM6i6P3MUf+fN2ITbxggskljy+Oj6BFAOHRQFS9AJa/fsLD79jQgVpwOIbgcHsIDv9obhPzLV+q6ik3T6nymb5cGh5c3bw4ev6jMGfDg6y6zpEkOcjbSBm8x4K6B5wOVHnalqvxtD0DUKcHoMHQQJ8fQC3H+jyg4bBAJ+m2YOXLyzSLk+zIu8sXwZ3NgirJDgrXU+AiSy8XBoNbl7jD0/2J82jP7XSHfNXgRaFeOgzH94yK+75ePh0nVHNp0Cm6z33z7CqyofcU+EO9fFqmuv6uQbqh2wHpXQeyq8iGzpAgTdX8XYN03E6C9PzrQGqKAndIkI+6vmN/D1r9gNQUDQvyjML+vkA6rmp/O7w6IjuK/GAwiqbC864pujW1A8XwOoqaogAORvG6alOu5bREhnUOoeBbUa7ujfgAC27egGn1Y1uQAtgTcVfZjpMvzi1Pbl/r6ONj+lF/u6Bk8QLzq1V7tQPK+GqXLKec9NySxb6uJO3VBTY53ZVrvqUbrHGG44cbNNn7U9zA+no3uFvwvprwkfeZ8X/GJ4vfr0kAWfqai7FJwO2hR8DYJNAx8W1LWbOZtNsXL2UhS/9SPtRS1ol1+ssylvpRtNjg7KYs1mri8EAQgLHfSmiV9ss+w/42ec7rfvixNWdxnYGynOnrwS/iLKMpGFml18Cy48cFoQXC4OE1Rq9Bvp65B/Oax6eKbi9J3aFT03DQk3dtL4mr63JVVf1Vuic6H5rF7midiHAeuK3r1wwz1CFrqj5CS4+zPlq2Tix6X9BF+VFOnh863r7JZD8qPzokLMHp2dn5RGOmKU3Pc0PivsMOTgQNNQ3qx5/4btNTXeWGpjMdTf8H&lt;/diagram&gt;&lt;/mxfile&gt;">
     <defs/>
     <g>
         <rect x="306" y="32" width="323" height="138" fill="none" stroke="#666666" stroke-dasharray="3 3" pointer-events="all"/>
-        <rect x="58" y="35" width="180" height="30" fill="none" stroke="none" pointer-events="all"/>
+        <rect x="116" y="38" width="180" height="30" fill="none" stroke="none" pointer-events="all"/>
         <g transform="translate(-0.5 -0.5)">
             <switch>
                 <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 178px; height: 1px; padding-top: 50px; margin-left: 60px;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 178px; height: 1px; padding-top: 53px; margin-left: 118px;">
                         <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: left;">
                             <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
                                 <div style="">
-                                    <ol>
-                                        <li>
-                                            <span style="background-color: initial;">
-                                                安装 + 使用 Apps
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span style="background-color: initial;">
-                                                调用 APIs，使用系统服务
-                                            </span>
-                                        </li>
-                                    </ol>
+                                    使用集群
                                 </div>
                             </div>
                         </div>
                     </div>
                 </foreignObject>
-                <text x="60" y="54" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px">
-                    安装 + 使用 Apps调用 APIs，使用系统服务
+                <text x="118" y="57" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px">
+                    使用集群
                 </text>
             </switch>
         </g>
@@ -39,7 +28,9 @@
                     <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 78px; height: 1px; padding-top: 15px; margin-left: 272px;">
                         <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
                             <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
-                                User Console
+                                <b>
+                                    User Console
+                                </b>
                             </div>
                         </div>
                     </div>
@@ -258,7 +249,9 @@
                     <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 89px; height: 1px; padding-top: 197px; margin-left: 266px;">
                         <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
                             <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
-                                Admin Console
+                                <b>
+                                    Admin Console
+                                </b>
                             </div>
                         </div>
                     </div>
@@ -268,11 +261,11 @@
                 </text>
             </switch>
         </g>
-        <rect x="121" y="210" width="131" height="30" fill="none" stroke="none" pointer-events="all"/>
+        <rect x="116" y="210" width="131" height="30" fill="none" stroke="none" pointer-events="all"/>
         <g transform="translate(-0.5 -0.5)">
             <switch>
                 <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 129px; height: 1px; padding-top: 225px; margin-left: 123px;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 129px; height: 1px; padding-top: 225px; margin-left: 118px;">
                         <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: left;">
                             <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
                                 <div style="">
@@ -285,7 +278,7 @@
                         </div>
                     </div>
                 </foreignObject>
-                <text x="123" y="229" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px">
+                <text x="118" y="229" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px">
                     管理集群
                 </text>
             </switch>

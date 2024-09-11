@@ -21,6 +21,8 @@ JupyterLab Apps 是一个系列，包括 JupyterLab (CPU)、JupyterLab (NVIDIA G
 
 ## 使用方法
 
+### 使用 JupyterLab Web UI
+
 待 App 就绪后，点击右侧的 <span class="twemoji"><svg class="MuiSvgIcon-root MuiSvgIcon-colorPrimary MuiSvgIcon-fontSizeMedium css-jxtyyz" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="OpenInNewIcon"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3z"></path></svg></span> 进入网页 UI，即可进行开发工作。
 
 <figure class="screenshot">
@@ -30,6 +32,35 @@ JupyterLab Apps 是一个系列，包括 JupyterLab (CPU)、JupyterLab (NVIDIA G
 网页 UI 的使用方法请参阅 <a target="_blank" rel="noopener noreferrer" href="https://jupyterlab.readthedocs.io/en/latest/">JupyterLab Documentation</a> 或<a target="_blank" rel="noopener noreferrer" href="https://jupyterlab.pythonlang.cn/en/latest/">它的中文版本</a>。
 
 [TensorBoard 插件](#tensorboard-插件)的使用方法请参阅<a target="_blank" rel="noopener noreferrer" href="https://github.com/HFAiLab/jupyterlab_tensorboard_pro/blob/v4.x/README.zh-cn.md#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E">使用说明</a>。
+
+### 使用 SSH 连接 JupyterLab
+
+如需通过 SSH 连接 JupyterLab，则在创建 JupyterLab App 时需要启用 SSH 功能，同时提供记录有 SSH 公钥的 Secret 名称：
+
+<figure class="screenshot">
+  <img alt="ssh-config" src="../assets/app/jupyterlab/ssh-config.png" />
+</figure>
+
+待 App 就绪后，点击应用列表右侧 **操作 > 查看信息**：
+
+<figure class="screenshot">
+  <img alt="view-note" src="../assets/app/jupyterlab/view-note.png" />
+</figure>
+
+根据信息中的命令将 SSH 服务暴露到本地端口：
+
+<figure class="screenshot">
+  <img alt="ssh-url" src="../assets/app/jupyterlab/ssh-url.png" />
+</figure>
+
+<aside class="note info">
+<div class="title">信息</div>
+
+Secret 的创建请参考 [管理 Secret](../guide/manage-storage-network-and-auxiliary/secret.md)。
+
+t9k-pf 命令的使用方法请参考 [pf](../tool/cli-t9k-pf/guide.md)
+
+</aside>
 
 ## 使用说明
 

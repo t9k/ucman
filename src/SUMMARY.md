@@ -69,6 +69,9 @@
     * [告警通知](security/alert.md)
     * [账单](security/bills.md)
 
+* [系统功能](system/index.md)
+    * [T9k Scheduler](system/scheduler/index.md)
+
 ---
 
 * [操作指南](guide/index.md)

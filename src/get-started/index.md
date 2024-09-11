@@ -10,7 +10,7 @@
 在开始之前，你需要：
 
 1. 拥有一个 [账户](../security/account.md)，以登录系统。
-1. 成为一个 [项目](../security/project.md)的成员，以使用集群资源。
+1. 成为一个 [项目](../security/project.md) 的成员，以使用集群资源。
 
 如果你没有账户或不是任何项目的成员，请联系平台的管理员。
 
@@ -23,7 +23,7 @@ User Console 是用户的功能入口，基本使用流程如下：
 3. 使用多个 Apps 互相协同，调用 APIs，完成各项工作；
 4. 卸载不再使用的 Apps，释放计算资源。
 
-<figure class="screenarchitecture">
+<figure class="architecture">
   <img alt="create-pvc1" src="../assets/get-started/concept.drawio.svg" />
   <figcaption>图 1：用户在 “项目” 中安装并使用 Apps 以完成工作。1）使用 Jupyter 作为其交互式开发环境；2）Job Manager 管理 Jobs，查看 logs、status、资源、打开 terminal等；3）TensorBoard 可视化训练 metrics。 </figcaption>
 </figure>

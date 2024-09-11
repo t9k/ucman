@@ -39,6 +39,11 @@ AI 集群的拥有者可以使用这套软件，构建自己的 AI 私有云或 
 
 “User Console（用户控制台）” 是 TensorStack AI 计算平台的用户交互界面，它为 AI 集群使用者提供了一个集中使用集群功能的图形化环境。
 
+<figure class="architecture">
+  <img alt="use-user-console" src="./assets/overview/use-user-console.drawio.svg" />
+  <figcaption>图 2：用户登陆 User-Console，安装并使用 Apps，调用 APIs 完成工作。</figcaption>
+</figure>
+
 <b>Apps（应用）</b>是 User Console 的核心，作为用户使用平台提供的所有功能的主要入口。无论是进行 AI 研究、开发还是部署，用户都是通过安装和使用相应的 App 来完成。例如：
 
 - AI 研究员可能通过 [JupyterLab App](./app/jupyterlab.md) 作为其日常开发环境，使用 [Job Manager App](./app/job-manager.md) 运行和管理并行训练任务。
@@ -46,18 +51,13 @@ AI 集群的拥有者可以使用这套软件，构建自己的 AI 私有云或 
 
 
 
-<figure class="architecture">
-  <img alt="use-user-console" src="./assets/overview/use-user-console.drawio.svg" />
-  <figcaption>图 2：用户登陆系统后在项目中安装并使用 Apps 完成工作。</figcaption>
-</figure>
-
-**APIs** 可以通过 User Console 直接或间接管理，它们或为 Apps 提供必要的支持：
+**APIs** 可以通过 User Console 直接或间接使用，它们或为 Apps 提供必要的支持：
 
 * 存储如**持久卷（PV + PVC）** 和<b>适配器（StorageShim）</b>为 Apps 持久化保存数据，存储模型、数据集和训练日志文件等。
 * 网络服务如 **Service** 和 **Ingress** 为 Apps 提供内部通信和外部访问的能力，使得 Apps 能够相互协作并对外提供服务。
 * 辅助资源如 **Secret** 和 **ConfigMap** 为 Apps 提供配置管理和敏感信息保护，确保 Apps 能够安全且灵活地运行。
 
-或作为工作负载执行某项具体任务：
+或作为工作负载执行某项特定计算：
 
 * Job 如 **PyTorchTrainingJob** 和 **DeepSpeedJob** 运行以 AI 模型训练为主的批处理计算任务。
 * 推理服务如 **MLService** 和 **SimpleMLService** 部署 AI 模型为推理服务。
@@ -65,13 +65,11 @@ AI 集群的拥有者可以使用这套软件，构建自己的 AI 私有云或 
 * **AutoTuneExperiment** 进行 AI 模型训练的自动超参数调优。
 
 <aside class="note info">
-<div class="title">Apps 为中心</div>
+<div class="title">Apps + APIs 提供了全面的扩展性</div>
 
-这种以 Apps 为中心的设计使得用户：
-
-1. 能够直观地访问和管理所需的所有 AI 相关工具和服务；
-2. 根据自己的偏好和习惯，以及工作的内容和性质，灵活地选择合适的 App；
-3. 可方便地通过安装新的 App 来获得能力扩展，随时使用 AI 领域的各种新技术和工具。
+1. Apps 系统提供了用户交互方面的扩展性；用户可根据自己的偏好和习惯，以及工作的内容和性质，灵活地选择合适的 App。
+2. APIs 系统提供了系统服务的可扩展性，满足 AI 计算在全领域的系统服务扩展。
+3. Apps 及 APIs 均可在线安装及升级，保障集群能力的不中断、在线的扩展能力。
 
 </aside>
 

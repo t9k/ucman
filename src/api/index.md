@@ -8,7 +8,7 @@ API 是平台的核心组成部分，扮演着几个关键角色：
 
 1. 请求系统服务：集群的系统功能，如创建工作负载，申请存储空间，设置网络配置等，都是通过 API 实现。
 1. API 对象管理： API 允许用户管理各种 Kubernetes API 对象，如 Pod、Service、Deployment，及其它 CRD 类型。这种管理包括根据需要创建、更新和删除资源。
-1. 通信： API 支持不同组件之间促进通信，确保它们能够有效地协同工作。
+1. 通信： API 支持不同组件之间的通信，确保它们能够有效地协同工作。
 1. 可扩展性： 通过 CRD 和其他机制，API 使用户能够扩展平台的功能，允许创建满足特定要求的自定义解决方案。
 1. 自动化： API 使自动化工具和脚本能够与平台交互,从而实现应用程序的简化部署和管理。
 
@@ -18,17 +18,17 @@ API 是平台的核心组成部分，扮演着几个关键角色：
 
 例如，查看系统中的 TensorStack 提供的 APIs:
 
-```bash
+```console
 $ kubectl api-resources |grep tensorstack
-instances                                                                                      app.tensorstack.dev/v1beta1                 true         Instance
-beamjobs                             bj                                                        batch.tensorstack.dev/v1beta1               true         BeamJob
-colossalaijobs                       caij                                                      batch.tensorstack.dev/v1beta1               true         ColossalAIJob
-cronworkflowruns                     cwr                                                       batch.tensorstack.dev/v1beta1               true         CronWorkflowRun
-deepspeedjobs                        dj                                                        batch.tensorstack.dev/v1beta1               true         DeepSpeedJob
-genericjobs                          gj                                                        batch.tensorstack.dev/v1beta1               true         GenericJob
-mpijobs                              mj                                                        batch.tensorstack.dev/v1beta1               true         MPIJob
-pytorchtrainingjobs                  pj                                                        batch.tensorstack.dev/v1beta1               true         PyTorchTrainingJob
-tensorflowtrainingjobs               tj                                                        batch.tensorstack.dev/v1beta1               true         TensorFlowTrainingJob
+instances                                       app.tensorstack.dev/v1beta1       true      Instance
+beamjobs                             bj         batch.tensorstack.dev/v1beta1     true      BeamJob
+colossalaijobs                       caij       batch.tensorstack.dev/v1beta1     true      ColossalAIJob
+cronworkflowruns                     cwr        batch.tensorstack.dev/v1beta1     true      CronWorkflowRun
+deepspeedjobs                        dj         batch.tensorstack.dev/v1beta1     true      DeepSpeedJob
+genericjobs                          gj         batch.tensorstack.dev/v1beta1     true      GenericJob
+mpijobs                              mj         batch.tensorstack.dev/v1beta1     true      MPIJob
+pytorchtrainingjobs                  pj         batch.tensorstack.dev/v1beta1     true      PyTorchTrainingJob
+tensorflowtrainingjobs               tj         batch.tensorstack.dev/v1beta1     true      TensorFlowTrainingJob
 ...
 ```
 ## API 详情
@@ -37,7 +37,7 @@ tensorflowtrainingjobs               tj                                         
 
 以 `DeepSpeedJob` API 为例，查看 API 基本情况：
 
-```bash
+```console
 $ kubectl explain deepspeedjobs
 KIND:     DeepSpeedJob
 VERSION:  batch.tensorstack.dev/v1beta1
@@ -56,7 +56,7 @@ FIELDS:
 
 可进一步指定子字段，查看其详情：
 
-```bash
+```console
 $ kubectl explain deepspeedjobs.spec
 KIND:     DeepSpeedJob
 VERSION:  batch.tensorstack.dev/v1beta1

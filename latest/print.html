@@ -221,12 +221,12 @@
   <img alt="use-user-console" src="./assets/overview/use-user-console.drawio.svg" />
   <figcaption>图 2：用户登陆 User-Console，安装并使用 Apps，调用 APIs 完成工作。</figcaption>
 </figure>
-<p><b>Apps（应用）</b>是 User Console 的核心，作为用户使用平台提供的所有功能的主要入口。无论是进行 AI 研究、开发还是部署，用户都是通过安装和使用相应的 App 来完成。例如：</p>
+<p><strong><a href="./app/index.html">Apps（应用）</a></strong> 是 User Console 的核心，作为用户使用平台提供的所有功能的主要入口。无论是进行 AI 研究、开发还是部署，用户都是通过安装和使用相应的 App 来完成。例如：</p>
 <ul>
 <li>AI 研究员可能通过 <a href="./app/jupyterlab.html">JupyterLab App</a> 作为其日常开发环境，使用 <a href="./app/job-manager.html">Job Manager App</a> 运行和管理并行训练任务。</li>
 <li>AI 应用工程师可能使用 vLLM App 或 Stable Diffusion WebUI App 来部署和测试 AI 模型。</li>
 </ul>
-<p><strong>APIs</strong> 可以通过 User Console 直接或间接使用，它们或为 Apps 提供必要的支持：</p>
+<p><strong><a href="./api/index.html">APIs</a></strong> 提供集群系统服务，可以通过 User Console 直接或间接使用。它们或为 Apps 提供必要的支持：</p>
 <ul>
 <li>存储如<strong>持久卷（PV + PVC）</strong> 和<b>适配器（StorageShim）</b>为 Apps 持久化保存数据，存储模型、数据集和训练日志文件等。</li>
 <li>网络服务如 <strong>Service</strong> 和 <strong>Ingress</strong> 为 Apps 提供内部通信和外部访问的能力，使得 Apps 能够相互协作并对外提供服务。</li>
@@ -8144,8 +8144,8 @@ spec:
 <p>平台支持使用外部已有的目录服务，例如支持 LDAP 协议的服务，存放账户信息。平台在安装时，管理员可设定用户数据的来源。</p>
 </aside>
 <h2 id="api-key"><a class="header" href="#api-key">API Key</a></h2>
-<p>在使用浏览器场景下（例如使用模型构建控制台），用户能够直接、同步地参与到身份认证和授权流程。用户可以方便地通过交互式的方式提供安全凭证（用户名 + 密码）来完成认证和授权，并随后通过 Cookie + Access Token 建立安全的交互过程。</p>
-<p>但是，还有其他环境或者场景不适合采用前述方式。例如，用户通过命令行（环境受限，无法使用浏览器）或者在自动化脚本中向服务器发送请求，此时要求“用户同步进行交互”来获得访问令牌是非常不便捷的；或者，在此过程中需要通过客户程序输入密码，可能造成密码泄漏。同时，有些场景下，我们希望能够只授予客户端部分权限，但直接使用前述 access token 或者 Cookie 并不能更进一步缩小权限。</p>
+<p>在使用浏览器场景下（例如使用 User Console），用户能够直接、同步地参与到身份认证和授权流程。用户可以方便地通过交互式的方式提供安全凭证（用户名 + 密码）来完成认证和授权，并随后通过 Cookie + Access Token 建立安全的交互过程。</p>
+<p>但是，还有其他环境或者场景不适合采用前述方式。例如，用户通过命令行或者在自动化脚本中向服务器发送请求，此时要求 “用户同步进行交互” 来获得访问令牌是非常不便捷的；或者，在此过程中需要通过客户程序输入密码，可能造成密码泄漏。同时，有些场景下，我们希望能够只授予客户端部分权限，但直接使用前述 access token 或者 Cookie 并不能更进一步缩小权限。</p>
 <p>API Key 是 TensorStack AI 平台应对上述问题的解决方案。它是一种可撤销的、异步的、持久的安全授权方式，具有以下特点：</p>
 <ul>
 <li>可以长期持有（适合在脚本中使用）</li>
@@ -8156,7 +8156,7 @@ spec:
 </ul>
 <h2 id="下一步-23"><a class="header" href="#下一步-23">下一步</a></h2>
 <ul>
-<li>学习如何为账户<a href="security/../guide/account/security-setting.html#%E7%AE%A1%E7%90%86-api-key">管理 API Key</a></li>
+<li>学习如何为账户 <a href="security/../guide/account/security-setting.html#%E7%AE%A1%E7%90%86-api-key">管理 API Key</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
 <h1 id="项目"><a class="header" href="#项目">项目</a></h1>

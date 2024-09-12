@@ -28,6 +28,8 @@ AI 集群的拥有者可以使用这套软件，构建自己的 AI 私有云或 
 
 </aside>
 
+产品提供了全面的可扩展性：用户可方便的安装各种 Apps 以满足具体应用场景的需求；管理员可以在线安装各种 APIs 以支持系统服务能力扩展；集群规模上，支持在 1～10^3 节点部署。
+
 通过先进的架构和丰富的 APIs + Apps，TensorStack AI 计算平台合理地隐藏了分布式并行、异构计算、加速计算等技术的复杂细节，提高了抽象层次，并为 AI 领域的各种计算提供了针对性的支持，极大地提升了 AI 技术研究、开发、应用的工作效率。
 
 <figure class="architecture">
@@ -39,19 +41,22 @@ AI 集群的拥有者可以使用这套软件，构建自己的 AI 私有云或 
 
 “User Console（用户控制台）” 是 TensorStack AI 计算平台的用户交互界面，它为 AI 集群使用者提供了一个集中使用集群功能的图形化环境。
 
-<figure class="architecture">
-  <img alt="use-user-console" src="./assets/overview/use-user-console.drawio.svg" />
-  <figcaption>图 2：用户登陆 User-Console，安装并使用 Apps，调用 APIs 完成工作。</figcaption>
+<figure class="screenshot">
+  <img alt="create-pvc1" src="./assets/overview/uc-apps.png"/>
+  <figcaption>图 2：运行中的 Apps。用户登陆 User-Console，根据任务需求和个人偏好，安装并使用 Apps。</figcaption>
 </figure>
 
-**[Apps（应用）](./app/index.md)** 是 User Console 的核心，作为用户使用平台提供的所有功能的主要入口。无论是进行 AI 研究、开发还是部署，用户都是通过安装和使用相应的 App 来完成。例如：
+### Apps
+
+用户可在 User Console 中方便的安装和使用各种 [Apps（应用）](./app/index.md)，是用户使用平台功能的入口。无论是进行 AI 研究、开发还是部署，用户都是通过安装和使用相应的 App 来完成。例如：
 
 - AI 研究员可能通过 [JupyterLab App](./app/jupyterlab.md) 作为其日常开发环境，使用 [Job Manager App](./app/job-manager.md) 运行和管理并行训练任务。
 - AI 应用工程师可能使用 vLLM App 或 Stable Diffusion WebUI App 来部署和测试 AI 模型。
 
 
+### APIs
 
-**[APIs](./api/index.md)** 提供集群系统服务，可以通过 User Console 直接或间接使用。它们或为 Apps 提供必要的支持：
+[APIs](./api/index.md) 提供集群系统服务，用户可以通过 User Console 直接或间接使用。它们或为 Apps 提供必要的支持：
 
 * 存储如**持久卷（PV + PVC）** 和<b>适配器（StorageShim）</b>为 Apps 持久化保存数据，存储模型、数据集和训练日志文件等。
 * 网络服务如 **Service** 和 **Ingress** 为 Apps 提供内部通信和外部访问的能力，使得 Apps 能够相互协作并对外提供服务。

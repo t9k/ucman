@@ -188,6 +188,71 @@
                         <div class="sidetoc"><nav class="pagetoc"></nav></div>
                         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
 <h1 id="apis"><a class="header" href="#apis">APIs</a></h1>
+<h2 id="概念"><a class="header" href="#概念">概念</a></h2>
+<p>应用程序接口（API）是一组规则和协议，允许不同的软件组件之间相互通信。在 TensorStack AI 平台中，API 采用 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/">Kubernetes 的 API 扩展机制</a> 实现。</p>
+<p>API 是平台的核心组成部分，扮演着几个关键角色：</p>
+<ol>
+<li>请求系统服务：集群的系统功能，如创建工作负载，申请存储空间，设置网络配置等，都是通过 API 实现。</li>
+<li>API 对象管理： API 允许用户管理各种 Kubernetes API 对象，如 Pod、Service、Deployment，及其它 CRD 类型。这种管理包括根据需要创建、更新和删除资源。</li>
+<li>通信： API 支持不同组件之间促进通信，确保它们能够有效地协同工作。</li>
+<li>可扩展性： 通过 CRD 和其他机制，API 使用户能够扩展平台的功能，允许创建满足特定要求的自定义解决方案。</li>
+<li>自动化： API 使自动化工具和脚本能够与平台交互,从而实现应用程序的简化部署和管理。</li>
+</ol>
+<h2 id="系统中的-api"><a class="header" href="#系统中的-api">系统中的 API</a></h2>
+<p>系统提供的 API 由管理员安装，普通用户可以查看系统中的 API 安装情况。</p>
+<p>例如，查看系统中的 TensorStack 提供的 APIs:</p>
+<pre><code class="language-bash">$ kubectl api-resources |grep tensorstack
+instances                                                                                      app.tensorstack.dev/v1beta1                 true         Instance
+beamjobs                             bj                                                        batch.tensorstack.dev/v1beta1               true         BeamJob
+colossalaijobs                       caij                                                      batch.tensorstack.dev/v1beta1               true         ColossalAIJob
+cronworkflowruns                     cwr                                                       batch.tensorstack.dev/v1beta1               true         CronWorkflowRun
+deepspeedjobs                        dj                                                        batch.tensorstack.dev/v1beta1               true         DeepSpeedJob
+genericjobs                          gj                                                        batch.tensorstack.dev/v1beta1               true         GenericJob
+mpijobs                              mj                                                        batch.tensorstack.dev/v1beta1               true         MPIJob
+pytorchtrainingjobs                  pj                                                        batch.tensorstack.dev/v1beta1               true         PyTorchTrainingJob
+tensorflowtrainingjobs               tj                                                        batch.tensorstack.dev/v1beta1               true         TensorFlowTrainingJob
+...
+</code></pre>
+<h2 id="api-详情"><a class="header" href="#api-详情">API 详情</a></h2>
+<p>如希望了解一个具体的 API 详情，可方便通过命令行获得。</p>
+<p>以 <code>DeepSpeedJob</code> API 为例，查看 API 基本情况：</p>
+<pre><code class="language-bash">$ kubectl explain deepspeedjobs
+KIND:     DeepSpeedJob
+VERSION:  batch.tensorstack.dev/v1beta1
+
+DESCRIPTION:
+     DeepSpeedJob defines the schema for the DeepSpeedJob API.
+
+FIELDS:
+   apiVersion	&lt;string&gt;
+     APIVersion defines the versioned schema of this representation of an
+     object. Servers should convert recognized schemas to the latest internal
+     value, and may reject unrecognized values. More info:
+     https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+...
+</code></pre>
+<p>可进一步指定子字段，查看其详情：</p>
+<pre><code class="language-bash">$ kubectl explain deepspeedjobs.spec
+KIND:     DeepSpeedJob
+VERSION:  batch.tensorstack.dev/v1beta1
+
+RESOURCE: spec &lt;Object&gt;
+
+DESCRIPTION:
+     DeepSpeedJobSpec outlines the intended configuration and execution
+     parameters for a DeepSpeedJob.
+
+FIELDS:
+   config	&lt;Object&gt;
+     Key configurations for executing DeepSpeed training jobs.
+...
+</code></pre>
+<h2 id="下一步"><a class="header" href="#下一步">下一步</a></h2>
+<ul>
+<li>阅读本 APIs 章节内容，全面了解平台提供的各种 APIs</li>
+<li>了解 TensorStack AI 平台 <a href="./t9k-job/index.html">计算任务（T9k Job）APIs</a></li>
+<li>了解 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/">Kubernetes 的 API 扩展机制</a></li>
+</ul>
 
                     </main>
 

@@ -40,7 +40,10 @@
 
 ## Apps 列表
 
-这里给出所有可用（需要管理员注册）的 App 的列表，供用户参考。部分 App 提供了链接，这些链接指向的文档会在相应 README 的基础上提供更多的信息。
+这里给出可用（需要管理员注册）的 Apps 的列表，最新及完整的 Apps 支持列表请参看 <a target="_blank" rel="noopener noreferrer" href="https://github.com/t9k/apps/tree/master/user-console">Git Hub</a>。
+
+
+下列部分 Apps 提供了链接指向更详细的文档。
 
 | App                                         | 分类     | 简介                                                                                                                       |
 | ------------------------------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------- |
@@ -80,4 +83,5 @@
 ## 下一步
 
 * 进一步了解各个 App
-* 学习如何[管理 App](../guide/manage-app/index.md)
+* 了解如何 [管理 App](../guide/manage-app/index.md)
+* 查看支持的 App 列表： <a target="_blank" rel="noopener noreferrer" href="https://github.com/t9k/apps/tree/master/user-console">https://github.com/t9k/apps/tree/master/user-console</a>

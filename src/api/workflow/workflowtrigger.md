@@ -1,8 +1,6 @@
 # WorkflowTrigger
 
-TensorStack AI 平台提供了一个灵活的工作流服务，除了支持手动执行工作流 WorkflowRun，还提供了 CronWorkflowRun 用于定时执行。
-
-Workflow Trigger 模块额外提供了一种基于特定事件自动触发执行 WorkflowRun 的能力，便于用户在一些特定场景下的自动化工作流运行。
+Workflow Trigger 模块额外提供了一种基于特定事件自动触发执行 [WorkflowRun](./workflowrun.md) 的能力，便于用户在一些特定场景下的自动化工作流运行。
 
 ## 架构
 

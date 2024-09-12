@@ -8265,6 +8265,36 @@ spec:
 <p>TODO</p>
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
 <h1 id="账单"><a class="header" href="#账单">账单</a></h1>
+<p>在 TensorStack AI 平台中，<a href="security/./project.html">项目</a>是账单统计的基本单位。一个项目中所有 Apps 使用每种资源产生的费用都由项目管理员负责，即使 Apps 是由其他项目成员创建的。</p>
+<p>收费的资源种类包括：</p>
+<div class="table-wrapper"><table><thead><tr><th>资源</th><th>价格单位</th><th>费用计算方式</th><th>备注</th></tr></thead><tbody>
+<tr><td>CPU</td><td>核/小时</td><td>费用 = 价格 * 使用量 * 时长</td><td>使用量指请求量与实际使用量的较大值</td></tr>
+<tr><td>内存</td><td>GiB/小时</td><td>费用 = 价格 * 使用量 * 时长</td><td>使用量指请求量与实际使用量的较大值</td></tr>
+<tr><td>PVC</td><td>GiB/小时</td><td>费用 = 价格 * 使用量 * 时长</td><td>使用量指 PVC 的总容量</td></tr>
+<tr><td>网络流量</td><td>GiB</td><td>费用 = 价格 * 使用量</td><td>使用量指网络流量的累计值，包括流入和流出两部分</td></tr>
+<tr><td>GPU</td><td>个/小时</td><td>费用 = 价格 * 使用量 * 时长</td><td>使用量指所请求的 GPU 总个数，无论是否实际使用</td></tr>
+<tr><td>其他扩展资源，例如 RDMA 网卡</td><td>个/小时</td><td>费用 = 价格 * 使用量 * 时长</td><td>使用量指所请求的扩展资源总个数，无论是否实际使用</td></tr>
+</tbody></table>
+</div>
+<p>TensorStack AI 平台每小时出账一次，将每个用户在本出账周期产生的费用从账户余额中扣除。计算费用时精确到小数点后 6 位（单位：元），实际扣除费用时仅扣除到小数点后 2 位，小数点后第 3 位到第 6 位部分金额会被舍弃，这种舍弃部分的金额称作抹零金额。</p>
+<h2 id="示例-2"><a class="header" href="#示例-2">示例</a></h2>
+<p>某用户拥有一个项目，该项目中只有一个 App。在 <code>2024/09/01 10:00:00 ~ 13:00:00</code> 时段，计费系统将生成 3 笔账单，分别是：</p>
+<ul>
+<li><code>2024/09/01 10:00:00 ~ 11:00:00</code></li>
+<li><code>2024/09/01 11:00:00 ~ 12:00:00</code></li>
+<li><code>2024/09/01 12:00:00 ~ 13:00:00</code></li>
+</ul>
+<p>假设该 App 请求了 2核 CPU、2GiB 内存，但是实际使用量存在一定波动：</p>
+<ul>
+<li>在 <code>2024/09/01 10:00:00 ~ 11:30:00</code> 时段，实际使用了 0.5核 CPU、0.5GiB 内存</li>
+<li>在 <code>2024/09/01 11:30:00 ~ 12:00:00</code> 时段，实际使用了 4核 CPU、4GiB 内存</li>
+</ul>
+<p>假设 CPU 的价格为 0.003元/核/小时，内存的价格为 0.003元/GiB/小时，那么上述 3 笔账单的费用分别为：</p>
+<ul>
+<li><code>2024/09/01 10:00:00 ~ 11:00:00</code>：请求量与实际使用量的较大值为 1核 CPU、1GiB 内存，费用 = 0.003元/核/小时 * 2核 * 1小时 + 0.003元/GiB/小时 * 2GiB * 1小时 = 0.012元，抹零后实际扣除费用为 0.01元；</li>
+<li><code>2024/09/01 11:00:00 ~ 12:00:00</code>：请求量与实际使用量的较大值前半小时为 1核 CPU、1GiB 内存，后半小时为 4核 CPU、4GiB 内存，平均为 2.5核 CPU、2.5GiB 内存，因此费用 = 0.003元/核/小时 * 2.5核 * 1小时 + 0.003元/GiB/小时 * 2.5GiB * 1小时 = 0.015元，抹零后实际扣除费用为 0.01元；</li>
+<li><code>2024/09/01 12:00:00 ~ 13:00:00</code>：请求量与实际使用量的较大值为 4核 CPU、4GiB 内存，费用 = 0.003元/核/小时 * 4核 * 1小时 + 0.003元/GiB/小时 * 4GiB * 1小时 = 0.024元，抹零后实际扣除费用为 0.02元。</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
 <h1 id="操作指南"><a class="header" href="#操作指南">操作指南</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
@@ -8725,17 +8755,20 @@ spec:
 <h1 id="查看账单"><a class="header" href="#查看账单">查看账单</a></h1>
 <p>点击左侧的<strong>账户设置 &gt; 账单</strong>，可以查看账单页面：</p>
 <figure class="screenshot">
-  <img alt="bill" src="guide/account/../../assets/guide/account/bill.png" />
+  <img alt="bills-overview" src="guide/account/../../assets/guide/account/bills-overview.png" />
 </figure>
-<p><strong>账单</strong>显示了当前用户拥有的所有项目的各类费用总和。这些费用来源于你拥有的项目中使用的各种资源，包括计算资源（例如 CPU、GPU、内存）、存储资源（例如 PVC）和网络资源（例如流量）。注意：项目中所有资源的费用都由项目管理员负责，即使这个资源是其他项目成员创建的。</p>
-<p><strong>费用详情</strong>列出了费用的细分条目，即每一种资源产生的具体费用。如果你想了解某一种资源的计费方式，可以将鼠标放在该资源右侧的 感叹号 上：</p>
+<p>通过最上方的日期选择框和项目选择框，你可以查看你所拥有的所有项目每天的费用。这些费用来源于你拥有的项目中使用的各种资源，包括计算资源（例如 CPU、GPU、内存）、存储资源（例如 PVC）和网络资源（例如流量）等。</p>
+<p>点击<strong>明细</strong>，可以查看充值记录和费用记录：</p>
 <figure class="screenshot">
-  <img alt="billing-practices" src="guide/account/../../assets/guide/account/billing-practices.png" />
+  <img alt="bills-detail-1" src="guide/account/../../assets/guide/account/bills-detail-1.png" />
 </figure>
-<p>点击<strong>下载当前表格</strong>，可以下载一个包含了<strong>费用详情</strong>信息的 csv 文件。</p>
-<p>点击<strong>查看当前价格</strong>，可以查看每种资源的单价：</p>
+<p>对于某一条费用记录，点击<strong>查看详情</strong>，可以查看该条记录的详细情况：</p>
 <figure class="screenshot">
-  <img alt="price" src="guide/account/../../assets/guide/account/price.png" />
+  <img alt="bills-detail-2" src="guide/account/../../assets/guide/account/bills-detail-2.png" />
+</figure>
+<p>点击<strong>计价标准</strong>，可以查看每种资源的单价：</p>
+<figure class="screenshot">
+  <img alt="bills-pricing" src="guide/account/../../assets/guide/account/bills-pricing.png" />
 </figure>
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
 <h1 id="告警通知-1"><a class="header" href="#告警通知-1">告警通知</a></h1>
@@ -10112,7 +10145,7 @@ contexts:
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-2"><a class="header" href="#示例-2">示例</a></h4>
+<h4 id="示例-3"><a class="header" href="#示例-3">示例</a></h4>
 <p>删除 Project demo 下名为 foo 和 bar 的两个 AutoTune：</p>
 <pre><code>t9k autotune delete foo bar -p demo
 </code></pre>
@@ -10139,7 +10172,7 @@ contexts:
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-3"><a class="header" href="#示例-3">示例</a></h4>
+<h4 id="示例-4"><a class="header" href="#示例-4">示例</a></h4>
 <p>查看 Project demo 下名为 foo 的 AutoTune 的详细描述：</p>
 <pre><code>t9k at describe foo -p demo
 </code></pre>
@@ -10160,7 +10193,7 @@ contexts:
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-4"><a class="header" href="#示例-4">示例</a></h4>
+<h4 id="示例-5"><a class="header" href="#示例-5">示例</a></h4>
 <p>以默认格式查看 Project example 下所有 AutoTune：</p>
 <pre><code>t9k at get -p example
 </code></pre>
@@ -10191,7 +10224,7 @@ contexts:
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-5"><a class="header" href="#示例-5">示例</a></h4>
+<h4 id="示例-6"><a class="header" href="#示例-6">示例</a></h4>
 <p>等待 Project example 下的 AutoTune foo 完成：</p>
 <pre><code>t9k at wait foo -p example
 </code></pre>
@@ -10225,7 +10258,7 @@ contexts:
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-6"><a class="header" href="#示例-6">示例</a></h4>
+<h4 id="示例-7"><a class="header" href="#示例-7">示例</a></h4>
 <p>删除 Project demo 下名为 foo 和 bar 的两个 BeamJob：</p>
 <pre><code>t9k beamjob delete foo bar -p demo
 </code></pre>
@@ -10249,7 +10282,7 @@ contexts:
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-7"><a class="header" href="#示例-7">示例</a></h4>
+<h4 id="示例-8"><a class="header" href="#示例-8">示例</a></h4>
 <p>查看 Project demo 下名为 foo 的 BeamJob 的详细描述：</p>
 <pre><code>t9k bj describe foo -p demo
 </code></pre>
@@ -10270,7 +10303,7 @@ contexts:
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-8"><a class="header" href="#示例-8">示例</a></h4>
+<h4 id="示例-9"><a class="header" href="#示例-9">示例</a></h4>
 <p>以默认格式查看 Project example 下所有 BeamJob：</p>
 <pre><code>t9k bj get -p example
 </code></pre>
@@ -10304,7 +10337,7 @@ contexts:
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-9"><a class="header" href="#示例-9">示例</a></h4>
+<h4 id="示例-10"><a class="header" href="#示例-10">示例</a></h4>
 <p>查看 Project example 下 BeamJob foo 第 <code>replicaIndex</code> 个 <code>replicaType</code> 节点的日志：</p>
 <pre><code>t9k bj logs foo --type=replicaType --index=replicaIndex -p example
 </code></pre>
@@ -10339,7 +10372,7 @@ contexts:
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-10"><a class="header" href="#示例-10">示例</a></h4>
+<h4 id="示例-11"><a class="header" href="#示例-11">示例</a></h4>
 <p>等待 Project example 下的 BeamJob foo 完成：</p>
 <pre><code>t9k bj wait foo -p example
 </code></pre>
@@ -10373,7 +10406,7 @@ contexts:
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-11"><a class="header" href="#示例-11">示例</a></h4>
+<h4 id="示例-12"><a class="header" href="#示例-12">示例</a></h4>
 <p>删除 Project demo 下名为 foo 和 bar 的两个 ColossalAIJob：</p>
 <pre><code>t9k colossalaijob delete foo bar -p demo
 </code></pre>
@@ -10397,7 +10430,7 @@ contexts:
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-12"><a class="header" href="#示例-12">示例</a></h4>
+<h4 id="示例-13"><a class="header" href="#示例-13">示例</a></h4>
 <p>查看 Project demo 下名为 foo 的 ColossalAIJob 的详细描述：</p>
 <pre><code>t9k caij describe foo -p demo
 </code></pre>
@@ -10418,7 +10451,7 @@ contexts:
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-13"><a class="header" href="#示例-13">示例</a></h4>
+<h4 id="示例-14"><a class="header" href="#示例-14">示例</a></h4>
 <p>以默认格式查看 Project example 下所有 ColossalAIJob：</p>
 <pre><code>t9k caij get -p example
 </code></pre>
@@ -10452,7 +10485,7 @@ contexts:
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-14"><a class="header" href="#示例-14">示例</a></h4>
+<h4 id="示例-15"><a class="header" href="#示例-15">示例</a></h4>
 <p>查看 Project example 下 ColossalAIJob foo 第 <code>replicaIndex</code> 个 <code>replicaType</code> 节点的日志：</p>
 <pre><code>t9k caij logs foo --type=replicaType --index=replicaIndex -p example
 </code></pre>
@@ -10487,7 +10520,7 @@ contexts:
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-15"><a class="header" href="#示例-15">示例</a></h4>
+<h4 id="示例-16"><a class="header" href="#示例-16">示例</a></h4>
 <p>等待 Project example 下的 ColossalAIJob foo 完成：</p>
 <pre><code>t9k caij wait foo -p example
 </code></pre>
@@ -10514,7 +10547,7 @@ contexts:
 -h, --help              查看当前指令的帮助信息和示例。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-16"><a class="header" href="#示例-16">示例</a></h4>
+<h4 id="示例-17"><a class="header" href="#示例-17">示例</a></h4>
 <h5 id="通过用户密码完成认证"><a class="header" href="#通过用户密码完成认证">通过用户密码完成认证</a></h5>
 <p>用户指定要登录的域名，然后输入用户名和密码完成认证。认证完成后，当前的 T9k Config 中便会新增一个 <code>&lt;用户名&gt;-&lt;域名&gt;</code> 的 Context，用户也可以自己指定 Context 的名称。</p>
 <pre><code>$ t9k config auth &lt;http://example.com&gt;
@@ -10546,7 +10579,7 @@ Login succeeded!
 -h, --help              查看当前指令的帮助信息和示例。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-17"><a class="header" href="#示例-17">示例</a></h4>
+<h4 id="示例-18"><a class="header" href="#示例-18">示例</a></h4>
 <p>删除 Context demo：</p>
 <pre><code>t9k config delete-context demo
 </code></pre>
@@ -10566,7 +10599,7 @@ Login succeeded!
 -h, --help              查看当前指令的帮助信息和示例。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-18"><a class="header" href="#示例-18">示例</a></h4>
+<h4 id="示例-19"><a class="header" href="#示例-19">示例</a></h4>
 <p>获取当前 T9k Config 中所有 Context 的信息：</p>
 <pre><code>t9k config get-contexts
 </code></pre>
@@ -10583,7 +10616,7 @@ Login succeeded!
 -h, --help              查看当前指令的帮助信息和示例。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-19"><a class="header" href="#示例-19">示例</a></h4>
+<h4 id="示例-20"><a class="header" href="#示例-20">示例</a></h4>
 <p>切换到 Context foo：</p>
 <pre><code>t9k config use-context foo
 </code></pre>
@@ -10606,7 +10639,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-20"><a class="header" href="#示例-20">示例</a></h4>
+<h4 id="示例-21"><a class="header" href="#示例-21">示例</a></h4>
 <p>通过文件在 Project demo 下创建一个 Notebook 资源。</p>
 <pre><code>t9k create -f notebook.yaml -p demo
 </code></pre>
@@ -10626,7 +10659,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-21"><a class="header" href="#示例-21">示例</a></h4>
+<h4 id="示例-22"><a class="header" href="#示例-22">示例</a></h4>
 <p>根据文件内容删除 Project demo 下相应的 Notebook 资源。</p>
 <pre><code>t9k delete -f notebook.yaml -p demo
 </code></pre>
@@ -10654,7 +10687,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-22"><a class="header" href="#示例-22">示例</a></h4>
+<h4 id="示例-23"><a class="header" href="#示例-23">示例</a></h4>
 <p>删除 Project demo 下名为 foo 和 bar 的两个 DeepSpeedJob：</p>
 <pre><code>t9k deepspeedjob delete foo bar -p demo
 </code></pre>
@@ -10678,7 +10711,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-23"><a class="header" href="#示例-23">示例</a></h4>
+<h4 id="示例-24"><a class="header" href="#示例-24">示例</a></h4>
 <p>查看 Project demo 下名为 foo 的 DeepSpeedJob 的详细描述：</p>
 <pre><code>t9k dj describe foo -p demo
 </code></pre>
@@ -10699,7 +10732,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-24"><a class="header" href="#示例-24">示例</a></h4>
+<h4 id="示例-25"><a class="header" href="#示例-25">示例</a></h4>
 <p>以默认格式查看 Project example 下所有 DeepSpeedJob：</p>
 <pre><code>t9k dj get -p example
 </code></pre>
@@ -10733,7 +10766,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-25"><a class="header" href="#示例-25">示例</a></h4>
+<h4 id="示例-26"><a class="header" href="#示例-26">示例</a></h4>
 <p>查看 Project example 下 DeepSpeedJob foo 第 <code>replicaIndex</code> 个 <code>replicaType</code> 节点的日志：</p>
 <pre><code>t9k dj logs foo --type=replicaType --index=replicaIndex -p example
 </code></pre>
@@ -10768,7 +10801,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-26"><a class="header" href="#示例-26">示例</a></h4>
+<h4 id="示例-27"><a class="header" href="#示例-27">示例</a></h4>
 <p>等待 Project example 下的 DeepSpeedJob foo 完成：</p>
 <pre><code>t9k dj wait foo -p example
 </code></pre>
@@ -10802,7 +10835,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-27"><a class="header" href="#示例-27">示例</a></h4>
+<h4 id="示例-28"><a class="header" href="#示例-28">示例</a></h4>
 <p>删除 Project demo 下名为 foo 和 bar 的两个 GenericJob：</p>
 <pre><code>t9k genericjob delete foo bar -p demo
 </code></pre>
@@ -10826,7 +10859,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-28"><a class="header" href="#示例-28">示例</a></h4>
+<h4 id="示例-29"><a class="header" href="#示例-29">示例</a></h4>
 <p>查看 Project demo 下名为 foo 的 GenericJob 的详细描述：</p>
 <pre><code>t9k gj describe foo -p demo
 </code></pre>
@@ -10847,7 +10880,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-29"><a class="header" href="#示例-29">示例</a></h4>
+<h4 id="示例-30"><a class="header" href="#示例-30">示例</a></h4>
 <p>以默认格式查看 Project example 下所有 GenericJob：</p>
 <pre><code>t9k gj get -p example
 </code></pre>
@@ -10881,7 +10914,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-30"><a class="header" href="#示例-30">示例</a></h4>
+<h4 id="示例-31"><a class="header" href="#示例-31">示例</a></h4>
 <p>查看 Project example 下 GenericJob foo 第 <code>replicaIndex</code> 个 <code>replicaType</code> 节点的日志：</p>
 <pre><code>t9k gj logs foo --type=replicaType --index=replicaIndex -p example
 </code></pre>
@@ -10916,7 +10949,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-31"><a class="header" href="#示例-31">示例</a></h4>
+<h4 id="示例-32"><a class="header" href="#示例-32">示例</a></h4>
 <p>等待 Project example 下的 GenericJob foo 完成：</p>
 <pre><code>t9k gj wait foo -p example
 </code></pre>
@@ -10952,7 +10985,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-32"><a class="header" href="#示例-32">示例</a></h4>
+<h4 id="示例-33"><a class="header" href="#示例-33">示例</a></h4>
 <p>将 Project demo 下 MLService maskdetection 的默认发布版本设为 <code>foo</code>，金丝雀发布版本设为 <code>bar</code> 且权重为 20%：</p>
 <pre><code>t9k mlservice set-canary maskdetection --default=foo --canary=bar --traffic=20 -n demo
 </code></pre>
@@ -10983,7 +11016,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-33"><a class="header" href="#示例-33">示例</a></h4>
+<h4 id="示例-34"><a class="header" href="#示例-34">示例</a></h4>
 <p>删除 Project demo 下名为 foo 和 bar 的两个 MLService：</p>
 <pre><code>t9k mls delete foo bar -p demo
 </code></pre>
@@ -11009,7 +11042,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-34"><a class="header" href="#示例-34">示例</a></h4>
+<h4 id="示例-35"><a class="header" href="#示例-35">示例</a></h4>
 <p>查看 Project demo 下名为 foo 的 MLService 的详细描述：</p>
 <pre><code>t9k mls describe foo -p demo
 </code></pre>
@@ -11030,7 +11063,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-35"><a class="header" href="#示例-35">示例</a></h4>
+<h4 id="示例-36"><a class="header" href="#示例-36">示例</a></h4>
 <p>以默认格式查看 Project example 下所有 MLService：</p>
 <pre><code>t9k mls get -p example
 </code></pre>
@@ -11061,7 +11094,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-36"><a class="header" href="#示例-36">示例</a></h4>
+<h4 id="示例-37"><a class="header" href="#示例-37">示例</a></h4>
 <p>删除 Project demo 下的推理服务 maskdetection 的 foo 和 bar 两个已发布的版本：</p>
 <pre><code>t9k delete-release maskdetection --release foo,bar -p demo
 </code></pre>
@@ -11089,7 +11122,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-37"><a class="header" href="#示例-37">示例</a></h4>
+<h4 id="示例-38"><a class="header" href="#示例-38">示例</a></h4>
 <p>删除 Project demo 下名为 foo 和 bar 的两个 MPIJob：</p>
 <pre><code>t9k mpijob delete foo bar -p demo
 </code></pre>
@@ -11113,7 +11146,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-38"><a class="header" href="#示例-38">示例</a></h4>
+<h4 id="示例-39"><a class="header" href="#示例-39">示例</a></h4>
 <p>查看 Project demo 下名为 foo 的 MPIJob 的详细描述：</p>
 <pre><code>t9k mj describe foo -p demo
 </code></pre>
@@ -11134,7 +11167,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-39"><a class="header" href="#示例-39">示例</a></h4>
+<h4 id="示例-40"><a class="header" href="#示例-40">示例</a></h4>
 <p>以默认格式查看 Project example 下所有 MPIJob：</p>
 <pre><code>t9k mj get -p example
 </code></pre>
@@ -11168,7 +11201,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-40"><a class="header" href="#示例-40">示例</a></h4>
+<h4 id="示例-41"><a class="header" href="#示例-41">示例</a></h4>
 <p>查看 Project example 下 MPIJob foo 第 <code>replicaIndex</code> 个 <code>replicaType</code> 节点的日志：</p>
 <pre><code>t9k mj logs foo --type=replicaType --index=replicaIndex -p example
 </code></pre>
@@ -11203,7 +11236,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-41"><a class="header" href="#示例-41">示例</a></h4>
+<h4 id="示例-42"><a class="header" href="#示例-42">示例</a></h4>
 <p>等待 Project example 下的 MPIJob foo 完成：</p>
 <pre><code>t9k mj wait foo -p example
 </code></pre>
@@ -11237,7 +11270,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-42"><a class="header" href="#示例-42">示例</a></h4>
+<h4 id="示例-43"><a class="header" href="#示例-43">示例</a></h4>
 <p>删除 Project demo 下名为 foo 和 bar 的两个 Notebook：</p>
 <pre><code>t9k notebook delete foo bar -p demo
 </code></pre>
@@ -11264,7 +11297,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-43"><a class="header" href="#示例-43">示例</a></h4>
+<h4 id="示例-44"><a class="header" href="#示例-44">示例</a></h4>
 <p>查看 Project demo 下名为 foo 的 Notebook 的详细描述：</p>
 <pre><code>t9k nb describe foo -p demo
 </code></pre>
@@ -11285,7 +11318,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-44"><a class="header" href="#示例-44">示例</a></h4>
+<h4 id="示例-45"><a class="header" href="#示例-45">示例</a></h4>
 <p>以默认格式查看 Project example 下所有 Notebook：</p>
 <pre><code>t9k nb get -p example
 </code></pre>
@@ -11317,7 +11350,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-45"><a class="header" href="#示例-45">示例</a></h4>
+<h4 id="示例-46"><a class="header" href="#示例-46">示例</a></h4>
 <p>以默认格式查看 Project example 下所有 PodGroup：</p>
 <pre><code>t9k podgroup get -p example
 </code></pre>
@@ -11353,7 +11386,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-46"><a class="header" href="#示例-46">示例</a></h4>
+<h4 id="示例-47"><a class="header" href="#示例-47">示例</a></h4>
 <p>创建一个名为 sample 的项目，管理员为 admin，且 admin 只有模型构建的权限，没有模型部署的权限：</p>
 <pre><code>t9k project create sample admin --build
 </code></pre>
@@ -11371,7 +11404,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-47"><a class="header" href="#示例-47">示例</a></h4>
+<h4 id="示例-48"><a class="header" href="#示例-48">示例</a></h4>
 <p>详细描述项目 demo：</p>
 <pre><code>t9k proj describe demo
 </code></pre>
@@ -11389,7 +11422,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-48"><a class="header" href="#示例-48">示例</a></h4>
+<h4 id="示例-49"><a class="header" href="#示例-49">示例</a></h4>
 <p>查看当前用户有权限的所有项目：</p>
 <pre><code>t9k project get
 </code></pre>
@@ -11420,7 +11453,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-49"><a class="header" href="#示例-49">示例</a></h4>
+<h4 id="示例-50"><a class="header" href="#示例-50">示例</a></h4>
 <p>删除 Project demo 下名为 foo 和 bar 的两个 PyTorchTrainingJob：</p>
 <pre><code>t9k pytorchtrainingjob delete foo bar -p demo
 </code></pre>
@@ -11444,7 +11477,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-50"><a class="header" href="#示例-50">示例</a></h4>
+<h4 id="示例-51"><a class="header" href="#示例-51">示例</a></h4>
 <p>查看 Project demo 下名为 foo 的 PyTorchTrainingJob 的详细描述：</p>
 <pre><code>t9k pj describe foo -p demo
 </code></pre>
@@ -11465,7 +11498,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-51"><a class="header" href="#示例-51">示例</a></h4>
+<h4 id="示例-52"><a class="header" href="#示例-52">示例</a></h4>
 <p>以默认格式查看 Project example 下所有 PyTorchTrainingJob：</p>
 <pre><code>t9k pj get -p example
 </code></pre>
@@ -11499,7 +11532,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-52"><a class="header" href="#示例-52">示例</a></h4>
+<h4 id="示例-53"><a class="header" href="#示例-53">示例</a></h4>
 <p>查看 Project example 下 PyTorchTrainingJob foo 第 <code>replicaIndex</code> 个 <code>replicaType</code> 节点的日志：</p>
 <pre><code>t9k pj logs foo --type=replicaType --index=replicaIndex -p example
 </code></pre>
@@ -11534,7 +11567,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-53"><a class="header" href="#示例-53">示例</a></h4>
+<h4 id="示例-54"><a class="header" href="#示例-54">示例</a></h4>
 <p>等待 Project example 下的 PyTorchTrainingJob foo 完成：</p>
 <pre><code>t9k pj wait foo -p example
 </code></pre>
@@ -11557,7 +11590,7 @@ Login succeeded!
 -h, --help              查看当前指令的帮助信息和示例。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-54"><a class="header" href="#示例-54">示例</a></h4>
+<h4 id="示例-55"><a class="header" href="#示例-55">示例</a></h4>
 <p>关闭 Queue foo：</p>
 <pre><code>t9k queue close foo
 </code></pre>
@@ -11575,7 +11608,7 @@ Login succeeded!
 -h, --help              查看当前指令的帮助信息和示例。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-55"><a class="header" href="#示例-55">示例</a></h4>
+<h4 id="示例-56"><a class="header" href="#示例-56">示例</a></h4>
 <p>以默认格式查看所有 Queue：</p>
 <pre><code>t9k queue get
 </code></pre>
@@ -11596,7 +11629,7 @@ Login succeeded!
 -h, --help              查看当前指令的帮助信息和示例。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-56"><a class="header" href="#示例-56">示例</a></h4>
+<h4 id="示例-57"><a class="header" href="#示例-57">示例</a></h4>
 <p>打开 Queue foo：</p>
 <pre><code>t9k queue open foo
 </code></pre>
@@ -11627,7 +11660,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-57"><a class="header" href="#示例-57">示例</a></h4>
+<h4 id="示例-58"><a class="header" href="#示例-58">示例</a></h4>
 <p>在 Project demo 下创建一个名为 mnist 的推理服务。其使用的镜像为<code>registry.tensorstack.dev/t9kmirror/tensorflow-serving:1.15.0</code>，模型地址为 <code>mms://aihub.tensorstack.dev/t9kpublic/mnist:v1</code>：</p>
 <pre><code>t9k simplemlservice create mnist \
   --model=&quot;mms://aihub.tensorstack.dev/t9kpublic/mnist:v1&quot; \
@@ -11660,7 +11693,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-58"><a class="header" href="#示例-58">示例</a></h4>
+<h4 id="示例-59"><a class="header" href="#示例-59">示例</a></h4>
 <p>删除 Project demo 下名为 foo 和 bar 的两个 SimpleMLService：</p>
 <pre><code>t9k smls delete foo bar -p demo
 </code></pre>
@@ -11683,7 +11716,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-59"><a class="header" href="#示例-59">示例</a></h4>
+<h4 id="示例-60"><a class="header" href="#示例-60">示例</a></h4>
 <p>查看 Project demo 下名为 foo 的 SimpleMLService 的详细描述：</p>
 <pre><code>t9k mls describe foo -p demo
 </code></pre>
@@ -11704,7 +11737,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-60"><a class="header" href="#示例-60">示例</a></h4>
+<h4 id="示例-61"><a class="header" href="#示例-61">示例</a></h4>
 <p>以默认格式查看 Project example 下所有 SimpleMLService：</p>
 <pre><code>t9k smls get -p example
 </code></pre>
@@ -11741,7 +11774,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-61"><a class="header" href="#示例-61">示例</a></h4>
+<h4 id="示例-62"><a class="header" href="#示例-62">示例</a></h4>
 <p>删除 Project demo 下名为 foo 和 bar 的两个 TensorFlowTrainingJob：</p>
 <pre><code>t9k tensorflowtrainingjob delete foo bar -p demo
 </code></pre>
@@ -11765,7 +11798,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-62"><a class="header" href="#示例-62">示例</a></h4>
+<h4 id="示例-63"><a class="header" href="#示例-63">示例</a></h4>
 <p>查看 Project demo 下名为 foo 的 TensorFlowTrainingJob 的详细描述：</p>
 <pre><code>t9k tj describe foo -p demo
 </code></pre>
@@ -11786,7 +11819,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-63"><a class="header" href="#示例-63">示例</a></h4>
+<h4 id="示例-64"><a class="header" href="#示例-64">示例</a></h4>
 <p>以默认格式查看 Project example 下所有 TensorFlowTrainingJob：</p>
 <pre><code>t9k tj get -p example
 </code></pre>
@@ -11820,7 +11853,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-64"><a class="header" href="#示例-64">示例</a></h4>
+<h4 id="示例-65"><a class="header" href="#示例-65">示例</a></h4>
 <p>查看 Project example 下 TensorFlowTrainingJob foo 第 <code>replicaIndex</code> 个 <code>replicaType</code> 节点的日志：</p>
 <pre><code>t9k tj logs foo --type=replicaType --index=replicaIndex -p example
 </code></pre>
@@ -11855,7 +11888,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-65"><a class="header" href="#示例-65">示例</a></h4>
+<h4 id="示例-66"><a class="header" href="#示例-66">示例</a></h4>
 <p>等待 Project example 下的 TensorFlowTrainingJob foo 完成：</p>
 <pre><code>t9k tj wait foo -p example
 </code></pre>
@@ -11870,7 +11903,7 @@ Login succeeded!
 <h4 id="使用-65"><a class="header" href="#使用-65">使用</a></h4>
 <pre><code>t9k version
 </code></pre>
-<h4 id="示例-66"><a class="header" href="#示例-66">示例</a></h4>
+<h4 id="示例-67"><a class="header" href="#示例-67">示例</a></h4>
 <p>查看当前 t9k 二进制文件的版本信息。</p>
 <pre><code>t9k version
 </code></pre>
@@ -11898,7 +11931,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-67"><a class="header" href="#示例-67">示例</a></h4>
+<h4 id="示例-68"><a class="header" href="#示例-68">示例</a></h4>
 <p>删除 Project demo 下名为 foo 和 bar 的两个 WorkflowRun：</p>
 <pre><code>t9k workflowrun delete foo bar -p demo
 </code></pre>
@@ -11925,7 +11958,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-68"><a class="header" href="#示例-68">示例</a></h4>
+<h4 id="示例-69"><a class="header" href="#示例-69">示例</a></h4>
 <p>查看 Project demo 下名为 foo 的 WorkflowRun 的详细描述：</p>
 <pre><code>t9k wr describe foo -p demo
 </code></pre>
@@ -11946,7 +11979,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-69"><a class="header" href="#示例-69">示例</a></h4>
+<h4 id="示例-70"><a class="header" href="#示例-70">示例</a></h4>
 <p>以默认格式查看 Project example 下所有 WorkflowRun：</p>
 <pre><code>t9k wr get -p example
 </code></pre>
@@ -11978,7 +12011,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-70"><a class="header" href="#示例-70">示例</a></h4>
+<h4 id="示例-71"><a class="header" href="#示例-71">示例</a></h4>
 <p>查看 Project demo 下 WorkflowRun foo 唯一容器的日志：</p>
 <pre><code>t9k wr logs foo -p demo
 </code></pre>
@@ -12011,7 +12044,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-71"><a class="header" href="#示例-71">示例</a></h4>
+<h4 id="示例-72"><a class="header" href="#示例-72">示例</a></h4>
 <p>等待 Project example 下的 WorkflowRun foo 完成：</p>
 <pre><code>t9k wr wait foo -p example
 </code></pre>
@@ -12045,7 +12078,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-72"><a class="header" href="#示例-72">示例</a></h4>
+<h4 id="示例-73"><a class="header" href="#示例-73">示例</a></h4>
 <p>删除 Project demo 下名为 foo 和 bar 的两个 WorkflowTemplate：</p>
 <pre><code>t9k workflowtemplate delete foo bar -p demo
 </code></pre>
@@ -12072,7 +12105,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-73"><a class="header" href="#示例-73">示例</a></h4>
+<h4 id="示例-74"><a class="header" href="#示例-74">示例</a></h4>
 <p>查看 Project demo 下名为 foo 的 WorkflowTemplate 的详细描述：</p>
 <pre><code>t9k wt describe foo -p demo
 </code></pre>
@@ -12093,7 +12126,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-74"><a class="header" href="#示例-74">示例</a></h4>
+<h4 id="示例-75"><a class="header" href="#示例-75">示例</a></h4>
 <p>以默认格式查看 Project example 下所有 WorkflowTemplate：</p>
 <pre><code>t9k wt get -p example
 </code></pre>
@@ -12129,7 +12162,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-75"><a class="header" href="#示例-75">示例</a></h4>
+<h4 id="示例-76"><a class="header" href="#示例-76">示例</a></h4>
 <p>执行 Project demo 下的 WorkflowTemplate foo：</p>
 <pre><code>t9k wt start foo -p demo
 </code></pre>
@@ -12163,7 +12196,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-76"><a class="header" href="#示例-76">示例</a></h4>
+<h4 id="示例-77"><a class="header" href="#示例-77">示例</a></h4>
 <p>删除 Project demo 下名为 foo 和 bar 的两个 XGBoostTrainingJob：</p>
 <pre><code>t9k xgboosttrainingjob delete foo bar -p demo
 </code></pre>
@@ -12187,7 +12220,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-77"><a class="header" href="#示例-77">示例</a></h4>
+<h4 id="示例-78"><a class="header" href="#示例-78">示例</a></h4>
 <p>查看 Project demo 下名为 foo 的 XGBoostTrainingJob 的详细描述：</p>
 <pre><code>t9k xj describe foo -p demo
 </code></pre>
@@ -12208,7 +12241,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-78"><a class="header" href="#示例-78">示例</a></h4>
+<h4 id="示例-79"><a class="header" href="#示例-79">示例</a></h4>
 <p>以默认格式查看 Project example 下所有 XGBoostTrainingJob：</p>
 <pre><code>t9k xj get -p example
 </code></pre>
@@ -12242,7 +12275,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-79"><a class="header" href="#示例-79">示例</a></h4>
+<h4 id="示例-80"><a class="header" href="#示例-80">示例</a></h4>
 <p>查看 Project example 下 XGBoostTrainingJob foo 第 <code>replicaIndex</code> 个 <code>replicaType</code> 节点的日志：</p>
 <pre><code>t9k xj logs foo --type=replicaType --index=replicaIndex -p example
 </code></pre>
@@ -12277,7 +12310,7 @@ Login succeeded!
 -n, --namespace         字符串，和 `-p, --project` 作用一致，指定使用的项目。这个设计是为了符合 kubectl 用户的习惯。
 -v, --verbose           指定输出 log 信息的详细程度。
 </code></pre>
-<h4 id="示例-80"><a class="header" href="#示例-80">示例</a></h4>
+<h4 id="示例-81"><a class="header" href="#示例-81">示例</a></h4>
 <p>等待 Project example 下的 XGBoostTrainingJob foo 完成：</p>
 <pre><code>t9k xj wait foo -p example
 </code></pre>
@@ -12403,7 +12436,7 @@ contexts:
 --retryMaxTimes         整数，最大重试次数。默认为 `10`。
 --retryPeriod           整数，重试间隔时间（单位：秒）。默认为 `10`。
 </code></pre>
-<h3 id="示例-81"><a class="header" href="#示例-81">示例</a></h3>
+<h3 id="示例-82"><a class="header" href="#示例-82">示例</a></h3>
 <p>通过本地 127.0.0.1 的随机端口访问 Project demo 下 Notebook ml-labs 的 SSH 端口。</p>
 <pre><code class="language-bash">t9k-pf notebook &lt;tensorstack-host&gt;/t9k/build-console/projects/demo/notebooks/ml-labs/lab
 </code></pre>
@@ -12432,7 +12465,7 @@ contexts:
 --retryMaxTimes         整数，最大重试次数。默认为 `10`。
 --retryPeriod           整数，重试间隔时间（单位：秒）。默认为 `10`。
 </code></pre>
-<h3 id="示例-82"><a class="header" href="#示例-82">示例</a></h3>
+<h3 id="示例-83"><a class="header" href="#示例-83">示例</a></h3>
 <p>通过本地 127.0.0.1:3333 访问命名空间 dev 下的 Pod example 的 2222 端口。</p>
 <pre><code class="language-bash">t9k-pf pod example 3333:2222 -n dev
 </code></pre>
@@ -12462,7 +12495,7 @@ contexts:
 --retryMaxTimes         整数，最大重试次数。默认为 `10`。
 --retryPeriod           整数，重试间隔时间（单位：秒）。默认为 `10`。
 </code></pre>
-<h3 id="示例-83"><a class="header" href="#示例-83">示例</a></h3>
+<h3 id="示例-84"><a class="header" href="#示例-84">示例</a></h3>
 <p>通过本地 127.0.0.1:8888 访问默认命名空间 default 下的 Service myservice 的 80 端口。</p>
 <pre><code class="language-bash">t9k-pf service myservice 8888:80
 </code></pre>

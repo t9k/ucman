@@ -429,5 +429,5 @@ AutoTuneExperiment 的生命周期包括以下五个阶段：
 * `ERROR`：AutoTuneExperiment 初始化阶段或运行阶段出现错误。
 
 <figure>
-  <img alt="phase" src="../../../assets/api/autotune/phase.drawio.svg" width="350" />
+  <img alt="phase" src="../assets/api/autotune/phase.drawio.svg" width="350" />
 </figure>

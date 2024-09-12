@@ -27,9 +27,9 @@ JupyterLab Apps 是一个系列，包括 JupyterLab (CPU)、JupyterLab (NVIDIA G
   <img alt="jupyterlab" src="../assets/app/jupyterlab/jupyterlab.png" />
 </figure>
 
-网页 UI 的使用方法请参阅 <a target="_blank" rel="noopener noreferrer" href="https://jupyterlab.readthedocs.io/en/latest/">JupyterLab Documentation</a> 或<a target="_blank" rel="noopener noreferrer" href="https://jupyterlab.pythonlang.cn/en/latest/">它的中文版本</a>。
+网页 UI 的使用方法请参阅 <a target="_blank" rel="noopener noreferrer" href="https://jupyterlab.readthedocs.io/en/latest/">JupyterLab Documentation</a> 或<a target="_blank" rel="noopener noreferrer" href="https://jupyterlab.pythonlang.cn/en/latest/">它的中文版本</a>。[TensorBoard 插件](#tensorboard-插件)的使用方法请参阅<a target="_blank" rel="noopener noreferrer" href="https://github.com/HFAiLab/jupyterlab_tensorboard_pro/blob/v4.x/README.zh-cn.md#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E">使用说明</a>。
 
-[TensorBoard 插件](#tensorboard-插件)的使用方法请参阅<a target="_blank" rel="noopener noreferrer" href="https://github.com/HFAiLab/jupyterlab_tensorboard_pro/blob/v4.x/README.zh-cn.md#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E">使用说明</a>。
+除了网页 UI，App 还支持通过 SSH 远程连接（需要启用 SSH 服务），让你能够使用熟悉的本地终端或 IDE，像在本地开发一样进行远程开发。限于篇幅，具体步骤请参阅[如何通过 SSH 远程连接](../reference/faq/faq-in-jupyterlab-usage.md#如何通过-ssh-远程连接)。
 
 ## 使用说明
 
@@ -60,11 +60,11 @@ JupyterLab Apps 系列的每个 App 分别可以选用的镜像请参阅相应 [
 * 所有镜像均预装了最新版本的[平台工具](../tool/index.md)。
 * 所有镜像均创建 GID 为 1000、名称为 t9kuser 的用户组，以及属于该用户组、UID 为 1000、名称为 t9kuser、HOME 目录为 `/t9k/mnt` 的用户，并使用该用户。
 
-### 挂载的 PVC
+### 挂载 PVC
 
-必须为 App（的容器）挂载一个 PVC 作为工作空间。PVC 的挂载路径为 `/t9k/mnt`，即镜像使用的 t9kuser 用户的 HOME 目录。
+**必须**为 App（的容器）挂载一个 PVC 作为工作空间。PVC 的挂载路径为 `/t9k/mnt`，即镜像使用的 t9kuser 用户的 HOME 目录。
 
-挂载的 PVC 负责存储开发相关的文件，这些文件可以是通过 JupyterLab 的 UI 上传或创建的，也可以是通过 JupyterLab 的终端从网络下载或运行程序产生的。此外，挂载的 PVC 还负责存储 conda 环境和 conda 包的文件（位于 `/t9k/mnt/.conda` 路径下），以及 Python 包的文件（位于 `/t9k/mnt/.cache/pip` 路径下）。如果你需要安装较多、较大的 conda 包或 Python 包，请确保挂载的 PVC 留有足够的存储空间。
+挂载的 PVC 负责存储开发相关的文件，这些文件可以是通过 JupyterLab 的 UI 上传或创建的，也可以是通过 JupyterLab 的终端从网络下载或运行程序产生的。此外，挂载的 PVC 还负责存储 conda 环境和 conda 包的文件（位于 `/t9k/mnt/.conda` 路径下），以及 Python 包的文件（位于 `/t9k/mnt/.local` 路径下）。如果你需要安装较多、较大的 conda 包或 Python 包，请确保挂载的 PVC 留有足够的存储空间。
 
 T9k Job、T9k Service 等工作负载可以和 App 挂载同一个 PVC 以共享存储。例如创建一个 PyTorchTrainingJob，其利用通过 JupyterLab 准备好的训练脚本和数据集文件以启动训练；或者创建一个 SimpleMLService，其读取下载好的模型文件以启动推理服务。
 

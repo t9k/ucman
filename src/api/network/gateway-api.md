@@ -4,8 +4,8 @@
 
 Gateway API 的设计模型如下：
 
-<figure class="screenshot">
-  <img alt="ui" src="https://gateway-api.sigs.k8s.io/images/resource-model.png" />
+<figure class="architecture">
+  <img alt="ui" src="https://gateway-api.sigs.k8s.io/images/resource-model.png" width=70% />
 </figure>
 
 其中：

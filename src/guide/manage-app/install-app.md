@@ -41,7 +41,7 @@ App 的 README 主要包含三个方面的信息：
     * 可能提供额外的配置说明。
     * 对于有多个可选镜像的 App，还会提供镜像列表。
 
-点击右上角的**立刻安装**进入安装页面：
+点击右上角的**立刻安装**进入配置页面：
 
 <figure class="screenshot">
   <img alt="readme-app" src="../../assets/guide/manage-app/readme-app.png" />
@@ -49,7 +49,7 @@ App 的 README 主要包含三个方面的信息：
 
 ## 配置和安装 App
 
-在安装页面，填写配置可以通过**表单**或者 **YAML 编辑器**。前者提供了一个详细的字段设置界面，可以直接编辑各个字段；后者则需要编辑 YAML 文件，适合熟悉 YAML 格式的用户。
+在配置页面，填写配置可以通过**表单**或者 **YAML 编辑器**。前者提供了一个详细的字段设置界面，可以直接编辑各个字段；后者则需要编辑 YAML 文件，适合熟悉 YAML 格式的用户。
 
 假定为 JupyterLab (CPU) App 选用 PyTorch 环境，申请 16 个 CPU（核心）、32 GiB 内存资源，挂载存储卷 `demo`。通过表单配置：
 
@@ -96,7 +96,7 @@ App 的 README 主要包含三个方面的信息：
 
 如要安装一个与某个<u>已安装的 App</u> 配置相同或相似的 App，可以选择克隆该<u>已安装的 App</u>，而无需重复上面的操作。
 
-假定再安装一个 JupyterLab (CPU) App，挂载存储卷 `tutorial`，其他配置不变。点击运行中的 JupyterLab (CPU) App 右侧的 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 16a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2Z"></path></svg></span> **> 克隆**，进入安装页面，此时配置已经按照该 App 填写，因此修改 `pvc` 字段的值为 `tutorial` 即可。然后为了便于辨识，修改其**名称**为 `tutorial`。最后点击右上角的**安装**：
+假定再安装一个 JupyterLab (CPU) App，挂载存储卷 `tutorial`，其他配置不变。点击运行中的 JupyterLab (CPU) App 右侧的 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 16a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2Z"></path></svg></span> **> 克隆**，进入配置页面，此时配置已经按照该 App 填写，因此修改 `pvc` 字段的值为 `tutorial` 即可。然后为了便于辨识，修改其**名称**为 `tutorial`。最后点击右上角的**安装**：
 
 <figure class="screenshot">
   <img alt="clone-app" src="../../assets/guide/manage-app/clone-app.png" />

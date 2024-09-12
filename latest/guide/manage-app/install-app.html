@@ -227,12 +227,12 @@
 </ul>
 </li>
 </ol>
-<p>点击右上角的<strong>立刻安装</strong>进入安装页面：</p>
+<p>点击右上角的<strong>立刻安装</strong>进入配置页面：</p>
 <figure class="screenshot">
   <img alt="readme-app" src="../../assets/guide/manage-app/readme-app.png" />
 </figure>
 <h2 id="配置和安装-app"><a class="header" href="#配置和安装-app">配置和安装 App</a></h2>
-<p>在安装页面，填写配置可以通过<strong>表单</strong>或者 <strong>YAML 编辑器</strong>。前者提供了一个详细的字段设置界面，可以直接编辑各个字段；后者则需要编辑 YAML 文件，适合熟悉 YAML 格式的用户。</p>
+<p>在配置页面，填写配置可以通过<strong>表单</strong>或者 <strong>YAML 编辑器</strong>。前者提供了一个详细的字段设置界面，可以直接编辑各个字段；后者则需要编辑 YAML 文件，适合熟悉 YAML 格式的用户。</p>
 <p>假定为 JupyterLab (CPU) App 选用 PyTorch 环境，申请 16 个 CPU（核心）、32 GiB 内存资源，挂载存储卷 <code>demo</code>。通过表单配置：</p>
 <figure class="screenshot">
   <img alt="form-app" src="../../assets/guide/manage-app/form-app.png" />
@@ -263,7 +263,7 @@
 </figure>
 <h2 id="克隆-app"><a class="header" href="#克隆-app">克隆 App</a></h2>
 <p>如要安装一个与某个<u>已安装的 App</u> 配置相同或相似的 App，可以选择克隆该<u>已安装的 App</u>，而无需重复上面的操作。</p>
-<p>假定再安装一个 JupyterLab (CPU) App，挂载存储卷 <code>tutorial</code>，其他配置不变。点击运行中的 JupyterLab (CPU) App 右侧的 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 16a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2Z"></path></svg></span> <strong>&gt; 克隆</strong>，进入安装页面，此时配置已经按照该 App 填写，因此修改 <code>pvc</code> 字段的值为 <code>tutorial</code> 即可。然后为了便于辨识，修改其<strong>名称</strong>为 <code>tutorial</code>。最后点击右上角的<strong>安装</strong>：</p>
+<p>假定再安装一个 JupyterLab (CPU) App，挂载存储卷 <code>tutorial</code>，其他配置不变。点击运行中的 JupyterLab (CPU) App 右侧的 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 16a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2Z"></path></svg></span> <strong>&gt; 克隆</strong>，进入配置页面，此时配置已经按照该 App 填写，因此修改 <code>pvc</code> 字段的值为 <code>tutorial</code> 即可。然后为了便于辨识，修改其<strong>名称</strong>为 <code>tutorial</code>。最后点击右上角的<strong>安装</strong>：</p>
 <figure class="screenshot">
   <img alt="clone-app" src="../../assets/guide/manage-app/clone-app.png" />
 </figure>

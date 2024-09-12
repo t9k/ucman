@@ -222,6 +222,139 @@ du &lt;DIR&gt; -h --max-depth=1  # 额外展示深度不大于 1 的子目录占
 <p>新创建的 conda 环境和下载的 conda 包的文件存放在 <code>/t9k/mnt/.conda</code> 路径下；请确保挂载的 PVC 留有足够的存储空间。</p>
 </aside>
 <h2 id="如何通过-ssh-远程连接"><a class="header" href="#如何通过-ssh-远程连接">如何通过 SSH 远程连接</a></h2>
+<p>请跟随以下步骤，在本地通过 SSH 远程连接到 App。</p>
+<h3 id="创建-secret"><a class="header" href="#创建-secret">创建 Secret</a></h3>
+<p>App 的 SSH 服务仅支持基于密钥的身份验证，因此你需要创建包含本地系统的公钥的 Secret 并提供给 App。请参阅<a href="">创建 SSH Public Key 模板的 Secret</a>。</p>
+<h3 id="配置和安装-app"><a class="header" href="#配置和安装-app">配置和安装 App</a></h3>
+<p>填写配置时，将 <code>ssh.enabled</code> 字段的值设为 <code>true</code> 以启用 SSH 服务；将 <code>ssh.authorizedKeys</code> 字段的值设为 Secret 列表，其中每个 Secret 包含一个需要远程连接到该 App 的系统的公钥。填写配置完成后，安装 App，等待其就绪。</p>
+<h3 id="端口转发"><a class="header" href="#端口转发">端口转发</a></h3>
+<h4 id="命令行工具-t9k-pf"><a class="header" href="#命令行工具-t9k-pf">命令行工具 t9k-pf</a></h4>
+<p>命令行工具 <a href="../../tool/cli-t9k-pf/index.html">t9k-pf</a> 的功能与 <code>kubectl port-forward</code> 命令类似，允许用户通过端口转发的方式，在本地访问 TensorStack AI 平台上的各类资源。</p>
+<p>请参照<a href="../../tool/cli-t9k-pf/guide.html#%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97">用户指南</a>下载安装 t9k-pf 并配置<a href="../../tool/cli-t9k-pf/guide.html#%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81%E5%92%8C%E6%8E%88%E6%9D%83">身份认证和授权</a>。</p>
+<h4 id="端口转发命令"><a class="header" href="#端口转发命令">端口转发命令</a></h4>
+<p>查看 App 的信息，复制端口转发的命令，在本地终端执行：</p>
+<figure class="screenshot">
+  <img alt="copy-t9k-pf-command" src="../../assets/reference/faq/faq-in-jupyterlab-usage/copy-t9k-pf-command.png" />
+</figure>
+<pre><code class="language-bash">$ export NB_URL=$(kubectl get notebooks.tensorstack.dev app-jupyterlab-cpu-fb1923-1c -n demo -o &quot;jsonpath={.status.url}&quot;)
+$ t9k-pf notebook $NB_URL &lt;Port&gt;
+Trying to connect [notebooks/app-jupyterlab-cpu-fb1923-1c] in namespace [demo]
+now you can forward to your target by 127.0.0.1:&lt;Port&gt;
+</code></pre>
+<p>对于变量/参数说明如下：</p>
+<ul>
+<li><code>NB_URL</code>：App 的网页 UI 地址。上述获取方式需要本地安装和配置命令行工具 kubectl，另一种获取方式是直接进入网页 UI，复制浏览器地址栏中的地址作为 <code>NB_URL</code> 变量的值。</li>
+<li><code>Port</code>：本地转发端口。默认使用 5001，但你也可以使用其他任意端口。</li>
+</ul>
+<p>端口转发成功后，即可使用本地端口与 App 建立 SSH 连接。</p>
+<aside class="note">
+<div class="title">注意</div>
+<p>端口转发成功后，需要保持执行 <code>t9k-pf</code> 命令的终端一直处于运行状态。</p>
+</aside>
+<h3 id="建立-ssh-连接"><a class="header" href="#建立-ssh-连接">建立 SSH 连接</a></h3>
+<h4 id="使用终端"><a class="header" href="#使用终端">使用终端</a></h4>
+<p>在终端中运行以下命令以连接到 App：</p>
+<pre><code class="language-bash">ssh t9kuser@localhost -p &lt;Port&gt; \
+  -o StrictHostKeyChecking=no \
+  -o GlobalKnownHostsFile=/dev/null \
+  -o UserKnownHostsFile=/dev/null
+</code></pre>
+<aside class="note info">
+<div class="title">信息</div>
+<p>命令行参数的说明：</p>
+<ul>
+<li>由于端口转发，同一个 <code>&lt;Port&gt;</code> 可以在不同时间可被映射为不同的 App，导致 SSH 客户端认为 <code>host key</code> 发生变化。上面的命令设置 <code>StrictHostKeyChecking=no</code> 来跳过主机密钥的检查，并设置 <code>GlobalKnownHostsFile=/dev/null</code> 和 <code>UserKnownHostsFile=/dev/null</code> 以避免将主机密钥保存到 known_hosts 文件中；</li>
+<li>运行上面的命令时会提示 <code>Warning: Permanently added '[&lt;Host&gt;]:&lt;Port&gt;' (RSA) to the list of known hosts</code>。但由于保存的路径为 <code>/dev/null</code>，并不会实际保存（期望的效果）。</li>
+</ul>
+</aside>
+<p>然后在终端中进行操作：</p>
+<figure class="screenshot">
+  <img alt="terminal-ssh" src="../../assets/reference/faq/faq-in-jupyterlab-usage/terminal-ssh.png" />
+</figure>
+<h4 id="使用-vs-code"><a class="header" href="#使用-vs-code">使用 VS Code</a></h4>
+<h5 id="安装-remote-ssh-插件"><a class="header" href="#安装-remote-ssh-插件">安装 Remote SSH 插件</a></h5>
+<p>在 VS Code 中搜索 <strong><a target="_blank" rel="noopener noreferrer" href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh">Remote - SSH</a></strong> 插件并安装：</p>
+<figure class="screenshot">
+  <img alt="vscode-plugin" src="../../assets/reference/faq/faq-in-jupyterlab-usage/vscode-plugin.png" />
+</figure>
+<h5 id="添加-ssh-config"><a class="header" href="#添加-ssh-config">添加 SSH Config</a></h5>
+<p>安装完成后，需要在 SSH Config 中添加主机（App）的信息。</p>
+<aside class="note tip">
+<div class="title">提示</div>
+<p>如果你熟悉 SSH，直接编辑位于 <code>$HOME/.ssh/config</code> 的配置文件，添加以下信息：</p>
+<pre><code class="language-bash">Host localhost
+  HostName 127.0.0.1
+  User t9kuser
+  Port &lt;Port&gt;
+</code></pre>
+<p>确认无误后，保存文件即可。</p>
+</aside>
+<p>VS Code 提供了编辑 SSH Config 的方式。点击左下角的绿色 <strong>&gt;&lt;</strong> 符号，选择 <strong>Connect to Host</strong>，然后拉动滚动条到最下方，点击 <strong>Add New SSH Host</strong>：</p>
+<figure class="screenshot">
+  <img alt="vscode-new-host" src="../../assets/reference/faq/faq-in-jupyterlab-usage/vscode-new-host.png" />
+</figure>
+<p>根据提示，输入以下内容，然后按下回车键（Enter）：</p>
+<pre><code class="language-bash">ssh t9kuser@localhost -p &lt;Port&gt;
+</code></pre>
+<figure class="screenshot">
+  <img alt="vscode-ssh-command" src="../../assets/reference/faq/faq-in-jupyterlab-usage/vscode-ssh-command.png" />
+</figure>
+<p>VS Code 会提示 <strong>Select SSH configuration file to update</strong>，第一个选择项通常是位于 <code>$HOME/.ssh/config</code> 的配置文件，你可以选择将主机的信息存储在第一个配置文件中。</p>
+<h5 id="连接到-app"><a class="header" href="#连接到-app">连接到 App</a></h5>
+<p>点击左下角的绿色 <strong>&gt;&lt;</strong> 符号，选择 <strong>Connect to Host</strong>：</p>
+<figure class="screenshot">
+  <img alt="vscode-connect" src="../../assets/reference/faq/faq-in-jupyterlab-usage/vscode-connect.png" />
+</figure>
+<p>然后选择 SSH Config 中对应的主机名（使用上述配置方式时，主机名为 <code>localhost</code>）：</p>
+<figure class="screenshot">
+  <img alt="vscode-connect-select" src="../../assets/reference/faq/faq-in-jupyterlab-usage/vscode-connect-select.png" />
+</figure>
+<p>VS Code 会新建一个窗口，等待连接建立之后，左下角会提示 <strong>SSH: Host</strong>。</p>
+<aside class="note">
+<div class="title">注意</div>
+<p>第一次连接需要等待 App 下载 VS Code Server。根据网络情况不同，这一步骤可能耗时几分钟到十几分钟。</p>
+</aside>
+<p>点击 <strong>Open Folder</strong> 可以选择打开的目录或者文件。你可以和本地开发一样使用 VS Code 进行操作：</p>
+<figure class="screenshot">
+  <img alt="vscode-connected" src="../../assets/reference/faq/faq-in-jupyterlab-usage/vscode-connected.png" />
+</figure>
+<h4 id="使用-pycharm"><a class="header" href="#使用-pycharm">使用 PyCharm</a></h4>
+<p>使用 PyCharm 远程连接到 App 需要满足以下前提条件：</p>
+<ol>
+<li>安装了 PyCharm 专业版，且版本不低于 2022.2。PyCharm 有专业版（Professional）和社区版（Community），目前仅 PyCharm Professional 支持远程 SSH 开发。</li>
+<li>App 的资源配置至少为 3 个 CPU，3 GiB 内存，App 绑定的持久卷至少有 2.5 GiB 的可用空间。推荐配置为至少 4 个 CPU，4 GiB 内存，5 GiB 持久卷。</li>
+</ol>
+<aside class="note info">
+<div class="title">信息</div>
+<p>使用 PyCharm 远程连接 App 进行开发时，PyCharm 需要在 App 容器中安装并运行一个 IDE Backend（参阅<a target="_blank" rel="noopener noreferrer" href="https://www.jetbrains.com/help/pycharm/remote-development-overview.html">官方文档</a>）。结合官方推荐的配置和实际测试，我们给出了上面的资源配置要求。</p>
+</aside>
+<p>打开 PyCharm，在左侧的导航菜单中点击 <strong>Remote Development &gt; SSH</strong>，然后点击右侧的 <strong>New Connection</strong>：</p>
+<figure class="screenshot">
+  <img alt="pycharm-ssh" src="../../assets/reference/faq/faq-in-jupyterlab-usage/pycharm-ssh.png" />
+</figure>
+<p>在弹出的对话框中填写如下参数：</p>
+<ul>
+<li><code>Username</code>：SSH 使用的用户名。</li>
+<li><code>Host</code>：主机地址，通常为 <code>127.0.0.1</code>。</li>
+<li><code>Port</code>：端口。</li>
+<li><code>Specify private key</code>：建议勾选，并选择与你<a href="create-notebook.html#%E5%90%AF%E7%94%A8-ssh-%E9%80%89%E9%A1%B9">上传的公钥</a>对应的私钥。</li>
+</ul>
+<figure class="screenshot">
+  <img alt="pycharm-connect" src="../../assets/reference/faq/faq-in-jupyterlab-usage/pycharm-connect.png" />
+</figure>
+<p>点击 <strong>Check Connection and Continue</strong>，进入下一步：</p>
+<figure class="screenshot">
+  <img alt="pycharm-connected" src="../../assets/reference/faq/faq-in-jupyterlab-usage/pycharm-connected.png" />
+</figure>
+<p>这里选择了在 App 中安装的 IDE Backend 版本为 PyCharm 2022.2.3，远程打开的项目目录为 <code>/t9k/mnt</code>。点击 <strong>Download IDE and Connect</strong> 后，就可以通过 PyCharm 访问 App 中的文件了。</p>
+<aside class="note">
+<div class="title">注意</div>
+<p>第一次连接需要等待 App 下载 PyCharm IDE Backend。根据网络情况不同，这一步骤可能耗时几分钟到十几分钟。</p>
+</aside>
+<p>你可以和本地开发一样使用 PyCharm 来操作 App：</p>
+<figure class="screenshot">
+  <img alt="pycharm-edit" src="../../assets/reference/faq/faq-in-jupyterlab-usage/pycharm-edit.png" />
+</figure>
 <h2 id="无法使用-sudo-命令"><a class="header" href="#无法使用-sudo-命令">无法使用 sudo 命令</a></h2>
 <p>原因可能是：</p>
 <ol>
@@ -231,6 +364,12 @@ du &lt;DIR&gt; -h --max-depth=1  # 额外展示深度不大于 1 的子目录占
 <p>如果你排除了原因 1，请联系平台的管理员寻求解决。</p>
 <h2 id="命令执行失败显示-killed"><a class="header" href="#命令执行失败显示-killed">命令执行失败，显示 Killed</a></h2>
 <p>原因是进程因为内存不足被杀掉。请重新配置和安装 App，配置时申请更多的内存资源。</p>
+<h2 id="参考"><a class="header" href="#参考">参考</a></h2>
+<p>如何通过 SSH 远程连接：</p>
+<ul>
+<li><a href="https://code.visualstudio.com/docs/remote/ssh">Developing on Remote Machines using SSH and Visual Studio Code</a></li>
+<li><a href="https://www.jetbrains.com/help/pycharm/remote-development-overview.html">Remote development overview | PyCharm Documentation</a></li>
+</ul>
 
                     </main>
 

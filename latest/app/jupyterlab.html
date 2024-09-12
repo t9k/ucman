@@ -207,8 +207,8 @@
 <figure class="screenshot">
   <img alt="jupyterlab" src="../assets/app/jupyterlab/jupyterlab.png" />
 </figure>
-<p>网页 UI 的使用方法请参阅 <a target="_blank" rel="noopener noreferrer" href="https://jupyterlab.readthedocs.io/en/latest/">JupyterLab Documentation</a> 或<a target="_blank" rel="noopener noreferrer" href="https://jupyterlab.pythonlang.cn/en/latest/">它的中文版本</a>。</p>
-<p><a href="#tensorboard-%E6%8F%92%E4%BB%B6">TensorBoard 插件</a>的使用方法请参阅<a target="_blank" rel="noopener noreferrer" href="https://github.com/HFAiLab/jupyterlab_tensorboard_pro/blob/v4.x/README.zh-cn.md#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E">使用说明</a>。</p>
+<p>网页 UI 的使用方法请参阅 <a target="_blank" rel="noopener noreferrer" href="https://jupyterlab.readthedocs.io/en/latest/">JupyterLab Documentation</a> 或<a target="_blank" rel="noopener noreferrer" href="https://jupyterlab.pythonlang.cn/en/latest/">它的中文版本</a>。<a href="#tensorboard-%E6%8F%92%E4%BB%B6">TensorBoard 插件</a>的使用方法请参阅<a target="_blank" rel="noopener noreferrer" href="https://github.com/HFAiLab/jupyterlab_tensorboard_pro/blob/v4.x/README.zh-cn.md#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E">使用说明</a>。</p>
+<p>除了网页 UI，App 还支持通过 SSH 远程连接（需要启用 SSH 服务），让你能够使用熟悉的本地终端或 IDE，像在本地开发一样进行远程开发。限于篇幅，具体步骤请参阅<a href="../reference/faq/faq-in-jupyterlab-usage.html#%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87-ssh-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5">如何通过 SSH 远程连接</a>。</p>
 <h2 id="使用说明"><a class="header" href="#使用说明">使用说明</a></h2>
 <h3 id="镜像"><a class="header" href="#镜像">镜像</a></h3>
 <p>JupyterLab Apps 系列的每个 App 分别可以选用的镜像请参阅相应 <a href="../guide/manage-app/install-app.html#%E9%80%89%E6%8B%A9%E5%B9%B6%E4%BA%86%E8%A7%A3-app">README</a> 的镜像列表部分。</p>
@@ -236,9 +236,9 @@
 <li>所有镜像均预装了最新版本的<a href="../tool/index.html">平台工具</a>。</li>
 <li>所有镜像均创建 GID 为 1000、名称为 t9kuser 的用户组，以及属于该用户组、UID 为 1000、名称为 t9kuser、HOME 目录为 <code>/t9k/mnt</code> 的用户，并使用该用户。</li>
 </ul>
-<h3 id="挂载的-pvc"><a class="header" href="#挂载的-pvc">挂载的 PVC</a></h3>
-<p>必须为 App（的容器）挂载一个 PVC 作为工作空间。PVC 的挂载路径为 <code>/t9k/mnt</code>，即镜像使用的 t9kuser 用户的 HOME 目录。</p>
-<p>挂载的 PVC 负责存储开发相关的文件，这些文件可以是通过 JupyterLab 的 UI 上传或创建的，也可以是通过 JupyterLab 的终端从网络下载或运行程序产生的。此外，挂载的 PVC 还负责存储 conda 环境和 conda 包的文件（位于 <code>/t9k/mnt/.conda</code> 路径下），以及 Python 包的文件（位于 <code>/t9k/mnt/.cache/pip</code> 路径下）。如果你需要安装较多、较大的 conda 包或 Python 包，请确保挂载的 PVC 留有足够的存储空间。</p>
+<h3 id="挂载-pvc"><a class="header" href="#挂载-pvc">挂载 PVC</a></h3>
+<p><strong>必须</strong>为 App（的容器）挂载一个 PVC 作为工作空间。PVC 的挂载路径为 <code>/t9k/mnt</code>，即镜像使用的 t9kuser 用户的 HOME 目录。</p>
+<p>挂载的 PVC 负责存储开发相关的文件，这些文件可以是通过 JupyterLab 的 UI 上传或创建的，也可以是通过 JupyterLab 的终端从网络下载或运行程序产生的。此外，挂载的 PVC 还负责存储 conda 环境和 conda 包的文件（位于 <code>/t9k/mnt/.conda</code> 路径下），以及 Python 包的文件（位于 <code>/t9k/mnt/.local</code> 路径下）。如果你需要安装较多、较大的 conda 包或 Python 包，请确保挂载的 PVC 留有足够的存储空间。</p>
 <p>T9k Job、T9k Service 等工作负载可以和 App 挂载同一个 PVC 以共享存储。例如创建一个 PyTorchTrainingJob，其利用通过 JupyterLab 准备好的训练脚本和数据集文件以启动训练；或者创建一个 SimpleMLService，其读取下载好的模型文件以启动推理服务。</p>
 <h3 id="用户权限"><a class="header" href="#用户权限">用户权限</a></h3>
 <p>在 App 的容器环境中，用户的 UID:GID 为 1000:1000，这会导致系统级操作受到限制（权限不足）。例如，用户无法使用 <code>apt install</code> 命令安装开发所需的库，无法执行 <code>rm</code> 命令删除没有写权限的文件（这些文件可能是由挂载了同一个 PVC 且使用 root 用户的 Job 产生的）。在某些情况下，进行系统级操作是必要或便利的，解决方案是为 App 选用<strong>标签带有 <code>-sudo</code> 后缀</strong>的镜像，在需要提升权限的命令前加上 <code>sudo</code>，以 root 身份执行该命令。</p>

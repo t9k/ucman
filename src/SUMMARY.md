@@ -19,6 +19,8 @@
     * [Service Manager](app/service-manager.md)
     * [Virtual Machine](app/virtual-machine.md)
     * [Workflow](app/workflow.md)
+    <!-- * [RStudio](app/rstudio.md) -->
+    <!-- * [Argo Workflow](app/argo-workflow.md) -->
     <!-- * [PostgreSQL](app/postgresql.md) -->
 
 * [APIs](api/index.md)
@@ -83,10 +85,12 @@
     * [管理存储、网络服务和辅助资源](guide/manage-storage-network-and-auxiliary/index.md)
         * [管理 PVC](guide/manage-storage-network-and-auxiliary/pvc.md)
         * [创建 StorageShim](guide/manage-storage-network-and-auxiliary/storageshim.md)
-        
         * [查看 Service](guide/manage-storage-network-and-auxiliary/service.md)
         * [查看 Ingress](guide/manage-storage-network-and-auxiliary/ingress.md)
         * [管理 Secret](guide/manage-storage-network-and-auxiliary/secret.md)
+            * [SSH 场景](guide/manage-storage-network-and-auxiliary/secret-ssh.md)
+            * [S3 场景](guide/manage-storage-network-and-auxiliary/secret-s3.md)
+            <!-- * [Docker 场景](guide/manage-storage-network-and-auxiliary/secret-docker.md) -->
         * [管理 ConfigMap](guide/manage-storage-network-and-auxiliary/configmap.md)
 
     * [设置账户](guide/account/index.md)
@@ -108,6 +112,9 @@
 
     * [专题](guide/theme/index.md)
         * [上传和下载文件](guide/theme/upload-and-download-file.md)
+        <!-- [mlflow] -->
+        <!-- [argo] -->
+        <!-- [使用特定类型的 GPU] 不同厂商、不同型号 nodeselector -->
 
 ---
 

@@ -159,7 +159,7 @@ git push
 
 ### DataCube
 
-也可以使用平台提供的 [DataCube](../../api/datacube.md)。使用以下 YAML 配置文件创建 DataCube（修改 PVC 名称、PVC 路径、Secret 名称和 S3 URL）以克隆（或拉取）和推送提交到 Git 仓库：
+也可以使用平台提供的 [DataCube](../../api/datacube.md)。使用以下 YAML 配置文件创建 DataCube（修改 PVC 名称、PVC 路径、Git 仓库 URL 和 Git ref）以克隆（或拉取）和推送提交到 Git 仓库：
 
 <details><summary><code class="hljs">download-git.yaml</code></summary>
 
@@ -371,7 +371,7 @@ curl --header "Authorization: Bearer <HF_TOKEN>" -L https://huggingface.co/meta-
 
 ### DataCube
 
-也可以使用平台提供的 [DataCube](../../api/datacube.md)，其在内部调用的就是 [`huggingface-cli` 命令](#huggingface-cli-命令和-huggingface_hub-库)。使用以下 YAML 配置文件创建 DataCube（修改 PVC 名称、PVC 路径、Secret 名称和 S3 URL）以下载和上传文件：
+也可以使用平台提供的 [DataCube](../../api/datacube.md)，其在内部调用的就是 [`huggingface-cli` 命令](#huggingface-cli-命令和-huggingface_hub-库)。使用以下 YAML 配置文件创建 DataCube（修改 PVC 名称、PVC 路径和 Hugging Face 仓库 ID）以下载和上传文件：
 
 <details><summary><code class="hljs">download-hf.yaml</code></summary>
 

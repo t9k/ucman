@@ -20,7 +20,11 @@
   <img alt="create-details" src="../../assets/guide/manage-storage-network-and-auxiliary/configmap/create-details.png" />
 </figure>
 
-## 查看和修改 ConfigMap 数据
+## 使用 ConfigMap
+
+ConfigMap 的使用方式与 Secret 类似，这里不再赘述。
+
+## 查看和编辑 ConfigMap
 
 在 ConfigMap 管理页面，点击 ConfigMap 右侧的 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 16a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2Z"></path></svg></span> **> 编辑**进入编辑页面：
 

@@ -17,7 +17,7 @@ JupyterLab Apps 是一个系列，包括 JupyterLab (CPU)、JupyterLab (NVIDIA G
 
 请根据集群的可用资源和自身的需求选择合适的 App。
 
-本手册的其他文档中提及的“JupyterLab App”指代 JupyterLab Apps 中最简单（不支持加速设备）的 JupyterLab (CPU) App。
+本手册的其他文档中提及的“JupyterLab App”指代 JupyterLab Apps 中的任意一个。
 
 ## 使用方法
 

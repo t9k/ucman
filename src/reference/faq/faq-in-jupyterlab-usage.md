@@ -4,7 +4,7 @@
 
 ## 如何上传下载文件
 
-请参阅[上传和下载文件的 Jupyter Lab App UI 部分](../../guide/theme/upload-and-download-file.md#jupyter-lab-app-ui)。
+请参阅[使用 Jupyter Lab App UI 上传和下载文件](../../guide/theme/upload-and-download-file.md#jupyterlab-app-ui)。
 
 ## 如何查看挂载 PVC 的剩余存储空间
 
@@ -60,6 +60,13 @@ conda 的使用方法请参阅 <a target="_blank" rel="noopener noreferrer" href
 </aside>
 
 ## 如何通过 SSH 远程连接
+
+<aside class="note tip">
+<div class="title">提示</div>
+
+此问题与解决方案亦适用于 [RStudio](../../app/rstudio.md) App。
+
+</aside>
 
 请跟随以下步骤，在本地通过 SSH 远程连接到 App。
 

@@ -18,13 +18,19 @@
 
 对于 PyTorch 框架，记录各种类型数据和使用网页 UI 的方法请参阅：
 
-* <a target="_blank" rel="noopener noreferrer" href="https://pytorch.org/docs/stable/tensorboard.html">torch.utils.tensorboard</a> 文档
-* <a target="_blank" rel="noopener noreferrer" href="https://pytorch.org/tutorials/intermediate/tensorboard_tutorial.html">Visualizing models, data, and training with TensorBoard</a> 教程
-* <a target="_blank" rel="noopener noreferrer" href="https://pytorch.org/tutorials/intermediate/tensorboard_profiler_tutorial.html">PyTorch Profiler With TensorBoard</a> 教程
+* <a target="_blank" rel="noopener noreferrer" href="https://pytorch.org/docs/stable/tensorboard.html">torch.utils.tensorboard</a>
+* <a target="_blank" rel="noopener noreferrer" href="https://pytorch.org/tutorials/intermediate/tensorboard_tutorial.html">Visualizing models, data, and training with TensorBoard</a>
+* <a target="_blank" rel="noopener noreferrer" href="https://pytorch.org/tutorials/intermediate/tensorboard_profiler_tutorial.html">PyTorch Profiler With TensorBoard</a>
 
 ## 使用说明
 
-你也可以在 [JupyterLab App](./jupyterlab.md#tensorboard-插件) 中创建 TensorBoard，展示的内容是相同的。
+### 数据源
+
+App 支持 PVC 和 S3 两种数据源，配置时必须且只能选择其中一种。
+
+如使用 PVC 作为数据源，将 `logDir.pvc[0].name` 和 `logDir.pvc[0].subPath` 字段的值分别设为 PVC 的名称和目录，位于该目录及其子目录下的所有 tfevents 文件都将被可视化展示。
+
+如使用 S3 作为数据源，将 `logDir.s3️.secretRef.name` 字段的值设为 [S3-env 类型的 Secret](../guide/manage-storage-network-and-auxiliary/secret-s3.md) 的名称，将 `logDir.s3️.uri` 字段的值设为以 `/` 结尾的 S3 URL，所有以该 URL 作为前缀的 tfevents 文件都将被可视化展示。
 
 ## 下一步
 

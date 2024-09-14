@@ -72,7 +72,7 @@ conda 的使用方法请参阅 <a target="_blank" rel="noopener noreferrer" href
 
 ### 创建 Secret
 
-App 的 SSH 服务仅支持基于密钥的身份验证，因此你需要创建包含本地系统的公钥的 Secret 并提供给 App。请参阅[创建 SSH Public Key 模板的 Secret]()。
+App 的 SSH 服务仅支持基于密钥的身份验证，因此你需要创建包含本地系统的公钥的 Secret 并提供给 App。请参阅[创建 SSH Public Key 模板的 Secret](../../guide/manage-storage-network-and-auxiliary/secret-ssh.md)。
 
 ### 配置和安装 App
 

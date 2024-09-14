@@ -211,7 +211,7 @@
 <p>除了网页 UI，App 还支持通过 SSH 远程连接（需要启用 SSH 服务），让你能够使用熟悉的本地终端或 IDE，像在本地开发一样进行远程开发。限于篇幅，具体步骤请参阅<a href="../reference/faq/faq-in-jupyterlab-usage.html#%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87-ssh-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5">如何通过 SSH 远程连接</a>。</p>
 <h2 id="使用说明"><a class="header" href="#使用说明">使用说明</a></h2>
 <h3 id="镜像"><a class="header" href="#镜像">镜像</a></h3>
-<p>JupyterLab Apps 系列的每个 App 分别可以选用的镜像请参阅相应 <a href="../guide/manage-app/install-app.html#%E9%80%89%E6%8B%A9%E5%B9%B6%E4%BA%86%E8%A7%A3-app">README</a> 的镜像列表部分。</p>
+<p>JupyterLab Apps 系列的每个 App 分别可以选用的镜像请参阅相应 README 的镜像列表部分。</p>
 <p>每个镜像都包含 JupyterLab 和特定的环境（机器学习框架或 conda 环境），预装了一些 Python 包、命令行工具和平台工具，并且创建并使用一个新的用户：</p>
 <ul>
 <li>每个镜像预装的 Python 包各不相同，请执行 <code>pip list</code> 命令以查看。</li>
@@ -219,9 +219,12 @@
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>名称</th><th>介绍</th></tr></thead><tbody>
 <tr><td>curl</td><td>用于从或向服务器传输数据，支持多种协议。</td></tr>
+<tr><td>g++</td><td>GNU C++ 编译器，用于编译 C++ 程序。</td></tr>
+<tr><td>gcc</td><td>GNU 编译器集合，主要用于编译 C 语言程序。</td></tr>
 <tr><td>git</td><td>分布式版本控制系统，用于跟踪和协作开发软件项目的源代码。</td></tr>
 <tr><td>git-lfs</td><td>Git 的扩展，用于版本控制大型文件。</td></tr>
 <tr><td>htop</td><td>一个交互式的系统监视器，用于实时查看和管理运行中的进程。</td></tr>
+<tr><td>kubectl</td><td>用于管理 Kubernetes 集群和应用程序的命令行工具。</td></tr>
 <tr><td>rclone</td><td>用于在本地和云存储之间同步、管理文件的命令行程序，支持多种云存储服务。</td></tr>
 <tr><td>rsync</td><td>用于高效同步和传输文件，支持本地和远程文件。</td></tr>
 <tr><td>s3cmd</td><td>用于管理 Amazon S3 云存储服务。</td></tr>
@@ -231,7 +234,9 @@
 <tr><td>wget</td><td>用于从网络上下载文件，支持 HTTP、HTTPS 和 FTP 协议。</td></tr>
 <tr><td>zip</td><td>用于创建和管理 ZIP 压缩文件。</td></tr>
 </tbody></table>
-</div>
+</div><!-- 
+| tmux    | 终端复用器，允许在一个终端窗口中运行多个终端会话。       |
+-->
 <ul>
 <li>所有镜像均预装了最新版本的<a href="../tool/index.html">平台工具</a>。</li>
 <li>所有镜像均创建 GID 为 1000、名称为 t9kuser 的用户组，以及属于该用户组、UID 为 1000、名称为 t9kuser、HOME 目录为 <code>/t9k/mnt</code> 的用户，并使用该用户。</li>

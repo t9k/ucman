@@ -228,7 +228,7 @@ du &lt;DIR&gt; -h --max-depth=1  # 额外展示深度不大于 1 的子目录占
 </aside>
 <p>请跟随以下步骤，在本地通过 SSH 远程连接到 App。</p>
 <h3 id="创建-secret"><a class="header" href="#创建-secret">创建 Secret</a></h3>
-<p>App 的 SSH 服务仅支持基于密钥的身份验证，因此你需要创建包含本地系统的公钥的 Secret 并提供给 App。请参阅<a href="">创建 SSH Public Key 模板的 Secret</a>。</p>
+<p>App 的 SSH 服务仅支持基于密钥的身份验证，因此你需要创建包含本地系统的公钥的 Secret 并提供给 App。请参阅<a href="../../guide/manage-storage-network-and-auxiliary/secret-ssh.html">创建 SSH Public Key 模板的 Secret</a>。</p>
 <h3 id="配置和安装-app"><a class="header" href="#配置和安装-app">配置和安装 App</a></h3>
 <p>填写配置时，将 <code>ssh.enabled</code> 字段的值设为 <code>true</code> 以启用 SSH 服务；将 <code>ssh.authorizedKeys</code> 字段的值设为 Secret 列表，其中每个 Secret 包含一个需要远程连接到该 App 的系统的公钥。填写配置完成后，安装 App，等待其就绪。</p>
 <h3 id="端口转发"><a class="header" href="#端口转发">端口转发</a></h3>

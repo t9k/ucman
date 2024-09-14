@@ -196,22 +196,60 @@
 <figure class="screenshot">
   <img alt="codeserver" src="../assets/app/codeserver/codeserver.png" />
 </figure>
-<p>网页 UI 的使用方法请参阅 <a target="_blank" rel="noopener noreferrer" href="https://code.visualstudio.com/docs">Visual Studio Code Docs</a> 和 <a target="_blank" rel="noopener noreferrer" href="https://code.visualstudio.com/docs/editor/vscode-web">Visual Studio Code for the Web</a>。</p>
+<p>网页 UI 的使用方法请参阅 <a target="_blank" rel="noopener noreferrer" href="https://code.visualstudio.com/docs">Visual Studio Code Docs</a> 和 <a target="_blank" rel="noopener noreferrer" href="https://coder.com/docs/code-server/FAQ">FAQ of Code Server</a>。</p>
 <h2 id="使用说明"><a class="header" href="#使用说明">使用说明</a></h2>
-<ul>
-<li>App（的镜像）预装了以下命令行工具：</li>
-</ul>
-<div class="table-wrapper"><table><thead><tr><th>名称</th><th>介绍</th></tr></thead><tbody>
-<tr><td>curl</td><td>用于从或向服务器传输数据，支持多种协议。</td></tr>
-<tr><td>git</td><td>分布式版本控制系统，用于跟踪和协作开发软件项目的源代码。</td></tr>
-<tr><td>htop</td><td>一个交互式的系统监视器，用于实时查看和管理运行中的进程。</td></tr>
-<tr><td>ssh</td><td>用于安全地远程访问和管理服务器。</td></tr>
-<tr><td>wget</td><td>用于从网络上下载文件，支持 HTTP、HTTPS 和 FTP 协议。</td></tr>
-</tbody></table>
-</div>
-<ul>
-<li>在 App 的容器环境中，用户的 uid:gid 为 1000:1000（fsgroup 为 2000），没有 root 权限。其他 App 在同一个 PVC 中产生的数据，Code Server 可能因为 uid 和 gid 不同而无法访问。</li>
-</ul>
+<h3 id="挂载-pvc"><a class="header" href="#挂载-pvc">挂载 PVC</a></h3>
+<p><strong>必须</strong>为 App（的容器）挂载一个 PVC 作为工作空间。PVC 的挂载路径为 <code>/home/t9kuser/project</code>。</p>
+<h3 id="用户权限"><a class="header" href="#用户权限">用户权限</a></h3>
+<p>在 App 的容器环境中，用户的 UID:GID 为 1000:1000（fsgroup 为 2000），这意味着没有权限修改所有者和所有组都是 root 的文件（这些文件可能由挂载了同一个 PVC 且使用 root 用户的 Job 产生）。</p>
+<!-- ### 镜像
+
+App 可以选用的镜像请参阅 README 的镜像列表部分。
+
+每个镜像都包含和特定的环境（机器学习框架或 conda 环境），预装了一些 Python 包、命令行工具和平台工具，并且创建并使用一个新的用户：
+
+* 每个镜像预装的 Python 包各不相同，请执行 `pip list` 命令以查看。
+* 所有镜像均预装了以下命令行工具：
+
+| 名称    | 介绍                                                                   |
+| ------- | ---------------------------------------------------------------------- |
+| curl    | 用于从或向服务器传输数据，支持多种协议。                               |
+| git     | 分布式版本控制系统，用于跟踪和协作开发软件项目的源代码。               |
+| git-lfs | Git 的扩展，用于版本控制大型文件。                                     |
+| htop    | 一个交互式的系统监视器，用于实时查看和管理运行中的进程。               |
+| kubectl | 用于管理 Kubernetes 集群和应用程序的命令行工具。                       |
+| nano    | 一个简单易用的命令行文本编辑器，用于创建和编辑文本文件。               |
+| rclone  | 用于在本地和云存储之间同步、管理文件的命令行程序，支持多种云存储服务。 |
+| rsync   | 用于高效同步和传输文件，支持本地和远程文件。                           |
+| s3cmd   | 用于管理 Amazon S3 云存储服务。                                        |
+| ssh     | 用于安全地远程访问和管理服务器。                                       |
+| tmux    | 终端复用器，允许在一个终端窗口中运行多个终端会话。                     |
+| unzip   | 用于解压缩 ZIP 文件。                                                  |
+| vim     | 一款高效、可定制的文本编辑器，常用于编程和文本编辑。                   |
+| wget    | 用于从网络上下载文件，支持 HTTP、HTTPS 和 FTP 协议。                   |
+| zip     | 用于创建和管理 ZIP 压缩文件。                                          |
+
+* 所有镜像均预装了最新版本的[平台工具](../tool/index.md)。
+* 所有镜像均创建 GID 为 1000、名称为 t9kuser 的用户组，以及属于该用户组、UID 为 1000、名称为 t9kuser、HOME 目录为 `/t9k/mnt` 的用户，并使用该用户。
+
+### 挂载 PVC
+
+**必须**为 App（的容器）挂载一个 PVC 作为工作空间。PVC 的挂载路径为 `/t9k/mnt`，即镜像使用的 t9kuser 用户的 HOME 目录。
+
+挂载的 PVC 负责存储开发相关的文件，这些文件可以是通过 Code Server 的 UI 上传或创建的，也可以是通过 Code Server 的终端从网络下载或运行程序产生的。此外，挂载的 PVC 还负责存储 conda 环境和 conda 包的文件（位于 `/t9k/mnt/.conda` 路径下），以及 Python 包的文件（位于 `/t9k/mnt/.local` 路径下）。如果你需要安装较多、较大的 conda 包或 Python 包，请确保挂载的 PVC 留有足够的存储空间。
+
+T9k Job、T9k Service 等工作负载可以和 App 挂载同一个 PVC 以共享存储。例如创建一个 PyTorchTrainingJob，其利用通过 JupyterLab 准备好的训练脚本和数据集文件以启动训练；或者创建一个 SimpleMLService，其读取下载好的模型文件以启动推理服务。
+
+### 用户权限
+
+在 App 的容器环境中，用户的 UID:GID 为 1000:1000，这会导致系统级操作受到限制（权限不足）。例如，用户无法使用 `apt install` 命令安装开发所需的库，无法执行 `rm` 命令删除没有写权限的文件（这些文件可能是由挂载了同一个 PVC 且使用 root 用户的 Job 产生的）。在某些情况下，进行系统级操作是必要或便利的，解决方案是为 App 选用**标签带有 `-sudo` 后缀**的镜像，在需要提升权限的命令前加上 `sudo`，以 root 身份执行该命令。
+
+<aside class="note warning">
+<div class="title">警告</div>
+
+使用 `sudo` 命令可能会带来安全风险，请仅在必要时使用，并确保了解每个命令的作用。
+
+</aside> -->
 
                     </main>
 

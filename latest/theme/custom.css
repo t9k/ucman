@@ -368,7 +368,7 @@ aside.note > .title {
     padding: 0.5em 1em;
     font-size: 14px;
     font-weight: normal;
-    background: #F0F4FF;
+    background: #FEF9E7;
 }
 
 /* warning notes */
@@ -382,6 +382,10 @@ aside.note.tip > .title {
 
 aside.note.info > .title {
     background: #ECF8FB;
+}
+
+aside.note.explanation > .title {
+    background: #F0F4FF;
 }
 
 /* aside.note.warning > .title::before {

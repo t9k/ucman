@@ -190,20 +190,20 @@
 <h1 id="mlservice"><a class="header" href="#mlservice">MLService</a></h1>
 <p>MLService 用于在 TensorStack AI 平台上部署 AI 推理服务，其功能全面，可用于生产环境。</p>
 <h2 id="概述"><a class="header" href="#概述">概述</a></h2>
-<p><code>MLService</code> 是推理服务的核心 API，由 <code>releases</code> 和 <code>transformer</code> 两部分构成：</p>
+<p>MLService 是推理服务的核心 API，由以下两部分组成：</p>
 <ul>
 <li><code>releases</code>：定义一个或多个版本的模型推理服务。</li>
-<li>[可选]<code>transformer</code>：定义前处理（pre-processing）和后处理（post-processing）计算。</li>
+<li>[可选] <code>transformer</code>：定义前处理（pre-processing）和后处理（post-processing）计算。</li>
 </ul>
 <figure class="architecture">
   <img alt="mlservice-architecture" src="../../assets/api/t9k-service/mlservice-flow.drawio.svg" class="architecture">
-  <figcaption> 图 1: MLService 的组成。一个 MLService 由一个或多个模型服务版本（releases） 及前后处理模块（transformer，非必需）构成；不同的 release 和 transformer 可独立进行规模伸缩。</figcaption>
+  <figcaption> 图 1: MLService 的组成。一个 MLService 由一个或多个模型服务版本（release）及前后处理模块（transformer，非必需）构成；不同的 release 和 transformer 可独立进行规模伸缩。</figcaption>
 </figure>
-<p><code>MLService</code> 的主要特性包括：</p>
+<p>MLService 的主要特性包括：</p>
 <ul>
-<li>支持定义多个版本（<code>release</code>）的推理服务，每个 <code>release</code> 定义了下列内容：
+<li>支持定义多个版本（release）的推理服务，每个 <code>release</code> 定义了下列内容：
 <ul>
-<li>release 名称：推理服务的版本名称</li>
+<li>名称：推理服务的版本名称</li>
 <li>模型存储（<code>storage</code>）</li>
 <li>模型规约（<code>model</code>），包括 <code>parameters</code>，<code>runtime</code>（引用 <code>MLServiceRuntime</code> 定义运行推理服务 <code>Pod</code> 的模板）</li>
 <li>计算资源（<code>containersResources</code>）</li>
@@ -256,7 +256,7 @@ spec:
 <h2 id="mlserviceruntime"><a class="header" href="#mlserviceruntime">MLServiceRuntime</a></h2>
 <p>在<a href="#%E7%A4%BA%E4%BE%8B">示例</a>中，我们使用了 MLServiceRuntime <code>torchserve</code>。MLServiceRuntime 定义了推理服务的模板，包含了推理服务的关键信息，例如镜像、启动命令、资源需求等，能够方便地帮助用户快速部署多种模型推理服务程序。</p>
 <p>一个 MLServiceRuntime 可以被多个 MLService 使用。</p>
-<aside class="note info">
+<aside class="note">
 <div class="title">注意</div>
 <p>创建 MLService 时必须设置其使用的 MLServiceRuntime。</p>
 </aside>
@@ -732,7 +732,7 @@ $ curl -T test_data/0.png http://torch-mnist.&lt;project&gt;.&lt;domain&gt;/v1/m
   &quot;status&quot;: &quot;Healthy&quot;
 }
 </code></pre>
-<aside class="note tip">
+<aside class="note">
 <div class="title">注意</div>
 <p>当 MLService 设置了 Transformer 时，通过单版本 URL 访问推理服务不会经过 Transformer 的前处理和后处理。</p>
 </aside>

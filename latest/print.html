@@ -5426,20 +5426,20 @@ spec:
 <h1 id="mlservice"><a class="header" href="#mlservice">MLService</a></h1>
 <p>MLService 用于在 TensorStack AI 平台上部署 AI 推理服务，其功能全面，可用于生产环境。</p>
 <h2 id="概述-1"><a class="header" href="#概述-1">概述</a></h2>
-<p><code>MLService</code> 是推理服务的核心 API，由 <code>releases</code> 和 <code>transformer</code> 两部分构成：</p>
+<p>MLService 是推理服务的核心 API，由以下两部分组成：</p>
 <ul>
 <li><code>releases</code>：定义一个或多个版本的模型推理服务。</li>
-<li>[可选]<code>transformer</code>：定义前处理（pre-processing）和后处理（post-processing）计算。</li>
+<li>[可选] <code>transformer</code>：定义前处理（pre-processing）和后处理（post-processing）计算。</li>
 </ul>
 <figure class="architecture">
   <img alt="mlservice-architecture" src="api/t9k-service/../../assets/api/t9k-service/mlservice-flow.drawio.svg" class="architecture">
-  <figcaption> 图 1: MLService 的组成。一个 MLService 由一个或多个模型服务版本（releases） 及前后处理模块（transformer，非必需）构成；不同的 release 和 transformer 可独立进行规模伸缩。</figcaption>
+  <figcaption> 图 1: MLService 的组成。一个 MLService 由一个或多个模型服务版本（release）及前后处理模块（transformer，非必需）构成；不同的 release 和 transformer 可独立进行规模伸缩。</figcaption>
 </figure>
-<p><code>MLService</code> 的主要特性包括：</p>
+<p>MLService 的主要特性包括：</p>
 <ul>
-<li>支持定义多个版本（<code>release</code>）的推理服务，每个 <code>release</code> 定义了下列内容：
+<li>支持定义多个版本（release）的推理服务，每个 <code>release</code> 定义了下列内容：
 <ul>
-<li>release 名称：推理服务的版本名称</li>
+<li>名称：推理服务的版本名称</li>
 <li>模型存储（<code>storage</code>）</li>
 <li>模型规约（<code>model</code>），包括 <code>parameters</code>，<code>runtime</code>（引用 <code>MLServiceRuntime</code> 定义运行推理服务 <code>Pod</code> 的模板）</li>
 <li>计算资源（<code>containersResources</code>）</li>
@@ -5492,7 +5492,7 @@ spec:
 <h2 id="mlserviceruntime"><a class="header" href="#mlserviceruntime">MLServiceRuntime</a></h2>
 <p>在<a href="api/t9k-service/mlservice.html#%E7%A4%BA%E4%BE%8B">示例</a>中，我们使用了 MLServiceRuntime <code>torchserve</code>。MLServiceRuntime 定义了推理服务的模板，包含了推理服务的关键信息，例如镜像、启动命令、资源需求等，能够方便地帮助用户快速部署多种模型推理服务程序。</p>
 <p>一个 MLServiceRuntime 可以被多个 MLService 使用。</p>
-<aside class="note info">
+<aside class="note">
 <div class="title">注意</div>
 <p>创建 MLService 时必须设置其使用的 MLServiceRuntime。</p>
 </aside>
@@ -5968,7 +5968,7 @@ $ curl -T test_data/0.png http://torch-mnist.&lt;project&gt;.&lt;domain&gt;/v1/m
   &quot;status&quot;: &quot;Healthy&quot;
 }
 </code></pre>
-<aside class="note tip">
+<aside class="note">
 <div class="title">注意</div>
 <p>当 MLService 设置了 Transformer 时，通过单版本 URL 访问推理服务不会经过 Transformer 的前处理和后处理。</p>
 </aside>
@@ -8475,7 +8475,7 @@ summary = Pod has been in a non-ready state for more than 15 minutes.
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
 <h1 id="账单"><a class="header" href="#账单">账单</a></h1>
-<p>在 TensorStack AI 平台中，<a href="security/./project.html">项目</a> 是账单统计的基本单位。一个项目中所有 Apps 使用每种资源产生的费用都由项目管理员负责，即使 Apps 是由其他项目成员创建的。</p>
+<p>在 TensorStack AI 平台中，<a href="security/./project.html">项目</a> 是账单统计的基本单位。一个项目中所有 Apps 和 APIs 使用每种资源产生的费用都由项目管理员负责，即使 Apps 是由其他项目成员创建的。</p>
 <p>收费的资源种类包括：</p>
 <div class="table-wrapper"><table><thead><tr><th>资源种类</th><th>价格单位</th><th>费用计算方式</th><th>备注</th></tr></thead><tbody>
 <tr><td>CPU</td><td>核/小时</td><td>费用 = 价格 * 使用量 * 时长</td><td>使用量指请求量与实际使用量的较大值</td></tr>
@@ -8485,15 +8485,14 @@ summary = Pod has been in a non-ready state for more than 15 minutes.
 <tr><td>GPU</td><td>个/小时</td><td>费用 = 价格 * 使用量 * 时长</td><td>使用量指所请求的 GPU 总个数，无论是否实际使用</td></tr>
 <tr><td>其他扩展资源，例如 RDMA 网卡</td><td>个/小时</td><td>费用 = 价格 * 使用量 * 时长</td><td>使用量指所请求的扩展资源总个数，无论是否实际使用</td></tr>
 </tbody></table>
-</div>
-<blockquote>
-<p>说明：</p>
+</div><aside class="note explanation">
+<div class="title">说明</div>
 <ol>
 <li>“资源种类” 可以细分为子类，例如，根据 GPU 卡的类型，设定不同的价格。</li>
 <li>TensorStack AI 平台每小时出账一次，将每个账户在本出账周期产生的费用从账户余额中扣除。</li>
 <li>计算费用时精确到小数点后 6 位（单位：元），实际扣除费用时仅扣除到小数点后 2 位，小数点后第 3 位到第 6 位部分金额会被舍弃，这种舍弃部分的金额称作抹零金额。</li>
 </ol>
-</blockquote>
+</aside>
 <h2 id="示例-2"><a class="header" href="#示例-2">示例</a></h2>
 <p>某用户拥有一个项目，该项目中只有一个 App。在 <code>2024/09/01 10:00:00 ~ 13:00:00</code> 时段，计费系统将生成 3 笔账单，分别是：</p>
 <ul>

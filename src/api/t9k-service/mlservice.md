@@ -4,20 +4,20 @@ MLService 用于在 TensorStack AI 平台上部署 AI 推理服务，其功能�
 
 ## 概述
 
-`MLService` 是推理服务的核心 API，由 `releases` 和 `transformer` 两部分构成：
+MLService 是推理服务的核心 API，由以下两部分组成：
 
 - `releases`：定义一个或多个版本的模型推理服务。
-- [可选]`transformer`：定义前处理（pre-processing）和后处理（post-processing）计算。
+- [可选] `transformer`：定义前处理（pre-processing）和后处理（post-processing）计算。
 
 <figure class="architecture">
   <img alt="mlservice-architecture" src="../../assets/api/t9k-service/mlservice-flow.drawio.svg" class="architecture">
-  <figcaption> 图 1: MLService 的组成。一个 MLService 由一个或多个模型服务版本（releases） 及前后处理模块（transformer，非必需）构成；不同的 release 和 transformer 可独立进行规模伸缩。</figcaption>
+  <figcaption> 图 1: MLService 的组成。一个 MLService 由一个或多个模型服务版本（release）及前后处理模块（transformer，非必需）构成；不同的 release 和 transformer 可独立进行规模伸缩。</figcaption>
 </figure>
 
-`MLService` 的主要特性包括：
+MLService 的主要特性包括：
 
-- 支持定义多个版本（`release`）的推理服务，每个 `release` 定义了下列内容：
-    - release 名称：推理服务的版本名称
+- 支持定义多个版本（release）的推理服务，每个 `release` 定义了下列内容：
+    - 名称：推理服务的版本名称
     - 模型存储（`storage`）
     - 模型规约（`model`），包括 `parameters`，`runtime`（引用 `MLServiceRuntime` 定义运行推理服务 `Pod` 的模板）
     - 计算资源（`containersResources`）
@@ -77,7 +77,7 @@ spec:
 
 一个 MLServiceRuntime 可以被多个 MLService 使用。
 
-<aside class="note info">
+<aside class="note">
 <div class="title">注意</div>
 
 创建 MLService 时必须设置其使用的 MLServiceRuntime。
@@ -650,7 +650,7 @@ $ curl http://torch-mnist-s3-predict-v1.<project>.<domain>/ping
 }
 ```
 
-<aside class="note tip">
+<aside class="note">
 <div class="title">注意</div>
 
 当 MLService 设置了 Transformer 时，通过单版本 URL 访问推理服务不会经过 Transformer 的前处理和后处理。

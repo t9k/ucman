@@ -297,7 +297,7 @@ spec:
         image: &quot;t9kpublic/tensorflow-serving:2.6.0&quot;
 </code></pre>
 <h2 id="副本数量"><a class="header" href="#副本数量">副本数量</a></h2>
-<p>副本数量通过字段 <code>spec.replicas</code> 设置，用于定义 SimpleMLService 的 Pod 数量，默认值是 1。</p>
+<p>副本数量通过字段 <code>spec.replicas</code> 设置，用于定义 SimpleMLService 的 Pod 数量，默认值是 1。将 <code>spec.replicas</code> 设置为 0 时，可以在不删除 SimpleMLService 的情况下暂停服务。</p>
 <h2 id="暴露服务"><a class="header" href="#暴露服务">暴露服务</a></h2>
 <p>通过设置 <code>spec.service</code> 字段来选择将服务的哪个端口暴露出来。未设置时，默认将 Pod 的 8080 端口映射到 Service 的 80 端口。</p>
 <p>下面是一个示例：</p>

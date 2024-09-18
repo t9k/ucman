@@ -23,3 +23,7 @@
 <figure class="screenshot">
   <img alt="subscribed-alert" src="../../assets/guide/account/subscribed-alert.png" />
 </figure>
+
+## 参考
+
+- [告警信息](../../security/alert.md#告警信息)

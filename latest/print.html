@@ -8305,11 +8305,72 @@ spec:
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
 <h1 id="告警通知"><a class="header" href="#告警通知">告警通知</a></h1>
-<p>在用户使用 User Console 的过程中，可能遇到一些异常状况，包括：余额不足、任务失败、App 长时间未就绪等。平台的告警机制会自动收集这些异常信息，通过邮件或网页提示的方式通知用户。</p>
-<h2 id="机制介绍"><a class="header" href="#机制介绍">机制介绍</a></h2>
-<p>（TODO，结构图：告警信息收集、订阅和通知之间的关系）</p>
-<h2 id="常见通知及含义"><a class="header" href="#常见通知及含义">常见通知及含义</a></h2>
-<p>TODO</p>
+<p>当项目中出现异常情况时（例如余额不足、任务失败、App 长时间未就绪等），项目成员可以通过告警通知来订阅、查看<strong>告警信息</strong>，以了解异常情况。</p>
+<h2 id="告警信息"><a class="header" href="#告警信息">告警信息</a></h2>
+<p>告警通知通过<strong>告警信息</strong>向用户传递异常情况，下面是一条告警信息的示例：</p>
+<pre><code class="language-txt">开始时间
+2024-09-14T01:06:48Z
+状态
+firing
+标签
+alertname = KubePodNotReady
+namespace = demo
+pod = torch-mnist-trainingjob
+severity = warning
+注释
+2024-09-14T01:06:48Z
+description = Pod demo/torch-mnist-trainingjob has been in a non-ready state for longer than 15 minutes.
+runbook_url = https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubepodnotready
+summary = Pod has been in a non-ready state for more than 15 minutes.
+</code></pre>
+<p>以上述告警信息为例，一条告警信息主要包含下列内容：</p>
+<ol>
+<li>开始时间：当异常情况持续存在时，系统并不会持续产生告警信息，而是会周期性地（例如每 6 个小时）产生一条对应的告警信息。开始时间是系统最近一次产生这条告警信息的时间，并非异常情况出现的时间。</li>
+<li>状态：表明这条告警信息的状态，可能的值有：
+<ul>
+<li>pending：表明系统已经达到该告警信息对应的条件，但尚未超过规定时长。处于 pending 状态的告警信息无法通过<a href="security/alert.html#%E8%AE%A2%E9%98%85%E5%91%8A%E8%AD%A6%E4%BF%A1%E6%81%AF">订阅</a>来查看。</li>
+<li>firing：表明系统已经达到该告警信息对应的条件，并且已经超过规定时长。</li>
+</ul>
+</li>
+<li>标签：记录了这条告警信息的所有内容，包括告警名称、相关对象等等，具有相同标签的告警信息会被认为是同一条告警信息。
+<ul>
+<li>告警名称：标签键 alertname 对应的值是告警名称，上述告警信息的告警名称是 KubePodNotReady。告警名称代表告警信息的<strong>类型</strong>，同一类告警信息会有相同的告警名称，例如：当多个 Pod 处于 NotReady 状态时，系统会产生多个告警信息，这些告警信息的告警名称都是 KubePodNotReady。</li>
+</ul>
+</li>
+<li>注释：注释中会存放总结信息，通常情况下，你只需要看注释就知道这条告警信息对应的异常情况是什么。</li>
+</ol>
+<h2 id="订阅告警信息"><a class="header" href="#订阅告警信息">订阅告警信息</a></h2>
+<p>项目成员可以在 User Console 中订阅告警信息，不同项目的订阅设置是互相独立的。订阅告警信息时，项目成员需要进行下列操作：</p>
+<ol>
+<li>选择项目名称，下面的订阅设置只作用于这个项目</li>
+<li>填写接收通知的邮箱地址</li>
+<li>设置需要订阅的告警名称</li>
+</ol>
+<p>默认情况下，项目成员只能订阅下列告警信息：</p>
+<ul>
+<li>KubePodCrashLooping：Pod 容器处于 CrashLooping 状态</li>
+<li>KubeImagePullError：Pod 容器无法拉取镜像（错误原因是 ImagePullError 或 ErrImagePull）</li>
+<li>KubeContainerOOM：容器的内存溢出，原因可能是超出容器的资源限制或节点的内存上限</li>
+<li>KubeQuotaAlmostFull：资源配额几乎耗尽了，需要减少资源使用或增加资源配额</li>
+<li>KubeQuotaFullyUsed：资源配额几乎耗尽了，需要减少资源使用或增加资源配额</li>
+<li>KubeQuotaExceeded：资源请求总量超过了资源配额</li>
+<li>KubePersistentVolumeFillingUp：存储卷容量已使用 97%</li>
+<li>T9kAccountBalanceLow：账户余额不足</li>
+<li>T9kServiceNotReady：未处于暂停状态的 T9kService 超过 15 分钟还未就绪</li>
+<li>T9kJobFailed：T9k Job 运行失败</li>
+<li>T9kAppNotReady：T9k App 超过 10 分钟还未就绪</li>
+<li>T9kAppNotInstalled：T9k App 超过 10 分钟还未被成功安装</li>
+</ul>
+<h2 id="查看告警信息"><a class="header" href="#查看告警信息">查看告警信息</a></h2>
+<p>项目成员可以在 User Console 中直接查看项目的所有告警信息：</p>
+<ul>
+<li>告警信息通过告警名称进行分类</li>
+<li>告警信息状态：红色代表处于 firing 状态的告警信息，黄色代表处于 pending 状态的告警信息</li>
+</ul>
+<h2 id="下一步-24"><a class="header" href="#下一步-24">下一步</a></h2>
+<ul>
+<li><a href="security/../guide/account/alert-notification.html">查看告警通知</a></li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
 <h1 id="账单"><a class="header" href="#账单">账单</a></h1>
 <p>在 TensorStack AI 平台中，<a href="security/./project.html">项目</a> 是账单统计的基本单位。一个项目中所有 Apps 使用每种资源产生的费用都由项目管理员负责，即使 Apps 是由其他项目成员创建的。</p>
@@ -8349,7 +8410,7 @@ spec:
 <li><code>2024/09/01 11:00:00 ~ 12:00:00</code>：请求量与实际使用量的较大值前半小时为 1核 CPU、1GiB 内存，后半小时为 4核 CPU、4GiB 内存，平均为 2.5核 CPU、2.5GiB 内存，因此费用 = 0.003元/核/小时 * 2.5核 * 1小时 + 0.003元/GiB/小时 * 2.5GiB * 1小时 = 0.015元，抹零后实际扣除费用为 0.01元；</li>
 <li><code>2024/09/01 12:00:00 ~ 13:00:00</code>：请求量与实际使用量的较大值为 4核 CPU、4GiB 内存，费用 = 0.003元/核/小时 * 4核 * 1小时 + 0.003元/GiB/小时 * 4GiB * 1小时 = 0.024元，抹零后实际扣除费用为 0.02元。</li>
 </ul>
-<h2 id="下一步-24"><a class="header" href="#下一步-24">下一步</a></h2>
+<h2 id="下一步-25"><a class="header" href="#下一步-25">下一步</a></h2>
 <ul>
 <li><a href="security/../guide/account/view-bill.html">查看账单</a></li>
 </ul>
@@ -8968,6 +9029,10 @@ persistentvolumeclaim &quot;demo&quot; deleted
 <figure class="screenshot">
   <img alt="subscribed-alert" src="guide/account/../../assets/guide/account/subscribed-alert.png" />
 </figure>
+<h2 id="参考-6"><a class="header" href="#参考-6">参考</a></h2>
+<ul>
+<li><a href="guide/account/../../security/alert.html#%E5%91%8A%E8%AD%A6%E4%BF%A1%E6%81%AF">告警信息</a></li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
 <h1 id="训练模型"><a class="header" href="#训练模型">训练模型</a></h1>
 <p>这一部分的任务围绕深度学习模型的训练展开。通过这些任务，你将能够体验平台在模型训练领域的强大功能，具体包括：</p>
@@ -9181,7 +9246,7 @@ git clone https://github.com/t9k/tutorial-examples.git
 <tr><td>175B</td><td>3.5T</td><td></td><td>(WIP)</td><td></td><td></td><td></td></tr>
 </tbody></table>
 </div><p style="color: gray; font-size: 14px">*预计时间为参考值，与具体的硬件环境有关，这里以 A100 PCIE 40GB GPU 节点为例</p>
-<h2 id="参考-6"><a class="header" href="#参考-6">参考</a></h2>
+<h2 id="参考-7"><a class="header" href="#参考-7">参考</a></h2>
 <ul>
 <li>Megatron-LM：<a href="https://github.com/NVIDIA/Megatron-LM">https://github.com/NVIDIA/Megatron-LM</a></li>
 <li>Megatron-DeepSpeed：<a href="https://github.com/microsoft/Megatron-DeepSpeed">https://github.com/microsoft/Megatron-DeepSpeed</a></li>
@@ -9256,7 +9321,7 @@ kubectl logs $POD -f
   <img alt="memory-view" src="guide/train-model/../../assets/guide/train-model/profile/memory-view.png" />
 </figure>
 <p>TensorBoard 所展示的数据和提供的功能还远不止这些，请参阅<a target="_blank" rel="noopener noreferrer" href="https://pytorch.org/tutorials/intermediate/tensorboard_profiler_tutorial.html">官方教程</a>以了解更多。这些数据应当能为用户分析和改进性能提供非常有用的帮助。</p>
-<h2 id="参考-7"><a class="header" href="#参考-7">参考</a></h2>
+<h2 id="参考-8"><a class="header" href="#参考-8">参考</a></h2>
 <ul>
 <li><a target="_blank" rel="noopener noreferrer" href="https://pytorch.org/tutorials/beginner/profiler.html">Profiling your PyTorch Module</a></li>
 <li><a target="_blank" rel="noopener noreferrer" href="https://pytorch.org/tutorials/recipes/recipes/profiler_recipe.html">PyTorch Profiler</a></li>
@@ -9396,7 +9461,7 @@ Assistant: 我很抱歉听到你晚上睡眠不好。我明白这个问题对你
 </code></pre>
 <h2 id="部署-llm-推理服务"><a class="header" href="#部署-llm-推理服务">部署 LLM 推理服务</a></h2>
 <p>进一步地，可以使用 vLLM App 将 SFT 模型或 DPO 模型部署为推理服务。请参照<a href="guide/train-model/../deploy-model/deploy-llm.html#%E5%AE%89%E8%A3%85-vllm-app">安装 vLLM App</a>进行操作，注意将 <code>model.volume.existingClaim</code> 字段的值设为 <code>llama-factory</code>，将 <code>model.volume.subPath</code> 字段的值设为 <code>models/Meta-Llama-3.1-8B-sft</code> 或 <code>models/Meta-Llama-3.1-8B-dpo</code>。</p>
-<h2 id="参考-8"><a class="header" href="#参考-8">参考</a></h2>
+<h2 id="参考-9"><a class="header" href="#参考-9">参考</a></h2>
 <ul>
 <li>LLaMA-Factory：<a href="https://github.com/hiyouga/LLaMA-Factory">https://github.com/hiyouga/LLaMA-Factory</a></li>
 </ul>
@@ -9612,7 +9677,7 @@ env: []
 <figure class="screenshot" style="text-align: center;">
   <img alt="nextchat-chat" src="guide/deploy-model/../../assets/guide/deploy-model/deploy-llm/nextchat-chat.png" width="80%" />
 </figure>
-<h2 id="参考-9"><a class="header" href="#参考-9">参考</a></h2>
+<h2 id="参考-10"><a class="header" href="#参考-10">参考</a></h2>
 <ul>
 <li>NextChat：<a target="_blank" rel="noopener noreferrer" href="https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web">https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web</a></li>
 <li>vLLM：<a target="_blank" rel="noopener noreferrer" href="https://github.com/vllm-project/vllm">https://github.com/vllm-project/vllm</a></li>
@@ -10150,7 +10215,7 @@ api.push_model(
 <li>将驱动器连接到集群外的与集群网络连接速度较快的计算机上，然后参照<a href="guide/theme/upload-and-download-file.html#%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F">本地文件系统</a>继续操作。</li>
 <li>或者，请求管理员操作，将驱动器连接到存储集群的节点上，直接使用存储系统的工具进行数据传输。这种方法的数据传输速度一般较快，但需要能够访问存储集群的工具和接口。</li>
 </ol>
-<h2 id="参考-10"><a class="header" href="#参考-10">参考</a></h2>
+<h2 id="参考-11"><a class="header" href="#参考-11">参考</a></h2>
 <ul>
 <li><a target="_blank" rel="noopener noreferrer" href="https://rclone.org/">rclone</a></li>
 <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/s3tools/s3cmd">s3cmd</a></li>
@@ -12690,7 +12755,7 @@ contexts:
 <p>在 port-forward 成功后，你仍然需要保持你的 t9k-pf 命令行窗口一直保持运行状态。</p>
 </aside>
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
-<h1 id="参考-11"><a class="header" href="#参考-11">参考</a></h1>
+<h1 id="参考-12"><a class="header" href="#参考-12">参考</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
 <h1 id="常见问题-1"><a class="header" href="#常见问题-1">常见问题</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
@@ -12887,7 +12952,7 @@ now you can forward to your target by 127.0.0.1:&lt;Port&gt;
 <p>如果你排除了原因 1，请联系平台的管理员寻求解决。</p>
 <h2 id="命令执行失败显示-killed"><a class="header" href="#命令执行失败显示-killed">命令执行失败，显示 Killed</a></h2>
 <p>原因是进程因为内存不足被杀掉。请重新配置和安装 App，配置时申请更多的内存资源。</p>
-<h2 id="参考-12"><a class="header" href="#参考-12">参考</a></h2>
+<h2 id="参考-13"><a class="header" href="#参考-13">参考</a></h2>
 <p>如何通过 SSH 远程连接：</p>
 <ul>
 <li><a href="https://code.visualstudio.com/docs/remote/ssh">Developing on Remote Machines using SSH and Visual Studio Code</a></li>

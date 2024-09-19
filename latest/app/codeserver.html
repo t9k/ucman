@@ -197,59 +197,71 @@
   <img alt="codeserver" src="../assets/app/codeserver/codeserver.png" />
 </figure>
 <p>网页 UI 的使用方法请参阅 <a target="_blank" rel="noopener noreferrer" href="https://code.visualstudio.com/docs">Visual Studio Code Docs</a> 和 <a target="_blank" rel="noopener noreferrer" href="https://coder.com/docs/code-server/FAQ">FAQ of Code Server</a>。</p>
-<h2 id="使用说明"><a class="header" href="#使用说明">使用说明</a></h2>
+<h2 id="配置和使用说明"><a class="header" href="#配置和使用说明">配置和使用说明</a></h2>
+<h3 id="镜像"><a class="header" href="#镜像">镜像</a></h3>
+<p>App 可以选用的镜像请参阅 README 的镜像列表部分。</p>
+<p>每个镜像都包含 Code Server 和特定的环境（机器学习框架或 conda 环境），预装了一些 Python 包、命令行工具和平台工具，并且创建并使用一个新的用户：</p>
+<ul>
+<li>每个镜像预装的 Python 包各不相同，请执行 <code>pip list</code> 命令以查看。</li>
+<li>所有镜像均预装了以下命令行工具：</li>
+</ul>
+<div class="table-wrapper"><table><thead><tr><th>名称</th><th>介绍</th></tr></thead><tbody>
+<tr><td>curl</td><td>用于从或向服务器传输数据，支持多种协议。</td></tr>
+<tr><td>git</td><td>分布式版本控制系统，用于跟踪和协作开发软件项目的源代码。</td></tr>
+<tr><td>git-lfs</td><td>Git 的扩展，用于版本控制大型文件。</td></tr>
+<tr><td>htop</td><td>一个交互式的系统监视器，用于实时查看和管理运行中的进程。</td></tr>
+<tr><td>kubectl</td><td>用于管理 Kubernetes 集群和应用程序的命令行工具。</td></tr>
+<tr><td>nano</td><td>一个简单易用的命令行文本编辑器，用于创建和编辑文本文件。</td></tr>
+<tr><td>rclone</td><td>用于在本地和云存储之间同步、管理文件的命令行程序，支持多种云存储服务。</td></tr>
+<tr><td>rsync</td><td>用于高效同步和传输文件，支持本地和远程文件。</td></tr>
+<tr><td>s3cmd</td><td>用于管理 Amazon S3 云存储服务。</td></tr>
+<tr><td>ssh</td><td>用于安全地远程访问和管理服务器。</td></tr>
+<tr><td>tmux</td><td>终端复用器，允许在一个终端窗口中运行多个终端会话。</td></tr>
+<tr><td>unzip</td><td>用于解压缩 ZIP 文件。</td></tr>
+<tr><td>vim</td><td>一款高效、可定制的文本编辑器，常用于编程和文本编辑。</td></tr>
+<tr><td>wget</td><td>用于从网络上下载文件，支持 HTTP、HTTPS 和 FTP 协议。</td></tr>
+<tr><td>zip</td><td>用于创建和管理 ZIP 压缩文件。</td></tr>
+</tbody></table>
+</div>
+<ul>
+<li>所有镜像均预装了最新版本的<a href="../tool/index.html">平台工具</a>。</li>
+<li>所有镜像均创建 GID 为 1000、名称为 t9kuser 的用户组，以及属于该用户组、UID 为 1000、名称为 t9kuser、HOME 目录为 <code>/t9k/mnt</code> 的用户，并使用该用户。</li>
+</ul>
 <h3 id="挂载-pvc"><a class="header" href="#挂载-pvc">挂载 PVC</a></h3>
-<p><strong>必须</strong>为 App（的容器）挂载一个 PVC 作为工作空间。PVC 的挂载路径为 <code>/home/t9kuser/project</code>。</p>
+<p><strong>必须</strong>为 App（的容器）挂载一个 PVC 作为工作空间。下面的配置示例挂载 PVC demo 作为工作空间：</p>
+<pre><code class="language-yaml">pvc: &quot;demo&quot;
+
+...
+</code></pre>
+<figure class="screenshot">
+  <img alt="pvc" src="../assets/app/codeserver/pvc.png" />
+</figure>
+<p>PVC 的挂载路径为 <code>/t9k/mnt</code>，即镜像使用的 t9kuser 用户的 HOME 目录。</p>
+<p>挂载的 PVC 负责存储开发相关的文件，这些文件可以是通过 Code Server 的 UI 上传或创建的，也可以是通过 Code Server 的终端从网络下载或运行程序产生的。此外，挂载的 PVC 还负责存储 conda 环境和 conda 包的文件（位于 <code>/t9k/mnt/.conda</code> 路径下）、Python 包的文件（位于 <code>/t9k/mnt/.local/lib/python3.11</code> 路径下），以及<a href="#%E6%89%A9%E5%B1%95">扩展</a>的文件（位于 <code>/t9k/mnt/.local/share/code-server</code> 路径下）。如果你需要安装较多、较大的 conda 包、Python 包或扩展，请确保挂载的 PVC 留有足够的存储空间。</p>
+<p>T9k Job、T9k Service 等工作负载可以和 App 挂载同一个 PVC 以共享存储。例如创建一个 PyTorchTrainingJob，其利用通过 JupyterLab 准备好的训练脚本和数据集文件以启动训练；或者创建一个 SimpleMLService，其读取下载好的模型文件以启动推理服务。</p>
 <h3 id="用户权限"><a class="header" href="#用户权限">用户权限</a></h3>
-<p>在 App 的容器环境中，用户的 UID:GID 为 1000:1000（fsgroup 为 2000），这意味着没有权限修改所有者和所有组都是 root 的文件（这些文件可能由挂载了同一个 PVC 且使用 root 用户的 Job 产生）。</p>
-<!-- ### 镜像
-
-App 可以选用的镜像请参阅 README 的镜像列表部分。
-
-每个镜像都包含和特定的环境（机器学习框架或 conda 环境），预装了一些 Python 包、命令行工具和平台工具，并且创建并使用一个新的用户：
-
-* 每个镜像预装的 Python 包各不相同，请执行 `pip list` 命令以查看。
-* 所有镜像均预装了以下命令行工具：
-
-| 名称    | 介绍                                                                   |
-| ------- | ---------------------------------------------------------------------- |
-| curl    | 用于从或向服务器传输数据，支持多种协议。                               |
-| git     | 分布式版本控制系统，用于跟踪和协作开发软件项目的源代码。               |
-| git-lfs | Git 的扩展，用于版本控制大型文件。                                     |
-| htop    | 一个交互式的系统监视器，用于实时查看和管理运行中的进程。               |
-| kubectl | 用于管理 Kubernetes 集群和应用程序的命令行工具。                       |
-| nano    | 一个简单易用的命令行文本编辑器，用于创建和编辑文本文件。               |
-| rclone  | 用于在本地和云存储之间同步、管理文件的命令行程序，支持多种云存储服务。 |
-| rsync   | 用于高效同步和传输文件，支持本地和远程文件。                           |
-| s3cmd   | 用于管理 Amazon S3 云存储服务。                                        |
-| ssh     | 用于安全地远程访问和管理服务器。                                       |
-| tmux    | 终端复用器，允许在一个终端窗口中运行多个终端会话。                     |
-| unzip   | 用于解压缩 ZIP 文件。                                                  |
-| vim     | 一款高效、可定制的文本编辑器，常用于编程和文本编辑。                   |
-| wget    | 用于从网络上下载文件，支持 HTTP、HTTPS 和 FTP 协议。                   |
-| zip     | 用于创建和管理 ZIP 压缩文件。                                          |
-
-* 所有镜像均预装了最新版本的[平台工具](../tool/index.md)。
-* 所有镜像均创建 GID 为 1000、名称为 t9kuser 的用户组，以及属于该用户组、UID 为 1000、名称为 t9kuser、HOME 目录为 `/t9k/mnt` 的用户，并使用该用户。
-
-### 挂载 PVC
-
-**必须**为 App（的容器）挂载一个 PVC 作为工作空间。PVC 的挂载路径为 `/t9k/mnt`，即镜像使用的 t9kuser 用户的 HOME 目录。
-
-挂载的 PVC 负责存储开发相关的文件，这些文件可以是通过 Code Server 的 UI 上传或创建的，也可以是通过 Code Server 的终端从网络下载或运行程序产生的。此外，挂载的 PVC 还负责存储 conda 环境和 conda 包的文件（位于 `/t9k/mnt/.conda` 路径下），以及 Python 包的文件（位于 `/t9k/mnt/.local` 路径下）。如果你需要安装较多、较大的 conda 包或 Python 包，请确保挂载的 PVC 留有足够的存储空间。
-
-T9k Job、T9k Service 等工作负载可以和 App 挂载同一个 PVC 以共享存储。例如创建一个 PyTorchTrainingJob，其利用通过 JupyterLab 准备好的训练脚本和数据集文件以启动训练；或者创建一个 SimpleMLService，其读取下载好的模型文件以启动推理服务。
-
-### 用户权限
-
-在 App 的容器环境中，用户的 UID:GID 为 1000:1000，这会导致系统级操作受到限制（权限不足）。例如，用户无法使用 `apt install` 命令安装开发所需的库，无法执行 `rm` 命令删除没有写权限的文件（这些文件可能是由挂载了同一个 PVC 且使用 root 用户的 Job 产生的）。在某些情况下，进行系统级操作是必要或便利的，解决方案是为 App 选用**标签带有 `-sudo` 后缀**的镜像，在需要提升权限的命令前加上 `sudo`，以 root 身份执行该命令。
-
+<p>在 App 的容器环境中，用户的 UID:GID 为 1000:1000，这会导致系统级操作受到限制（权限不足）。例如，用户无法使用 <code>apt install</code> 命令安装开发所需的库，无法执行 <code>rm</code> 命令删除没有写权限的文件（这些文件可能是由挂载了同一个 PVC 且使用 root 用户的 Job 产生的）。</p>
+<p>在某些情况下，进行系统级操作是必要或便利的，解决方案是为 App 选用<strong>标签带有 <code>-sudo</code> 后缀</strong>的镜像，在需要提升权限的命令前加上 <code>sudo</code>，以 root 身份执行该命令。</p>
 <aside class="note warning">
 <div class="title">警告</div>
-
-使用 `sudo` 命令可能会带来安全风险，请仅在必要时使用，并确保了解每个命令的作用。
-
-</aside> -->
+<p>使用 <code>sudo</code> 命令可能会带来安全风险，请仅在必要时使用，并确保了解每个命令的作用。</p>
+</aside>
+<h3 id="扩展"><a class="header" href="#扩展">扩展</a></h3>
+<p><a href="https://code.visualstudio.com/docs/editor/extension-marketplace">和 VS Code 一样</a>，你也可以在 Code Server 中安装、管理、配置和使用扩展。所有镜像还预装了以下扩展：</p>
+<div class="table-wrapper"><table><thead><tr><th>名称</th><th>介绍</th></tr></thead><tbody>
+<tr><td>Chinese (Simplified) Language Pack for Visual Studio Code</td><td>此中文（简体）语言包为 VS Code 提供本地化界面。</td></tr>
+<tr><td>Jupyter</td><td>为当前 Jupyter Notebook 支持的语言内核提供基本的支持，并允许使用任何 Python 环境作为 Jupyter 内核。</td></tr>
+<tr><td>Jupyter Cell Tags</td><td>为 Notebook 单元格标签提供支持，以便使用 papermill、nbconvert、nbgrader 等工具。</td></tr>
+<tr><td>Jupyter Keymap</td><td>为 Notebook 提供键盘映射，以匹配 Jupyter Notebook 中的键盘绑定。</td></tr>
+<tr><td>Jupyter Notebook Renderers</td><td>为 Jupyter Notebook 的输出提供渲染器。</td></tr>
+<tr><td>Jupyter Slide Show</td><td>为 Notebook 单元格添加幻灯片类型。</td></tr>
+<tr><td>Python</td><td>为 Python 语言提供丰富支持，为其他 Python 扩展提供接入点</td></tr>
+<tr><td>Python Debugger</td><td>使用 debugpy 进行 Python 调试。</td></tr>
+</tbody></table>
+</div><aside class="note">
+<div class="title">注意</div>
+<p><a href="https://marketplace.visualstudio.com/vscode">VS Code 扩展市场</a>和 <a href="https://xextensions.coder.com/">Code Server 扩展市场</a>是分开的；并非所有 VS Code 扩展都适用于 Code Server。</p>
+</aside>
 
                     </main>
 

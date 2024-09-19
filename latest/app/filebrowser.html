@@ -199,9 +199,16 @@
   <img alt="filebrowser" src="../assets/app/filebrowser/filebrowser.png" />
 </figure>
 <p>网页 UI 的使用方法简单直观，请用户自行尝试。</p>
-<h2 id="使用说明"><a class="header" href="#使用说明">使用说明</a></h2>
+<h2 id="配置和使用说明"><a class="header" href="#配置和使用说明">配置和使用说明</a></h2>
 <h3 id="挂载-pvc"><a class="header" href="#挂载-pvc">挂载 PVC</a></h3>
-<p><strong>必须</strong>为 App（的容器）挂载一个 PVC 作为工作空间，App 的网页 UI 展示了该 PVC 中的所有文件。</p>
+<p><strong>必须</strong>为 App（的容器）挂载一个 PVC 作为工作空间，App 的网页 UI 展示了该 PVC 中的所有文件。下面的配置示例挂载 PVC demo 作为工作空间：</p>
+<pre><code class="language-yaml">pvc: demo
+
+...
+</code></pre>
+<figure class="screenshot">
+  <img alt="pvc" src="../assets/app/filebrowser/pvc.png" />
+</figure>
 <h3 id="用户权限"><a class="header" href="#用户权限">用户权限</a></h3>
 <p>在 App 的容器环境中，用户的 UID:GID 为 1000:1000（fsgroup 为 2000），这意味着没有权限修改所有者和所有组都是 root 的文件（这些文件可能由挂载了同一个 PVC 且使用 root 用户的 Job 产生）。</p>
 <h3 id="上传和下载"><a class="header" href="#上传和下载">上传和下载</a></h3>

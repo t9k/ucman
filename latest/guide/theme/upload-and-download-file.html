@@ -222,6 +222,19 @@
 <li>JupyterLab 不限制单次上传的文件数量，但在文件数量较多的情况下容易出错，建议文件数量 &gt; 30（也取决于具体网络环境）时打包成压缩文件再上传；单次下载最多 10 个文件。</li>
 </ul>
 </aside>
+<h3 id="code-server-app-ui"><a class="header" href="#code-server-app-ui">Code Server App UI</a></h3>
+<p>将 PVC 挂载到 <a href="../../app/codeserver.html">Code Server</a> App 上，本地文件系统和 PVC 之间的文件上传下载可以直接在 UI 中进行操作：</p>
+<figure class="screenshot">
+  <img alt="code-server-upload-download" src="../../assets/guide/theme/upload-and-download-file/code-server-upload-download.png" />
+</figure>
+<aside class="note">
+<div class="title">注意</div>
+<ul>
+<li>Code Server 不限制上传或下载的单个文件的大小，但上传和下载过程容易因为网络波动而出错，建议 &gt; ~5GB（也取决于具体网络环境）的单个文件使用其他方法上传或下载。此外，下载过程还会占用大量内存，在下载 &gt;~1GB 的单个文件之前需要确保留有 8GB 的可用内存。</li>
+<li>Code Server 不限制单次上传的文件数量，并且支持上传整个目录，在小文件数量较多的情况下也不容易出错；不限制单次下载的文件数量，但在文件数量较多的情况下容易遗漏，建议文件数量 &gt; 20 时打包成压缩文件再下载。</li>
+<li>下载文件时偶尔会弹出 <code>Can't open this folder</code> 对话框，这是一个已知的<a href="https://github.com/coder/code-server/issues/4646">问题</a>。一个解决方案是下载到当前用户的 <code>Pictures</code> 目录下。</li>
+</ul>
+</aside>
 <h3 id="file-browser-app-ui"><a class="header" href="#file-browser-app-ui">File Browser App UI</a></h3>
 <p>将 PVC 挂载到 <a href="../../app/filebrowser.html">File Browser</a> App 上，本地文件系统和 PVC 之间的文件上传下载可以直接在 UI 中进行操作：</p>
 <figure class="screenshot">

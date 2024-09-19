@@ -22,7 +22,7 @@
 * <a target="_blank" rel="noopener noreferrer" href="https://pytorch.org/tutorials/intermediate/tensorboard_tutorial.html">Visualizing models, data, and training with TensorBoard</a>
 * <a target="_blank" rel="noopener noreferrer" href="https://pytorch.org/tutorials/intermediate/tensorboard_profiler_tutorial.html">PyTorch Profiler With TensorBoard</a>
 
-## 使用说明
+## 配置和使用说明
 
 ### 数据源
 
@@ -30,7 +30,40 @@ App 支持 PVC 和 S3 两种数据源，配置时必须且只能选择其中一�
 
 如使用 PVC 作为数据源，将 `logDir.pvc[0].name` 和 `logDir.pvc[0].subPath` 字段的值分别设为 PVC 的名称和目录，位于该目录及其子目录下的所有 tfevents 文件都将被可视化展示。
 
+下面的配置示例可视化展示 PVC `tutorial` 的 `train/logs` 目录下的所有 tfevents 文件：
+
+```yaml
+logDir:
+  pvc:
+    - name: tutorial
+      subPath:
+        - "train/logs"
+
+...
+```
+
+<figure class="screenshot">
+  <img alt="pvc" src="../assets/app/tensorboard/pvc.png" />
+</figure>
+
 如使用 S3 作为数据源，将 `logDir.s3️.secretRef.name` 字段的值设为 [S3-env 类型的 Secret](../guide/manage-storage-network-and-auxiliary/secret-s3.md) 的名称，将 `logDir.s3️.uri` 字段的值设为以 `/` 结尾的 S3 URL，所有以该 URL 作为前缀的 tfevents 文件都将被可视化展示。
+
+下面的配置示例可视化展示 URL 匹配 `s3://folder/**` 的所有 tfevents 文件，由 Secret my-s3-env 提供访问凭证：
+
+```yaml
+logDir:
+  s3:
+    secretRef:
+      name: "my-s3-env"
+    uri:
+      - "s3://folder/"
+
+...
+```
+
+<figure class="screenshot">
+  <img alt="pvc" src="../assets/app/tensorboard/s3.png" />
+</figure>
 
 ## 下一步
 

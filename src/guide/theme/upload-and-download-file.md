@@ -52,6 +52,23 @@ NFS 类型的 PVC 不可扩容。
 
 </aside>
 
+### Code Server App UI
+
+将 PVC 挂载到 [Code Server](../../app/codeserver.md) App 上，本地文件系统和 PVC 之间的文件上传下载可以直接在 UI 中进行操作：
+
+<figure class="screenshot">
+  <img alt="code-server-upload-download" src="../../assets/guide/theme/upload-and-download-file/code-server-upload-download.png" />
+</figure>
+
+<aside class="note">
+<div class="title">注意</div>
+
+* Code Server 不限制上传或下载的单个文件的大小，但上传和下载过程容易因为网络波动而出错，建议 > ~5GB（也取决于具体网络环境）的单个文件使用其他方法上传或下载。此外，下载过程还会占用大量内存，在下载 >~1GB 的单个文件之前需要确保留有 8GB 的可用内存。
+* Code Server 不限制单次上传的文件数量，并且支持上传整个目录，在小文件数量较多的情况下也不容易出错；不限制单次下载的文件数量，但在文件数量较多的情况下容易遗漏，建议文件数量 > 20 时打包成压缩文件再下载。
+* 下载文件时偶尔会弹出 `Can't open this folder` 对话框，这是一个已知的[问题](https://github.com/coder/code-server/issues/4646)。一个解决方案是下载到当前用户的 `Pictures` 目录下。
+
+</aside>
+
 ### File Browser App UI
 
 将 PVC 挂载到 [File Browser](../../app/filebrowser.md) App 上，本地文件系统和 PVC 之间的文件上传下载可以直接在 UI 中进行操作：

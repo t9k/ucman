@@ -18,11 +18,21 @@ File Browser 的直观界面使文件管理变得简单高效，用户可以轻�
 
 网页 UI 的使用方法简单直观，请用户自行尝试。
 
-## 使用说明
+## 配置和使用说明
 
 ### 挂载 PVC
 
-**必须**为 App（的容器）挂载一个 PVC 作为工作空间，App 的网页 UI 展示了该 PVC 中的所有文件。
+**必须**为 App（的容器）挂载一个 PVC 作为工作空间，App 的网页 UI 展示了该 PVC 中的所有文件。下面的配置示例挂载 PVC demo 作为工作空间：
+
+```yaml
+pvc: demo
+
+...
+```
+
+<figure class="screenshot">
+  <img alt="pvc" src="../assets/app/filebrowser/pvc.png" />
+</figure>
 
 ### 用户权限
 

@@ -1,6 +1,6 @@
 # S3 场景
 
-当 App 或 API 需要连接 S3 存储服务时，可以创建 S3-cfg 或 S3-env 类型的 Secret 存储访问凭证，并将其提供给这些 App 或 API。S3-cfg 类型以 [.s3cfg 文件](https://s3tools.org/kb/item14.htm)的形式存储和提供，而 S3-env 类型则以环境变量的形式存储和提供，这两种类型的 Secret 都能让 App 或 API 安全地访问和操作 S3 存储服务。
+当 App 或 API 需要连接 S3 存储服务时，可以创建 S3-cfg 或 S3-env 类型的 Secret 存储访问凭证，并将其提供给这些 App 或 API。S3-cfg 类型以 <a target="_blank" rel="noopener noreferrer" href="https://s3tools.org/kb/item14.htm">.s3cfg 文件</a>的形式存储和提供，而 S3-env 类型则以环境变量的形式存储和提供，这两种类型的 Secret 都能让 App 或 API 安全地访问和操作 S3 存储服务。
 
 ## 创建 Secret
 

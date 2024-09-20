@@ -1,6 +1,6 @@
 # Gateway API
 
-[Gateway API](https://gateway-api.sigs.k8s.io/) 是一组 Kubernetes 原生资源，包括 GatewayClass、Gateway、HTTPRoute 等，提供从集群外部到集群内服务的动态路由功能。Gateway API 是 [Ingress](./ingress.md) 的继任者，将替代 Ingress 成为下一代 Kubernetes 路由解决方案。
+<a target="_blank" rel="noopener noreferrer" href="https://gateway-api.sigs.k8s.io/">Gateway API</a> 是一组 Kubernetes 原生资源，包括 GatewayClass、Gateway、HTTPRoute 等，提供从集群外部到集群内服务的动态路由功能。Gateway API 是 [Ingress](./ingress.md) 的继任者，将替代 Ingress 成为下一代 Kubernetes 路由解决方案。
 
 Gateway API 的设计模型如下：
 
@@ -16,13 +16,13 @@ Gateway API 的设计模型如下：
 
 上述资源的功能分别是：
 
-* [GatewayClass](https://gateway-api.sigs.k8s.io/api-types/gatewayclass/)：与 [IngressClass](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class)、[StorageClass](https://kubernetes.io/docs/concepts/storage/storage-classes/) 类似，GatewayClass 定义了一组共享共同配置和行为的 Gateway，由实现该 GatewayClass 的控制器管理。
-* [Gateway](https://gateway-api.sigs.k8s.io/api-types/gateway/)：描述了如何将流量翻译到集群内的服务。
-* [HTTPRoute](https://gateway-api.sigs.k8s.io/api-types/httproute/)：定义了特定协议的规则，用于将流量从 Gateway 映射到 Kubernetes 服务。
+* <a target="_blank" rel="noopener noreferrer" href="https://gateway-api.sigs.k8s.io/api-types/gatewayclass/">GatewayClass</a>：与 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class">IngressClass</a>、<a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/storage/storage-classes/">StorageClass</a> 类似，GatewayClass 定义了一组共享共同配置和行为的 Gateway，由实现该 GatewayClass 的控制器管理。
+* <a target="_blank" rel="noopener noreferrer" href="https://gateway-api.sigs.k8s.io/api-types/gateway/">Gateway</a>：描述了如何将流量翻译到集群内的服务。
+* <a target="_blank" rel="noopener noreferrer" href="https://gateway-api.sigs.k8s.io/api-types/httproute/">HTTPRoute</a>：定义了特定协议的规则，用于将流量从 Gateway 映射到 Kubernetes 服务。
 
 ## 查看 GatewayClass
 
-TensorStack AI 平台默认使用 [Cilium](https://docs.cilium.io/en/stable/network/servicemesh/gateway-api/gateway-api/) 作为控制器实现 Gateway API 功能，所创建的 GatewayClass 如下：
+TensorStack AI 平台默认使用 <a target="_blank" rel="noopener noreferrer" href="https://docs.cilium.io/en/stable/network/servicemesh/gateway-api/gateway-api/">Cilium</a> 作为控制器实现 Gateway API 功能，所创建的 GatewayClass 如下：
 
 ```yaml
 apiVersion: gateway.networking.k8s.io/v1

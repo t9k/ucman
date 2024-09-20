@@ -65,7 +65,7 @@ NFS 类型的 PVC 不可扩容。
 
 * Code Server 不限制上传或下载的单个文件的大小，但上传和下载过程容易因为网络波动而出错，建议 > ~5GB（也取决于具体网络环境）的单个文件使用其他方法上传或下载。此外，下载过程还会占用大量内存，在下载 >~1GB 的单个文件之前需要确保留有 8GB 的可用内存。
 * Code Server 不限制单次上传的文件数量，并且支持上传整个目录，在小文件数量较多的情况下也不容易出错；不限制单次下载的文件数量，但在文件数量较多的情况下容易遗漏，建议文件数量 > 20 时打包成压缩文件再下载。
-* 下载文件时偶尔会弹出 `Can't open this folder` 对话框，这是一个已知的[问题](https://github.com/coder/code-server/issues/4646)。一个解决方案是下载到当前用户的 `Pictures` 目录下。
+* 下载文件时偶尔会弹出 `Can't open this folder` 对话框，这是一个已知的<a target="_blank" rel="noopener noreferrer" href="https://github.com/coder/code-server/issues/4646">问题</a>。一个解决方案是下载到当前用户的 `Pictures` 目录下。
 
 </aside>
 

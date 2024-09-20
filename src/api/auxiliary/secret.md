@@ -71,9 +71,9 @@ Secret 有多种类型，分别适用于存储不同类型的敏感数据，并�
 | 类型           | label                                   | 用途                                                                        | 数据来源                                |
 | -------------- | --------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------- |
 | API Key        | `tensorstack.dev/resource: apikey`      | 存放 API Key                                                                | 在 User Console 生成                    |
-| S3-cfg         | `tensorstack.dev/resource: s3-cfg`      | 存放 [.s3cfg 文件](https://s3tools.org/kb/item14.htm)的内容                 | 从管理员处获取                          |
+| S3-cfg         | `tensorstack.dev/resource: s3-cfg`      | 存放 <a target="_blank" rel="noopener noreferrer" href="https://s3tools.org/kb/item14.htm">.s3cfg 文件</a>的内容                 | 从管理员处获取                          |
 | S3-env         | `tensorstack.dev/resource: s3-env`      | 存放 S3 配置                                                                | 从管理员处获取                          |
-| Docker         | `tensorstack.dev/resource: docker`      | 存放 [Docker 配置文件](https://docs.docker.com/engine/swarm/configs/)的内容 | 本地的 `$HOME/.docker/config.json` 文件 |
+| Docker         | `tensorstack.dev/resource: docker`      | 存放 <a target="_blank" rel="noopener noreferrer" href="https://docs.docker.com/engine/swarm/configs/">Docker 配置文件</a>的内容 | 本地的 `$HOME/.docker/config.json` 文件 |
 | SSH Public Key | `tensorstack.dev/resource: ssh`         | 存放 SSH 公钥                                                               | 本地的 `$HOME/.ssh/id_rsa.pub` 文件     |
 | Ceph Client    | `tensorstack.dev/resource: ceph-client` | 存放 Ceph 客户端配置                                                        | 从管理员处获取                          |
 | Custom         | `tensorstack.dev/resource: other`       | 自定义用途                                                                  | -                                       |

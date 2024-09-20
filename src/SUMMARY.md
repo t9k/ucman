@@ -28,6 +28,7 @@
     * [存储](api/storage/index.md)
         * [PVC](api/storage/pvc.md)
         * [StorageShim](api/storage/storageshim.md)
+        * [PVC 快照](api/storage/pvc-snapshot.md)
 
     * [网络服务](api/network/index.md)
         * [Service](api/network/service.md)
@@ -37,7 +38,7 @@
     * [辅助](api/auxiliary/index.md)
         * [Secret](api/auxiliary/secret.md)
         * [ConfigMap](api/auxiliary/configmap.md)
-        <!-- * [ServiceAccountToken](api/auxiliary/serviceaccounttoken.md) -->
+        * [ServiceAccountToken](api/auxiliary/serviceaccounttoken.md)
 
     * [T9k Job](api/t9k-job/index.md)
         * [GenericJob](api/t9k-job/genericjob.md)
@@ -64,6 +65,13 @@
     * [AutoTuneExperiment](api/autotuneexperiment.md)
     * [ImageBuilder](api/imagebuilder.md)
     * [DataCube](api/datacube.md)
+
+* [计算资源](compute-resource/index.md)
+    * [调度器](compute-resource/scheduler/index.md)
+        * [kube-scheduler](compute-resource/scheduler/kube-scheduler.md)
+    * [GPU 使用](compute-resource/gpu-usage.md)
+    * [资源使用监控](compute-resource/resources-monitoring.md)
+    <!-- * [资源回收](compute-resource/reclaim.md) -->
 
 * [账户和安全](security/index.md)
     * [账户](security/account.md)

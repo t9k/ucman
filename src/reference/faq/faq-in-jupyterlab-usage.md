@@ -290,5 +290,5 @@ VS Code 会新建一个窗口，等待连接建立之后，左下角会提示 **
 
 如何通过 SSH 远程连接：
 
-* [Developing on Remote Machines using SSH and Visual Studio Code](https://code.visualstudio.com/docs/remote/ssh)
-* [Remote development overview | PyCharm Documentation](https://www.jetbrains.com/help/pycharm/remote-development-overview.html)
+* <a target="_blank" rel="noopener noreferrer" href="https://code.visualstudio.com/docs/remote/ssh">Developing on Remote Machines using SSH and Visual Studio Code</a>
+* <a target="_blank" rel="noopener noreferrer" href="https://www.jetbrains.com/help/pycharm/remote-development-overview.html">Remote development overview | PyCharm Documentation</a>

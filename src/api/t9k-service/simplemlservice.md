@@ -148,26 +148,6 @@ spec:
 * 将 Pod 的 8080 端口映射到 Service 的 80 端口，协议是 TCP。
 * Service 的 Type 是 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/services-networking/service/#type-clusterip">ClusterIP</a>。
 
-## 调度器
-
-SimpleMLService 支持使用两种调度器：
-
-* <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler/#kube-scheduler">Kubernetes 默认调度器</a>
-* [T9k Scheduler 调度器]()
-
-通过 `spec.scheduler` 字段可以设置欲使用的调度器：
-* 不设置 `spec.scheduler` 字段，默认使用 Kubernetes 调度器。
-* 设置 `spec.scheduler.t9kScheduler` 字段，使用 T9k Scheduler 调度器。
-
-在下面的示例中，SimpleMLService 使用 T9k Scheduler 调度器，并申请使用 [队列]() `default` 中的资源。
-
-```yaml
-spec:
-  scheduler:
-    t9kScheduler:
-      queue: default
-```
-
 ## 模型存储
 
 通过 `spec.storage` 字段可以设置 SimpleMLService 的模型存储信息，详情请见[模型存储](./storage.md)。

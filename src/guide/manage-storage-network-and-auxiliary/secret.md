@@ -71,7 +71,7 @@ spec:
           key: token
 ```
 
-对于 App（如 [Tensorboard](https://github.com/t9k/apps/blob/master/user-console/tensorboard/chart/README.md)）和部分 API（如 [StorageShim](../../api/datacube.md)），你只需要参照配置或 YAML 配置的说明，在指定字段提供满足要求的 Secret 的名称即可，App 或 API 会处理好内部的配置。
+对于 App（如 <a target="_blank" rel="noopener noreferrer" href="https://github.com/t9k/apps/blob/master/user-console/tensorboard/chart/README.md">Tensorboard</a>）和部分 API（如 [StorageShim](../../api/datacube.md)），你只需要参照配置或 YAML 配置的说明，在指定字段提供满足要求的 Secret 的名称即可，App 或 API 会处理好内部的配置。
 
 下列文档提供了一些使用 Secret 的具体场景：
 

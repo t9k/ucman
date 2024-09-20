@@ -83,7 +83,7 @@ T9k Job、T9k Service 等工作负载可以和 App 挂载同一个 PVC 以共享
 
 ### 扩展
 
-[和 VS Code 一样](https://code.visualstudio.com/docs/editor/extension-marketplace)，你也可以在 Code Server 中安装、管理、配置和使用扩展。所有镜像还预装了以下扩展：
+<a target="_blank" rel="noopener noreferrer" href="https://code.visualstudio.com/docs/editor/extension-marketplace">和 VS Code 一样</a>，你也可以在 Code Server 中安装、管理、配置和使用扩展。所有镜像还预装了以下扩展：
 
 | 名称                                                      | 介绍                                                                                                |
 | --------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
@@ -99,6 +99,6 @@ T9k Job、T9k Service 等工作负载可以和 App 挂载同一个 PVC 以共享
 <aside class="note">
 <div class="title">注意</div>
 
-[VS Code 扩展市场](https://marketplace.visualstudio.com/vscode)和 [Code Server 扩展市场](https://xextensions.coder.com/)是分开的；并非所有 VS Code 扩展都适用于 Code Server。
+<a target="_blank" rel="noopener noreferrer" href="https://marketplace.visualstudio.com/vscode">VS Code 扩展市场</a>和 <a target="_blank" rel="noopener noreferrer" href="https://xextensions.coder.com/">Code Server 扩展市场</a>是分开的；并非所有 VS Code 扩展都适用于 Code Server。
 
 </aside>

@@ -509,24 +509,6 @@ spec:
 
 在上面的示例中，我们设置了工作负载数量的范围为 `[1,3]`，自动伸缩指标(metric)为 `rps`，自动伸缩目标(target)为 `100`。这意味着当每个工作负载每秒处理的请求数量（requests-per-second）达到 100 时，负载会开始扩容，且扩容最大数量为 3，最小数量为 1。
 
-### 调度器
-
-MLService 支持使用两种调度器：Kubernetes 默认调度器（默认）和 <a target="_blank" rel="noopener noreferrer" href="https://t9k.github.io/user-manuals/latest/modules/computing-resources/scheduler/index.html">T9k Scheduler</a>。MLService 通过 `spec.scheduler` 字段设置调度器：
-
-* 不设置 `spec.scheduler` 字段，则默认使用 Kubernetes 默认调度器。
-* 设置 `spec.scheduler.t9kScheduler` 字段，则使用 T9k Scheduler 调度器。
-
-在下面的示例中，使用了 T9k Scheduler 调度器，且工作负载处于队列 `default` 中。
-
-```yaml
-...
-spec:
-  scheduler:
-    t9kScheduler:
-      queue: default
-...
-```
-
 ## 服务状态
 
 通过 MLService 的状态字段可以获取如下信息：

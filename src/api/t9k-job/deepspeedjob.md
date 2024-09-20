@@ -242,36 +242,6 @@ DeepSpeedJob 提供以下三种策略：
 
 </aside>
 
-## 调度策略
-
-目前 DeepSpeedJob 支持两种调度策略：
-
-1. Kubernetes 的<a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler/#kube-scheduler">默认调度器</a>
-2. [T9k Scheduler]()
-
-调度策略通过 CRD 的 `spec.scheduler` 字段设置：
-
-* 不设置 `spec.scheduler` 字段，则默认使用 Kubernetes 的默认调度策略。
-* 设置 `spec.scheduler.t9kScheduler` 字段，则使用 T9k Scheduler 调度器。
-
-在下面的示例中，MPIJob 启用 T9k Scheduler 调度器，将副本插入 `default` 队列中等待调度，其优先级为 50。
-
-```yaml
-...
-spec:
-  scheduler:
-    t9kScheduler:
-      queue: default
-      priority: 50
-```
-
-<aside class="note info">
-<div class="title">信息</div>
-
-队列和优先级都是 T9k Scheduler 的概念，具体含义请参阅 [T9k Scheduler]()。
-
-</aside>
-
 ## 调试模式
 
 DeepSpeedJob 支持调试模式。在该模式下，训练环境会被部署好，但不会启动训练，用户可以连入副本测试环境或脚本。

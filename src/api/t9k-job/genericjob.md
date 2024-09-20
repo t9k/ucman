@@ -1,6 +1,6 @@
 # GenericJob
 
-GenericJob 是最基本的 T9k Job 资源，支持使用 T9k 高级调度策略。GenericJob 的使用十分灵活，一个熟练的使用者可以通过 GenericJob 实现 MPIJob、PyTorchTrainingJob 等特定功能的 T9k Job。
+GenericJob 是最基本的 T9k Job 资源。GenericJob 的使用十分灵活，一个熟练的使用者可以通过 GenericJob 实现 MPIJob、PyTorchTrainingJob 等特定功能的 T9k Job。
 
 ## 创建 GenericJob
 
@@ -290,36 +290,6 @@ spec:
 已结束的副本不会继续消耗集群资源，因此在一定程度上，`Unfinished` 策略比 `All` 策略更优。但这并不总是适用，由于一个项目的资源配额的计算不考虑 Pod 是否已经结束，对于资源紧张的项目，如果确定不需要通过日志来调试 Job，则可以使用 `All` 策略。
 
 `None` 策略主要用于训练脚本调试阶段。如果需要从副本中读取训练日志，则可以选用此策略。但由于这些副本可能占用资源并影响后续训练，建议你在调试完毕后手动删除这些副本或删除整个 GenericJob。
-
-</aside>
-
-## 调度器
-
-目前 GenericJob 支持两种调度器：
-
-1. Kubernetes 的<a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler/#kube-scheduler">默认调度器</a>
-2. [T9k Scheduler 调度器]()
-
-调度器通过 `spec.scheduler` 字段设置：
-
-* 不设置 `spec.scheduler` 字段，则默认使用 Kubernetes 的默认调度器。
-* 设置 `spec.scheduler.t9kScheduler` 字段，则使用 T9k Scheduler 调度器。
-
-在下面的示例中，GenericJob 启用 T9k Scheduler 调度器，将副本插入 `default` 队列中等待调度，其优先级为 50。
-
-```yaml
-...
-spec:
-  scheduler:
-    t9kScheduler:
-      queue: default
-      priority: 50
-```
-
-<aside class="note info">
-<div class="title">信息</div>
-
-队列和优先级都是 T9k Scheduler 的概念，具体含义请参阅 [T9k Scheduler]()。
 
 </aside>
 

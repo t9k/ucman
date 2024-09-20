@@ -319,30 +319,6 @@ spec:
 <div class="title">注意</div>
 <p>删除 Flink 集群会丢失任务运行相关的所有信息，且无法恢复。</p>
 </aside>
-<h2 id="调度器"><a class="header" href="#调度器">调度器</a></h2>
-<p>目前 BeamJob 支持两种调度器：</p>
-<ol>
-<li>Kubernetes 的<a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler/#kube-scheduler">默认调度器</a></li>
-<li><a href="">T9k Scheduler 调度器</a></li>
-</ol>
-<p>调度器通过 <code>spec.scheduler</code> 字段设置：</p>
-<ul>
-<li>不设置 <code>spec.scheduler</code> 字段，则默认使用 Kubernetes 的默认调度器。</li>
-<li>设置 <code>spec.scheduler.t9kScheduler</code> 字段，则使用 T9k Scheduler 调度器。</li>
-</ul>
-<p>在下面的示例中，BeamJob 启用 T9k Scheduler 调度器，将副本插入 <code>default</code> 队列中等待调度，其优先级为 50。</p>
-<pre><code class="language-yaml">...
-spec:
-  scheduler:
-    t9kScheduler:
-      queue: default
-      priority: 50
-...
-</code></pre>
-<aside class="note info">
-<div class="title">信息</div>
-<p>队列和优先级都是 T9k Scheduler 的概念，具体含义请参阅 <a href="">T9k Scheduler</a>。</p>
-</aside>
 
                     </main>
 

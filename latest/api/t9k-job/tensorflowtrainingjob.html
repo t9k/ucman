@@ -369,29 +369,6 @@ spec:
 <p>已结束的副本不会继续消耗集群资源，因此在一定程度上，<code>Unfinished</code> 策略比 <code>All</code> 策略更优。但这并不总是适用，由于一个项目的资源配额的计算不考虑 Pod 是否已经结束，对于资源紧张的项目，如果确定不需要通过日志来调试 Job，则可以使用 <code>All</code> 策略。</p>
 <p><code>None</code> 策略主要用于训练脚本调试阶段。如果需要从副本中读取训练日志，则可以选用此策略。但由于这些副本可能占用资源并影响后续训练，建议你在调试完毕后手动删除这些副本或删除整个 TensorFlowTrainingJob。</p>
 </aside>
-<h2 id="调度器"><a class="header" href="#调度器">调度器</a></h2>
-<p>目前 TensorFlowTrainingJob 支持使用以下两种调度器：</p>
-<ol>
-<li>Kubernetes 的<a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler/#kube-scheduler">默认调度器</a></li>
-<li><a href="">T9k Scheduler 调度器</a></li>
-</ol>
-<p>调度器通过 <code>spec.scheduler</code> 字段设置：</p>
-<ul>
-<li>不设置 <code>spec.scheduler</code> 字段，则默认使用 Kubernetes 的默认调度器。</li>
-<li>设置 <code>spec.scheduler.t9kScheduler</code> 字段，则使用 T9k Scheduler 调度器。</li>
-</ul>
-<p>在下面的示例中，TensorFlowTrainingJob 启用 T9k Scheduler 调度器，将副本插入 <code>default</code> 队列中等待调度，其优先级为 50。</p>
-<pre><code class="language-yaml">...
-spec:
-  scheduler:
-    t9kScheduler:
-      queue: default
-      priority: 50
-</code></pre>
-<aside class="note info">
-<div class="title">信息</div>
-<p>队列和优先级都是 T9k Scheduler 的概念，具体含义请参阅 <a href="">T9k Scheduler</a>。</p>
-</aside>
 <h2 id="调试模式"><a class="header" href="#调试模式">调试模式</a></h2>
 <p>TensorFlowTrainingJob 支持调试模式。在该模式下，训练环境会被部署好，但不会启动训练，用户可以连入副本测试环境或脚本。</p>
 <p>该模式可以通过 <code>spec.runMode.debug</code> 字段来设置：</p>

@@ -1,0 +1,433 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>kube-scheduler - TensorStack AI 计算平台 - User Console 用户手册</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../theme/sidebar.css">
+        <link rel="stylesheet" href="../../theme/custom.css">
+        <link rel="stylesheet" href="../../theme/version-dropdown.css">
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../overview.html">概述</a></li><li class="chapter-item expanded "><a href="../../get-started/index.html"><strong aria-hidden="true">1.</strong> 快速开始</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../get-started/training-first-model.html"><strong aria-hidden="true">1.1.</strong> 训练你的第一个模型</a></li><li class="chapter-item expanded "><a href="../../get-started/parallel-training.html"><strong aria-hidden="true">1.2.</strong> 进行并行训练</a></li><li class="chapter-item expanded "><a href="../../get-started/deploy-model.html"><strong aria-hidden="true">1.3.</strong> 部署模型</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><a href="../../app/index.html"><strong aria-hidden="true">2.</strong> Apps</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../app/codeserver.html"><strong aria-hidden="true">2.1.</strong> Code Server</a></li><li class="chapter-item expanded "><a href="../../app/filebrowser.html"><strong aria-hidden="true">2.2.</strong> File Browser</a></li><li class="chapter-item expanded "><a href="../../app/jupyterlab.html"><strong aria-hidden="true">2.3.</strong> JupyterLab</a></li><li class="chapter-item expanded "><a href="../../app/tensorboard.html"><strong aria-hidden="true">2.4.</strong> TensorBoard</a></li><li class="chapter-item expanded "><a href="../../app/terminal.html"><strong aria-hidden="true">2.5.</strong> Terminal</a></li><li class="chapter-item expanded "><a href="../../app/job-manager.html"><strong aria-hidden="true">2.6.</strong> Job Manager</a></li><li class="chapter-item expanded "><a href="../../app/service-manager.html"><strong aria-hidden="true">2.7.</strong> Service Manager</a></li><li class="chapter-item expanded "><a href="../../app/virtual-machine.html"><strong aria-hidden="true">2.8.</strong> Virtual Machine</a></li><li class="chapter-item expanded "><a href="../../app/workflow.html"><strong aria-hidden="true">2.9.</strong> Workflow</a></li></ol></li><li class="chapter-item expanded "><a href="../../api/index.html"><strong aria-hidden="true">3.</strong> APIs</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../api/storage/index.html"><strong aria-hidden="true">3.1.</strong> 存储</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../api/storage/pvc.html"><strong aria-hidden="true">3.1.1.</strong> PVC</a></li><li class="chapter-item expanded "><a href="../../api/storage/storageshim.html"><strong aria-hidden="true">3.1.2.</strong> StorageShim</a></li><li class="chapter-item expanded "><a href="../../api/storage/pvc-snapshot.html"><strong aria-hidden="true">3.1.3.</strong> PVC 快照</a></li></ol></li><li class="chapter-item expanded "><a href="../../api/network/index.html"><strong aria-hidden="true">3.2.</strong> 网络服务</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../api/network/service.html"><strong aria-hidden="true">3.2.1.</strong> Service</a></li><li class="chapter-item expanded "><a href="../../api/network/ingress.html"><strong aria-hidden="true">3.2.2.</strong> Ingress</a></li><li class="chapter-item expanded "><a href="../../api/network/gateway-api.html"><strong aria-hidden="true">3.2.3.</strong> Gateway API</a></li></ol></li><li class="chapter-item expanded "><a href="../../api/auxiliary/index.html"><strong aria-hidden="true">3.3.</strong> 辅助</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../api/auxiliary/secret.html"><strong aria-hidden="true">3.3.1.</strong> Secret</a></li><li class="chapter-item expanded "><a href="../../api/auxiliary/configmap.html"><strong aria-hidden="true">3.3.2.</strong> ConfigMap</a></li><li class="chapter-item expanded "><a href="../../api/auxiliary/serviceaccounttoken.html"><strong aria-hidden="true">3.3.3.</strong> ServiceAccountToken</a></li></ol></li><li class="chapter-item expanded "><a href="../../api/t9k-job/index.html"><strong aria-hidden="true">3.4.</strong> T9k Job</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../api/t9k-job/genericjob.html"><strong aria-hidden="true">3.4.1.</strong> GenericJob</a></li><li class="chapter-item expanded "><a href="../../api/t9k-job/pytorchtrainingjob.html"><strong aria-hidden="true">3.4.2.</strong> PyTorchTrainingJob</a></li><li class="chapter-item expanded "><a href="../../api/t9k-job/tensorflowtrainingjob.html"><strong aria-hidden="true">3.4.3.</strong> TensorFlowTrainingJob</a></li><li class="chapter-item expanded "><a href="../../api/t9k-job/deepspeedjob.html"><strong aria-hidden="true">3.4.4.</strong> DeepSpeedJob</a></li><li class="chapter-item expanded "><a href="../../api/t9k-job/colossalaijob.html"><strong aria-hidden="true">3.4.5.</strong> ColossalAIJob</a></li><li class="chapter-item expanded "><a href="../../api/t9k-job/xgboosttrainingjob.html"><strong aria-hidden="true">3.4.6.</strong> XGBoostTrainingJob</a></li><li class="chapter-item expanded "><a href="../../api/t9k-job/mpijob.html"><strong aria-hidden="true">3.4.7.</strong> MPIJob</a></li><li class="chapter-item expanded "><a href="../../api/t9k-job/beamjob.html"><strong aria-hidden="true">3.4.8.</strong> BeamJob</a></li></ol></li><li class="chapter-item expanded "><a href="../../api/t9k-service/index.html"><strong aria-hidden="true">3.5.</strong> T9k Service</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../api/t9k-service/simplemlservice.html"><strong aria-hidden="true">3.5.1.</strong> SimpleMLService</a></li><li class="chapter-item expanded "><a href="../../api/t9k-service/mlservice.html"><strong aria-hidden="true">3.5.2.</strong> MLService</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../api/t9k-service/mlservice-logger.html"><strong aria-hidden="true">3.5.2.1.</strong> 日志收集</a></li></ol></li><li class="chapter-item expanded "><a href="../../api/t9k-service/storage.html"><strong aria-hidden="true">3.5.3.</strong> 模型存储</a></li></ol></li><li class="chapter-item expanded "><a href="../../api/workflow/index.html"><strong aria-hidden="true">3.6.</strong> 工作流</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../api/workflow/workflowtemplate.html"><strong aria-hidden="true">3.6.1.</strong> WorkflowTemplate</a></li><li class="chapter-item expanded "><a href="../../api/workflow/workflowrun.html"><strong aria-hidden="true">3.6.2.</strong> WorkflowRun</a></li><li class="chapter-item expanded "><a href="../../api/workflow/cronworkflowrun.html"><strong aria-hidden="true">3.6.3.</strong> CronWorkflowRun</a></li><li class="chapter-item expanded "><a href="../../api/workflow/workflowtrigger.html"><strong aria-hidden="true">3.6.4.</strong> WorkflowTrigger</a></li></ol></li><li class="chapter-item expanded "><a href="../../api/autotuneexperiment.html"><strong aria-hidden="true">3.7.</strong> AutoTuneExperiment</a></li><li class="chapter-item expanded "><a href="../../api/imagebuilder.html"><strong aria-hidden="true">3.8.</strong> ImageBuilder</a></li><li class="chapter-item expanded "><a href="../../api/datacube.html"><strong aria-hidden="true">3.9.</strong> DataCube</a></li></ol></li><li class="chapter-item expanded "><a href="../../compute-resource/index.html"><strong aria-hidden="true">4.</strong> 计算资源</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../compute-resource/scheduler/index.html"><strong aria-hidden="true">4.1.</strong> 调度器</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../compute-resource/scheduler/kube-scheduler.html" class="active"><strong aria-hidden="true">4.1.1.</strong> kube-scheduler</a></li></ol></li><li class="chapter-item expanded "><a href="../../compute-resource/gpu-usage.html"><strong aria-hidden="true">4.2.</strong> GPU 使用</a></li><li class="chapter-item expanded "><a href="../../compute-resource/resources-monitoring.html"><strong aria-hidden="true">4.3.</strong> 资源使用监控</a></li></ol></li><li class="chapter-item expanded "><a href="../../security/index.html"><strong aria-hidden="true">5.</strong> 账户和安全</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../security/account.html"><strong aria-hidden="true">5.1.</strong> 账户</a></li><li class="chapter-item expanded "><a href="../../security/project.html"><strong aria-hidden="true">5.2.</strong> 项目</a></li><li class="chapter-item expanded "><a href="../../security/alert.html"><strong aria-hidden="true">5.3.</strong> 告警通知</a></li><li class="chapter-item expanded "><a href="../../security/bills.html"><strong aria-hidden="true">5.4.</strong> 账单</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><a href="../../guide/index.html"><strong aria-hidden="true">6.</strong> 操作指南</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../guide/homepage.html"><strong aria-hidden="true">6.1.</strong> User Console 首页</a></li><li class="chapter-item expanded "><a href="../../guide/manage-app/index.html"><strong aria-hidden="true">6.2.</strong> 管理 App</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../guide/manage-app/install-app.html"><strong aria-hidden="true">6.2.1.</strong> 安装 App</a></li><li class="chapter-item expanded "><a href="../../guide/manage-app/uninstall-app.html"><strong aria-hidden="true">6.2.2.</strong> 卸载 App</a></li><li class="chapter-item expanded "><a href="../../guide/manage-app/view-app-detail.html"><strong aria-hidden="true">6.2.3.</strong> 查看 App 详情</a></li></ol></li><li class="chapter-item expanded "><a href="../../guide/manage-storage-network-and-auxiliary/index.html"><strong aria-hidden="true">6.3.</strong> 管理存储、网络服务和辅助资源</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../guide/manage-storage-network-and-auxiliary/pvc.html"><strong aria-hidden="true">6.3.1.</strong> 管理 PVC</a></li><li class="chapter-item expanded "><a href="../../guide/manage-storage-network-and-auxiliary/storageshim.html"><strong aria-hidden="true">6.3.2.</strong> 创建 StorageShim</a></li><li class="chapter-item expanded "><a href="../../guide/manage-storage-network-and-auxiliary/service.html"><strong aria-hidden="true">6.3.3.</strong> 查看 Service</a></li><li class="chapter-item expanded "><a href="../../guide/manage-storage-network-and-auxiliary/ingress.html"><strong aria-hidden="true">6.3.4.</strong> 查看 Ingress</a></li><li class="chapter-item expanded "><a href="../../guide/manage-storage-network-and-auxiliary/secret.html"><strong aria-hidden="true">6.3.5.</strong> 管理 Secret</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../guide/manage-storage-network-and-auxiliary/secret-ssh.html"><strong aria-hidden="true">6.3.5.1.</strong> SSH 场景</a></li><li class="chapter-item expanded "><a href="../../guide/manage-storage-network-and-auxiliary/secret-s3.html"><strong aria-hidden="true">6.3.5.2.</strong> S3 场景</a></li></ol></li><li class="chapter-item expanded "><a href="../../guide/manage-storage-network-and-auxiliary/configmap.html"><strong aria-hidden="true">6.3.6.</strong> 管理 ConfigMap</a></li></ol></li><li class="chapter-item expanded "><a href="../../guide/account/index.html"><strong aria-hidden="true">6.4.</strong> 设置账户</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../guide/account/view-profile.html"><strong aria-hidden="true">6.4.1.</strong> 账户信息</a></li><li class="chapter-item expanded "><a href="../../guide/account/project-management.html"><strong aria-hidden="true">6.4.2.</strong> 项目管理</a></li><li class="chapter-item expanded "><a href="../../guide/account/security-setting.html"><strong aria-hidden="true">6.4.3.</strong> 安全设置</a></li><li class="chapter-item expanded "><a href="../../guide/account/view-bill.html"><strong aria-hidden="true">6.4.4.</strong> 查看账单</a></li><li class="chapter-item expanded "><a href="../../guide/account/alert-notification.html"><strong aria-hidden="true">6.4.5.</strong> 告警通知</a></li></ol></li><li class="chapter-item expanded "><a href="../../guide/train-model/index.html"><strong aria-hidden="true">6.5.</strong> 训练模型</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../guide/train-model/dp-training.html"><strong aria-hidden="true">6.5.1.</strong> 进行数据并行训练</a></li><li class="chapter-item expanded "><a href="../../guide/train-model/llm-large-scale-pretraining.html"><strong aria-hidden="true">6.5.2.</strong> 进行 LLM 大规模预训练</a></li><li class="chapter-item expanded "><a href="../../guide/train-model/profile.html"><strong aria-hidden="true">6.5.3.</strong> 分析性能</a></li><li class="chapter-item expanded "><a href="../../guide/train-model/llm-instruction-tuning.html"><strong aria-hidden="true">6.5.4.</strong> 指令微调 LLM</a></li></ol></li><li class="chapter-item expanded "><a href="../../guide/deploy-model/index.html"><strong aria-hidden="true">6.6.</strong> 部署模型推理服务</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../guide/deploy-model/deploy-pytorch.html"><strong aria-hidden="true">6.6.1.</strong> 部署 PyTorch 模型</a></li><li class="chapter-item expanded "><a href="../../guide/deploy-model/deploy-llm.html"><strong aria-hidden="true">6.6.2.</strong> 部署 LLM 推理服务和聊天服务</a></li></ol></li><li class="chapter-item expanded "><a href="../../guide/theme/index.html"><strong aria-hidden="true">6.7.</strong> 专题</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../guide/theme/upload-and-download-file.html"><strong aria-hidden="true">6.7.1.</strong> 上传和下载文件</a></li><li class="spacer"></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../tool/index.html"><strong aria-hidden="true">7.</strong> 命令行工具和 SDK</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../tool/cli-t9k/index.html"><strong aria-hidden="true">7.1.</strong> 命令行工具：t9k</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../tool/cli-t9k/guide.html"><strong aria-hidden="true">7.1.1.</strong> 用户指南</a></li><li class="chapter-item expanded "><a href="../../tool/cli-t9k/commands.html"><strong aria-hidden="true">7.1.2.</strong> 命令</a></li></ol></li><li class="chapter-item expanded "><a href="../../tool/cli-t9k-pf/index.html"><strong aria-hidden="true">7.2.</strong> 命令行工具：t9k-pf</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../tool/cli-t9k-pf/guide.html"><strong aria-hidden="true">7.2.1.</strong> 用户指南</a></li><li class="chapter-item expanded "><a href="../../tool/cli-t9k-pf/commands.html"><strong aria-hidden="true">7.2.2.</strong> 命令</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../reference/index.html"><strong aria-hidden="true">8.</strong> 参考</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../reference/faq/index.html"><strong aria-hidden="true">8.1.</strong> 常见问题</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../reference/faq/faq-in-app-usage.html"><strong aria-hidden="true">8.1.1.</strong> App 使用中的常见问题</a></li><li class="chapter-item expanded "><a href="../../reference/faq/faq-in-jupyterlab-usage.html"><strong aria-hidden="true">8.1.2.</strong> JupyterLab 使用中的常见问题</a></li></ol></li><li class="chapter-item expanded "><a href="../../reference/api-reference/index.html"><strong aria-hidden="true">8.2.</strong> API 参考</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../reference/api-reference/project.html"><strong aria-hidden="true">8.2.1.</strong> Project</a></li><li class="chapter-item expanded "><a href="../../reference/api-reference/genericjob.html"><strong aria-hidden="true">8.2.2.</strong> GenericJob</a></li><li class="chapter-item expanded "><a href="../../reference/api-reference/tensorflowtrainingjob.html"><strong aria-hidden="true">8.2.3.</strong> TensorFlowTrainingJob</a></li><li class="chapter-item expanded "><a href="../../reference/api-reference/pytorchtrainingjob.html"><strong aria-hidden="true">8.2.4.</strong> PyTorchTrainingJob</a></li><li class="chapter-item expanded "><a href="../../reference/api-reference/xgboosttrainingjob.html"><strong aria-hidden="true">8.2.5.</strong> XGBoostTrainingJob</a></li><li class="chapter-item expanded "><a href="../../reference/api-reference/colossalaijob.html"><strong aria-hidden="true">8.2.6.</strong> ColossalAIJob</a></li><li class="chapter-item expanded "><a href="../../reference/api-reference/deepspeedjob.html"><strong aria-hidden="true">8.2.7.</strong> DeepSpeedJob</a></li><li class="chapter-item expanded "><a href="../../reference/api-reference/mpijob.html"><strong aria-hidden="true">8.2.8.</strong> MPIJob</a></li><li class="chapter-item expanded "><a href="../../reference/api-reference/beamjob.html"><strong aria-hidden="true">8.2.9.</strong> BeamJob</a></li><li class="chapter-item expanded "><a href="../../reference/api-reference/tensorboard.html"><strong aria-hidden="true">8.2.10.</strong> TensorBoard</a></li><li class="chapter-item expanded "><a href="../../reference/api-reference/notebook.html"><strong aria-hidden="true">8.2.11.</strong> Notebook</a></li><li class="chapter-item expanded "><a href="../../reference/api-reference/autotune.html"><strong aria-hidden="true">8.2.12.</strong> AutoTuneExperiment</a></li><li class="chapter-item expanded "><a href="../../reference/api-reference/explorer.html"><strong aria-hidden="true">8.2.13.</strong> Explorer</a></li><li class="chapter-item expanded "><a href="../../reference/api-reference/storageshim.html"><strong aria-hidden="true">8.2.14.</strong> StorageShim</a></li><li class="chapter-item expanded "><a href="../../reference/api-reference/scheduler.html"><strong aria-hidden="true">8.2.15.</strong> Scheduler</a></li><li class="chapter-item expanded "><a href="../../reference/api-reference/workflow.html"><strong aria-hidden="true">8.2.16.</strong> Workflow</a></li><li class="chapter-item expanded "><a href="../../reference/api-reference/workflowtrigger.html"><strong aria-hidden="true">8.2.17.</strong> WorkflowTrigger</a></li><li class="chapter-item expanded "><a href="../../reference/api-reference/simplemlservice.html"><strong aria-hidden="true">8.2.18.</strong> SimpleMLService</a></li><li class="chapter-item expanded "><a href="../../reference/api-reference/mlservice.html"><strong aria-hidden="true">8.2.19.</strong> MLService</a></li><li class="chapter-item expanded "><a href="../../reference/api-reference/virtualserver.html"><strong aria-hidden="true">8.2.20.</strong> VirtualServer</a></li><li class="chapter-item expanded "><a href="../../reference/api-reference/datacube.html"><strong aria-hidden="true">8.2.21.</strong> DataCube</a></li><li class="chapter-item expanded "><a href="../../reference/api-reference/serviceaccounttoken.html"><strong aria-hidden="true">8.2.22.</strong> ServiceAccountToken</a></li></ol></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        <!-- custom code for adding release version dropdown menu -->
+                        <div class="version-dropdown">
+                            <button id="release-version" class="icon-button" type="button" title="Release version" aria-label="Release version" aria-haspopup="true" aria-expanded="false" aria-controls="release-versions">
+                                <i class="fa fa-book"></i>
+                            </button>
+                            <div class="version-dropdown-content">
+                                <a href="https://t9k.github.io/ucman/latest/index.html"target="_blank" rel="noopener noreferrer">latest</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h1 class="menu-title">TensorStack AI 计算平台 - User Console 用户手册</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="sidetoc"><nav class="pagetoc"></nav></div>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="kube-scheduler"><a class="header" href="#kube-scheduler">kube-scheduler</a></h1>
+<p>kube-scheduler 是 Kubernetes 集群的默认调度器，也是平台的默认调度器。</p>
+<p>下面将介绍 kube-scheduler 的一些常见的特性。如果想要更全面地了解 kube-scheduler，请参阅官方文档 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/zh-cn/docs/concepts/scheduling-eviction/"> 调度、抢占和驱逐</a>。</p>
+<h2 id="指定调度偏好"><a class="header" href="#指定调度偏好">指定调度偏好</a></h2>
+<p>在创建 Pod 时，用户可以主动设置一些调度偏好，从而影响调度行为，约束 Pod 只能运行在指定的节点上。下面是一些可以设置的调度偏好。</p>
+<aside class="note">
+<div class="title">注意</div>
+<p>在设置调度偏好之前，通常用户需要知道集群中存在的节点情况，包括：节点的名称、节点的标签、节点含有哪些扩展资源、节点的污点等等。如果用户有查看节点的权限，用户可以通过 kubectl 查看相关信息，如果用户没有权限查看节点信息，用户需要向管理员询问。</p>
+</aside>
+<h3 id="nodeselector"><a class="header" href="#nodeselector">NodeSelector</a></h3>
+<p>nodeSelector 用于约束 Pod 只能运行在指定的节点上，用户通过设置 nodeSelector 来表明用户希望目标节点所具有的节点标签。Pod 只会被调度到拥有用户所指定的每个标签的节点上。</p>
+<p>设置方式：通过 Pod 的 <code>spec.nodeSelector</code> 字段来设置 nodeSelector。字段类型是 map，定义了节点标签。</p>
+<p>示例：当 Pod YAML 设置了下列 nodeSelector 时，节点需要同时有标签 <code>kubernetes.io/os: linux</code> 和 <code>kubernetes.io/arch: amd64</code></p>
+<pre><code class="language-yaml">spec:
+ nodeSelector:
+   kubernetes.io/os: linux
+   kubernetes.io/arch: amd64
+</code></pre>
+<h3 id="亲和性"><a class="header" href="#亲和性">亲和性</a></h3>
+<p>亲和性（affinity）用于影响 Pod 可以被调度到哪些节点上，亲和性分为两种类型：</p>
+<ul>
+<li>节点亲和性：功能类似于 nodeSelector，但它的表达能力更强，并且允许用户指定软规则。</li>
+<li>Pod 间亲和性与反亲和性：使用户可以基于已经在节点上运行的 Pod 的标签来约束 Pod 可以调度到的节点，而不是基于节点上的标签。</li>
+</ul>
+<aside class="note">
+<div class="title">软规则</div>
+<p>影响调度器的打分行为，Pod 倾向于被调度到指定的节点上。当没有节点满足软规则时，Pod 也可以被调度。</p>
+</aside>
+<h4 id="节点亲和性"><a class="header" href="#节点亲和性">节点亲和性</a></h4>
+<p>节点亲和性使用户可以基于节点标签来约束 Pod 可以调度到的节点。节点亲和性有两种类型：</p>
+<ul>
+<li>requiredDuringSchedulingIgnoredDuringExecution： 调度器只有在规则被满足的时候才能执行调度。此功能类似于 nodeSelector， 但其语法表达能力更强。</li>
+<li>preferredDuringSchedulingIgnoredDuringExecution： 调度器会尝试寻找满足对应规则的节点。如果找不到匹配的节点，调度器仍然会调度该 Pod。</li>
+</ul>
+<p>设置方式：</p>
+<ul>
+<li>通过 Pod 的 <code>spec.affinity.nodeAffinity</code> 字段来设置节点亲和性（<a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#nodeaffinity-v1-core">API 参考</a>）</li>
+</ul>
+<p>示例：</p>
+<pre><code class="language-yaml">spec:
+ affinity:
+   nodeAffinity:
+     requiredDuringSchedulingIgnoredDuringExecution:
+       nodeSelectorTerms:
+       - matchExpressions:
+         - key: topology.kubernetes.io/zone
+           operator: In
+           values:
+           - antarctica-east1
+           - antarctica-west1
+     preferredDuringSchedulingIgnoredDuringExecution:
+     - weight: 1
+       preference:
+         matchExpressions:
+         - key: node-role.kubernetes.io/compute
+           operator: Exists
+</code></pre>
+<p>Pod 设置的上述 affinity 表明：</p>
+<ol>
+<li>可调度的节点上必须有标签 <code>topology.kubernetes.io/zone:antarctica-east1</code> 或 <code>topology.kubernetes.io/zone:antarctica-west1</code></li>
+<li>倾向于将 Pod 调度到含有标签键 <code>node-role.kubernetes.io/compute</code> 的节点上</li>
+</ol>
+<h4 id="pod-间亲和性与反亲和性"><a class="header" href="#pod-间亲和性与反亲和性">Pod 间亲和性与反亲和性</a></h4>
+<p>Pod 间亲和性与反亲和性使用户可以基于已经在节点上运行的 Pod 的标签来约束 Pod 可以调度到的节点，而不是基于节点上的标签。与节点亲和性类似，Pod 间亲和性与反亲和性也分为 requiredDuringSchedulingIgnoredDuringExecution 和 preferredDuringSchedulingIgnoredDuringExecution 两种类型。</p>
+<p>Pod 间亲和性与反亲和性的规则格式为“如果 X 上已经运行了一个或多个满足规则 Y 的 Pod， 则这个 Pod 应该（或者在反亲和性的情况下不应该）运行在 X 上”。 这里的 X 可以是节点、机架、云提供商可用区或地理区域或类似的拓扑域，Y 则是 Kubernetes 尝试满足的规则。</p>
+<ul>
+<li>拓扑域（X）：用户会通过 topologyKey 来表达拓扑域（X）的概念，其值是系统用来标示域的节点标签键。以 topologyKey <code>topology.kubernetes.io/zone</code> 为例，标签键 <code>topology.kubernetes.io/zone</code> 对应的值相同的节点会被认为是同一拓扑域。</li>
+<li>规则（Y）：通过 Pod affinity 字段定义的标签筛选规则。</li>
+</ul>
+<p>设置方式：</p>
+<ul>
+<li>通过 <code>spec.affinity.podAffinity</code> 字段来设置 Pod 间亲和性，通过 <code>spec.affinity.podAntiAffinity</code> 字段来设置 Pod 间反亲和性（<a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#affinity-v1-core">API 参考</a>）</li>
+<li>必须设置 topologyKey 字段，以表达拓扑域（X）</li>
+</ul>
+<p>示例：</p>
+<pre><code class="language-yaml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: application-server
+...
+spec:
+ template:
+   metadata:
+     labels:
+       app: database
+   spec:
+     affinity:
+       podAntiAffinity:
+         requiredDuringSchedulingIgnoredDuringExecution:
+         - labelSelector:
+             matchExpressions:
+             - key: app
+               operator: In
+               values:
+               - database
+           topologyKey: topology.kubernetes.io/zone
+</code></pre>
+<p>上述 Deployment 为他的 Pod 设置了:</p>
+<ul>
+<li>Pod 标签： <code>app: database</code></li>
+<li>Pod 间亲和性：保证所有 Pod 可以运行在相同拓扑域（标签键是 <code>topology.kubernetes.io/zone</code>）的节点上。</li>
+</ul>
+<h3 id="nodename"><a class="header" href="#nodename">nodeName</a></h3>
+<p>Pod 含有 spec.nodeName 字段，用于表明 Pod 运行在哪个节点上。在创建 Pod 时：</p>
+<ul>
+<li>未设置 nodeName 字段：调度器会根据调度规则自动为 Pod 设置 nodeName。</li>
+<li>设置了 nodeName 字段：Pod 会绕过调度器的调度规则，直接被分配到指定的节点上运行。</li>
+</ul>
+<aside class="note warning">
+<div class="title">警告</div>
+<p>不推荐使用 nodeName。nodeName 旨在供自定义调度器或需要绕过任何已配置调度器的高级场景使用。 如果已分配的 Node 负载过重，绕过调度器可能会导致 Pod 失败。 用户可以使用 <a href="#%E8%8A%82%E7%82%B9%E4%BA%B2%E5%92%8C%E6%80%A7">节点亲和性</a> 或 <a href="#nodeselector">nodeselector</a> 字段将 Pod 分配给特定 Node，而无需绕过调度器。</p>
+</aside>
+<p>下面是设置 nodeName 的 Pod 示例：</p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: Pod
+metadata:
+ name: nginx
+spec:
+ containers:
+ - name: nginx
+   image: nginx
+ nodeName: kube-01
+</code></pre>
+<p>上面的 Pod 只能运行在节点 kube-01 上。</p>
+<h3 id="污点与容忍度"><a class="header" href="#污点与容忍度">污点与容忍度</a></h3>
+<p>污点（taint）是节点的一种属性，它可被用来使得某些类型的 Pod 不能被调度到该节点上（除非 Pod 明确说明其容忍该污点）。例如，当节点存在出现软硬件故障、网络不可用、磁盘空间不足等问题时，系统会自动为该节点添加一个污点。此外，当管理员发现节点存在问题或正在测试节点时，也可能为该节点添加污点。</p>
+<p>容忍度（tolerations）是添加在一个 Pod 上的，如果 Pod 的容忍度与节点污点匹配，那么 Pod 可以被分配到含有污点的节点上。</p>
+<h4 id="节点污点示例"><a class="header" href="#节点污点示例">节点污点示例</a></h4>
+<p>如果用户有查看节点的权限，用户可以使用 <code>kubectl get node &lt;nodeName&gt; -o yaml</code> 查看节点的污点。否则用户需要向管理员咨询节点的污点信息。</p>
+<p>下面是一个示例，节点的 <code>spec.taints</code> 字段定义了污点信息：</p>
+<pre><code class="language-yaml">spec:
+  taints:
+  - effect: NoSchedule
+    key: key1
+    value: value1
+</code></pre>
+<h4 id="容忍度"><a class="header" href="#容忍度">容忍度</a></h4>
+<p>创建 Pod 时，通过 <code>spec.tolerations</code> (<a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#toleration-v1-core">API 参考</a>) 字段来设置容忍度。</p>
+<p>下面的容忍度设置可以忍受上述节点污点，从而 Pod 可以被调度到上述节点上：</p>
+<pre><code class="language-yaml">tolerations:
+- key: &quot;key1&quot;
+  operator: &quot;Equal&quot;
+  value: &quot;value1&quot;
+  effect: &quot;NoSchedule&quot;
+</code></pre>
+<h3 id="pod-拓扑分布约束"><a class="header" href="#pod-拓扑分布约束">Pod 拓扑分布约束</a></h3>
+<p>拓扑分布约束（topology spread constraints）用于控制 Pod 在集群内的拓扑分布，通过 Pod 的 spec.<code>topologySpreadConstraints</code> 字段进行设置。详情请见 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/zh-cn/docs/concepts/scheduling-eviction/topology-spread-constraints/">Kubernetes 文档</a>。</p>
+<p>下面是一个帮助用户理解拓扑分布约束的基本示例：</p>
+<p>集群状态如下：</p>
+<ul>
+<li>集群内有四个节点，通过节点标签 <code>zone: &lt;区域名&gt;</code> 划分为两个区域 zoneA 和 zoneB。</li>
+<li>含有标签 <code>foo: bar</code> 的 3 个 Pod 分别运行在 node1、node2、node3 中。</li>
+</ul>
+<p><img src="../../assets/compute-resource/kube-scheduler-topology.drawio.svg" alt="cluster-status" /></p>
+<p>用户若想创建一个新的 Pod，并且希望新来的 Pod 均匀分布在现有的可用区域，则可以按如下设置其清单：</p>
+<pre><code class="language-yaml">kind: Pod
+apiVersion: v1
+metadata:
+ name: mypod
+ labels:
+   foo: bar
+spec:
+ topologySpreadConstraints:
+ - maxSkew: 1
+   topologyKey: zone
+   whenUnsatisfiable: DoNotSchedule
+   labelSelector:
+     matchLabels:
+       foo: bar
+ containers:
+ - name: pause
+   image: registry.k8s.io/pause:3.1
+</code></pre>
+<p><code>spec.topologySpreadConstraints</code> 下的子字段说明：</p>
+<ul>
+<li><code>maxSkew</code>：值是 1，表明不同节点区域之间 Pod 数量的最大差值为 1。</li>
+<li><code>topologyKey</code>：用于划分节点区域的节点标签的键值。</li>
+<li><code>whenUnsatisfiable</code>：值是 DoNotSchedule，表明调度器无法找到满足拓扑约束的方式时，将 Pod 保持在 pending 状态。</li>
+<li><code>labelSelector</code>：表明含有标签 <code>foo: bar</code> 的 Pod 会被统计，以确定相应拓扑域中 Pod 的数量。</li>
+</ul>
+<p>综上，zoneA 上有 2 个 Pod，zoneB 上有 1 个 Pod，如果 mypod 被分配到 zoneA 上会导致 skew 为 2，违背 maxSkew=1，所以 mypod 会被调度器分配到 zoneB 中的 Node3 或 Node4 上。</p>
+<h2 id="优先级和抢占"><a class="header" href="#优先级和抢占">优先级和抢占</a></h2>
+<!-- kube-scheduler 和 T9k Scheduler 都有各自的优先级和抢占机制，用户可根据需求选用。 -->
+<p>kube-scheduler 的优先级和抢占机制请参阅 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/zh-cn/docs/concepts/scheduling-eviction/pod-priority-preemption/">Pod 优先级和抢占</a>。</p>
+<h2 id="参考"><a class="header" href="#参考">参考</a></h2>
+<ul>
+<li><a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/zh-cn/docs/concepts/scheduling-eviction/kube-scheduler/">Kubernetes 调度器</a></li>
+<li><a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/zh-cn/docs/concepts/scheduling-eviction/assign-pod-node/">将 Pod 指派给节点</a></li>
+<li><a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/zh-cn/docs/concepts/scheduling-eviction/taint-and-toleration/">污点和容忍度</a></li>
+<li><a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/zh-cn/docs/concepts/scheduling-eviction/topology-spread-constraints/">Pod 拓扑分布约束</a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../compute-resource/scheduler/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../../compute-resource/gpu-usage.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../compute-resource/scheduler/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../../compute-resource/gpu-usage.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../../theme/sidebar.js"></script>
+
+
+    </div>
+    </body>
+</html>

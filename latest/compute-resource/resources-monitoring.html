@@ -1,0 +1,317 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>资源使用监控 - TensorStack AI 计算平台 - User Console 用户手册</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../theme/sidebar.css">
+        <link rel="stylesheet" href="../theme/custom.css">
+        <link rel="stylesheet" href="../theme/version-dropdown.css">
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../overview.html">概述</a></li><li class="chapter-item expanded "><a href="../get-started/index.html"><strong aria-hidden="true">1.</strong> 快速开始</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../get-started/training-first-model.html"><strong aria-hidden="true">1.1.</strong> 训练你的第一个模型</a></li><li class="chapter-item expanded "><a href="../get-started/parallel-training.html"><strong aria-hidden="true">1.2.</strong> 进行并行训练</a></li><li class="chapter-item expanded "><a href="../get-started/deploy-model.html"><strong aria-hidden="true">1.3.</strong> 部署模型</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><a href="../app/index.html"><strong aria-hidden="true">2.</strong> Apps</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../app/codeserver.html"><strong aria-hidden="true">2.1.</strong> Code Server</a></li><li class="chapter-item expanded "><a href="../app/filebrowser.html"><strong aria-hidden="true">2.2.</strong> File Browser</a></li><li class="chapter-item expanded "><a href="../app/jupyterlab.html"><strong aria-hidden="true">2.3.</strong> JupyterLab</a></li><li class="chapter-item expanded "><a href="../app/tensorboard.html"><strong aria-hidden="true">2.4.</strong> TensorBoard</a></li><li class="chapter-item expanded "><a href="../app/terminal.html"><strong aria-hidden="true">2.5.</strong> Terminal</a></li><li class="chapter-item expanded "><a href="../app/job-manager.html"><strong aria-hidden="true">2.6.</strong> Job Manager</a></li><li class="chapter-item expanded "><a href="../app/service-manager.html"><strong aria-hidden="true">2.7.</strong> Service Manager</a></li><li class="chapter-item expanded "><a href="../app/virtual-machine.html"><strong aria-hidden="true">2.8.</strong> Virtual Machine</a></li><li class="chapter-item expanded "><a href="../app/workflow.html"><strong aria-hidden="true">2.9.</strong> Workflow</a></li></ol></li><li class="chapter-item expanded "><a href="../api/index.html"><strong aria-hidden="true">3.</strong> APIs</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../api/storage/index.html"><strong aria-hidden="true">3.1.</strong> 存储</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../api/storage/pvc.html"><strong aria-hidden="true">3.1.1.</strong> PVC</a></li><li class="chapter-item expanded "><a href="../api/storage/storageshim.html"><strong aria-hidden="true">3.1.2.</strong> StorageShim</a></li><li class="chapter-item expanded "><a href="../api/storage/pvc-snapshot.html"><strong aria-hidden="true">3.1.3.</strong> PVC 快照</a></li></ol></li><li class="chapter-item expanded "><a href="../api/network/index.html"><strong aria-hidden="true">3.2.</strong> 网络服务</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../api/network/service.html"><strong aria-hidden="true">3.2.1.</strong> Service</a></li><li class="chapter-item expanded "><a href="../api/network/ingress.html"><strong aria-hidden="true">3.2.2.</strong> Ingress</a></li><li class="chapter-item expanded "><a href="../api/network/gateway-api.html"><strong aria-hidden="true">3.2.3.</strong> Gateway API</a></li></ol></li><li class="chapter-item expanded "><a href="../api/auxiliary/index.html"><strong aria-hidden="true">3.3.</strong> 辅助</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../api/auxiliary/secret.html"><strong aria-hidden="true">3.3.1.</strong> Secret</a></li><li class="chapter-item expanded "><a href="../api/auxiliary/configmap.html"><strong aria-hidden="true">3.3.2.</strong> ConfigMap</a></li><li class="chapter-item expanded "><a href="../api/auxiliary/serviceaccounttoken.html"><strong aria-hidden="true">3.3.3.</strong> ServiceAccountToken</a></li></ol></li><li class="chapter-item expanded "><a href="../api/t9k-job/index.html"><strong aria-hidden="true">3.4.</strong> T9k Job</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../api/t9k-job/genericjob.html"><strong aria-hidden="true">3.4.1.</strong> GenericJob</a></li><li class="chapter-item expanded "><a href="../api/t9k-job/pytorchtrainingjob.html"><strong aria-hidden="true">3.4.2.</strong> PyTorchTrainingJob</a></li><li class="chapter-item expanded "><a href="../api/t9k-job/tensorflowtrainingjob.html"><strong aria-hidden="true">3.4.3.</strong> TensorFlowTrainingJob</a></li><li class="chapter-item expanded "><a href="../api/t9k-job/deepspeedjob.html"><strong aria-hidden="true">3.4.4.</strong> DeepSpeedJob</a></li><li class="chapter-item expanded "><a href="../api/t9k-job/colossalaijob.html"><strong aria-hidden="true">3.4.5.</strong> ColossalAIJob</a></li><li class="chapter-item expanded "><a href="../api/t9k-job/xgboosttrainingjob.html"><strong aria-hidden="true">3.4.6.</strong> XGBoostTrainingJob</a></li><li class="chapter-item expanded "><a href="../api/t9k-job/mpijob.html"><strong aria-hidden="true">3.4.7.</strong> MPIJob</a></li><li class="chapter-item expanded "><a href="../api/t9k-job/beamjob.html"><strong aria-hidden="true">3.4.8.</strong> BeamJob</a></li></ol></li><li class="chapter-item expanded "><a href="../api/t9k-service/index.html"><strong aria-hidden="true">3.5.</strong> T9k Service</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../api/t9k-service/simplemlservice.html"><strong aria-hidden="true">3.5.1.</strong> SimpleMLService</a></li><li class="chapter-item expanded "><a href="../api/t9k-service/mlservice.html"><strong aria-hidden="true">3.5.2.</strong> MLService</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../api/t9k-service/mlservice-logger.html"><strong aria-hidden="true">3.5.2.1.</strong> 日志收集</a></li></ol></li><li class="chapter-item expanded "><a href="../api/t9k-service/storage.html"><strong aria-hidden="true">3.5.3.</strong> 模型存储</a></li></ol></li><li class="chapter-item expanded "><a href="../api/workflow/index.html"><strong aria-hidden="true">3.6.</strong> 工作流</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../api/workflow/workflowtemplate.html"><strong aria-hidden="true">3.6.1.</strong> WorkflowTemplate</a></li><li class="chapter-item expanded "><a href="../api/workflow/workflowrun.html"><strong aria-hidden="true">3.6.2.</strong> WorkflowRun</a></li><li class="chapter-item expanded "><a href="../api/workflow/cronworkflowrun.html"><strong aria-hidden="true">3.6.3.</strong> CronWorkflowRun</a></li><li class="chapter-item expanded "><a href="../api/workflow/workflowtrigger.html"><strong aria-hidden="true">3.6.4.</strong> WorkflowTrigger</a></li></ol></li><li class="chapter-item expanded "><a href="../api/autotuneexperiment.html"><strong aria-hidden="true">3.7.</strong> AutoTuneExperiment</a></li><li class="chapter-item expanded "><a href="../api/imagebuilder.html"><strong aria-hidden="true">3.8.</strong> ImageBuilder</a></li><li class="chapter-item expanded "><a href="../api/datacube.html"><strong aria-hidden="true">3.9.</strong> DataCube</a></li></ol></li><li class="chapter-item expanded "><a href="../compute-resource/index.html"><strong aria-hidden="true">4.</strong> 计算资源</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../compute-resource/scheduler/index.html"><strong aria-hidden="true">4.1.</strong> 调度器</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../compute-resource/scheduler/kube-scheduler.html"><strong aria-hidden="true">4.1.1.</strong> kube-scheduler</a></li></ol></li><li class="chapter-item expanded "><a href="../compute-resource/gpu-usage.html"><strong aria-hidden="true">4.2.</strong> GPU 使用</a></li><li class="chapter-item expanded "><a href="../compute-resource/resources-monitoring.html" class="active"><strong aria-hidden="true">4.3.</strong> 资源使用监控</a></li></ol></li><li class="chapter-item expanded "><a href="../security/index.html"><strong aria-hidden="true">5.</strong> 账户和安全</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../security/account.html"><strong aria-hidden="true">5.1.</strong> 账户</a></li><li class="chapter-item expanded "><a href="../security/project.html"><strong aria-hidden="true">5.2.</strong> 项目</a></li><li class="chapter-item expanded "><a href="../security/alert.html"><strong aria-hidden="true">5.3.</strong> 告警通知</a></li><li class="chapter-item expanded "><a href="../security/bills.html"><strong aria-hidden="true">5.4.</strong> 账单</a></li><li class="spacer"></li></ol></li><li class="chapter-item expanded "><a href="../guide/index.html"><strong aria-hidden="true">6.</strong> 操作指南</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../guide/homepage.html"><strong aria-hidden="true">6.1.</strong> User Console 首页</a></li><li class="chapter-item expanded "><a href="../guide/manage-app/index.html"><strong aria-hidden="true">6.2.</strong> 管理 App</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../guide/manage-app/install-app.html"><strong aria-hidden="true">6.2.1.</strong> 安装 App</a></li><li class="chapter-item expanded "><a href="../guide/manage-app/uninstall-app.html"><strong aria-hidden="true">6.2.2.</strong> 卸载 App</a></li><li class="chapter-item expanded "><a href="../guide/manage-app/view-app-detail.html"><strong aria-hidden="true">6.2.3.</strong> 查看 App 详情</a></li></ol></li><li class="chapter-item expanded "><a href="../guide/manage-storage-network-and-auxiliary/index.html"><strong aria-hidden="true">6.3.</strong> 管理存储、网络服务和辅助资源</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../guide/manage-storage-network-and-auxiliary/pvc.html"><strong aria-hidden="true">6.3.1.</strong> 管理 PVC</a></li><li class="chapter-item expanded "><a href="../guide/manage-storage-network-and-auxiliary/storageshim.html"><strong aria-hidden="true">6.3.2.</strong> 创建 StorageShim</a></li><li class="chapter-item expanded "><a href="../guide/manage-storage-network-and-auxiliary/service.html"><strong aria-hidden="true">6.3.3.</strong> 查看 Service</a></li><li class="chapter-item expanded "><a href="../guide/manage-storage-network-and-auxiliary/ingress.html"><strong aria-hidden="true">6.3.4.</strong> 查看 Ingress</a></li><li class="chapter-item expanded "><a href="../guide/manage-storage-network-and-auxiliary/secret.html"><strong aria-hidden="true">6.3.5.</strong> 管理 Secret</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../guide/manage-storage-network-and-auxiliary/secret-ssh.html"><strong aria-hidden="true">6.3.5.1.</strong> SSH 场景</a></li><li class="chapter-item expanded "><a href="../guide/manage-storage-network-and-auxiliary/secret-s3.html"><strong aria-hidden="true">6.3.5.2.</strong> S3 场景</a></li></ol></li><li class="chapter-item expanded "><a href="../guide/manage-storage-network-and-auxiliary/configmap.html"><strong aria-hidden="true">6.3.6.</strong> 管理 ConfigMap</a></li></ol></li><li class="chapter-item expanded "><a href="../guide/account/index.html"><strong aria-hidden="true">6.4.</strong> 设置账户</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../guide/account/view-profile.html"><strong aria-hidden="true">6.4.1.</strong> 账户信息</a></li><li class="chapter-item expanded "><a href="../guide/account/project-management.html"><strong aria-hidden="true">6.4.2.</strong> 项目管理</a></li><li class="chapter-item expanded "><a href="../guide/account/security-setting.html"><strong aria-hidden="true">6.4.3.</strong> 安全设置</a></li><li class="chapter-item expanded "><a href="../guide/account/view-bill.html"><strong aria-hidden="true">6.4.4.</strong> 查看账单</a></li><li class="chapter-item expanded "><a href="../guide/account/alert-notification.html"><strong aria-hidden="true">6.4.5.</strong> 告警通知</a></li></ol></li><li class="chapter-item expanded "><a href="../guide/train-model/index.html"><strong aria-hidden="true">6.5.</strong> 训练模型</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../guide/train-model/dp-training.html"><strong aria-hidden="true">6.5.1.</strong> 进行数据并行训练</a></li><li class="chapter-item expanded "><a href="../guide/train-model/llm-large-scale-pretraining.html"><strong aria-hidden="true">6.5.2.</strong> 进行 LLM 大规模预训练</a></li><li class="chapter-item expanded "><a href="../guide/train-model/profile.html"><strong aria-hidden="true">6.5.3.</strong> 分析性能</a></li><li class="chapter-item expanded "><a href="../guide/train-model/llm-instruction-tuning.html"><strong aria-hidden="true">6.5.4.</strong> 指令微调 LLM</a></li></ol></li><li class="chapter-item expanded "><a href="../guide/deploy-model/index.html"><strong aria-hidden="true">6.6.</strong> 部署模型推理服务</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../guide/deploy-model/deploy-pytorch.html"><strong aria-hidden="true">6.6.1.</strong> 部署 PyTorch 模型</a></li><li class="chapter-item expanded "><a href="../guide/deploy-model/deploy-llm.html"><strong aria-hidden="true">6.6.2.</strong> 部署 LLM 推理服务和聊天服务</a></li></ol></li><li class="chapter-item expanded "><a href="../guide/theme/index.html"><strong aria-hidden="true">6.7.</strong> 专题</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../guide/theme/upload-and-download-file.html"><strong aria-hidden="true">6.7.1.</strong> 上传和下载文件</a></li><li class="spacer"></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../tool/index.html"><strong aria-hidden="true">7.</strong> 命令行工具和 SDK</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tool/cli-t9k/index.html"><strong aria-hidden="true">7.1.</strong> 命令行工具：t9k</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tool/cli-t9k/guide.html"><strong aria-hidden="true">7.1.1.</strong> 用户指南</a></li><li class="chapter-item expanded "><a href="../tool/cli-t9k/commands.html"><strong aria-hidden="true">7.1.2.</strong> 命令</a></li></ol></li><li class="chapter-item expanded "><a href="../tool/cli-t9k-pf/index.html"><strong aria-hidden="true">7.2.</strong> 命令行工具：t9k-pf</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../tool/cli-t9k-pf/guide.html"><strong aria-hidden="true">7.2.1.</strong> 用户指南</a></li><li class="chapter-item expanded "><a href="../tool/cli-t9k-pf/commands.html"><strong aria-hidden="true">7.2.2.</strong> 命令</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../reference/index.html"><strong aria-hidden="true">8.</strong> 参考</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../reference/faq/index.html"><strong aria-hidden="true">8.1.</strong> 常见问题</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../reference/faq/faq-in-app-usage.html"><strong aria-hidden="true">8.1.1.</strong> App 使用中的常见问题</a></li><li class="chapter-item expanded "><a href="../reference/faq/faq-in-jupyterlab-usage.html"><strong aria-hidden="true">8.1.2.</strong> JupyterLab 使用中的常见问题</a></li></ol></li><li class="chapter-item expanded "><a href="../reference/api-reference/index.html"><strong aria-hidden="true">8.2.</strong> API 参考</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../reference/api-reference/project.html"><strong aria-hidden="true">8.2.1.</strong> Project</a></li><li class="chapter-item expanded "><a href="../reference/api-reference/genericjob.html"><strong aria-hidden="true">8.2.2.</strong> GenericJob</a></li><li class="chapter-item expanded "><a href="../reference/api-reference/tensorflowtrainingjob.html"><strong aria-hidden="true">8.2.3.</strong> TensorFlowTrainingJob</a></li><li class="chapter-item expanded "><a href="../reference/api-reference/pytorchtrainingjob.html"><strong aria-hidden="true">8.2.4.</strong> PyTorchTrainingJob</a></li><li class="chapter-item expanded "><a href="../reference/api-reference/xgboosttrainingjob.html"><strong aria-hidden="true">8.2.5.</strong> XGBoostTrainingJob</a></li><li class="chapter-item expanded "><a href="../reference/api-reference/colossalaijob.html"><strong aria-hidden="true">8.2.6.</strong> ColossalAIJob</a></li><li class="chapter-item expanded "><a href="../reference/api-reference/deepspeedjob.html"><strong aria-hidden="true">8.2.7.</strong> DeepSpeedJob</a></li><li class="chapter-item expanded "><a href="../reference/api-reference/mpijob.html"><strong aria-hidden="true">8.2.8.</strong> MPIJob</a></li><li class="chapter-item expanded "><a href="../reference/api-reference/beamjob.html"><strong aria-hidden="true">8.2.9.</strong> BeamJob</a></li><li class="chapter-item expanded "><a href="../reference/api-reference/tensorboard.html"><strong aria-hidden="true">8.2.10.</strong> TensorBoard</a></li><li class="chapter-item expanded "><a href="../reference/api-reference/notebook.html"><strong aria-hidden="true">8.2.11.</strong> Notebook</a></li><li class="chapter-item expanded "><a href="../reference/api-reference/autotune.html"><strong aria-hidden="true">8.2.12.</strong> AutoTuneExperiment</a></li><li class="chapter-item expanded "><a href="../reference/api-reference/explorer.html"><strong aria-hidden="true">8.2.13.</strong> Explorer</a></li><li class="chapter-item expanded "><a href="../reference/api-reference/storageshim.html"><strong aria-hidden="true">8.2.14.</strong> StorageShim</a></li><li class="chapter-item expanded "><a href="../reference/api-reference/scheduler.html"><strong aria-hidden="true">8.2.15.</strong> Scheduler</a></li><li class="chapter-item expanded "><a href="../reference/api-reference/workflow.html"><strong aria-hidden="true">8.2.16.</strong> Workflow</a></li><li class="chapter-item expanded "><a href="../reference/api-reference/workflowtrigger.html"><strong aria-hidden="true">8.2.17.</strong> WorkflowTrigger</a></li><li class="chapter-item expanded "><a href="../reference/api-reference/simplemlservice.html"><strong aria-hidden="true">8.2.18.</strong> SimpleMLService</a></li><li class="chapter-item expanded "><a href="../reference/api-reference/mlservice.html"><strong aria-hidden="true">8.2.19.</strong> MLService</a></li><li class="chapter-item expanded "><a href="../reference/api-reference/virtualserver.html"><strong aria-hidden="true">8.2.20.</strong> VirtualServer</a></li><li class="chapter-item expanded "><a href="../reference/api-reference/datacube.html"><strong aria-hidden="true">8.2.21.</strong> DataCube</a></li><li class="chapter-item expanded "><a href="../reference/api-reference/serviceaccounttoken.html"><strong aria-hidden="true">8.2.22.</strong> ServiceAccountToken</a></li></ol></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        <!-- custom code for adding release version dropdown menu -->
+                        <div class="version-dropdown">
+                            <button id="release-version" class="icon-button" type="button" title="Release version" aria-label="Release version" aria-haspopup="true" aria-expanded="false" aria-controls="release-versions">
+                                <i class="fa fa-book"></i>
+                            </button>
+                            <div class="version-dropdown-content">
+                                <a href="https://t9k.github.io/ucman/latest/index.html"target="_blank" rel="noopener noreferrer">latest</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h1 class="menu-title">TensorStack AI 计算平台 - User Console 用户手册</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="sidetoc"><nav class="pagetoc"></nav></div>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="资源使用监控"><a class="header" href="#资源使用监控">资源使用监控</a></h1>
+<p>在平台创建工作负载后，用户可以通过控制台或命令行工具查看工作负载的资源使用情况（<u>除了计算资源，还包括网络带宽和存储资源</u>）。</p>
+<h2 id="控制台"><a class="header" href="#控制台">控制台</a></h2>
+<p>用户可以在下列控制台的工作负载的详情页面查看资源监测图表：</p>
+<ul>
+<li>Job Manager</li>
+<li>Service Manager</li>
+</ul>
+<p>当用户定义工作负载时可以选择性地为每个容器设定所需要的资源数量，最常见的可设定资源是 CPU、内存和扩展资源。</p>
+<p>以 PyTorchTrainingJob 为例，用户可以查看下面几类资源的使用情况。</p>
+<h3 id="cpu--memory--扩展资源"><a class="header" href="#cpu--memory--扩展资源">CPU / Memory / 扩展资源</a></h3>
+<p>CPU（内存）的资源监测图如下所示，图中包含三条折线：</p>
+<ul>
+<li>请求量：工作负载声明的 <code>resources.requests.cpu</code>（<code>resources.requests.memory</code>）</li>
+<li>上限：工作负载声明的 <code>resources.limits.cpu</code>（<code>resources.limits.memory</code>）</li>
+<li>使用量：工作负载实际使用的 CPU（内存）资源量</li>
+</ul>
+<figure class="screenshot">
+  <img alt="cpu" src="../assets/compute-resource/monitoring/cpu.png"/>
+</figure>
+<figure class="screenshot">
+  <img alt="memory" src="../assets/compute-resource/monitoring/memory.png"/>
+</figure>
+<p>当工作负载声明扩展资源时，显示扩展资源的资源监测图。</p>
+<p>在本例中，PytorchTrainingJob 声明了扩展资源 <code>nvidia.com/gpu: 2</code>，页面显示了工作负载声明的 <code>resources.limits.&quot;nvidia.com/gpu&quot;</code> 资源量。</p>
+<figure class="screenshot">
+  <img alt="nvidia.com/gpu" src="../assets/compute-resource/monitoring/nvidia.com:gpu.png"/>
+</figure>
+<h3 id="nvidia-gpu"><a class="header" href="#nvidia-gpu">NVIDIA GPU</a></h3>
+<p>当工作负载声明的扩展资源是 <code>nvidia.com/gpu</code> 时，资源监测图会展示额外的 GPU 相关指标，包括：利用率、温度、功率、显存使用率、已用显存量、SM Clock、TensorCore 利用率。</p>
+<p>下面是展示 GPU 利用率和显存使用率的图表：</p>
+<figure class="screenshot">
+  <img alt="gpu-utilization" src="../assets/compute-resource/monitoring/gpu-utilization.png"/>
+</figure>
+<figure class="screenshot">
+  <img alt="gpu-memory-utilization" src="../assets/compute-resource/monitoring/gpu-memory-utilization.png"/>
+</figure>
+<h3 id="网络带宽"><a class="header" href="#网络带宽">网络带宽</a></h3>
+<p>网络带宽显示下面两项指标：</p>
+<ul>
+<li>接收带宽：所有容器接收数据的网络带宽总计。</li>
+<li>发送带宽：所有容器发送数据的网络带宽总计。</li>
+</ul>
+<figure class="screenshot">
+  <img alt="network-receive" src="../assets/compute-resource/monitoring/network-receive.png"/>
+</figure>
+<figure class="screenshot">
+  <img alt="network-transmit" src="../assets/compute-resource/monitoring/network-transmit.png"/>
+</figure>
+<h3 id="存储-io"><a class="header" href="#存储-io">存储 I/O</a></h3>
+<p>存储 I/O 显示下面两项指标：</p>
+<ul>
+<li>IOPS（读+写）：所有容器在节点的物理磁盘上，进行读写的操作次数之和。</li>
+<li>吞吐量（读+写）：所有容器在节点的物理磁盘上，读写数据的吞吐量。</li>
+</ul>
+<figure class="screenshot">
+  <img alt="storage-iops" src="../assets/compute-resource/monitoring/storage-iops.png"/>
+</figure>
+<figure class="screenshot">
+  <img alt="storage-throughput" src="../assets/compute-resource/monitoring/storage-throughput.png"/>
+</figure>
+<h2 id="命令行工具"><a class="header" href="#命令行工具">命令行工具</a></h2>
+<p>用户可以在 JupyterLab、Terminal 等 App 的终端中，使用 <code>kubectl top</code> 命令查看 Pod 的 CPU 和 内存使用情况。例如：</p>
+<pre><code class="language-bash">(base) [/t9k/mnt t9kuser@managed-notebook-933f6-0]
+$ kubectl top pods
+NAME                                         CPU(cores)   MEMORY(bytes)   
+managed-notebook-933f6-0                     25m          153Mi           
+managed-project-event-ctl-854b96f4dd-f6hn8   1m           29Mi 
+</code></pre>
+<h2 id="下一步"><a class="header" href="#下一步">下一步</a></h2>
+<ul>
+<li>监控 <a href="../guide/train-model/dp-training.html#%E6%9F%A5%E7%9C%8B%E8%AE%AD%E7%BB%83%E4%BF%A1%E6%81%AF%E6%9F%A5%E7%9C%8B-pytorchtrainingjob-%E8%AF%A6%E6%83%85">Job 的资源使用</a></li>
+<li>监控 <a href="../guide/deploy-model/deploy-pytorch.html#%E6%9F%A5%E7%9C%8B%E6%8E%A8%E7%90%86%E6%9C%8D%E5%8A%A1%E4%BF%A1%E6%81%AF%E6%9F%A5%E7%9C%8B-mlservice-%E8%AF%A6%E6%83%85">MLService 的资源使用</a></li>
+<li>了解使用资源后产生的<a href="../security/bills.html">账单</a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../compute-resource/gpu-usage.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../security/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../compute-resource/gpu-usage.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../security/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../theme/sidebar.js"></script>
+
+
+    </div>
+    </body>
+</html>

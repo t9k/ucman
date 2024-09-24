@@ -1,6 +1,6 @@
 # JupyterLab
 
-<a target="_blank" rel="noopener noreferrer" href="https://jupyterlab.readthedocs.io/en/latest/">JupyterLab</a> 是一个强大的交互式开发环境，为数据分析和科学计算提供了一站式解决方案。它集成了代码编辑、执行、可视化和文档编写等功能，使用户能够高效地进行数据探索和模型开发。JupyterLab 支持多种编程语言，如 Python、R 和 Julia，用户可以在同一个界面中无缝切换不同的语言环境。JupyterLab 在机器学习、深度学习、数据处理、数值模拟、统计建模、数据可视化等领域被广泛使用。
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/jupyterlab/jupyterlab">JupyterLab</a> 是一个强大的交互式开发环境，为数据分析和科学计算提供了一站式解决方案。它集成了代码编辑、执行、可视化和文档编写等功能，使用户能够高效地进行数据探索和模型开发。JupyterLab 支持多种编程语言，如 Python、R 和 Julia，用户可以在同一个界面中无缝切换不同的语言环境。JupyterLab 在机器学习、深度学习、数据处理、数值模拟、统计建模、数据可视化等领域被广泛使用。
 
 在日常使用中，JupyterLab 的笔记本功能尤为实用。用户可以将代码、运行结果、数据可视化和富文本说明组合在一起，形成一个完整的分析流程。这不仅有助于记录思路和实验过程，还便于与他人分享和协作。此外，JupyterLab 的文件管理系统允许用户直接在界面中组织和访问项目文件，提高了工作效率。
 
@@ -29,7 +29,7 @@ JupyterLab Apps 是一个系列，包括 JupyterLab (CPU)、JupyterLab (NVIDIA G
 
 网页 UI 的使用方法请参阅 <a target="_blank" rel="noopener noreferrer" href="https://jupyterlab.readthedocs.io/en/latest/">JupyterLab Documentation</a> 或<a target="_blank" rel="noopener noreferrer" href="https://jupyterlab.pythonlang.cn/en/latest/">它的中文版本</a>。[TensorBoard 插件](#tensorboard-插件)的使用方法请参阅<a target="_blank" rel="noopener noreferrer" href="https://github.com/HFAiLab/jupyterlab_tensorboard_pro/blob/v4.x/README.zh-cn.md#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E">使用说明</a>。
 
-除了网页 UI，App 还支持通过 SSH 远程连接（需要启用 SSH 服务），让你能够使用熟悉的本地终端或 IDE，像在本地开发一样进行远程开发。限于篇幅，具体步骤请参阅[如何通过 SSH 远程连接](../reference/faq/faq-in-jupyterlab-usage.md#如何通过-ssh-远程连接)。
+除了网页 UI，App 还支持通过 SSH 远程连接（需要启用 SSH 服务），让你能够使用熟悉的本地终端或 IDE，像在本地开发一样进行远程开发。限于篇幅，具体步骤请参阅[如何通过 SSH 远程连接](../reference/faq/faq-in-ide-usage.md#如何通过-ssh-远程连接)。
 
 ## 配置和使用说明
 
@@ -109,7 +109,13 @@ TensorBoard 插件的使用方法请参阅<a target="_blank" rel="noopener noref
 
 ## 常见问题
 
-请参阅 [JupyterLab 使用中的常见问题](../reference/faq/faq-in-jupyterlab-usage.md)。
+* [如何上传下载文件](../reference/faq/faq-in-ide-usage.md#如何上传下载文件)
+* [如何查看挂载 PVC 的剩余存储空间](../reference/faq/faq-in-ide-usage.md#如何查看挂载-pvc-的剩余存储空间)
+* [如何查看目录和文件的权限、大小等信息](../reference/faq/faq-in-ide-usage.md#如何查看目录和文件的权限大小等信息)
+* [如何使用 conda 环境](../reference/faq/faq-in-ide-usage.md#如何使用-conda-环境)
+* [如何通过 SSH 远程连接](../reference/faq/faq-in-ide-usage.md#如何通过-ssh-远程连接)
+* [无法使用 sudo 命令](../reference/faq/faq-in-ide-usage.md#无法使用-sudo-命令)
+* [命令执行失败，显示 Killed](../reference/faq/faq-in-ide-usage.md#命令执行失败显示-killed)
 
 ## 下一步
 

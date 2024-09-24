@@ -36,12 +36,12 @@ NFS 类型的 PVC 不可扩容。
 
 </aside>
 
-### JupyterLab App UI
+### JupyterLab UI
 
 将 PVC 挂载到 [JupyterLab](../../app/jupyterlab.md) App 上，本地文件系统和 PVC 之间的文件上传下载可以直接在 UI 中进行操作：
 
 <figure class="screenshot">
-  <img alt="notebook-upload-download" src="../../assets/guide/theme/upload-and-download-file/notebook-upload-download.png" />
+  <img alt="jupyterlab-upload-download" src="../../assets/guide/theme/upload-and-download-file/jupyterlab-upload-download.png" />
 </figure>
 
 <aside class="note">
@@ -52,7 +52,7 @@ NFS 类型的 PVC 不可扩容。
 
 </aside>
 
-### Code Server App UI
+### Code Server UI
 
 将 PVC 挂载到 [Code Server](../../app/codeserver.md) App 上，本地文件系统和 PVC 之间的文件上传下载可以直接在 UI 中进行操作：
 
@@ -69,7 +69,23 @@ NFS 类型的 PVC 不可扩容。
 
 </aside>
 
-### File Browser App UI
+### RStudio UI
+
+将 PVC 挂载到 [RStudio](../../app/rstudio.md) App 上，本地文件系统和 PVC 之间的文件上传下载可以直接在 UI 中进行操作：
+
+<figure class="screenshot">
+  <img alt="rstudio-upload-download" src="../../assets/guide/theme/upload-and-download-file/rstudio-upload-download.png" />
+</figure>
+
+<aside class="note">
+<div class="title">注意</div>
+
+* RStudio 限制上传的单个文件的大小须 < ~800MB，不限制下载的单个文件的大小。
+* RStudio 限制单次上传和下载的文件数量为 1。要上传多个文件或整个目录，可以将它们打包为一个 ZIP 压缩文件，上传后 ZIP 文件会自动解压；单次下载多个文件或整个目录时下载的也是包含这些文件或目录的 ZIP 文件。
+
+</aside>
+
+### File Browser UI
 
 将 PVC 挂载到 [File Browser](../../app/filebrowser.md) App 上，本地文件系统和 PVC 之间的文件上传下载可以直接在 UI 中进行操作：
 
@@ -81,7 +97,7 @@ NFS 类型的 PVC 不可扩容。
 <div class="title">注意</div>
 
 * 根据管理员配置，File Browser 有可能限制上传的单个文件的大小。与此同时，上传和下载过程也容易因为网络波动而出错，建议 > ~2GB（也取决于具体网络环境）的单个文件使用其他方法上传或下载。
-* File Browser 不限制单次上传的文件数量，并且支持上传整个目录，在小文件数量较多的情况下也不容易出错；单次下载多个文件时下载的是包含这些文件的压缩包，可以选择压缩格式。
+* File Browser 不限制单次上传的文件数量，并且支持上传整个目录，在小文件数量较多的情况下也不容易出错；单次下载多个文件或整个目录时下载的是包含这些文件或目录的压缩包，可以选择压缩格式。
 
 </aside>
 

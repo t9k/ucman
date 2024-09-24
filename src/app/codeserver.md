@@ -102,3 +102,12 @@ T9k Job、T9k Service 等工作负载可以和 App 挂载同一个 PVC 以共享
 <a target="_blank" rel="noopener noreferrer" href="https://marketplace.visualstudio.com/vscode">VS Code 扩展市场</a>和 <a target="_blank" rel="noopener noreferrer" href="https://xextensions.coder.com/">Code Server 扩展市场</a>是分开的；并非所有 VS Code 扩展都适用于 Code Server。
 
 </aside>
+
+## 常见问题
+
+* [如何上传下载文件](../reference/faq/faq-in-ide-usage.md#如何上传下载文件)
+* [如何查看挂载 PVC 的剩余存储空间](../reference/faq/faq-in-ide-usage.md#如何查看挂载-pvc-的剩余存储空间)
+* [如何查看目录和文件的权限、大小等信息](../reference/faq/faq-in-ide-usage.md#如何查看目录和文件的权限大小等信息)
+* [如何使用 conda 环境](../reference/faq/faq-in-ide-usage.md#如何使用-conda-环境)
+* [无法使用 sudo 命令](../reference/faq/faq-in-ide-usage.md#无法使用-sudo-命令)
+* [命令执行失败，显示 Killed](../reference/faq/faq-in-ide-usage.md#命令执行失败显示-killed)

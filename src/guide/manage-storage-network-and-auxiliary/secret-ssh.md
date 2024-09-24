@@ -24,4 +24,4 @@
 
 下列文档提供了一些使用此类型的 Secret 配置 App 并远程连接的具体案例，供用户参考：
 
-* [如何通过 SSH 远程连接](../../reference/faq/faq-in-jupyterlab-usage.md#如何通过-ssh-远程连接)
+* [如何通过 SSH 远程连接](../../reference/faq/faq-in-ide-usage.md#如何通过-ssh-远程连接)

@@ -1,14 +1,18 @@
-# JupyterLab 使用中的常见问题
+# IDE 使用中的常见问题
 
-本文档整理了一些在使用 JupyterLab App 的过程中可能遇到的常见问题和相应的解决方案，作为 JupyteLab 的[使用方法](../../app/jupyterlab.md#使用方法)和[使用说明](../../app/jupyterlab.md#使用说明)部分的补充。请先阅读这两部分的内容，然后再参阅本文档。
+这里整理了一些在使用 **IDE 类型** App 的过程中可能遇到的常见问题和相应的解决方案，作为该类型 App 的文档（[JupyterLab](../../app/jupyterlab.md)、[Code Server](../../app/codeserver.md)、[RStudio](../../app/rstudio.md)）的补充。请先阅读这些文档，然后再参阅本文档。
 
 ## 如何上传下载文件
 
-请参阅[使用 Jupyter Lab App UI 上传和下载文件](../../guide/theme/upload-and-download-file.md#jupyterlab-app-ui)。
+请参阅：
+
+* [使用 JupyterLab UI 上传和下载文件](../../guide/theme/upload-and-download-file.md#jupyterlab-app-ui)
+* [使用 Code Server UI 上传和下载文件](../../guide/theme/upload-and-download-file.md#code-server-ui)
+* [使用 RStudio UI 上传和下载文件](../../guide/theme/upload-and-download-file.md#rstudio-ui)
 
 ## 如何查看挂载 PVC 的剩余存储空间
 
-在 JupyterLab 的终端中执行以下命令：
+在终端中执行以下命令：
 
 ```bash
 df -h | grep -e "Filesystem" -e "Mounted on" -e "/t9k/mnt"
@@ -27,7 +31,7 @@ Size  Used Avail Use% Mounted on
 
 ## 如何查看目录和文件的权限、大小等信息
 
-在 JupyterLab 的终端中，执行以下命令以查看指定目录下的各个子目录和文件的权限、所属用户、所属用户组、大小和修改时间信息，以及它们的总大小：
+在终端中，执行以下命令以查看指定目录下的各个子目录和文件的权限、所属用户、所属用户组、大小和修改时间信息，以及它们的总大小：
 
 ```bash
 ls <DIR> -lh  # 省略 <DIR> 表示当前目录
@@ -42,10 +46,10 @@ du <DIR> -h --max-depth=1  # 额外展示深度不大于 1 的子目录占用的
 
 ## 如何使用 conda 环境
 
-选用**包含 conda 环境**的[镜像](../../app/jupyterlab.md#镜像)配置和安装 App。进入 JupyterLab，启动一个终端，可以看到 prompt 显示前缀 `(base)`，表示当前 conda 环境 base 已被激活：
+选用**包含 conda 环境**的[镜像](../../app/jupyterlab.md#镜像)配置和安装 App。进入 App，启动一个终端，可以看到 prompt 显示前缀 `(base)`，表示当前 conda 环境 base 已被激活：
 
 <figure class="screenshot">
-  <img alt="conda" src="../../assets/reference/faq/faq-in-jupyterlab-usage/conda.png" />
+  <img alt="conda" src="../../assets/reference/faq/faq-in-ide-usage/conda.png" />
 </figure>
 
 然后正常执行 conda 命令即可。
@@ -60,13 +64,6 @@ conda 的使用方法请参阅 <a target="_blank" rel="noopener noreferrer" href
 </aside>
 
 ## 如何通过 SSH 远程连接
-
-<aside class="note tip">
-<div class="title">提示</div>
-
-此问题与解决方案亦适用于 [RStudio](../../app/rstudio.md) App。
-
-</aside>
 
 请跟随以下步骤，在本地通过 SSH 远程连接到 App。
 
@@ -91,7 +88,7 @@ App 的 SSH 服务仅支持基于密钥的身份验证，因此你需要创建�
 查看 App 的信息，复制端口转发的命令，在本地终端执行：
 
 <figure class="screenshot">
-  <img alt="copy-t9k-pf-command" src="../../assets/reference/faq/faq-in-jupyterlab-usage/copy-t9k-pf-command.png" />
+  <img alt="copy-t9k-pf-command" src="../../assets/reference/faq/faq-in-ide-usage/copy-t9k-pf-command.png" />
 </figure>
 
 ```bash
@@ -141,7 +138,7 @@ ssh t9kuser@localhost -p <Port> \
 然后在终端中进行操作：
 
 <figure class="screenshot">
-  <img alt="terminal-ssh" src="../../assets/reference/faq/faq-in-jupyterlab-usage/terminal-ssh.png" />
+  <img alt="terminal-ssh" src="../../assets/reference/faq/faq-in-ide-usage/terminal-ssh.png" />
 </figure>
 
 #### 使用 VS Code
@@ -151,7 +148,7 @@ ssh t9kuser@localhost -p <Port> \
 在 VS Code 中搜索 **<a target="_blank" rel="noopener noreferrer" href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh">Remote - SSH</a>** 插件并安装：
 
 <figure class="screenshot">
-  <img alt="vscode-plugin" src="../../assets/reference/faq/faq-in-jupyterlab-usage/vscode-plugin.png" />
+  <img alt="vscode-plugin" src="../../assets/reference/faq/faq-in-ide-usage/vscode-plugin.png" />
 </figure>
 
 ##### 添加 SSH Config
@@ -177,7 +174,7 @@ Host localhost
 VS Code 提供了编辑 SSH Config 的方式。点击左下角的绿色 **><** 符号，选择 **Connect to Host**，然后拉动滚动条到最下方，点击 **Add New SSH Host**：
 
 <figure class="screenshot">
-  <img alt="vscode-new-host" src="../../assets/reference/faq/faq-in-jupyterlab-usage/vscode-new-host.png" />
+  <img alt="vscode-new-host" src="../../assets/reference/faq/faq-in-ide-usage/vscode-new-host.png" />
 </figure>
 
 根据提示，输入以下内容，然后按下回车键（Enter）：
@@ -187,7 +184,7 @@ ssh t9kuser@localhost -p <Port>
 ```
 
 <figure class="screenshot">
-  <img alt="vscode-ssh-command" src="../../assets/reference/faq/faq-in-jupyterlab-usage/vscode-ssh-command.png" />
+  <img alt="vscode-ssh-command" src="../../assets/reference/faq/faq-in-ide-usage/vscode-ssh-command.png" />
 </figure>
 
 VS Code 会提示 **Select SSH configuration file to update**，第一个选择项通常是位于 `$HOME/.ssh/config` 的配置文件，你可以选择将主机的信息存储在第一个配置文件中。
@@ -197,13 +194,13 @@ VS Code 会提示 **Select SSH configuration file to update**，第一个选择�
 点击左下角的绿色 **><** 符号，选择 **Connect to Host**：
 
 <figure class="screenshot">
-  <img alt="vscode-connect" src="../../assets/reference/faq/faq-in-jupyterlab-usage/vscode-connect.png" />
+  <img alt="vscode-connect" src="../../assets/reference/faq/faq-in-ide-usage/vscode-connect.png" />
 </figure>
 
 然后选择 SSH Config 中对应的主机名（使用上述配置方式时，主机名为 `localhost`）：
 
 <figure class="screenshot">
-  <img alt="vscode-connect-select" src="../../assets/reference/faq/faq-in-jupyterlab-usage/vscode-connect-select.png" />
+  <img alt="vscode-connect-select" src="../../assets/reference/faq/faq-in-ide-usage/vscode-connect-select.png" />
 </figure>
 
 VS Code 会新建一个窗口，等待连接建立之后，左下角会提示 **SSH: Host**。
@@ -218,7 +215,7 @@ VS Code 会新建一个窗口，等待连接建立之后，左下角会提示 **
 点击 **Open Folder** 可以选择打开的目录或者文件。你可以和本地开发一样使用 VS Code 进行操作：
 
 <figure class="screenshot">
-  <img alt="vscode-connected" src="../../assets/reference/faq/faq-in-jupyterlab-usage/vscode-connected.png" />
+  <img alt="vscode-connected" src="../../assets/reference/faq/faq-in-ide-usage/vscode-connected.png" />
 </figure>
 
 #### 使用 PyCharm
@@ -238,7 +235,7 @@ VS Code 会新建一个窗口，等待连接建立之后，左下角会提示 **
 打开 PyCharm，在左侧的导航菜单中点击 **Remote Development > SSH**，然后点击右侧的 **New Connection**：
 
 <figure class="screenshot">
-  <img alt="pycharm-ssh" src="../../assets/reference/faq/faq-in-jupyterlab-usage/pycharm-ssh.png" />
+  <img alt="pycharm-ssh" src="../../assets/reference/faq/faq-in-ide-usage/pycharm-ssh.png" />
 </figure>
 
 在弹出的对话框中填写如下参数：
@@ -249,13 +246,13 @@ VS Code 会新建一个窗口，等待连接建立之后，左下角会提示 **
 * `Specify private key`：建议勾选，并选择与你[上传的公钥](create-notebook.md#启用-ssh-选项)对应的私钥。
 
 <figure class="screenshot">
-  <img alt="pycharm-connect" src="../../assets/reference/faq/faq-in-jupyterlab-usage/pycharm-connect.png" />
+  <img alt="pycharm-connect" src="../../assets/reference/faq/faq-in-ide-usage/pycharm-connect.png" />
 </figure>
 
 点击 **Check Connection and Continue**，进入下一步：
 
 <figure class="screenshot">
-  <img alt="pycharm-connected" src="../../assets/reference/faq/faq-in-jupyterlab-usage/pycharm-connected.png" />
+  <img alt="pycharm-connected" src="../../assets/reference/faq/faq-in-ide-usage/pycharm-connected.png" />
 </figure>
 
 这里选择了在 App 中安装的 IDE Backend 版本为 PyCharm 2022.2.3，远程打开的项目目录为 `/t9k/mnt`。点击 **Download IDE and Connect** 后，就可以通过 PyCharm 访问 App 中的文件了。
@@ -270,7 +267,7 @@ VS Code 会新建一个窗口，等待连接建立之后，左下角会提示 **
 你可以和本地开发一样使用 PyCharm 来操作 App：
 
 <figure class="screenshot">
-  <img alt="pycharm-edit" src="../../assets/reference/faq/faq-in-jupyterlab-usage/pycharm-edit.png" />
+  <img alt="pycharm-edit" src="../../assets/reference/faq/faq-in-ide-usage/pycharm-edit.png" />
 </figure>
 
 ## 无法使用 sudo 命令

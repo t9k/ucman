@@ -10,16 +10,16 @@
 ---
 
 * [Apps](app/index.md)
-    * [Code Server](app/codeserver.md)
-    * [File Browser](app/filebrowser.md)
     * [JupyterLab](app/jupyterlab.md)
-    * [TensorBoard](app/tensorboard.md)
+    * [Code Server](app/codeserver.md)
+    * [RStudio](app/rstudio.md)
     * [Terminal](app/terminal.md)
+    * [File Browser](app/filebrowser.md)
+    * [TensorBoard](app/tensorboard.md)
+    * [Virtual Machine](app/virtual-machine.md)
     * [Job Manager](app/job-manager.md)
     * [Service Manager](app/service-manager.md)
-    * [Virtual Machine](app/virtual-machine.md)
     * [Workflow](app/workflow.md)
-    <!-- * [RStudio](app/rstudio.md) -->
     <!-- * [Argo Workflow](app/argo-workflow.md) -->
     <!-- * [PostgreSQL](app/postgresql.md) -->
 
@@ -154,7 +154,7 @@
 * [参考](reference/index.md)
     * [常见问题](reference/faq/index.md)
         * [App 使用中的常见问题](reference/faq/faq-in-app-usage.md)
-        * [JupyterLab 使用中的常见问题](reference/faq/faq-in-jupyterlab-usage.md)
+        * [IDE 使用中的常见问题](reference/faq/faq-in-ide-usage.md)
     * [API 参考](reference/api-reference/index.md)
         * [Project](reference/api-reference/project.md)
         * [GenericJob](reference/api-reference/genericjob.md)

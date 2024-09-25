@@ -5792,7 +5792,7 @@ spec:
 <li>预处理：用户发向推理服务的原始数据，先经过 transformer 预处理，然后再被发送到推理服务。</li>
 <li>后处理：推理服务返回的预测结果，先经过 transformer 后处理，然后再返回给用户。</li>
 </ul>
-<p>用户可以使用 <a href="api/t9k-service/../../../tools/python-sdk-t9k/index.html">Tensorstack SDK</a> 编写 transformer 代码，制作镜像，并基于该镜像创建含有 transformer 的推理服务。详细示例请参阅<a href="api/t9k-service/../../tasks/deploy-mlservice-transformer.html">制作并部署含有 Transformer 的模型推理服务</a>。</p>
+<p>用户可以使用 Tensorstack SDK 编写 transformer 代码，制作镜像，并基于该镜像创建含有 transformer 的推理服务。详细示例请参阅 <a href="https://github.com/t9k/tutorial-examples/tree/master/deployment/mlservice/transformer">Transformer Example</a>。</p>
 <p>下文是一个设置了 transformer 的 MLService 示例：</p>
 <pre><code class="language-yaml">apiVersion: tensorstack.dev/v1beta1
 kind: MLService

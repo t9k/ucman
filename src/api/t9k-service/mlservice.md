@@ -321,7 +321,7 @@ MLService 支持部署含有 `transformer` 模块的前处理（pre-processing�
 * 预处理：用户发向推理服务的原始数据，先经过 transformer 预处理，然后再被发送到推理服务。
 * 后处理：推理服务返回的预测结果，先经过 transformer 后处理，然后再返回给用户。
 
-用户可以使用 [Tensorstack SDK](../../../tools/python-sdk-t9k/index.md) 编写 transformer 代码，制作镜像，并基于该镜像创建含有 transformer 的推理服务。详细示例请参阅[制作并部署含有 Transformer 的模型推理服务](../../tasks/deploy-mlservice-transformer.md)。
+用户可以使用 Tensorstack SDK 编写 transformer 代码，制作镜像，并基于该镜像创建含有 transformer 的推理服务。详细示例请参阅 [Transformer Example](https://github.com/t9k/tutorial-examples/tree/master/deployment/mlservice/transformer)。
 
 下文是一个设置了 transformer 的 MLService 示例：
 

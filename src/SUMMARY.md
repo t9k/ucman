@@ -10,6 +10,7 @@
 ---
 
 * [Apps](app/index.md)
+    * [AutoTune](app/autotune.md)
     * [JupyterLab](app/jupyterlab.md)
     * [Code Server](app/codeserver.md)
     * [RStudio](app/rstudio.md)

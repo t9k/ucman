@@ -496,9 +496,9 @@ MLService 支持自动伸缩服务容量：即根据服务负载的变化，自�
 spec:
   releases:
     - name: version1
-      minReplicas: 1
-      maxReplicas: 3
       predictor:
+        minReplicas: 1
+        maxReplicas: 3
         template:
           metadata:
             annotations: 

@@ -302,10 +302,15 @@ extraDevices:
 rootDisk:
   containerDisk:
     enabled: true
-    image: kubevirt/fedora-cloud-container-disk-demo:latest
+    image: 
+      registry: docker.io
+      repository: t9kpublic/fedora-cloud-container-disk-demo
+      tag: v0.36.4
+  dataVolume:
+    enabled: false
 ```
 
-在上述配置中，虚拟机会使用 `kubevirt/fedora-cloud-container-disk-demo:latest` 镜像创建一个容器，作为启动盘。
+在上述配置中，虚拟机会使用 `docker.io/t9kpublic/fedora-cloud-container-disk-demo:latest` 镜像创建一个容器，作为启动盘。（虚拟机默认使用 DataVolume 作为启动盘，如果希望使用容器作为启动盘，请将 `rootDisk.dataVolume.enabled` 设置为 `false`。）
 
 kubevirt 原生支持的、可以作为启动盘的容器镜像请参阅 [KubeVirt container-disk images](https://github.com/kubevirt/kubevirt/blob/main/containerimages/container-disk-images.md)。
 
@@ -317,6 +322,30 @@ kubevirt 原生支持的、可以作为启动盘的容器镜像请参阅 [KubeVi
 rootDisk:
   dataVolume:
     enabled: true
+    fromOCIRegistry:
+      enabled: true
+      image:
+        registry: docker.io
+        repository: t9kpublic/ubuntu-server-cloud
+        tag: 20.04-240819
+    pvc:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 3Gi
+```
+
+在上述配置中，虚拟机控制器会创建一个 PVC（名称即为 App 名称），从 `docker.io/t9kpublic/ubuntu-server-cloud:20.04-240819` 下载系统镜像并安装到 PVC 中，将该 PVC 作为虚拟机启动盘。
+
+除 OCI 仓库以外，虚拟机还支持修改 `rootDisk.dataVolume.template.source` 从其他数据源下载系统镜像：
+
+```yaml
+rootDisk:
+  dataVolume:
+    enabled: true
+    fromOCIRegistry:
+      enabled: false
     template:
       source:
         http:
@@ -329,9 +358,9 @@ rootDisk:
             storage: 3Gi
 ```
 
-在上述配置中，虚拟机控制器会创建一个 PVC（名称即为 App 名称），从 `https://cloud-images.ubuntu.com/releases/focal/release/ubuntu-20.04-server-cloudimg-amd64.img` 下载系统镜像并安装到 PVC 中，将该 PVC 作为虚拟机启动盘。
+上述配置中，虚拟机控制器会从 `https://cloud-images.ubuntu.com/releases/focal/release/ubuntu-20.04-server-cloudimg-amd64.img` 下载系统镜像。（虚拟机默认从 OCI 仓库下载系统镜像，如果希望使用其他系统镜像下载源，请将 `rootDisk.dataVolume.fromOCIRegistry.enabled` 设置为 `false`。）
 
-除了从 http 服务中下载系统镜像，DataVolume 还支持从多种数据源获取镜像，请参阅 [DataVolumeSource](https://pkg.go.dev/kubevirt.io/containerized-data-importer-api/pkg/apis/core/v1beta1#DataVolumeSource)。
+更多数据源的设置方式，请参阅 [DataVolumeSource](https://pkg.go.dev/kubevirt.io/containerized-data-importer-api/pkg/apis/core/v1beta1#DataVolumeSource)。
 
 <aside class="note">
 <div class="title">注意</div>

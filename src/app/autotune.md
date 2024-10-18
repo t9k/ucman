@@ -1,6 +1,6 @@
 # AutoTune
 
-AutoTune 是一个自动化机器学习 （AutoML）工具，是平台的原生应用。它提供了一个用户友好的界面，方便用户创建自动化机器学习实验、查看实验的详细信息。
+AutoTune 是一个自动化机器学习（AutoML）工具，是平台的原生应用。它提供了一个用户友好的界面，方便用户创建自动化机器学习实验、查看实验的详细信息。
 
 ## 使用方法
 
@@ -10,8 +10,10 @@ AutoTune 是一个自动化机器学习 （AutoML）工具，是平台的原生�
   <img alt="ui" src="../assets/app/autotune/ui.png" />
 </figure>
 
-用户可以在 AutoTune App 中创建 AutoTuneExperiment 进行自动化机器学习。
+用户可以在控制台创建 AutoTuneExperiment 以进行自动化机器学习。
+
+<!-- 控制台的使用方法请参阅 -->
 
 ## 下一步
 
-* 了解 [AutoTuneExperiment 的示例](../api/autotuneexperiment.md)
+* 了解 [AutoTuneExperiment](../api/autotuneexperiment.md)

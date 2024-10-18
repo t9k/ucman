@@ -10,7 +10,6 @@
 ---
 
 * [Apps](app/index.md)
-    * [AutoTune](app/autotune.md)
     * [JupyterLab](app/jupyterlab.md)
     * [Code Server](app/codeserver.md)
     * [RStudio](app/rstudio.md)
@@ -21,6 +20,7 @@
     * [Job Manager](app/job-manager.md)
     * [Service Manager](app/service-manager.md)
     * [Workflow](app/workflow.md)
+    * [AutoTune](app/autotune.md)
     <!-- * [Argo Workflow](app/argo-workflow.md) -->
     <!-- * [PostgreSQL](app/postgresql.md) -->
 

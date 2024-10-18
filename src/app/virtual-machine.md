@@ -292,29 +292,9 @@ extraDevices:
 
 目前，我们支持以下三种启动盘形式：
 
-1. 使用一个容器作为启动盘；
-2. 使用 DataVolume 下载系统镜像并构建启动盘；
+1. 使用 DataVolume 下载系统镜像并构建启动盘；
+2. 使用一个容器作为启动盘；
 3. 使用一个已经进行过磁盘格式化并安装了系统文件的 PVC 作为启动盘。
-
-#### 使用容器作为启动盘
-
-```yaml
-rootDisk:
-  containerDisk:
-    enabled: true
-    image: 
-      registry: docker.io
-      repository: t9kpublic/fedora-cloud-container-disk-demo
-      tag: v0.36.4
-  dataVolume:
-    enabled: false
-```
-
-在上述配置中，虚拟机会使用 `docker.io/t9kpublic/fedora-cloud-container-disk-demo:latest` 镜像创建一个容器，作为启动盘。（虚拟机默认使用 DataVolume 作为启动盘，如果希望使用容器作为启动盘，请将 `rootDisk.dataVolume.enabled` 设置为 `false`。）
-
-kubevirt 原生支持的、可以作为启动盘的容器镜像请参阅 [KubeVirt container-disk images](https://github.com/kubevirt/kubevirt/blob/main/containerimages/container-disk-images.md)。
-
-`containerDisk` 属于临时存储设备，不具备持久性，即如果虚拟机重启则系统的修改丢失。
 
 #### 使用 DataVolume 下载系统镜像并构建启动盘
 
@@ -358,9 +338,29 @@ rootDisk:
             storage: 3Gi
 ```
 
-上述配置中，虚拟机控制器会从 `https://cloud-images.ubuntu.com/releases/focal/release/ubuntu-20.04-server-cloudimg-amd64.img` 下载系统镜像。（虚拟机默认从 OCI 仓库下载系统镜像，如果希望使用其他系统镜像下载源，请将 `rootDisk.dataVolume.fromOCIRegistry.enabled` 设置为 `false`。）
+上述配置中，虚拟机控制器会从 `https://cloud-images.ubuntu.com/releases/focal/release/ubuntu-20.04-server-cloudimg-amd64.img` 下载系统镜像。（虚拟机默认从 OCI 仓库下载系统镜像，使用其他系统镜像下载源时，需要将 `rootDisk.dataVolume.fromOCIRegistry.enabled` 设置为 `false`。）
 
 更多数据源的设置方式，请参阅 [DataVolumeSource](https://pkg.go.dev/kubevirt.io/containerized-data-importer-api/pkg/apis/core/v1beta1#DataVolumeSource)。
+
+#### 使用容器作为启动盘
+
+```yaml
+rootDisk:
+  containerDisk:
+    enabled: true
+    image: 
+      registry: docker.io
+      repository: t9kpublic/fedora-cloud-container-disk-demo
+      tag: v0.36.4
+  dataVolume:
+    enabled: false
+```
+
+在上述配置中，虚拟机会使用 `docker.io/t9kpublic/fedora-cloud-container-disk-demo:latest` 镜像创建一个容器，作为启动盘。（虚拟机默认使用 DataVolume 作为启动盘，使用容器作为启动盘时，需要将 `rootDisk.dataVolume.enabled` 设置为 `false`。）
+
+kubevirt 原生支持的、可以作为启动盘的容器镜像请参阅 [KubeVirt container-disk images](https://github.com/kubevirt/kubevirt/blob/main/containerimages/container-disk-images.md)。
+
+`containerDisk` 属于临时存储设备，不具备持久性，即如果虚拟机重启则系统的修改丢失。
 
 <aside class="note">
 <div class="title">注意</div>

@@ -20,6 +20,7 @@
     * [Job Manager](app/job-manager.md)
     * [Service Manager](app/service-manager.md)
     * [Workflow](app/workflow.md)
+    * [AutoTune](app/autotune.md)
     <!-- * [Argo Workflow](app/argo-workflow.md) -->
     <!-- * [PostgreSQL](app/postgresql.md) -->
 

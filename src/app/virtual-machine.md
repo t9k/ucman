@@ -8,7 +8,7 @@ Virtual Machine 是一个基于 kubevirt 的虚拟机 App，允许用户快速�
 
 ### 连接虚拟机终端
 
-用户需要同时安装 0.1.5 版本以上的 [Terminal](./terminal.md) App。
+用户需要同时安装 0.1.5 及以上版本的 [Terminal](./terminal.md) App。
 
 待 Virtual Machine App 就绪后，点击右侧的<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 16a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2Z"></path></svg></span> **> 查看信息**，复制连接虚拟机终端的命令，其格式为：
 
@@ -55,7 +55,15 @@ Mac 系统自带 VNC Client 功能：打开 Finder，从菜单栏点击 **Go -> 
 
 </aside>
 
-## 使用说明
+## 配置和使用说明
+
+### cloud-init 初始化
+
+虚拟机首次启动时，会根据 `cloudInit.userData` 字段的值进行系统初始化，这个过程通常需要几分钟。用户需要等待初始化完成后再使用虚拟机。
+
+[cloud-init](https://cloud-init.io/) 是业界标准的多发行版跨平台云实例初始化方法。在启动过程中，cloud-init 会识别其运行的云环境，并相应地初始化系统，自动配置网络、存储、SSH 密钥、软件包以及其他各种系统方面。
+
+cloud-init 的配置模块和示例请参阅 [Module reference](https://cloudinit.readthedocs.io/en/latest/reference/modules.html) 和 [Cloud config examples](https://cloudinit.readthedocs.io/en/latest/reference/examples.html)。
 
 ### 定制系统镜像
 
@@ -84,7 +92,7 @@ rootDisk:
 <aside class="note">
 <div class="title">注意</div>
 
-最终系统镜像的大小与 PVC 大小相关，系统镜像的保存原理为将整个系统盘打包成一个容器镜像，上传到 oci 仓库。PVC 中未使用的空间也被算作磁盘空间。所以请设置合适的 PVC 大小，减少后续拉取镜像的时间。
+最终系统镜像的大小与 PVC 的大小有关。系统镜像的保存原理是将整个系统盘打包成一个容器镜像并上传至 OCI 仓库。需要注意的是，PVC 中未使用的空间也会计入磁盘空间。因此请合理设置 PVC 大小，以减少后续拉取镜像的时间。
 
 </aside>
 
@@ -223,7 +231,7 @@ echo startxfce4 >> ~/.vnc/xstartup
 
 #### 其他桌面
 
-上述教程介绍了如何使用 xfce4 桌面，该桌面比较简陋，用户可以自行寻找习惯的桌面。这里再介绍一个 Gnome 桌面，以供参考。
+上面介绍了如何使用 xfce4 桌面，该桌面比较简陋，用户可以自行寻找习惯的桌面。这里再介绍一个 Gnome 桌面，以供参考。
 
 下载 Gnome 相关组件和 vncserver：
 
@@ -253,3 +261,169 @@ gnome-session --session=gnome-flashback-metacity --disable-acceleration-check &
 ```
 
 再次启动 vncserver。
+
+### 使用 GPU
+
+按如下方式，在 `extraDevices` 字段中添加 GPU 设备信息：
+
+```yaml
+extraDevices:
+  gpus:
+    - deviceName: nvidia.com/GA100_A100_PCIE_40GB
+      name: gpu1
+```
+
+在上述配置中，`deviceName` 字段填写 GPU 的 k8s 扩展资源名称，该扩展资源由 `kubevirt-gpu-device-plugin` 探测并扩展。`name` 字段表示设备名称，在虚拟机中不应出现两个相同的设备名称。
+
+<aside class="note">
+<div class="title">注意</div>
+
+如果你希望在虚拟机中使用 GPU，则需要让管理员修改节点的 GPU 驱动和虚拟机配置，具体步骤如下：
+
+1. 在节点上将 GPU 的驱动（如 `nvidia`）替换为 `vfio-pci`；
+2. 在集群中安装 `kubevirt-gpu-device-plugin`；
+3. 在 kubevirt 配置中打开 GPU 特性门。
+
+有关更详细的信息，请参阅管理员文档。
+
+</aside>
+
+### 设置启动盘
+
+目前，我们支持以下三种启动盘形式：
+
+1. 使用 DataVolume 下载系统镜像并构建启动盘；
+2. 使用一个容器作为启动盘；
+3. 使用一个已经进行过磁盘格式化并安装了系统文件的 PVC 作为启动盘。
+
+#### 使用 DataVolume 下载系统镜像并构建启动盘
+
+```yaml
+rootDisk:
+  dataVolume:
+    enabled: true
+    fromOCIRegistry:
+      enabled: true
+      image:
+        registry: docker.io
+        repository: t9kpublic/ubuntu-server-cloud
+        tag: 20.04-240819
+    pvc:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 3Gi
+```
+
+在上述配置中，虚拟机控制器会创建一个 PVC（名称即为 App 名称），从 `docker.io/t9kpublic/ubuntu-server-cloud:20.04-240819` 下载系统镜像并安装到 PVC 中，将该 PVC 作为虚拟机启动盘。
+
+除 OCI 仓库以外，虚拟机还支持修改 `rootDisk.dataVolume.template.source` 从其他数据源下载系统镜像：
+
+```yaml
+rootDisk:
+  dataVolume:
+    enabled: true
+    fromOCIRegistry:
+      enabled: false
+    template:
+      source:
+        http:
+          url: https://cloud-images.ubuntu.com/releases/focal/release/ubuntu-20.04-server-cloudimg-amd64.img
+      pvc:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 3Gi
+```
+
+上述配置中，虚拟机控制器会从 `https://cloud-images.ubuntu.com/releases/focal/release/ubuntu-20.04-server-cloudimg-amd64.img` 下载系统镜像。（虚拟机默认从 OCI 仓库下载系统镜像，使用其他系统镜像下载源时，需要将 `rootDisk.dataVolume.fromOCIRegistry.enabled` 设置为 `false`。）
+
+更多数据源的设置方式，请参阅 [DataVolumeSource](https://pkg.go.dev/kubevirt.io/containerized-data-importer-api/pkg/apis/core/v1beta1#DataVolumeSource)。
+
+#### 使用容器作为启动盘
+
+```yaml
+rootDisk:
+  containerDisk:
+    enabled: true
+    image: 
+      registry: docker.io
+      repository: t9kpublic/fedora-cloud-container-disk-demo
+      tag: v0.36.4
+  dataVolume:
+    enabled: false
+```
+
+在上述配置中，虚拟机会使用 `docker.io/t9kpublic/fedora-cloud-container-disk-demo:latest` 镜像创建一个容器，作为启动盘。（虚拟机默认使用 DataVolume 作为启动盘，使用容器作为启动盘时，需要将 `rootDisk.dataVolume.enabled` 设置为 `false`。）
+
+kubevirt 原生支持的、可以作为启动盘的容器镜像请参阅 [KubeVirt container-disk images](https://github.com/kubevirt/kubevirt/blob/main/containerimages/container-disk-images.md)。
+
+`containerDisk` 属于临时存储设备，不具备持久性，即如果虚拟机重启则系统的修改丢失。
+
+<aside class="note">
+<div class="title">注意</div>
+
+DataVolume 和 ContainerDisk 不能同时启用，否则将使用 ContainerDisk 作为系统启动盘，而 DataVolume 构建的启动盘将作为普通的磁盘。
+
+目前不支持多启动项，如果有需求，建议启动多个虚拟机。
+
+</aside>
+
+#### 使用一个 PVC 作为启动盘
+
+```yaml
+rootDisk:
+  containerDisk:
+    enabled: false
+  dataVolume:
+    enabled: false
+
+volumes:
+  disks:
+    - persistentVolumeClaim:
+        name: "pvc-name"
+      name: "volume-name"
+```
+
+在上述配置中，禁用了 ContainerDisk 和 DataVolume。这种情况下，虚拟机会将第一个以 Disk 形式绑定的 PVC 作为启动盘。该 PVC 应已经进行格式化且安装过系统，否则虚拟机无法启动。
+
+### 设置数据卷
+
+```yaml
+volumes:
+  filesystems:
+    - persistentVolumeClaim:
+        name: "pvc-as-fs"
+      name: "fs-name"
+  disks:
+    - persistentVolumeClaim:
+        name: "pvc-as-disk"
+      name: "disk-name"
+
+cloudInit:
+  userData: |-
+    ...
+    runcmd:
+    - "sudo mkdir /mnt/pvc"
+    - "sudo mount -t virtiofs fs-name /mnt/pvc"
+    - test "$(lsblk /dev/vdb)" && mkfs.ext4 /dev/vdb
+    - mkdir -p /mnt/vdb
+    mounts:
+    - [ "/dev/vdb", "/mnt/vdb", "ext4", "defaults,nofail", "0", "2" ]
+```
+
+在上述配置中：
+
+1. 虚拟机绑定了两个 PVC：`pvc-as-fs` 和 `pvc-as-disk`，两者分别作为文件系统和磁盘。
+2. 将 PVC 以文件系统的方式绑定到虚拟机时，需要使用 `sudo mount -t virtiofs fs-name /mnt/pvc` 命令将这个 PVC 绑定到 `/mnt/pvc` 路径下。
+3. 将 PVC 以磁盘的方式绑定到虚拟机时，如果 PVC 没有进行过磁盘格式化，则需要执行 `mkfs.ext4 /dev/vdb` 命令格式化 PVC，同时执行 `mount` 命令将 PVC 绑定到 `/mnt/vdb` 路径下。
+
+<aside class="note">
+<div class="title">注意</div>
+
+1. userData 中 `bootcmd`、`runcmd` 和 `mounts` 等命令，可以在虚拟机启动后，进入虚拟机后手动执行。不过如果一条命令是其他启动项的前置条件，则必须在 `bootcmd` 中填写。
+2. 磁盘名称使用 `vdb`，是因为通过 `virtio` 总线挂载的磁盘默认命名格式为 `vd<x>`，启动盘被命名为 `vda`，其他磁盘按顺序依次命名。用户也可以选择不通过 cloud-init 进行自动初始化，而是在进入虚拟机后再手动执行挂载操作。
+
+</aside>

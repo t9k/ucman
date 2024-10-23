@@ -13,6 +13,17 @@ smart-punctuation = true
 [output.html.fold]
 enable = false
 
+[output.pandoc.profile.pdf]
+output-file = "output.pdf"
+to = "latex"
+pdf-engine = "xelatex"
+highlight-style = "tango"
+
+[output.pandoc.profile.pdf.variables]
+babel-lang = "chinese-simplified"
+documentclass = "ctexart"
+geometry = ["margin=20mm"]
+
 [preprocessor.tabulate]
 command = "./util-tabulate.sh"
 

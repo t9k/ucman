@@ -4,7 +4,7 @@
 
 ### 下载
 
-t9k-pf 可以从平台首页下载。请根据操作系统和架构（可以在命令行运行 `uname -om` 获取）选择适当的版本。
+t9k-pf 可以从[发布页面](https://github.com/t9k/ucman/releases)下载。请根据操作系统和架构（可以在命令行运行 `uname -om` 获取）选择适当的版本。
 
 ### 安装
 
@@ -40,36 +40,33 @@ rm -f /usr/local/bin/t9k-pf
 
 ## 身份认证和授权
 
-### 通过 T9k Config 进行身份认证和授权
+### 通过配置文件进行身份认证和授权
 
-t9k-pf 默认使用 [T9k Config](../cli-t9k/guide.md#配置文件) 来进行身份认证和授权。你可以通过命令行参数 `-c, --config` 来指定 t9k-pf 使用的 T9k Config 文件的路径，未指定时，默认使用 `$HOME/.t9k/t9k-config.yaml` 路径下 T9k Config 中 current-context 的认证信息。
+t9k-pf 默认使用配置文件来进行身份认证和授权。你可以通过命令行参数 `-c, --config` 来指定 t9k-pf 使用的配置文件的路径，未指定时，默认使用 `$HOME/.t9k/t9k-config.yaml`。第一次使用时，可以通过 `t9k-pf config auth` 命令来生成配置文件，详情请参阅 [t9k-pf config auth](./commands.md#auth)。
 
-下面是一个 T9k Config 的示例，其中 current-context 为 `demo1`，该 Context 的 token 字段不为空，因此最终 t9k-pf 使用该值 `demo1-token` 来完成身份验证（如果 apikey 和 token 均不为空，t9k-pf 优先使用 apikey）。
+配置文件示例如下：
 
 ``` yaml
-current-context: demo1
+current-context: default-context
 contexts:
-- name: demo1
+- name: default-context
   server: https://<example.com>
-  image-registry: https://<example.io>
-  prefixes:
-    aistore: /t9k/aistore/server
-    asset-hub: /t9k/asset-hub/server
-    build-console: /t9k/build-console/server
-    cluster-admin: /t9k/cluster-admin/server
-    deploy-console: /t9k/deploy-console/server
-    security-console: /t9k/security/server
-    workflow-manager: /t9k/workflow/server
   auth:
-    apikey: ""
-    token: demo1-token
+    apikey: <your-apikey>
+    token: <your-token>
   extension:
     codepack:
       data-copy-image: <your-image>
-- name: demo2
-  server: https://<example.com>
-  ...
 ```
+
+配置文件包括以下两个部分：
+
+* `current-context`：字符串，记录默认使用的 Context 名称。你可以通过设置命令行参数 `-x, --context` 访问其他的 Context。
+* `contexts`：数组，包含集群相关信息。
+    * `name`：字符串，Context 的名称。
+    * `server`：字符串，记录访问这个集群服务的域名。
+    * `auth`：，记录认证信息，支持 `apikey` 和 `token` 两种认证方式，需要填写其中一种。
+    * `extension`：记录其他工具需要用到的拓展配置。
 
 ### 通过 API Key 进行临时身份认证和授权
 

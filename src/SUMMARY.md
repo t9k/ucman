@@ -21,7 +21,7 @@
     * [Service Manager](app/service-manager.md)
     * [Workflow](app/workflow.md)
     * [AutoTune](app/autotune.md)
-    <!-- * [Argo Workflow](app/argo-workflow.md) -->
+    * [Argo Workflows](app/argo-workflows.md)
     <!-- * [PostgreSQL](app/postgresql.md) -->
 
 * [APIs](api/index.md)
@@ -129,9 +129,9 @@
 
 * [命令行工具和 SDK](tool/index.md)
 
-    * [命令行工具：t9k](tool/cli-t9k/index.md)
+    <!-- * [命令行工具：t9k](tool/cli-t9k/index.md)
         * [用户指南](tool/cli-t9k/guide.md)
-        * [命令](tool/cli-t9k/commands.md)
+        * [命令](tool/cli-t9k/commands.md) -->
 
     * [命令行工具：t9k-pf](tool/cli-t9k-pf/index.md)
         * [用户指南](tool/cli-t9k-pf/guide.md)

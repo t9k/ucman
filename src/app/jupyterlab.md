@@ -21,7 +21,7 @@ JupyterLab Apps 是一个系列，包括 JupyterLab (CPU)、JupyterLab (NVIDIA G
 
 ## 使用方法
 
-## 通过网页 UI 使用
+### 通过网页 UI 使用
 
 待 App 就绪后，点击右侧的 <span class="twemoji"><svg class="MuiSvgIcon-root MuiSvgIcon-colorPrimary MuiSvgIcon-fontSizeMedium css-jxtyyz" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="OpenInNewIcon"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3z"></path></svg></span> 进入网页 UI，即可进行开发工作。
 
@@ -31,7 +31,7 @@ JupyterLab Apps 是一个系列，包括 JupyterLab (CPU)、JupyterLab (NVIDIA G
 
 网页 UI 的使用方法请参阅 <a target="_blank" rel="noopener noreferrer" href="https://jupyterlab.readthedocs.io/en/latest/">JupyterLab Documentation</a> 或<a target="_blank" rel="noopener noreferrer" href="https://jupyterlab.pythonlang.cn/en/latest/">它的中文版本</a>。[TensorBoard 插件](#tensorboard-插件)的使用方法请参阅<a target="_blank" rel="noopener noreferrer" href="https://github.com/HFAiLab/jupyterlab_tensorboard_pro/blob/v4.x/README.zh-cn.md#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E">使用说明</a>。
 
-## 通过 SSH 远程连接
+### 通过 SSH 远程连接
 
 除了网页 UI，App 还支持通过 SSH 远程连接（需要启用 SSH 服务），让你能够使用熟悉的本地终端或 IDE，像在本地开发一样进行远程开发。限于篇幅，具体步骤请参阅[如何通过 SSH 远程连接](../reference/faq/faq-in-ide-usage.md#如何通过-ssh-远程连接)。
 

@@ -28,19 +28,18 @@ App 处于 NotReady 状态有非常多可能的原因，请[进入 App 的详情
 
 ### 通过网页 UI
 
-在 User Console 的应用列表页面，点击“链接”列中的图标跳转至对应 App 的网页 UI：
+在 User Console 的应用列表页面，点击 <span class="twemoji"><svg class="MuiSvgIcon-root MuiSvgIcon-colorPrimary MuiSvgIcon-fontSizeMedium css-jxtyyz" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="OpenInNewIcon"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3z"></path></svg></span> 跳转至对应 App 的网页 UI：
 
 <figure class="screenshot">
   <img alt="expose-app-ui-1" src="../../assets/reference/faq/faq-in-app-usage/expose-app-ui-1.png" />
 </figure>
 
 
-或者，在 User Console 的应用详情页面，点击复制 App 的外部地址通过浏览器访问：
+或者，点击 App 名称进入其详情页面，点击复制 App 的外部地址通过浏览器访问：
 
 <figure class="screenshot">
   <img alt="expose-app-ui-2" src="../../assets/reference/faq/faq-in-app-usage/expose-app-ui-2.png" />
 </figure>
-
 
 ### 通过端口转发
 
@@ -55,19 +54,19 @@ App 处于 NotReady 状态有非常多可能的原因，请[进入 App 的详情
 
 </aside>
 
-在 User Console 的 Service 页面，点击“创建”按钮来创建一个 Service：
+在 User Console 的 Service 页面，点击**创建**按钮来创建一个 Service：
 
 <figure class="screenshot">
   <img alt="expose-app-lb-1" src="../../assets/reference/faq/faq-in-app-usage/expose-app-lb-1.png" />
 </figure>
 
-在 Service 创建页面，首先填写名称，然后选择“服务类型”为 “Load Balancer”，并点击“从 Pod 导入 Label”，选择你想要访问的 Pod，系统将自动解析 Pod 的所有 Label 和所有端口，最后点击“创建”：
+在 Service 创建页面，首先填写名称，然后选择**服务类型**为 **Load Balancer**，并点击**从 Pod 导入 Label**，选择你想要访问的 Pod，系统将自动解析 Pod 的所有 Label 和所有端口，最后点击**创建**：
 
 <figure class="screenshot">
   <img alt="expose-app-lb-2" src="../../assets/reference/faq/faq-in-app-usage/expose-app-lb-2.png" />
 </figure>
 
-创建成功后，你可以从 Service 页面的“外部 Endpoint” 列找到所创建的 Load Balancer Service 被分配的 IP：
+创建成功后，你可以从 Service 页面的**外部 Endpoint** 列找到所创建的 Load Balancer Service 被分配的 IP：
 
 <figure class="screenshot">
   <img alt="expose-app-lb-3" src="../../assets/reference/faq/faq-in-app-usage/expose-app-lb-3.png" />

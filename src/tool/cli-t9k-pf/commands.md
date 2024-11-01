@@ -46,8 +46,12 @@ Please enter Context name [default: demo-example.com]: demo
 Login succeeded!
 ```
 
-!!! note "注意" 
-    Context 的名称需要满足 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-subdomain-names">DNS Subdomain Names</a> 的要求，如果 Context 名字重复，可以选择覆盖原内容或者重新输入。
+<aside class="note">
+<div class="title">注意</div>
+
+Context 的名称需要满足 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-subdomain-names">DNS Subdomain Names</a> 的要求，如果 Context 名字重复，可以选择覆盖原内容或者重新输入。
+
+</aside>
 
 ##### 通过 API Key 完成认证
 
@@ -65,8 +69,12 @@ Login succeeded!
 
 删除指定的 Context。
 
-!!! note "注意" 
-    即使指定的 Context 是 current-context，此命令也会直接删除掉。所以务必确认之后再删除。
+<aside class="note">
+<div class="title">注意</div>
+
+即使指定的 Context 是 current-context，此命令也会直接删除掉。所以务必确认之后再删除。
+
+</aside>
 
 #### 使用
 

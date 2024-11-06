@@ -11842,6 +11842,14 @@ now you can forward to your target by 127.0.0.1:&lt;Port&gt;
 <figure class="screenshot">
   <img alt="pycharm-edit" src="reference/faq/../../assets/reference/faq/faq-in-ide-usage/pycharm-edit.png" />
 </figure>
+<h2 id="ssh-远程连接-app-时无法使用-kubectl-命令"><a class="header" href="#ssh-远程连接-app-时无法使用-kubectl-命令">SSH 远程连接 App 时，无法使用 kubectl 命令</a></h2>
+<p>通过 SSH 远程连接到 App，执行 kubectl 命令时，可能会遇到以下错误信息：</p>
+<pre><code class="language-bash">tf-docker ~ &gt; kubectl get pod -o wide
+The connection to the server localhost:8080 was refused - did you specify the right host or port?
+</code></pre>
+<p>原因是当前 shell 缺少一些 K8s 相关的环境变量。可以通过执行以下命令来解决：</p>
+<pre><code class="language-bash">export $(cat /proc/1/environ | tr '\0' '\n' | grep KUBERNETES | xargs)
+</code></pre>
 <h2 id="无法使用-sudo-命令"><a class="header" href="#无法使用-sudo-命令">无法使用 sudo 命令</a></h2>
 <p>原因可能是：</p>
 <ol>

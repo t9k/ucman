@@ -270,6 +270,21 @@ VS Code 会新建一个窗口，等待连接建立之后，左下角会提示 **
   <img alt="pycharm-edit" src="../../assets/reference/faq/faq-in-ide-usage/pycharm-edit.png" />
 </figure>
 
+## SSH 远程连接 App 时，无法使用 kubectl 命令
+
+通过 SSH 远程连接到 App，执行 kubectl 命令时，可能会遇到以下错误信息：
+
+```bash
+tf-docker ~ > kubectl get pod -o wide
+The connection to the server localhost:8080 was refused - did you specify the right host or port?
+```
+
+原因是当前 shell 缺少一些 K8s 相关的环境变量。可以通过执行以下命令来解决：
+
+```bash
+export $(cat /proc/1/environ | tr '\0' '\n' | grep KUBERNETES | xargs)
+```
+
 ## 无法使用 sudo 命令
 
 原因可能是：

@@ -11,7 +11,7 @@ Gateway API 的设计模型如下：
 其中：
 
 * 基础设施提供商（TensorStack AI 平台）负责创建 GatewayClass 资源；
-* 集群管理员（平台管理员）负责创建 Gateway 资源；
+* 平台管理员（集群管理员）负责创建 Gateway 资源；
 * 应用开发者（平台 App 开发者、普通用户）负责创建 HTTPRoute 资源。
 
 上述资源的功能分别是：

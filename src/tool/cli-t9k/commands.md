@@ -2094,7 +2094,7 @@ t9k nb get foo -p example -o yaml
 
 ## podgroup
 
-用于管理 [PodGroup]()，只有集群管理员才有相关权限。
+用于管理 [PodGroup]()，只有平台管理员才有相关权限。
 
 ### get 
 
@@ -2164,7 +2164,7 @@ t9k podgroup get foo -p example -o yaml
 
 ### create
 
-创建新项目，只有集群管理员才有权限创建新项目。
+创建新项目，只有平台管理员才有权限创建新项目。
 
 #### 使用
 
@@ -2522,7 +2522,7 @@ t9k pj wait foo -p example --print-log --type master --index 0
 
 ## queue
 
-用于管理 [Queue]()，只有集群管理员才有相关权限。
+用于管理 [Queue]()，只有平台管理员才有相关权限。
 
 ### close
 

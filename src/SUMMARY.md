@@ -75,10 +75,11 @@
     <!-- * [资源回收](compute-resource/reclaim.md) -->
 
 * [账户和安全](security/index.md)
+    * [组织](security/organization.md)
     * [账户](security/account.md)
     * [项目](security/project.md)
     * [告警通知](security/alert.md)
-    * [账单](security/bills.md)
+    * [API Key](security/apikey.md)
 
 ---
 

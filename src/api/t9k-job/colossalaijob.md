@@ -17,24 +17,28 @@ spec:
   ssh:
     authMountPath: /root/.ssh
     sshdPath: /usr/sbin/sshd
-  launcher:
-    image: hpcaitech/colossalai:0.3.0
-    workingDir: /workspace
-    env: []
-    resources: 
-      limits:
-        cpu: 1
-        memory: 2Gi
-      requests:
-        cpu: 500m
-        memory: 1Gi
-  worker:
-    replicas: 2
+  torchConfig:
     procPerWorker: 1
-    command:
+    script:
       - train.py
       - arg1
-    torchArgs: []
+  replicaSpecs:
+  - type: launcher
+    template:
+      spec:
+        containers:
+        - name: launcher
+          image: hpcaitech/colossalai:0.3.0
+          workingDir: /workspace
+          resources: 
+            limits:
+              cpu: 1
+              memory: 2Gi
+            requests:
+              cpu: 500m
+              memory: 1Gi
+  - type: worker
+    replicas: 2
     template:
       spec:
         restartPolicy: OnFailure
@@ -62,26 +66,38 @@ spec:
 
 在该例中：
 
-* 创建 1 个启动副本，该启动副本是 ColossalAI 在训练中所必须的，启动副本的配置参考 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec">PodTemplate</a>，这里不再赘述（启动副本的配置由 `spec.launcher` 字段指定）。
-* 创建 2 个执行副本（由 `spec.worker.replicas` 字段指定），每个执行副本上启动 1 个训练进程（由 `spec.worker.procPerWorker` 字段指定），训练脚本和参数为 `train.py arg1`（由 `spec.worker.command` 字段指定），执行副本的其他配置参考 PodTemplate，这里不再赘述（这些配置由 `spec.worker.template` 字段指定）。
+* 创建 1 个启动副本，该启动副本是 ColossalAI 在训练中所必须的，启动副本的配置参考 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec">PodTemplate</a>，这里不再赘述（启动副本的配置由 `spec.replicaSpecs` 数组中 `type` 为 `launcher` 的部分指定）。
+* 创建 2 个执行副本，每个执行副本上启动 1 个训练进程，训练脚本和参数为 `train.py arg1`，执行副本的其他配置参考 PodTemplate，这里不再赘述（Pod Template 配置和副本数量由 `spec.replicaSpecs` 数组中 `type` 为 `worker` 的部分指定，其他训练配置由 `spec.torchConfig` 字段指定）。
 * 执行副本需要执行 sshd 程序，等待启动副本发来训练指令。sshd 的路径为 `/user/sbin/sshd`（由 `spec.ssh.sshdPath` 字段指定，使用该字段的原因是 sshd 程序必须使用绝对路径调用，所以需要其具体路径）。
 
 <aside class="note">
 <div class="title">注意</div>
 
-另外，ColossalAIJob 的执行副本定义中必须包含一个 `name` 是 `worker` 的容器，用来作为训练容器。
+另外，ColossalAIJob 的执行副本定义中必须包含一个 `name` 是 `worker` 的容器，用来作为训练容器；启动副本应包含一个 `name` 是 `launcher` 的容器，但不是必须的，在未填写 `launcher` 容器配置的情况下，控制器为启动副本设置默认容器配置。
 
-由于执行副本实际执行的命令是启动 `sshd`，所以执行副本的训练容器的 `command` 字段不再生效。
+执行副本实际执行的命令是启动 `sshd`，所以执行副本的训练容器的 `command` 和 `args` 字段不再生效，而是由启动脚本向执行脚本发送启动命令，具体命令根据 `spec.torchConfig` 自动生成。
+
+</aside>
+
+<aside class="note">
+<div class="title">注意</div>
+
+根据 ColossalAI 的启动规则：
+
+1. 启动副本不负责执行训练，所以 `spec.torchConfig.script` 中的脚本不必出现在启动副本中；
+2. 启动副本向执行副本发送的启动命令中，会让执行副本切换到与启动副本相同的路径下，然后执行 `spec.torchConfig.script` 中的脚本。
+
+所以需要确保在执行副本的 `spec.replicaSpecs[launcher].containers[launcher].workingDir` 路径下（因为启动副本会让执行副本切换路径，所以实际路径在启动副本中指定）包含所需要执行的训练脚本（`spec.torchConfig.script`）。
 
 </aside>
 
 ## 副本设置
 
-ColossalAIJob 副本运行环境和命令可以通过 `spec.worker.template` 进行配置，可配置内容包括镜像、运行命令、资源配置、环境变量等。
+ColossalAIJob 副本运行环境和命令可以通过添加 `worker` 类型的 `spec.replicaSpecs` 进行配置，可配置内容包括镜像、运行命令、资源配置、环境变量等。
 
 ### 资源配置
 
-副本资源配置通过 `spec.worker.template.spec.containers[*].resources` 字段指定。
+副本资源配置通过 `spec.replicaSpecs[worker].template.spec.containers[*].resources` 字段指定。
 
 ColossalAIJob 的资源配置包括两部分：
 
@@ -99,7 +115,8 @@ kind: ColossalAIJob
 metadata:
   name: colossalai-example
 spec:
-  worker:
+  replicaSpecs:
+  - type: worker
     replicas: 4
     template:
       spec:
@@ -123,7 +140,8 @@ kind: ColossalAIJob
 metadata:
   name: colossalai-example
 spec:
-  worker:
+  replicaSpecs:
+  - type: worker
     replicas: 4
     template:
       spec:
@@ -141,8 +159,8 @@ spec:
 
 在该例中：
 
-* 在 `spec.worker.template.spec.volumes` 中增加一项，名称为 `dshm`，其中限制共享内存最大为 `1Gi`；
-* 在 `spec.worker.template.spec.containers[*].volumeMounts` 中增加一项，将上述 `dshm` 绑定到 `/dev/shm` 路径。
+* 在 `spec.replicaSpecs[worker].template.spec.volumes` 中增加一项，名称为 `dshm`，其中限制共享内存最大为 `1Gi`；
+* 在 `spec.replicaSpecs[worker].template.spec.containers[*].volumeMounts` 中增加一项，将上述 `dshm` 绑定到 `/dev/shm` 路径。
 
 <aside class="note tip">
 <div class="title">提示</div>
@@ -153,7 +171,7 @@ spec:
 
 ### 环境变量
 
-副本环境变量通过 `spec.worker.template.spec.containers[*].env` 字段指定。ColossalAIJob 支持直接设置环境变量内容和引用其他资源字段作为环境变量两种方式。
+副本环境变量通过 `spec.replicaSpecs[worker].template.spec.containers[*].env` 字段指定。ColossalAIJob 支持直接设置环境变量内容和引用其他资源字段作为环境变量两种方式。
 
 在下面的示例中，ColossalAIJob 给副本设置了两个环境变量：`ENV_DIRECT` 和 `ENV_REFERENCED`。其中 `ENV_DIRECT` 环境变量被直接设置为 `env-value`，`ENV_REFERENCED` 环境变量引用了 `secret-name` Secret 的 `key-in-secret` 字段的内容。
 
@@ -163,7 +181,8 @@ kind: ColossalAIJob
 metadata:
   name: colossalai-example
 spec:
-  worker:
+  replicaSpecs:
+  - type: worker
     replicas: 4
     template:
       spec:
@@ -200,7 +219,7 @@ spec:
 
 ### 重启机制
 
-与其他 TrainingJob 不同，ColossalAIJob 使用 `colossalairun` 作为启动命令，在这种情况下，Pod 失败重启后不会再加入到训练中。所以 ColossalAIJob 无法像其他 TrainingJob 那样支持 Pod 失败重启。
+与其他 TrainingJob 不同，ColossalAIJob 使用 `colossalai run` 作为启动命令，在这种情况下，Pod 失败重启后不会再加入到训练中。所以 ColossalAIJob 无法像其他 TrainingJob 那样支持 Pod 失败重启。
 
 ## 成功和失败
 
@@ -271,7 +290,7 @@ ColossalAIJob 支持暂停模式。在该模式下，删除（或不创建）副
 * `spec.runMode.pause.resumeSpecs` 表示结束暂停后，如何恢复各个副本：
     * `spec.runMode.pause.resumeSpecs.type` 表示作用于的副本类型。
     * `spec.runMode.pause.resumeSpecs.skipInitContainer` 表示让副本的 InitContainer 失效，默认为 `false`。
-    * `spec.runMode.pause.resumeSpecs.command` 和 `spec.runMode.pause.resumeSpecs.args` 表示副本在恢复运行时候执行的命令，默认使用 `spec.replicaSpecs[0].template` 中的命令。
+    * `spec.runMode.pause.resumeSpecs.command` 和 `spec.runMode.pause.resumeSpecs.args` 表示副本在恢复运行时候执行的命令，默认使用 `spec.replicaSpecs[*].template` 中的命令。
     * 如果不填写 `spec.runMode.pause.resumeSpecs` 字段，则表示所有副本都使用默认设置。
 
 用户可以随时修改 `spec.runMode.pause.enabled` 来控制任务暂停，但是不可以更改 `spec.runMode.pause.resumeSpecs`，所以如果有暂停 ColossalAIJob 的需求，请提前设置好恢复设置。
@@ -279,7 +298,7 @@ ColossalAIJob 支持暂停模式。在该模式下，删除（或不创建）副
 在下面的示例中：
 
 * 示例一：开启了暂停模式，并配置 worker 跳过 InitContainer，并执行 `/usr/bin/sshd`。
-* 示例二：开启了暂停模式，副本使用默认恢复设置，即不跳过 InitContainer，并执行 `spec.replicaSpecs[0].template` 中设置的命令。
+* 示例二：开启了暂停模式，副本使用默认恢复设置，即不跳过 InitContainer，并执行 `spec.replicaSpecs[*].template` 中设置的命令。
 
 ```yaml
 # 示例一

@@ -342,7 +342,7 @@ GenericJob 支持暂停模式。在该模式下，删除（或不创建）副本
 * `spec.runMode.pause.resumeSpecs` 表示结束暂停后，如何恢复各个副本：
     * `spec.runMode.pause.resumeSpecs.type` 表示作用于的副本类型。
     * `spec.runMode.pause.resumeSpecs.skipInitContainer` 表示让副本的 InitContainer 失效，默认为 `false`。
-    * `spec.runMode.pause.resumeSpecs.command` 和 `spec.runMode.pause.resumeSpecs.args` 表示副本在恢复运行时候执行的命令，默认使用 `spec.replicaSpecs[0].template` 中的命令。
+    * `spec.runMode.pause.resumeSpecs.command` 和 `spec.runMode.pause.resumeSpecs.args` 表示副本在恢复运行时候执行的命令，默认使用 `spec.replicaSpecs[*].template` 中的命令。
     * 如果不填写 `spec.runMode.pause.resumeSpecs` 字段，则表示所有副本都使用默认设置。
 
 用户可以随时修改 `spec.runMode.pause.enabled` 来控制任务暂停，但是不可以更改 `spec.runMode.pause.resumeSpecs`，所以如果有暂停 GenericJob 的需求，请提前设置好恢复设置。
@@ -350,7 +350,7 @@ GenericJob 支持暂停模式。在该模式下，删除（或不创建）副本
 在下面的示例中：
 
 * 示例一：开启了暂停模式，并配置 worker 跳过 InitContainer，并执行 `/usr/bin/sshd`。
-* 示例二：开启了暂停模式，副本使用默认恢复设置，即不跳过 InitContainer，并执行 `spec.replicaSpecs[0].template` 中设置的命令。
+* 示例二：开启了暂停模式，副本使用默认恢复设置，即不跳过 InitContainer，并执行 `spec.replicaSpecs[*].template` 中设置的命令。
 
 ```yaml
 # 示例一

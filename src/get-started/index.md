@@ -18,7 +18,7 @@
 
 User Console 是用户的功能入口，基本使用流程如下：
 
-1. 获得账号，登陆系统；
+1. 获得账号，登录系统；
 2. 安装各种 Apps，例如 Jupyter Notebook，Job Manager，TensorBoard，Ollama；
 3. 使用多个 Apps 互相协同，调用 APIs，完成各项工作；
 4. 卸载不再使用的 Apps，释放计算资源。

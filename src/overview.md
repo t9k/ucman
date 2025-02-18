@@ -43,7 +43,7 @@ AI 集群的拥有者可以使用这套软件，构建自己的 AI 私有云或 
 
 <figure class="screenshot">
   <img alt="create-pvc1" src="./assets/overview/uc-apps.png"/>
-  <figcaption>图 2：运行中的 Apps。用户登陆 User-Console，根据任务需求和个人偏好，安装并使用 Apps。</figcaption>
+  <figcaption>图 2：运行中的 Apps。用户登录 User Console，根据任务需求和个人偏好，安装并使用 Apps。</figcaption>
 </figure>
 
 ### Apps

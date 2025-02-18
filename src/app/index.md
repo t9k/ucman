@@ -40,7 +40,7 @@
 
 ## Apps 列表
 
-这里给出可用（需要管理员注册）的 Apps 的列表，最新及完整的 Apps 支持列表请参看 <a target="_blank" rel="noopener noreferrer" href="https://github.com/t9k/apps/tree/master/user-console">Git Hub</a>。
+这里给出可用（需要管理员注册）的 Apps 的列表，最新及完整的 Apps 支持列表请参看 <a target="_blank" rel="noopener noreferrer" href="https://github.com/t9k/apps/tree/master/user-console">GitHub</a>。
 
 
 下列部分 Apps 提供了链接指向更详细的文档。

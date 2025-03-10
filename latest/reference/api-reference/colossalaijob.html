@@ -208,7 +208,7 @@
 <div class="table-wrapper"><table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>apiVersion</code> <em>string</em></td><td><code>batch.tensorstack.dev/v1beta1</code></td></tr>
 <tr><td><code>kind</code> <em>string</em></td><td><code>ColossalAIJob</code></td></tr>
-<tr><td><code>metadata</code> <em><a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#objectmeta-v1-meta">ObjectMeta</a></em></td><td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td></tr>
+<tr><td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#objectmeta-v1-meta">ObjectMeta</a></em></td><td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td></tr>
 <tr><td><code>spec</code> <em><a href="#colossalaijobspec">ColossalAIJobSpec</a></em></td><td></td></tr>
 <tr><td><code>status</code> <em><a href="#colossalaijobstatus">ColossalAIJobStatus</a></em></td><td></td></tr>
 </tbody></table>
@@ -218,7 +218,7 @@
 <div class="table-wrapper"><table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>apiVersion</code> <em>string</em></td><td><code>batch.tensorstack.dev/v1beta1</code></td></tr>
 <tr><td><code>kind</code> <em>string</em></td><td><code>ColossalAIJobList</code></td></tr>
-<tr><td><code>metadata</code> <em><a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#listmeta-v1-meta">ListMeta</a></em></td><td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td></tr>
+<tr><td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#listmeta-v1-meta">ListMeta</a></em></td><td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td></tr>
 <tr><td><code>items</code> <em><a href="#colossalaijob">ColossalAIJob</a> array</em></td><td></td></tr>
 </tbody></table>
 </div>
@@ -233,8 +233,8 @@
 <tr><td><code>runMode</code> <em><a href="#runmode">RunMode</a></em></td><td>The desired running mode of the job, defaults to <code>Immediate</code>.</td></tr>
 <tr><td><code>runPolicy</code> <em><a href="#runpolicy">RunPolicy</a></em></td><td>Controls the handling of completed replicas and other related processes.</td></tr>
 <tr><td><code>scheduler</code> <em>SchedulePolicy</em></td><td>Specifies the scheduler to request for resources. Defaults to cluster default scheduler.</td></tr>
-<tr><td><code>launcher</code> <em><a href="#launcher">Launcher</a></em></td><td>Specication for the launcher replica.</td></tr>
-<tr><td><code>worker</code> <em><a href="#worker">Worker</a></em></td><td>Specication for the launcher replica.</td></tr>
+<tr><td><code>torchConfig</code> <em><a href="#torchconfig">TorchConfig</a></em></td><td>Describes how to start the colossalai job.</td></tr>
+<tr><td><code>replicaSpecs</code> <em><a href="#replicaspec">ReplicaSpec</a> array</em></td><td>List of replica specs belonging to the job. There must be at least one replica defined for a Job.</td></tr>
 </tbody></table>
 </div>
 <h4 id="colossalaijobstatus"><a class="header" href="#colossalaijobstatus">ColossalAIJobStatus</a></h4>
@@ -250,19 +250,42 @@
 <tr><td><code>conditions</code> <em><a href="#jobcondition">JobCondition</a> array</em></td><td>The latest available observations of an object's current state.</td></tr>
 </tbody></table>
 </div>
-<h4 id="launcher"><a class="header" href="#launcher">Launcher</a></h4>
-<p>Specification of replica <code>launcher</code>.</p>
+<h4 id="replicaspec"><a class="header" href="#replicaspec">ReplicaSpec</a></h4>
+<p>ReplicaSpec defines the desired state of replicas.</p>
 <p><em>Appears in:</em></p>
 <ul>
 <li><a href="#colossalaijobspec">ColossalAIJobSpec</a></li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>image</code> <em>string</em></td><td>Container image name.</td></tr>
-<tr><td><code>workingDir</code> <em>string</em></td><td>Working directory of container <code>launcher</code>. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.</td></tr>
-<tr><td><code>env</code> <em><a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#envvar-v1-core">EnvVar</a> array</em></td><td>List of environment variables set for the container. Cannot be updated.</td></tr>
-<tr><td><code>resources</code> <em><a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#resourcerequirements-v1-core">ResourceRequirements</a></em></td><td>Compute Resources required by this container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/</td></tr>
+<tr><td><code>type</code> <em><a href="#replicatype">ReplicaType</a></em></td><td>Replica type.</td></tr>
+<tr><td><code>replicas</code> <em>integer</em></td><td>The desired number of replicas of this replica type. Defaults to 1.</td></tr>
+<tr><td><code>restartPolicy</code> <em><a href="#restartpolicy">RestartPolicy</a></em></td><td>Restart policy for replicas of this replica type. One of Always, OnFailure, Never. Optional: Default to OnFailure.</td></tr>
+<tr><td><code>template</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#podtemplatespec-v1-core">PodTemplateSpec</a></em></td><td>Defines the template used to create pods.</td></tr>
 </tbody></table>
 </div>
+<h4 id="replicatype"><a class="header" href="#replicatype">ReplicaType</a></h4>
+<p><em>Underlying type:</em> <code>string</code></p>
+<p><em>Appears in:</em></p>
+<ul>
+<li><a href="#replicaspec">ReplicaSpec</a></li>
+</ul>
+<h4 id="restartpolicy"><a class="header" href="#restartpolicy">RestartPolicy</a></h4>
+<p>RestartPolicy describes how the replica should be restarted.</p>
+<p><em>Appears in:</em></p>
+<ul>
+<li><a href="#replicaspec">ReplicaSpec</a></li>
+</ul>
+<div class="table-wrapper"><table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>policy</code> <em><a href="#restartpolicytype">RestartPolicyType</a></em></td><td>The policy to restart finished replica.</td></tr>
+<tr><td><code>limit</code> <em>integer</em></td><td>The maximum number of restarts. Optional: Default to 0.</td></tr>
+</tbody></table>
+</div>
+<h4 id="restartpolicytype"><a class="header" href="#restartpolicytype">RestartPolicyType</a></h4>
+<p><em>Underlying type:</em> <code>string</code></p>
+<p><em>Appears in:</em></p>
+<ul>
+<li><a href="#restartpolicy">RestartPolicy</a></li>
+</ul>
 <h4 id="runpolicy"><a class="header" href="#runpolicy">RunPolicy</a></h4>
 <p>RunPolicy dictates specific actions to be taken by the controller upon job completion.</p>
 <p><em>Appears in:</em></p>
@@ -284,18 +307,16 @@
 <tr><td><code>sshdPath</code> <em>string</em></td><td>The location of the sshd executable file.</td></tr>
 </tbody></table>
 </div>
-<h4 id="worker"><a class="header" href="#worker">Worker</a></h4>
-<p>Specification of the worker replicas.</p>
+<h4 id="torchconfig"><a class="header" href="#torchconfig">TorchConfig</a></h4>
+<p>MPIConfig describes how to start the mpi job.</p>
 <p><em>Appears in:</em></p>
 <ul>
 <li><a href="#colossalaijobspec">ColossalAIJobSpec</a></li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>replicas</code> <em>integer</em></td><td>Number of replicas to launch. Defaults to 1.</td></tr>
 <tr><td><code>procPerWorker</code> <em>integer</em></td><td>The number of processes of a worker. Defaults to 1.</td></tr>
-<tr><td><code>command</code> <em>string array</em></td><td>Specifies the command used to start the workers.</td></tr>
-<tr><td><code>torchArgs</code> <em>string array</em></td><td>Args of torchrun.</td></tr>
-<tr><td><code>template</code> <em><a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#podtemplatespec-v1-core">PodTemplateSpec</a></em></td><td>Template defines the workers that will be created from this pod template.</td></tr>
+<tr><td><code>script</code> <em>string array</em></td><td>Specifies the command used to start the workers.</td></tr>
+<tr><td><code>extraArgs</code> <em>string array</em></td><td>Args of torchrun.</td></tr>
 </tbody></table>
 </div>
                     </main>

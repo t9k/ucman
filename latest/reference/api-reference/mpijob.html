@@ -199,6 +199,19 @@
 <li><a href="#mpijob">MPIJob</a></li>
 <li><a href="#mpijoblist">MPIJobList</a></li>
 </ul>
+<h4 id="mpiconfig"><a class="header" href="#mpiconfig">MPIConfig</a></h4>
+<p>MPIConfig describes how to start the mpi job.</p>
+<p><em>Appears in:</em></p>
+<ul>
+<li><a href="#mpijobspec">MPIJobSpec</a></li>
+</ul>
+<div class="table-wrapper"><table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>mca</code> <em>object (keys:string, values:string)</em></td><td>Open MPI uses Modular Component Architecture (MCA) parameters to provide a way to tune your runtime environment.</td></tr>
+<tr><td><code>home</code> <em>string</em></td><td>Open MPI installation path.</td></tr>
+<tr><td><code>extraArgs</code> <em>string array</em></td><td>Extra args for mpirun.</td></tr>
+<tr><td><code>script</code> <em>string array</em></td><td>Command line to start the MPI programs inside a worker pod. This is invoked by the launcher after all the worker pods have been created and entered ready state.</td></tr>
+</tbody></table>
+</div>
 <h4 id="mpijob"><a class="header" href="#mpijob">MPIJob</a></h4>
 <p>MPIJob is the Schema for the mpijobs API</p>
 <p><em>Appears in:</em></p>
@@ -208,7 +221,7 @@
 <div class="table-wrapper"><table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>apiVersion</code> <em>string</em></td><td><code>batch.tensorstack.dev/v1beta1</code></td></tr>
 <tr><td><code>kind</code> <em>string</em></td><td><code>MPIJob</code></td></tr>
-<tr><td><code>metadata</code> <em><a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#objectmeta-v1-meta">ObjectMeta</a></em></td><td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td></tr>
+<tr><td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#objectmeta-v1-meta">ObjectMeta</a></em></td><td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td></tr>
 <tr><td><code>spec</code> <em><a href="#mpijobspec">MPIJobSpec</a></em></td><td></td></tr>
 <tr><td><code>status</code> <em><a href="#mpijobstatus">MPIJobStatus</a></em></td><td></td></tr>
 </tbody></table>
@@ -218,7 +231,7 @@
 <div class="table-wrapper"><table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>apiVersion</code> <em>string</em></td><td><code>batch.tensorstack.dev/v1beta1</code></td></tr>
 <tr><td><code>kind</code> <em>string</em></td><td><code>MPIJobList</code></td></tr>
-<tr><td><code>metadata</code> <em><a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#listmeta-v1-meta">ListMeta</a></em></td><td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td></tr>
+<tr><td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#listmeta-v1-meta">ListMeta</a></em></td><td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td></tr>
 <tr><td><code>items</code> <em><a href="#mpijob">MPIJob</a> array</em></td><td></td></tr>
 </tbody></table>
 </div>
@@ -229,13 +242,12 @@
 <li><a href="#mpijob">MPIJob</a></li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>worker</code> <em><a href="#workerconfig">WorkerConfig</a></em></td><td>Specifications for the worker replicas.</td></tr>
-<tr><td><code>mca</code> <em>object (keys:string, values:string)</em></td><td>Open MPI uses Modular Component Architecture (MCA) parameters to provide a way to tune your runtime environment.</td></tr>
 <tr><td><code>ssh</code> <em><a href="#sshconfig">SSHConfig</a></em></td><td>SSH configs.</td></tr>
 <tr><td><code>runPolicy</code> <em><a href="#runpolicy">RunPolicy</a></em></td><td>Execution policy configurations governing the behavior of the MPI job.</td></tr>
 <tr><td><code>runMode</code> <em><a href="#runmode">RunMode</a></em></td><td>Job's execution behavior. If omitted, defaults to <code>Immediate</code> mode, and tasks are executed immediately upon submission.</td></tr>
-<tr><td><code>mpiHome</code> <em>string</em></td><td>Open MPI installation path.</td></tr>
 <tr><td><code>scheduler</code> <em>SchedulePolicy</em></td><td>Identifies the preferred scheduler for allocating resources to replicas. Defaults to cluster default scheduler. Use k8s default scheduler by default.</td></tr>
+<tr><td><code>mpiConfig</code> <em><a href="#mpiconfig">MPIConfig</a></em></td><td>Describes how to start the mpi job.</td></tr>
+<tr><td><code>replicaSpecs</code> <em><a href="#replicaspec">ReplicaSpec</a> array</em></td><td>List of replica specs belonging to the job. There must be at least one replica defined for a Job.</td></tr>
 </tbody></table>
 </div>
 <h4 id="mpijobstatus"><a class="header" href="#mpijobstatus">MPIJobStatus</a></h4>
@@ -251,6 +263,42 @@
 <tr><td><code>conditions</code> <em><a href="#jobcondition">JobCondition</a> array</em></td><td>The latest available observations of an object's current state.</td></tr>
 </tbody></table>
 </div>
+<h4 id="mpireplicatype"><a class="header" href="#mpireplicatype">MPIReplicaType</a></h4>
+<p><em>Underlying type:</em> <code>string</code></p>
+<p><em>Appears in:</em></p>
+<ul>
+<li><a href="#replicaspec">ReplicaSpec</a></li>
+</ul>
+<h4 id="replicaspec"><a class="header" href="#replicaspec">ReplicaSpec</a></h4>
+<p>ReplicaSpec defines the desired state of replicas.</p>
+<p><em>Appears in:</em></p>
+<ul>
+<li><a href="#mpijobspec">MPIJobSpec</a></li>
+</ul>
+<div class="table-wrapper"><table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>type</code> <em><a href="#mpireplicatype">MPIReplicaType</a></em></td><td>Replica type.</td></tr>
+<tr><td><code>replicas</code> <em>integer</em></td><td>The desired number of replicas of this replica type. Defaults to 1.</td></tr>
+<tr><td><code>restartPolicy</code> <em><a href="#restartpolicy">RestartPolicy</a></em></td><td>Restart policy for replicas of this replica type. One of Always, OnFailure, Never. Optional: Default to OnFailure.</td></tr>
+<tr><td><code>template</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#podtemplatespec-v1-core">PodTemplateSpec</a></em></td><td>Defines the template used to create pods.</td></tr>
+</tbody></table>
+</div>
+<h4 id="restartpolicy"><a class="header" href="#restartpolicy">RestartPolicy</a></h4>
+<p>RestartPolicy describes how the replica should be restarted.</p>
+<p><em>Appears in:</em></p>
+<ul>
+<li><a href="#replicaspec">ReplicaSpec</a></li>
+</ul>
+<div class="table-wrapper"><table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>policy</code> <em><a href="#restartpolicytype">RestartPolicyType</a></em></td><td>The policy to restart finished replica.</td></tr>
+<tr><td><code>limit</code> <em>integer</em></td><td>The maximum number of restarts. Optional: Default to 0.</td></tr>
+</tbody></table>
+</div>
+<h4 id="restartpolicytype"><a class="header" href="#restartpolicytype">RestartPolicyType</a></h4>
+<p><em>Underlying type:</em> <code>string</code></p>
+<p><em>Appears in:</em></p>
+<ul>
+<li><a href="#restartpolicy">RestartPolicy</a></li>
+</ul>
 <h4 id="runpolicy"><a class="header" href="#runpolicy">RunPolicy</a></h4>
 <p>RunPolicy encapsulates various runtime policies of the MPI job, for example how to clean up resources.</p>
 <p><em>Appears in:</em></p>
@@ -270,19 +318,6 @@
 <div class="table-wrapper"><table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>sshAuthMountPath</code> <em>string</em></td><td>SSHAuthMountPath is the directory where SSH keys are mounted. Defaults to &quot;/root/.ssh&quot;.</td></tr>
 <tr><td><code>sshdPath</code> <em>string</em></td><td></td></tr>
-</tbody></table>
-</div>
-<h4 id="workerconfig"><a class="header" href="#workerconfig">WorkerConfig</a></h4>
-<p>WorkerConfig defines the configurations for MPI worker replicas.</p>
-<p><em>Appears in:</em></p>
-<ul>
-<li><a href="#mpijobspec">MPIJobSpec</a></li>
-</ul>
-<div class="table-wrapper"><table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>replicas</code> <em>integer</em></td><td>The number of workers to launch. Default 1.</td></tr>
-<tr><td><code>extraMPIArgs</code> <em>string array</em></td><td>Extra args for mpirun.</td></tr>
-<tr><td><code>cmd</code> <em>string array</em></td><td>Command line to start the MPI programs inside a worker pod. This is invoked by the launcher after all the worker pods have been created and entered ready state.</td></tr>
-<tr><td><code>template</code> <em><a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#podtemplatespec-v1-core">PodTemplateSpec</a></em></td><td>Defines the pod template used to create workers. Users are responsible for ensuring that container images and configurations are properly set to guarantee the worker operates in the state anticipated by the <code>launcher</code>.</td></tr>
 </tbody></table>
 </div>
                     </main>

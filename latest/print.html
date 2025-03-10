@@ -3052,7 +3052,7 @@ spec:
 <ul>
 <li><code>spec.runMode.pause.resumeSpecs.type</code> 表示作用于的副本类型。</li>
 <li><code>spec.runMode.pause.resumeSpecs.skipInitContainer</code> 表示让副本的 InitContainer 失效，默认为 <code>false</code>。</li>
-<li><code>spec.runMode.pause.resumeSpecs.command</code> 和 <code>spec.runMode.pause.resumeSpecs.args</code> 表示副本在恢复运行时候执行的命令，默认使用 <code>spec.replicaSpecs[0].template</code> 中的命令。</li>
+<li><code>spec.runMode.pause.resumeSpecs.command</code> 和 <code>spec.runMode.pause.resumeSpecs.args</code> 表示副本在恢复运行时候执行的命令，默认使用 <code>spec.replicaSpecs[*].template</code> 中的命令。</li>
 <li>如果不填写 <code>spec.runMode.pause.resumeSpecs</code> 字段，则表示所有副本都使用默认设置。</li>
 </ul>
 </li>
@@ -3061,7 +3061,7 @@ spec:
 <p>在下面的示例中：</p>
 <ul>
 <li>示例一：开启了暂停模式，并配置 worker 跳过 InitContainer，并执行 <code>/usr/bin/sshd</code>。</li>
-<li>示例二：开启了暂停模式，副本使用默认恢复设置，即不跳过 InitContainer，并执行 <code>spec.replicaSpecs[0].template</code> 中设置的命令。</li>
+<li>示例二：开启了暂停模式，副本使用默认恢复设置，即不跳过 InitContainer，并执行 <code>spec.replicaSpecs[*].template</code> 中设置的命令。</li>
 </ul>
 <pre><code class="language-yaml"># 示例一
 ...
@@ -3480,7 +3480,7 @@ spec:
 <ul>
 <li><code>spec.runMode.pause.resumeSpecs.type</code> 表示作用于的副本类型。</li>
 <li><code>spec.runMode.pause.resumeSpecs.skipInitContainer</code> 表示让副本的 InitContainer 失效，默认为 <code>false</code>。</li>
-<li><code>spec.runMode.pause.resumeSpecs.command</code> 和 <code>spec.runMode.pause.resumeSpecs.args</code> 表示副本在恢复运行时候执行的命令，默认使用 <code>spec.replicaSpecs[0].template</code> 中的命令。</li>
+<li><code>spec.runMode.pause.resumeSpecs.command</code> 和 <code>spec.runMode.pause.resumeSpecs.args</code> 表示副本在恢复运行时候执行的命令，默认使用 <code>spec.replicaSpecs[*].template</code> 中的命令。</li>
 <li>如果不填写 <code>spec.runMode.pause.resumeSpecs</code> 字段，则表示所有副本都使用默认设置。</li>
 </ul>
 </li>
@@ -3489,7 +3489,7 @@ spec:
 <p>在下面的示例中：</p>
 <ul>
 <li>示例一：开启了暂停模式，并配置 worker 跳过 InitContainer，并执行 <code>/usr/bin/sshd</code>。</li>
-<li>示例二：开启了暂停模式，副本使用默认恢复设置，即不跳过 InitContainer，并执行 <code>spec.replicaSpecs[0].template</code> 中设置的命令。</li>
+<li>示例二：开启了暂停模式，副本使用默认恢复设置，即不跳过 InitContainer，并执行 <code>spec.replicaSpecs[*].template</code> 中设置的命令。</li>
 </ul>
 <pre><code class="language-yaml"># 示例一
 ...
@@ -3845,7 +3845,7 @@ spec:
 <ul>
 <li><code>spec.runMode.pause.resumeSpecs.type</code> 表示作用于的副本类型。</li>
 <li><code>spec.runMode.pause.resumeSpecs.skipInitContainer</code> 表示让副本的 InitContainer 失效，默认为 <code>false</code>。</li>
-<li><code>spec.runMode.pause.resumeSpecs.command</code> 和 <code>spec.runMode.pause.resumeSpecs.args</code> 表示副本在恢复运行时候执行的命令，默认使用 <code>spec.replicaSpecs[0].template</code> 中的命令。</li>
+<li><code>spec.runMode.pause.resumeSpecs.command</code> 和 <code>spec.runMode.pause.resumeSpecs.args</code> 表示副本在恢复运行时候执行的命令，默认使用 <code>spec.replicaSpecs[*].template</code> 中的命令。</li>
 <li>如果不填写 <code>spec.runMode.pause.resumeSpecs</code> 字段，则表示所有副本都使用默认设置。</li>
 </ul>
 </li>
@@ -3854,7 +3854,7 @@ spec:
 <p>在下面的示例中：</p>
 <ul>
 <li>示例一：开启了暂停模式，并配置 worker 跳过 InitContainer，并执行 <code>/usr/bin/sshd</code>。</li>
-<li>示例二：开启了暂停模式，副本使用默认恢复设置，即不跳过 InitContainer，并执行 <code>spec.replicaSpecs[0].template</code> 中设置的命令。</li>
+<li>示例二：开启了暂停模式，副本使用默认恢复设置，即不跳过 InitContainer，并执行 <code>spec.replicaSpecs[*].template</code> 中设置的命令。</li>
 </ul>
 <pre><code class="language-yaml"># 示例一
 ...
@@ -4227,7 +4227,7 @@ spec:
 <ul>
 <li><code>spec.runMode.pause.resumeSpecs.type</code> 表示作用于的副本类型。</li>
 <li><code>spec.runMode.pause.resumeSpecs.skipInitContainer</code> 表示让副本的 InitContainer 失效，默认为 <code>false</code>。</li>
-<li><code>spec.runMode.pause.resumeSpecs.command</code> 和 <code>spec.runMode.pause.resumeSpecs.args</code> 表示副本在恢复运行时候执行的命令，默认使用 <code>spec.replicaSpecs[0].template</code> 中的命令。</li>
+<li><code>spec.runMode.pause.resumeSpecs.command</code> 和 <code>spec.runMode.pause.resumeSpecs.args</code> 表示副本在恢复运行时候执行的命令，默认使用 <code>spec.replicaSpecs[*].template</code> 中的命令。</li>
 <li>如果不填写 <code>spec.runMode.pause.resumeSpecs</code> 字段，则表示所有副本都使用默认设置。</li>
 </ul>
 </li>
@@ -4236,7 +4236,7 @@ spec:
 <p>在下面的示例中：</p>
 <ul>
 <li>示例一：开启了暂停模式，并配置 worker 跳过 InitContainer，并执行 <code>/usr/bin/sshd</code>。</li>
-<li>示例二：开启了暂停模式，副本使用默认恢复设置，即不跳过 InitContainer，并执行 <code>spec.replicaSpecs[0].template</code> 中设置的命令。</li>
+<li>示例二：开启了暂停模式，副本使用默认恢复设置，即不跳过 InitContainer，并执行 <code>spec.replicaSpecs[*].template</code> 中设置的命令。</li>
 </ul>
 <pre><code class="language-yaml"># 示例一
 ...
@@ -4362,24 +4362,28 @@ spec:
   ssh:
     authMountPath: /root/.ssh
     sshdPath: /usr/sbin/sshd
-  launcher:
-    image: hpcaitech/colossalai:0.3.0
-    workingDir: /workspace
-    env: []
-    resources: 
-      limits:
-        cpu: 1
-        memory: 2Gi
-      requests:
-        cpu: 500m
-        memory: 1Gi
-  worker:
-    replicas: 2
+  torchConfig:
     procPerWorker: 1
-    command:
+    script:
       - train.py
       - arg1
-    torchArgs: []
+  replicaSpecs:
+  - type: launcher
+    template:
+      spec:
+        containers:
+        - name: launcher
+          image: hpcaitech/colossalai:0.3.0
+          workingDir: /workspace
+          resources: 
+            limits:
+              cpu: 1
+              memory: 2Gi
+            requests:
+              cpu: 500m
+              memory: 1Gi
+  - type: worker
+    replicas: 2
     template:
       spec:
         restartPolicy: OnFailure
@@ -4406,19 +4410,28 @@ spec:
 </code></pre>
 <p>在该例中：</p>
 <ul>
-<li>创建 1 个启动副本，该启动副本是 ColossalAI 在训练中所必须的，启动副本的配置参考 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec">PodTemplate</a>，这里不再赘述（启动副本的配置由 <code>spec.launcher</code> 字段指定）。</li>
-<li>创建 2 个执行副本（由 <code>spec.worker.replicas</code> 字段指定），每个执行副本上启动 1 个训练进程（由 <code>spec.worker.procPerWorker</code> 字段指定），训练脚本和参数为 <code>train.py arg1</code>（由 <code>spec.worker.command</code> 字段指定），执行副本的其他配置参考 PodTemplate，这里不再赘述（这些配置由 <code>spec.worker.template</code> 字段指定）。</li>
+<li>创建 1 个启动副本，该启动副本是 ColossalAI 在训练中所必须的，启动副本的配置参考 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec">PodTemplate</a>，这里不再赘述（启动副本的配置由 <code>spec.replicaSpecs</code> 数组中 <code>type</code> 为 <code>launcher</code> 的部分指定）。</li>
+<li>创建 2 个执行副本，每个执行副本上启动 1 个训练进程，训练脚本和参数为 <code>train.py arg1</code>，执行副本的其他配置参考 PodTemplate，这里不再赘述（Pod Template 配置和副本数量由 <code>spec.replicaSpecs</code> 数组中 <code>type</code> 为 <code>worker</code> 的部分指定，其他训练配置由 <code>spec.torchConfig</code> 字段指定）。</li>
 <li>执行副本需要执行 sshd 程序，等待启动副本发来训练指令。sshd 的路径为 <code>/user/sbin/sshd</code>（由 <code>spec.ssh.sshdPath</code> 字段指定，使用该字段的原因是 sshd 程序必须使用绝对路径调用，所以需要其具体路径）。</li>
 </ul>
 <aside class="note">
 <div class="title">注意</div>
-<p>另外，ColossalAIJob 的执行副本定义中必须包含一个 <code>name</code> 是 <code>worker</code> 的容器，用来作为训练容器。</p>
-<p>由于执行副本实际执行的命令是启动 <code>sshd</code>，所以执行副本的训练容器的 <code>command</code> 字段不再生效。</p>
+<p>另外，ColossalAIJob 的执行副本定义中必须包含一个 <code>name</code> 是 <code>worker</code> 的容器，用来作为训练容器；启动副本应包含一个 <code>name</code> 是 <code>launcher</code> 的容器，但不是必须的，在未填写 <code>launcher</code> 容器配置的情况下，控制器为启动副本设置默认容器配置。</p>
+<p>执行副本实际执行的命令是启动 <code>sshd</code>，所以执行副本的训练容器的 <code>command</code> 和 <code>args</code> 字段不再生效，而是由启动脚本向执行脚本发送启动命令，具体命令根据 <code>spec.torchConfig</code> 自动生成。</p>
+</aside>
+<aside class="note">
+<div class="title">注意</div>
+<p>根据 ColossalAI 的启动规则：</p>
+<ol>
+<li>启动副本不负责执行训练，所以 <code>spec.torchConfig.script</code> 中的脚本不必出现在启动副本中；</li>
+<li>启动副本向执行副本发送的启动命令中，会让执行副本切换到与启动副本相同的路径下，然后执行 <code>spec.torchConfig.script</code> 中的脚本。</li>
+</ol>
+<p>所以需要确保在执行副本的 <code>spec.replicaSpecs[launcher].containers[launcher].workingDir</code> 路径下（因为启动副本会让执行副本切换路径，所以实际路径在启动副本中指定）包含所需要执行的训练脚本（<code>spec.torchConfig.script</code>）。</p>
 </aside>
 <h2 id="副本设置-4"><a class="header" href="#副本设置-4">副本设置</a></h2>
-<p>ColossalAIJob 副本运行环境和命令可以通过 <code>spec.worker.template</code> 进行配置，可配置内容包括镜像、运行命令、资源配置、环境变量等。</p>
+<p>ColossalAIJob 副本运行环境和命令可以通过添加 <code>worker</code> 类型的 <code>spec.replicaSpecs</code> 进行配置，可配置内容包括镜像、运行命令、资源配置、环境变量等。</p>
 <h3 id="资源配置-4"><a class="header" href="#资源配置-4">资源配置</a></h3>
-<p>副本资源配置通过 <code>spec.worker.template.spec.containers[*].resources</code> 字段指定。</p>
+<p>副本资源配置通过 <code>spec.replicaSpecs[worker].template.spec.containers[*].resources</code> 字段指定。</p>
 <p>ColossalAIJob 的资源配置包括两部分：</p>
 <ul>
 <li>资源请求量（<code>requests</code>）：创建该副本时，节点上至少应具有这些数量的资源。如果集群中所有节点都不满足副本的资源请求量，则副本的创建可能会被阻塞；或者如果副本的优先级较高，则有可能驱逐节点上其他工作负载来为副本空出可用的资源。</li>
@@ -4434,7 +4447,8 @@ kind: ColossalAIJob
 metadata:
   name: colossalai-example
 spec:
-  worker:
+  replicaSpecs:
+  - type: worker
     replicas: 4
     template:
       spec:
@@ -4454,7 +4468,8 @@ kind: ColossalAIJob
 metadata:
   name: colossalai-example
 spec:
-  worker:
+  replicaSpecs:
+  - type: worker
     replicas: 4
     template:
       spec:
@@ -4471,22 +4486,23 @@ spec:
 </code></pre>
 <p>在该例中：</p>
 <ul>
-<li>在 <code>spec.worker.template.spec.volumes</code> 中增加一项，名称为 <code>dshm</code>，其中限制共享内存最大为 <code>1Gi</code>；</li>
-<li>在 <code>spec.worker.template.spec.containers[*].volumeMounts</code> 中增加一项，将上述 <code>dshm</code> 绑定到 <code>/dev/shm</code> 路径。</li>
+<li>在 <code>spec.replicaSpecs[worker].template.spec.volumes</code> 中增加一项，名称为 <code>dshm</code>，其中限制共享内存最大为 <code>1Gi</code>；</li>
+<li>在 <code>spec.replicaSpecs[worker].template.spec.containers[*].volumeMounts</code> 中增加一项，将上述 <code>dshm</code> 绑定到 <code>/dev/shm</code> 路径。</li>
 </ul>
 <aside class="note tip">
 <div class="title">提示</div>
 <p>如果当前副本中设置了内存资源上限，则共享内存的大小不能超过副本的内存上限；如果副本没有设置内存资源上限，则共享内存的大小最大可以设置为当前所在节点内存的最大容量。</p>
 </aside>
 <h3 id="环境变量-4"><a class="header" href="#环境变量-4">环境变量</a></h3>
-<p>副本环境变量通过 <code>spec.worker.template.spec.containers[*].env</code> 字段指定。ColossalAIJob 支持直接设置环境变量内容和引用其他资源字段作为环境变量两种方式。</p>
+<p>副本环境变量通过 <code>spec.replicaSpecs[worker].template.spec.containers[*].env</code> 字段指定。ColossalAIJob 支持直接设置环境变量内容和引用其他资源字段作为环境变量两种方式。</p>
 <p>在下面的示例中，ColossalAIJob 给副本设置了两个环境变量：<code>ENV_DIRECT</code> 和 <code>ENV_REFERENCED</code>。其中 <code>ENV_DIRECT</code> 环境变量被直接设置为 <code>env-value</code>，<code>ENV_REFERENCED</code> 环境变量引用了 <code>secret-name</code> Secret 的 <code>key-in-secret</code> 字段的内容。</p>
 <pre><code class="language-yaml">apiVersion: batch.tensorstack.dev/v1beta1
 kind: ColossalAIJob
 metadata:
   name: colossalai-example
 spec:
-  worker:
+  replicaSpecs:
+  - type: worker
     replicas: 4
     template:
       spec:
@@ -4516,7 +4532,7 @@ spec:
 </a>。</p>
 </aside>
 <h3 id="重启机制-3"><a class="header" href="#重启机制-3">重启机制</a></h3>
-<p>与其他 TrainingJob 不同，ColossalAIJob 使用 <code>colossalairun</code> 作为启动命令，在这种情况下，Pod 失败重启后不会再加入到训练中。所以 ColossalAIJob 无法像其他 TrainingJob 那样支持 Pod 失败重启。</p>
+<p>与其他 TrainingJob 不同，ColossalAIJob 使用 <code>colossalai run</code> 作为启动命令，在这种情况下，Pod 失败重启后不会再加入到训练中。所以 ColossalAIJob 无法像其他 TrainingJob 那样支持 Pod 失败重启。</p>
 <h2 id="成功和失败-3"><a class="header" href="#成功和失败-3">成功和失败</a></h2>
 <p>在 ColossalAIJob 分布式训练框架中：</p>
 <ul>
@@ -4578,7 +4594,7 @@ spec:
 <ul>
 <li><code>spec.runMode.pause.resumeSpecs.type</code> 表示作用于的副本类型。</li>
 <li><code>spec.runMode.pause.resumeSpecs.skipInitContainer</code> 表示让副本的 InitContainer 失效，默认为 <code>false</code>。</li>
-<li><code>spec.runMode.pause.resumeSpecs.command</code> 和 <code>spec.runMode.pause.resumeSpecs.args</code> 表示副本在恢复运行时候执行的命令，默认使用 <code>spec.replicaSpecs[0].template</code> 中的命令。</li>
+<li><code>spec.runMode.pause.resumeSpecs.command</code> 和 <code>spec.runMode.pause.resumeSpecs.args</code> 表示副本在恢复运行时候执行的命令，默认使用 <code>spec.replicaSpecs[*].template</code> 中的命令。</li>
 <li>如果不填写 <code>spec.runMode.pause.resumeSpecs</code> 字段，则表示所有副本都使用默认设置。</li>
 </ul>
 </li>
@@ -4587,7 +4603,7 @@ spec:
 <p>在下面的示例中：</p>
 <ul>
 <li>示例一：开启了暂停模式，并配置 worker 跳过 InitContainer，并执行 <code>/usr/bin/sshd</code>。</li>
-<li>示例二：开启了暂停模式，副本使用默认恢复设置，即不跳过 InitContainer，并执行 <code>spec.replicaSpecs[0].template</code> 中设置的命令。</li>
+<li>示例二：开启了暂停模式，副本使用默认恢复设置，即不跳过 InitContainer，并执行 <code>spec.replicaSpecs[*].template</code> 中设置的命令。</li>
 </ul>
 <pre><code class="language-yaml"># 示例一
 ...
@@ -4948,7 +4964,7 @@ spec:
 <ul>
 <li><code>spec.runMode.pause.resumeSpecs.type</code> 表示作用于的副本类型。</li>
 <li><code>spec.runMode.pause.resumeSpecs.skipInitContainer</code> 表示让副本的 InitContainer 失效，默认为 <code>false</code>。</li>
-<li><code>spec.runMode.pause.resumeSpecs.command</code> 和 <code>spec.runMode.pause.resumeSpecs.args</code> 表示副本在恢复运行时候执行的命令，默认使用 <code>spec.replicaSpecs[0].template</code> 中的命令。</li>
+<li><code>spec.runMode.pause.resumeSpecs.command</code> 和 <code>spec.runMode.pause.resumeSpecs.args</code> 表示副本在恢复运行时候执行的命令，默认使用 <code>spec.replicaSpecs[*].template</code> 中的命令。</li>
 <li>如果不填写 <code>spec.runMode.pause.resumeSpecs</code> 字段，则表示所有副本都使用默认设置。</li>
 </ul>
 </li>
@@ -4957,7 +4973,7 @@ spec:
 <p>在下面的示例中：</p>
 <ul>
 <li>示例一：开启了暂停模式，并配置 worker 跳过 InitContainer，并执行 <code>/usr/bin/sshd</code>。</li>
-<li>示例二：开启了暂停模式，副本使用默认恢复设置，即不跳过 InitContainer，并执行 <code>spec.replicaSpecs[0].template</code> 中设置的命令。</li>
+<li>示例二：开启了暂停模式，副本使用默认恢复设置，即不跳过 InitContainer，并执行 <code>spec.replicaSpecs[*].template</code> 中设置的命令。</li>
 </ul>
 <pre><code class="language-yaml"># 示例一
 ...
@@ -5077,9 +5093,11 @@ kind: MPIJob
 metadata:
   name: mpi-example
 spec:
-  worker:
-    replicas: 5
-    extraMPIArgs:
+  mpiConfig:
+    home: /usr/local
+    mca:
+      btl: ^openib
+    extraArgs:
       - -N
       - &quot;3&quot;
       - --enable-recovery
@@ -5088,15 +5106,22 @@ spec:
       - --allow-run-as-root
       - -bind-to
       - none
-    cmd:
+    script:
       - ./random_walk
       - &quot;20&quot;
       - &quot;40&quot;
       - &quot;2&quot;
+  ssh:
+    sshdPath: /usr/sbin/sshd
+  runPolicy:
+    cleanUpWorkers: true
+  replicaSpecs:
+  - type: worker
+    replicas: 4
     template:
       spec:
         containers:
-          - name: mpi-worker
+          - name: worker
             image: t9kpublic/mpi-tutorial:2021022-2
             resources:
               limits:
@@ -5104,24 +5129,25 @@ spec:
               requests:
                 cpu: 50m
             workingDir: /usr/local/code
-  mca:
-    btl: ^openib
-  runPolicy:
-    cleanUpWorkers: true
-  ssh:
-    sshdPath: /usr/sbin/sshd
-  mpiHome: /usr/local
+  - type: launcher
+    replicas: 1
+    template: {}
 </code></pre>
 <p>在该例中：</p>
 <ul>
-<li>创建 5 个执行副本（由 <code>spec.worker.replicas</code> 字段指定）。</li>
-<li><code>spec.worker.template</code> 字段沿用 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/workloads/pods/#pod-templates">PodTemplate</a> 的规约，配置执行副本和启动副本的环境。每个执行副本包含一个名为 <code>mpi-worker</code> 的容器（为了确定用于执行 MPI 进程的容器，执行副本定义中必须有一个名为 <code>mpi-worker</code> 的容器）。<code>mpi-worker</code> 容器创建后执行 <code>sshd</code> 命令并等待启动副本连接，所以此容器会忽略 <code>PodTemplate</code> 定义中的 <code>command</code> 和 <code>args</code> 字段（因此该例中没有填写这两个字段）。</li>
-<li>在执行副本准备完毕后，启动副本向执行副本发送启动命令，令执行副本创建 3 个 MPI 进程，这些进程分别执行 <code>./random_walk 20 40 2</code>（由 <code>spec.worker.cmd</code> 字段指定）命令。</li>
-<li>在训练过程中不使用 Infiniband 进行通信（由 <code>spec.mca.btl</code> 字段指定）。</li>
+<li>创建 5 个执行副本（由 <code>spec.replicaSpecs</code> 数组中 <code>type</code> 为 <code>worker</code> 的部分指定）。</li>
+<li><code>spec.replicaSpecs[*].template</code> 字段沿用 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/workloads/pods/#pod-templates">PodTemplate</a> 的规约，配置执行副本和启动副本的环境。</li>
+<li>在执行副本准备完毕后，启动副本向执行副本发送启动命令，令执行副本创建 3 个 MPI 进程，这些进程分别执行 <code>./random_walk 20 40 2</code>（由 <code>spec.mpiConfig.script</code> 字段指定）命令。</li>
+<li>在训练过程中不使用 Infiniband 进行通信（由 <code>spec.mpiconfig.mca.btl</code> 字段指定）。</li>
 <li>在训练结束后自动清除副本（由 <code>spec.runPolicy.cleanUpWorkers</code> 字段指定）来释放集群资源。</li>
 <li>sshd 的路径为 <code>/user/sbin/sshd</code>（由 <code>spec.ssh.sshdPath</code> 字段指定，使用该字段的原因是 sshd 程序必须使用绝对路径调用，所以需要其具体路径）。</li>
-<li>MPI 安装在 <code>/usr/local</code> 处（由 <code>spec.mpiHome</code> 字段指定，使用该字段的原因是 <code>mpirun</code> 的有些功能需要知道 MPI 的根目录地址才能正确运行）。</li>
+<li>MPI 安装在 <code>/usr/local</code> 处（由 <code>spec.mpiConfig.home</code> 字段指定，使用该字段的原因是 <code>mpirun</code> 的有些功能需要知道 MPI 的根目录地址才能正确运行）。</li>
 </ul>
+<aside class="note">
+<div class="title">注意</div>
+<p>另外，MPIJob 的执行副本定义中必须包含一个 <code>name</code> 是 <code>worker</code> 的容器，用来作为训练容器；启动副本应包含一个 <code>name</code> 是 <code>launcher</code> 的容器，但不是必须的，在未填写 <code>launcher</code> 容器配置的情况下，控制器为启动副本设置默认容器配置。</p>
+<p>执行副本实际执行的命令是启动 <code>sshd</code>，所以执行副本的训练容器的 <code>command</code> 和 <code>args</code> 字段不再生效，而是由启动脚本向执行脚本发送启动命令，具体命令根据 <code>spec.mpiConfig</code> 自动生成。</p>
+</aside>
 <h2 id="运行-horovod-训练脚本"><a class="header" href="#运行-horovod-训练脚本">运行 Horovod 训练脚本</a></h2>
 <p>使用 <a target="_blank" rel="noopener noreferrer" href="https://horovod.ai/">Horovod</a> 框架的分布式训练脚本也可以使用 MPIJob 进行训练。</p>
 <aside class="note info">
@@ -5130,7 +5156,7 @@ spec:
 </aside>
 <p>在 MPIJob 中需要执行以下操作：</p>
 <ol>
-<li>在 <code>spec.worker.template.spec.containers[mpi-worker].env</code> 字段中添加 <code>NCCL_DEBUG</code>；</li>
+<li>在 <code>spec.replicaSpecs[worker].template.spec.containers[worker].env</code> 字段中添加 <code>NCCL_DEBUG</code>；</li>
 <li>在 <code>spec.mca</code> 字段中添加 <code>pml:ob1</code> 和 <code>btl:^openib</code>。</li>
 </ol>
 <p>下面是使用 MPIJob 执行 Horovod 框架的分布式训练脚本的示例：</p>
@@ -5142,20 +5168,21 @@ spec:
   mca:
     btl: ^openib
     pml: ob1
-  worker:
+  replicaSpecs:
+  - type: worker
     template:
       spec:
         containers:
-          - name: mpi-worker
+          - name: worker
             env: 
             - name: &quot;NCCL_DEBUG&quot;
               value: &quot;INFO&quot;
 ...
 </code></pre>
 <h2 id="副本设置-6"><a class="header" href="#副本设置-6">副本设置</a></h2>
-<p>MPIJob 副本运行环境和命令可以通过 <code>spec.worker.template</code> 进行配置，可配置内容包括镜像、运行命令、资源配置、环境变量等。</p>
+<p>MPIJob 副本运行环境和命令可以通过 <code>spec.replicaSpecs[worker].template</code> 进行配置，可配置内容包括镜像、运行命令、资源配置、环境变量等。</p>
 <h3 id="资源配置-6"><a class="header" href="#资源配置-6">资源配置</a></h3>
-<p>副本资源配置通过 <code>spec.worker.template.spec.containers[*].resources</code> 字段指定。</p>
+<p>副本资源配置通过 <code>spec.replicaSpecs[worker].template.spec.containers[*].resources</code> 字段指定。</p>
 <p>MPIJob 的资源配置包括两部分：</p>
 <ul>
 <li>资源请求量（<code>requests</code>）：创建该副本时，节点上至少应具有这些数量的资源。如果集群中所有节点都不满足副本的资源请求量，则副本的创建可能会被阻塞；或者如果副本的优先级较高，则有可能驱逐节点上其他工作负载来为副本空出可用的资源。</li>
@@ -5171,7 +5198,8 @@ kind: MPIJob
 metadata:
   name: mpi-example
 spec:
-  worker:
+  replicaSpecs:
+  - type: worker
     replicas: 4
     template:
       spec:
@@ -5191,7 +5219,8 @@ kind: MPIJob
 metadata:
   name: mpi-example
 spec:
-  worker:
+  replicaSpecs:
+  - type: worker
     replicas: 4
     template:
       spec:
@@ -5208,22 +5237,23 @@ spec:
 </code></pre>
 <p>在该例中：</p>
 <ul>
-<li>在 <code>spec.worker.template.spec.volumes</code> 中增加一项，名称为 <code>dshm</code>，其中限制共享内存最大为 <code>1Gi</code>；</li>
-<li>在 <code>spec.worker.template.spec.containers[*].volumeMounts</code> 中增加一项，将上述 <code>dshm</code> 绑定到 <code>/dev/shm</code> 路径。</li>
+<li>在 <code>spec.replicaSpecs[worker].template.spec.volumes</code> 中增加一项，名称为 <code>dshm</code>，其中限制共享内存最大为 <code>1Gi</code>；</li>
+<li>在 <code>spec.replicaSpecs[worker].template.spec.containers[*].volumeMounts</code> 中增加一项，将上述 <code>dshm</code> 绑定到 <code>/dev/shm</code> 路径。</li>
 </ul>
 <aside class="note tip">
 <div class="title">提示</div>
 <p>如果当前副本中设置了内存资源上限，则共享内存的大小不能超过副本的内存上限；如果副本没有设置内存资源上限，则共享内存的大小最大可以设置为当前所在节点内存的最大容量。</p>
 </aside>
 <h3 id="环境变量-6"><a class="header" href="#环境变量-6">环境变量</a></h3>
-<p>副本环境变量通过 <code>spec.worker.template.spec.containers[*].env</code> 字段指定。MPIJob 支持直接设置环境变量内容和引用其他资源字段作为环境变量两种方式。</p>
+<p>副本环境变量通过 <code>spec.replicaSpecs[worker].template.spec.containers[*].env</code> 字段指定。MPIJob 支持直接设置环境变量内容和引用其他资源字段作为环境变量两种方式。</p>
 <p>在下面的示例中，MPIJob 给副本设置了两个环境变量：<code>ENV_DIRECT</code> 和 <code>ENV_REFERENCED</code>。其中 <code>ENV_DIRECT</code> 环境变量被直接设置为 <code>env-value</code>，<code>ENV_REFERENCED</code> 环境变量引用了 <code>secret-name</code> Secret 的 <code>key-in-secret</code> 字段的内容。</p>
 <pre><code class="language-yaml">apiVersion: batch.tensorstack.dev/v1beta1
 kind: MPIJob
 metadata:
   name: mpi-example
 spec:
-  worker:
+  replicaSpecs:
+  - type: worker
     replicas: 4
     template:
       spec:
@@ -5299,7 +5329,7 @@ spec:
 <ul>
 <li><code>spec.runMode.pause.resumeSpecs.type</code> 表示作用于的副本类型。</li>
 <li><code>spec.runMode.pause.resumeSpecs.skipInitContainer</code> 表示让副本的 InitContainer 失效，默认为 <code>false</code>。</li>
-<li><code>spec.runMode.pause.resumeSpecs.command</code> 和 <code>spec.runMode.pause.resumeSpecs.args</code> 表示副本在恢复运行时候执行的命令，默认使用 <code>spec.replicaSpecs[0].template</code> 中的命令。</li>
+<li><code>spec.runMode.pause.resumeSpecs.command</code> 和 <code>spec.runMode.pause.resumeSpecs.args</code> 表示副本在恢复运行时候执行的命令，默认使用 <code>spec.replicaSpecs[*].template</code> 中的命令。</li>
 <li>如果不填写 <code>spec.runMode.pause.resumeSpecs</code> 字段，则表示所有副本都使用默认设置。</li>
 </ul>
 </li>
@@ -5308,7 +5338,7 @@ spec:
 <p>在下面的示例中：</p>
 <ul>
 <li>示例一：开启了暂停模式，并配置 worker 跳过 InitContainer，并执行 <code>/usr/bin/sshd</code>。</li>
-<li>示例二：开启了暂停模式，副本使用默认恢复设置，即不跳过 InitContainer，并执行 <code>spec.replicaSpecs[0].template</code> 中设置的命令。</li>
+<li>示例二：开启了暂停模式，副本使用默认恢复设置，即不跳过 InitContainer，并执行 <code>spec.replicaSpecs[*].template</code> 中设置的命令。</li>
 </ul>
 <pre><code class="language-yaml"># 示例一
 ...
@@ -12684,7 +12714,7 @@ The connection to the server localhost:8080 was refused - did you specify the ri
 <div class="table-wrapper"><table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>apiVersion</code> <em>string</em></td><td><code>batch.tensorstack.dev/v1beta1</code></td></tr>
 <tr><td><code>kind</code> <em>string</em></td><td><code>ColossalAIJob</code></td></tr>
-<tr><td><code>metadata</code> <em><a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#objectmeta-v1-meta">ObjectMeta</a></em></td><td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td></tr>
+<tr><td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#objectmeta-v1-meta">ObjectMeta</a></em></td><td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td></tr>
 <tr><td><code>spec</code> <em><a href="reference/api-reference/colossalaijob.html#colossalaijobspec">ColossalAIJobSpec</a></em></td><td></td></tr>
 <tr><td><code>status</code> <em><a href="reference/api-reference/colossalaijob.html#colossalaijobstatus">ColossalAIJobStatus</a></em></td><td></td></tr>
 </tbody></table>
@@ -12694,7 +12724,7 @@ The connection to the server localhost:8080 was refused - did you specify the ri
 <div class="table-wrapper"><table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>apiVersion</code> <em>string</em></td><td><code>batch.tensorstack.dev/v1beta1</code></td></tr>
 <tr><td><code>kind</code> <em>string</em></td><td><code>ColossalAIJobList</code></td></tr>
-<tr><td><code>metadata</code> <em><a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#listmeta-v1-meta">ListMeta</a></em></td><td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td></tr>
+<tr><td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#listmeta-v1-meta">ListMeta</a></em></td><td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td></tr>
 <tr><td><code>items</code> <em><a href="reference/api-reference/colossalaijob.html#colossalaijob">ColossalAIJob</a> array</em></td><td></td></tr>
 </tbody></table>
 </div>
@@ -12709,8 +12739,8 @@ The connection to the server localhost:8080 was refused - did you specify the ri
 <tr><td><code>runMode</code> <em><a href="reference/api-reference/colossalaijob.html#runmode">RunMode</a></em></td><td>The desired running mode of the job, defaults to <code>Immediate</code>.</td></tr>
 <tr><td><code>runPolicy</code> <em><a href="reference/api-reference/colossalaijob.html#runpolicy">RunPolicy</a></em></td><td>Controls the handling of completed replicas and other related processes.</td></tr>
 <tr><td><code>scheduler</code> <em>SchedulePolicy</em></td><td>Specifies the scheduler to request for resources. Defaults to cluster default scheduler.</td></tr>
-<tr><td><code>launcher</code> <em><a href="reference/api-reference/colossalaijob.html#launcher">Launcher</a></em></td><td>Specication for the launcher replica.</td></tr>
-<tr><td><code>worker</code> <em><a href="reference/api-reference/colossalaijob.html#worker">Worker</a></em></td><td>Specication for the launcher replica.</td></tr>
+<tr><td><code>torchConfig</code> <em><a href="reference/api-reference/colossalaijob.html#torchconfig">TorchConfig</a></em></td><td>Describes how to start the colossalai job.</td></tr>
+<tr><td><code>replicaSpecs</code> <em><a href="reference/api-reference/colossalaijob.html#replicaspec">ReplicaSpec</a> array</em></td><td>List of replica specs belonging to the job. There must be at least one replica defined for a Job.</td></tr>
 </tbody></table>
 </div>
 <h4 id="colossalaijobstatus"><a class="header" href="#colossalaijobstatus">ColossalAIJobStatus</a></h4>
@@ -12726,19 +12756,42 @@ The connection to the server localhost:8080 was refused - did you specify the ri
 <tr><td><code>conditions</code> <em><a href="reference/api-reference/colossalaijob.html#jobcondition">JobCondition</a> array</em></td><td>The latest available observations of an object's current state.</td></tr>
 </tbody></table>
 </div>
-<h4 id="launcher"><a class="header" href="#launcher">Launcher</a></h4>
-<p>Specification of replica <code>launcher</code>.</p>
+<h4 id="replicaspec-4"><a class="header" href="#replicaspec-4">ReplicaSpec</a></h4>
+<p>ReplicaSpec defines the desired state of replicas.</p>
 <p><em>Appears in:</em></p>
 <ul>
 <li><a href="reference/api-reference/colossalaijob.html#colossalaijobspec">ColossalAIJobSpec</a></li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>image</code> <em>string</em></td><td>Container image name.</td></tr>
-<tr><td><code>workingDir</code> <em>string</em></td><td>Working directory of container <code>launcher</code>. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.</td></tr>
-<tr><td><code>env</code> <em><a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#envvar-v1-core">EnvVar</a> array</em></td><td>List of environment variables set for the container. Cannot be updated.</td></tr>
-<tr><td><code>resources</code> <em><a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#resourcerequirements-v1-core">ResourceRequirements</a></em></td><td>Compute Resources required by this container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/</td></tr>
+<tr><td><code>type</code> <em><a href="reference/api-reference/colossalaijob.html#replicatype">ReplicaType</a></em></td><td>Replica type.</td></tr>
+<tr><td><code>replicas</code> <em>integer</em></td><td>The desired number of replicas of this replica type. Defaults to 1.</td></tr>
+<tr><td><code>restartPolicy</code> <em><a href="reference/api-reference/colossalaijob.html#restartpolicy">RestartPolicy</a></em></td><td>Restart policy for replicas of this replica type. One of Always, OnFailure, Never. Optional: Default to OnFailure.</td></tr>
+<tr><td><code>template</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#podtemplatespec-v1-core">PodTemplateSpec</a></em></td><td>Defines the template used to create pods.</td></tr>
 </tbody></table>
 </div>
+<h4 id="replicatype-2"><a class="header" href="#replicatype-2">ReplicaType</a></h4>
+<p><em>Underlying type:</em> <code>string</code></p>
+<p><em>Appears in:</em></p>
+<ul>
+<li><a href="reference/api-reference/colossalaijob.html#replicaspec">ReplicaSpec</a></li>
+</ul>
+<h4 id="restartpolicy-2"><a class="header" href="#restartpolicy-2">RestartPolicy</a></h4>
+<p>RestartPolicy describes how the replica should be restarted.</p>
+<p><em>Appears in:</em></p>
+<ul>
+<li><a href="reference/api-reference/colossalaijob.html#replicaspec">ReplicaSpec</a></li>
+</ul>
+<div class="table-wrapper"><table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>policy</code> <em><a href="reference/api-reference/colossalaijob.html#restartpolicytype">RestartPolicyType</a></em></td><td>The policy to restart finished replica.</td></tr>
+<tr><td><code>limit</code> <em>integer</em></td><td>The maximum number of restarts. Optional: Default to 0.</td></tr>
+</tbody></table>
+</div>
+<h4 id="restartpolicytype-1"><a class="header" href="#restartpolicytype-1">RestartPolicyType</a></h4>
+<p><em>Underlying type:</em> <code>string</code></p>
+<p><em>Appears in:</em></p>
+<ul>
+<li><a href="reference/api-reference/colossalaijob.html#restartpolicy">RestartPolicy</a></li>
+</ul>
 <h4 id="runpolicy-1"><a class="header" href="#runpolicy-1">RunPolicy</a></h4>
 <p>RunPolicy dictates specific actions to be taken by the controller upon job completion.</p>
 <p><em>Appears in:</em></p>
@@ -12760,18 +12813,16 @@ The connection to the server localhost:8080 was refused - did you specify the ri
 <tr><td><code>sshdPath</code> <em>string</em></td><td>The location of the sshd executable file.</td></tr>
 </tbody></table>
 </div>
-<h4 id="worker"><a class="header" href="#worker">Worker</a></h4>
-<p>Specification of the worker replicas.</p>
+<h4 id="torchconfig"><a class="header" href="#torchconfig">TorchConfig</a></h4>
+<p>MPIConfig describes how to start the mpi job.</p>
 <p><em>Appears in:</em></p>
 <ul>
 <li><a href="reference/api-reference/colossalaijob.html#colossalaijobspec">ColossalAIJobSpec</a></li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>replicas</code> <em>integer</em></td><td>Number of replicas to launch. Defaults to 1.</td></tr>
 <tr><td><code>procPerWorker</code> <em>integer</em></td><td>The number of processes of a worker. Defaults to 1.</td></tr>
-<tr><td><code>command</code> <em>string array</em></td><td>Specifies the command used to start the workers.</td></tr>
-<tr><td><code>torchArgs</code> <em>string array</em></td><td>Args of torchrun.</td></tr>
-<tr><td><code>template</code> <em><a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#podtemplatespec-v1-core">PodTemplateSpec</a></em></td><td>Template defines the workers that will be created from this pod template.</td></tr>
+<tr><td><code>script</code> <em>string array</em></td><td>Specifies the command used to start the workers.</td></tr>
+<tr><td><code>extraArgs</code> <em>string array</em></td><td>Args of torchrun.</td></tr>
 </tbody></table>
 </div><div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
 <h1 id="api-reference-6"><a class="header" href="#api-reference-6">API Reference</a></h1>
@@ -12893,7 +12944,7 @@ The connection to the server localhost:8080 was refused - did you specify the ri
 <tr><td><code>exec</code> <em>string array</em></td><td>Using an executable program</td></tr>
 </tbody></table>
 </div>
-<h4 id="worker-1"><a class="header" href="#worker-1">Worker</a></h4>
+<h4 id="worker"><a class="header" href="#worker">Worker</a></h4>
 <p>Worker defines the configurations for DeepSpeedJob worker replicas.</p>
 <p><em>Appears in:</em></p>
 <ul>
@@ -12917,6 +12968,19 @@ The connection to the server localhost:8080 was refused - did you specify the ri
 <li><a href="reference/api-reference/mpijob.html#mpijob">MPIJob</a></li>
 <li><a href="reference/api-reference/mpijob.html#mpijoblist">MPIJobList</a></li>
 </ul>
+<h4 id="mpiconfig"><a class="header" href="#mpiconfig">MPIConfig</a></h4>
+<p>MPIConfig describes how to start the mpi job.</p>
+<p><em>Appears in:</em></p>
+<ul>
+<li><a href="reference/api-reference/mpijob.html#mpijobspec">MPIJobSpec</a></li>
+</ul>
+<div class="table-wrapper"><table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>mca</code> <em>object (keys:string, values:string)</em></td><td>Open MPI uses Modular Component Architecture (MCA) parameters to provide a way to tune your runtime environment.</td></tr>
+<tr><td><code>home</code> <em>string</em></td><td>Open MPI installation path.</td></tr>
+<tr><td><code>extraArgs</code> <em>string array</em></td><td>Extra args for mpirun.</td></tr>
+<tr><td><code>script</code> <em>string array</em></td><td>Command line to start the MPI programs inside a worker pod. This is invoked by the launcher after all the worker pods have been created and entered ready state.</td></tr>
+</tbody></table>
+</div>
 <h4 id="mpijob-1"><a class="header" href="#mpijob-1">MPIJob</a></h4>
 <p>MPIJob is the Schema for the mpijobs API</p>
 <p><em>Appears in:</em></p>
@@ -12926,7 +12990,7 @@ The connection to the server localhost:8080 was refused - did you specify the ri
 <div class="table-wrapper"><table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>apiVersion</code> <em>string</em></td><td><code>batch.tensorstack.dev/v1beta1</code></td></tr>
 <tr><td><code>kind</code> <em>string</em></td><td><code>MPIJob</code></td></tr>
-<tr><td><code>metadata</code> <em><a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#objectmeta-v1-meta">ObjectMeta</a></em></td><td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td></tr>
+<tr><td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#objectmeta-v1-meta">ObjectMeta</a></em></td><td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td></tr>
 <tr><td><code>spec</code> <em><a href="reference/api-reference/mpijob.html#mpijobspec">MPIJobSpec</a></em></td><td></td></tr>
 <tr><td><code>status</code> <em><a href="reference/api-reference/mpijob.html#mpijobstatus">MPIJobStatus</a></em></td><td></td></tr>
 </tbody></table>
@@ -12936,7 +13000,7 @@ The connection to the server localhost:8080 was refused - did you specify the ri
 <div class="table-wrapper"><table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>apiVersion</code> <em>string</em></td><td><code>batch.tensorstack.dev/v1beta1</code></td></tr>
 <tr><td><code>kind</code> <em>string</em></td><td><code>MPIJobList</code></td></tr>
-<tr><td><code>metadata</code> <em><a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#listmeta-v1-meta">ListMeta</a></em></td><td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td></tr>
+<tr><td><code>metadata</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#listmeta-v1-meta">ListMeta</a></em></td><td>Refer to Kubernetes API documentation for fields of <code>metadata</code>.</td></tr>
 <tr><td><code>items</code> <em><a href="reference/api-reference/mpijob.html#mpijob">MPIJob</a> array</em></td><td></td></tr>
 </tbody></table>
 </div>
@@ -12947,13 +13011,12 @@ The connection to the server localhost:8080 was refused - did you specify the ri
 <li><a href="reference/api-reference/mpijob.html#mpijob">MPIJob</a></li>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>worker</code> <em><a href="reference/api-reference/mpijob.html#workerconfig">WorkerConfig</a></em></td><td>Specifications for the worker replicas.</td></tr>
-<tr><td><code>mca</code> <em>object (keys:string, values:string)</em></td><td>Open MPI uses Modular Component Architecture (MCA) parameters to provide a way to tune your runtime environment.</td></tr>
 <tr><td><code>ssh</code> <em><a href="reference/api-reference/mpijob.html#sshconfig">SSHConfig</a></em></td><td>SSH configs.</td></tr>
 <tr><td><code>runPolicy</code> <em><a href="reference/api-reference/mpijob.html#runpolicy">RunPolicy</a></em></td><td>Execution policy configurations governing the behavior of the MPI job.</td></tr>
 <tr><td><code>runMode</code> <em><a href="reference/api-reference/mpijob.html#runmode">RunMode</a></em></td><td>Job's execution behavior. If omitted, defaults to <code>Immediate</code> mode, and tasks are executed immediately upon submission.</td></tr>
-<tr><td><code>mpiHome</code> <em>string</em></td><td>Open MPI installation path.</td></tr>
 <tr><td><code>scheduler</code> <em>SchedulePolicy</em></td><td>Identifies the preferred scheduler for allocating resources to replicas. Defaults to cluster default scheduler. Use k8s default scheduler by default.</td></tr>
+<tr><td><code>mpiConfig</code> <em><a href="reference/api-reference/mpijob.html#mpiconfig">MPIConfig</a></em></td><td>Describes how to start the mpi job.</td></tr>
+<tr><td><code>replicaSpecs</code> <em><a href="reference/api-reference/mpijob.html#replicaspec">ReplicaSpec</a> array</em></td><td>List of replica specs belonging to the job. There must be at least one replica defined for a Job.</td></tr>
 </tbody></table>
 </div>
 <h4 id="mpijobstatus"><a class="header" href="#mpijobstatus">MPIJobStatus</a></h4>
@@ -12969,6 +13032,42 @@ The connection to the server localhost:8080 was refused - did you specify the ri
 <tr><td><code>conditions</code> <em><a href="reference/api-reference/mpijob.html#jobcondition">JobCondition</a> array</em></td><td>The latest available observations of an object's current state.</td></tr>
 </tbody></table>
 </div>
+<h4 id="mpireplicatype"><a class="header" href="#mpireplicatype">MPIReplicaType</a></h4>
+<p><em>Underlying type:</em> <code>string</code></p>
+<p><em>Appears in:</em></p>
+<ul>
+<li><a href="reference/api-reference/mpijob.html#replicaspec">ReplicaSpec</a></li>
+</ul>
+<h4 id="replicaspec-5"><a class="header" href="#replicaspec-5">ReplicaSpec</a></h4>
+<p>ReplicaSpec defines the desired state of replicas.</p>
+<p><em>Appears in:</em></p>
+<ul>
+<li><a href="reference/api-reference/mpijob.html#mpijobspec">MPIJobSpec</a></li>
+</ul>
+<div class="table-wrapper"><table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>type</code> <em><a href="reference/api-reference/mpijob.html#mpireplicatype">MPIReplicaType</a></em></td><td>Replica type.</td></tr>
+<tr><td><code>replicas</code> <em>integer</em></td><td>The desired number of replicas of this replica type. Defaults to 1.</td></tr>
+<tr><td><code>restartPolicy</code> <em><a href="reference/api-reference/mpijob.html#restartpolicy">RestartPolicy</a></em></td><td>Restart policy for replicas of this replica type. One of Always, OnFailure, Never. Optional: Default to OnFailure.</td></tr>
+<tr><td><code>template</code> <em><a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#podtemplatespec-v1-core">PodTemplateSpec</a></em></td><td>Defines the template used to create pods.</td></tr>
+</tbody></table>
+</div>
+<h4 id="restartpolicy-3"><a class="header" href="#restartpolicy-3">RestartPolicy</a></h4>
+<p>RestartPolicy describes how the replica should be restarted.</p>
+<p><em>Appears in:</em></p>
+<ul>
+<li><a href="reference/api-reference/mpijob.html#replicaspec">ReplicaSpec</a></li>
+</ul>
+<div class="table-wrapper"><table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>policy</code> <em><a href="reference/api-reference/mpijob.html#restartpolicytype">RestartPolicyType</a></em></td><td>The policy to restart finished replica.</td></tr>
+<tr><td><code>limit</code> <em>integer</em></td><td>The maximum number of restarts. Optional: Default to 0.</td></tr>
+</tbody></table>
+</div>
+<h4 id="restartpolicytype-2"><a class="header" href="#restartpolicytype-2">RestartPolicyType</a></h4>
+<p><em>Underlying type:</em> <code>string</code></p>
+<p><em>Appears in:</em></p>
+<ul>
+<li><a href="reference/api-reference/mpijob.html#restartpolicy">RestartPolicy</a></li>
+</ul>
 <h4 id="runpolicy-3"><a class="header" href="#runpolicy-3">RunPolicy</a></h4>
 <p>RunPolicy encapsulates various runtime policies of the MPI job, for example how to clean up resources.</p>
 <p><em>Appears in:</em></p>
@@ -12988,19 +13087,6 @@ The connection to the server localhost:8080 was refused - did you specify the ri
 <div class="table-wrapper"><table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>sshAuthMountPath</code> <em>string</em></td><td>SSHAuthMountPath is the directory where SSH keys are mounted. Defaults to &quot;/root/.ssh&quot;.</td></tr>
 <tr><td><code>sshdPath</code> <em>string</em></td><td></td></tr>
-</tbody></table>
-</div>
-<h4 id="workerconfig"><a class="header" href="#workerconfig">WorkerConfig</a></h4>
-<p>WorkerConfig defines the configurations for MPI worker replicas.</p>
-<p><em>Appears in:</em></p>
-<ul>
-<li><a href="reference/api-reference/mpijob.html#mpijobspec">MPIJobSpec</a></li>
-</ul>
-<div class="table-wrapper"><table><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>replicas</code> <em>integer</em></td><td>The number of workers to launch. Default 1.</td></tr>
-<tr><td><code>extraMPIArgs</code> <em>string array</em></td><td>Extra args for mpirun.</td></tr>
-<tr><td><code>cmd</code> <em>string array</em></td><td>Command line to start the MPI programs inside a worker pod. This is invoked by the launcher after all the worker pods have been created and entered ready state.</td></tr>
-<tr><td><code>template</code> <em><a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#podtemplatespec-v1-core">PodTemplateSpec</a></em></td><td>Defines the pod template used to create workers. Users are responsible for ensuring that container images and configurations are properly set to guarantee the worker operates in the state anticipated by the <code>launcher</code>.</td></tr>
 </tbody></table>
 </div><div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
 <h1 id="api-reference-8"><a class="header" href="#api-reference-8">API Reference</a></h1>

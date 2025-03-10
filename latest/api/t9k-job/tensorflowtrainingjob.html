@@ -416,7 +416,7 @@ spec:
 <ul>
 <li><code>spec.runMode.pause.resumeSpecs.type</code> 表示作用于的副本类型。</li>
 <li><code>spec.runMode.pause.resumeSpecs.skipInitContainer</code> 表示让副本的 InitContainer 失效，默认为 <code>false</code>。</li>
-<li><code>spec.runMode.pause.resumeSpecs.command</code> 和 <code>spec.runMode.pause.resumeSpecs.args</code> 表示副本在恢复运行时候执行的命令，默认使用 <code>spec.replicaSpecs[0].template</code> 中的命令。</li>
+<li><code>spec.runMode.pause.resumeSpecs.command</code> 和 <code>spec.runMode.pause.resumeSpecs.args</code> 表示副本在恢复运行时候执行的命令，默认使用 <code>spec.replicaSpecs[*].template</code> 中的命令。</li>
 <li>如果不填写 <code>spec.runMode.pause.resumeSpecs</code> 字段，则表示所有副本都使用默认设置。</li>
 </ul>
 </li>
@@ -425,7 +425,7 @@ spec:
 <p>在下面的示例中：</p>
 <ul>
 <li>示例一：开启了暂停模式，并配置 worker 跳过 InitContainer，并执行 <code>/usr/bin/sshd</code>。</li>
-<li>示例二：开启了暂停模式，副本使用默认恢复设置，即不跳过 InitContainer，并执行 <code>spec.replicaSpecs[0].template</code> 中设置的命令。</li>
+<li>示例二：开启了暂停模式，副本使用默认恢复设置，即不跳过 InitContainer，并执行 <code>spec.replicaSpecs[*].template</code> 中设置的命令。</li>
 </ul>
 <pre><code class="language-yaml"># 示例一
 ...

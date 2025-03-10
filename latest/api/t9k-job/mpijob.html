@@ -197,9 +197,11 @@ kind: MPIJob
 metadata:
   name: mpi-example
 spec:
-  worker:
-    replicas: 5
-    extraMPIArgs:
+  mpiConfig:
+    home: /usr/local
+    mca:
+      btl: ^openib
+    extraArgs:
       - -N
       - &quot;3&quot;
       - --enable-recovery
@@ -208,15 +210,22 @@ spec:
       - --allow-run-as-root
       - -bind-to
       - none
-    cmd:
+    script:
       - ./random_walk
       - &quot;20&quot;
       - &quot;40&quot;
       - &quot;2&quot;
+  ssh:
+    sshdPath: /usr/sbin/sshd
+  runPolicy:
+    cleanUpWorkers: true
+  replicaSpecs:
+  - type: worker
+    replicas: 4
     template:
       spec:
         containers:
-          - name: mpi-worker
+          - name: worker
             image: t9kpublic/mpi-tutorial:2021022-2
             resources:
               limits:
@@ -224,24 +233,25 @@ spec:
               requests:
                 cpu: 50m
             workingDir: /usr/local/code
-  mca:
-    btl: ^openib
-  runPolicy:
-    cleanUpWorkers: true
-  ssh:
-    sshdPath: /usr/sbin/sshd
-  mpiHome: /usr/local
+  - type: launcher
+    replicas: 1
+    template: {}
 </code></pre>
 <p>在该例中：</p>
 <ul>
-<li>创建 5 个执行副本（由 <code>spec.worker.replicas</code> 字段指定）。</li>
-<li><code>spec.worker.template</code> 字段沿用 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/workloads/pods/#pod-templates">PodTemplate</a> 的规约，配置执行副本和启动副本的环境。每个执行副本包含一个名为 <code>mpi-worker</code> 的容器（为了确定用于执行 MPI 进程的容器，执行副本定义中必须有一个名为 <code>mpi-worker</code> 的容器）。<code>mpi-worker</code> 容器创建后执行 <code>sshd</code> 命令并等待启动副本连接，所以此容器会忽略 <code>PodTemplate</code> 定义中的 <code>command</code> 和 <code>args</code> 字段（因此该例中没有填写这两个字段）。</li>
-<li>在执行副本准备完毕后，启动副本向执行副本发送启动命令，令执行副本创建 3 个 MPI 进程，这些进程分别执行 <code>./random_walk 20 40 2</code>（由 <code>spec.worker.cmd</code> 字段指定）命令。</li>
-<li>在训练过程中不使用 Infiniband 进行通信（由 <code>spec.mca.btl</code> 字段指定）。</li>
+<li>创建 5 个执行副本（由 <code>spec.replicaSpecs</code> 数组中 <code>type</code> 为 <code>worker</code> 的部分指定）。</li>
+<li><code>spec.replicaSpecs[*].template</code> 字段沿用 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/workloads/pods/#pod-templates">PodTemplate</a> 的规约，配置执行副本和启动副本的环境。</li>
+<li>在执行副本准备完毕后，启动副本向执行副本发送启动命令，令执行副本创建 3 个 MPI 进程，这些进程分别执行 <code>./random_walk 20 40 2</code>（由 <code>spec.mpiConfig.script</code> 字段指定）命令。</li>
+<li>在训练过程中不使用 Infiniband 进行通信（由 <code>spec.mpiconfig.mca.btl</code> 字段指定）。</li>
 <li>在训练结束后自动清除副本（由 <code>spec.runPolicy.cleanUpWorkers</code> 字段指定）来释放集群资源。</li>
 <li>sshd 的路径为 <code>/user/sbin/sshd</code>（由 <code>spec.ssh.sshdPath</code> 字段指定，使用该字段的原因是 sshd 程序必须使用绝对路径调用，所以需要其具体路径）。</li>
-<li>MPI 安装在 <code>/usr/local</code> 处（由 <code>spec.mpiHome</code> 字段指定，使用该字段的原因是 <code>mpirun</code> 的有些功能需要知道 MPI 的根目录地址才能正确运行）。</li>
+<li>MPI 安装在 <code>/usr/local</code> 处（由 <code>spec.mpiConfig.home</code> 字段指定，使用该字段的原因是 <code>mpirun</code> 的有些功能需要知道 MPI 的根目录地址才能正确运行）。</li>
 </ul>
+<aside class="note">
+<div class="title">注意</div>
+<p>另外，MPIJob 的执行副本定义中必须包含一个 <code>name</code> 是 <code>worker</code> 的容器，用来作为训练容器；启动副本应包含一个 <code>name</code> 是 <code>launcher</code> 的容器，但不是必须的，在未填写 <code>launcher</code> 容器配置的情况下，控制器为启动副本设置默认容器配置。</p>
+<p>执行副本实际执行的命令是启动 <code>sshd</code>，所以执行副本的训练容器的 <code>command</code> 和 <code>args</code> 字段不再生效，而是由启动脚本向执行脚本发送启动命令，具体命令根据 <code>spec.mpiConfig</code> 自动生成。</p>
+</aside>
 <h2 id="运行-horovod-训练脚本"><a class="header" href="#运行-horovod-训练脚本">运行 Horovod 训练脚本</a></h2>
 <p>使用 <a target="_blank" rel="noopener noreferrer" href="https://horovod.ai/">Horovod</a> 框架的分布式训练脚本也可以使用 MPIJob 进行训练。</p>
 <aside class="note info">
@@ -250,7 +260,7 @@ spec:
 </aside>
 <p>在 MPIJob 中需要执行以下操作：</p>
 <ol>
-<li>在 <code>spec.worker.template.spec.containers[mpi-worker].env</code> 字段中添加 <code>NCCL_DEBUG</code>；</li>
+<li>在 <code>spec.replicaSpecs[worker].template.spec.containers[worker].env</code> 字段中添加 <code>NCCL_DEBUG</code>；</li>
 <li>在 <code>spec.mca</code> 字段中添加 <code>pml:ob1</code> 和 <code>btl:^openib</code>。</li>
 </ol>
 <p>下面是使用 MPIJob 执行 Horovod 框架的分布式训练脚本的示例：</p>
@@ -262,20 +272,21 @@ spec:
   mca:
     btl: ^openib
     pml: ob1
-  worker:
+  replicaSpecs:
+  - type: worker
     template:
       spec:
         containers:
-          - name: mpi-worker
+          - name: worker
             env: 
             - name: &quot;NCCL_DEBUG&quot;
               value: &quot;INFO&quot;
 ...
 </code></pre>
 <h2 id="副本设置"><a class="header" href="#副本设置">副本设置</a></h2>
-<p>MPIJob 副本运行环境和命令可以通过 <code>spec.worker.template</code> 进行配置，可配置内容包括镜像、运行命令、资源配置、环境变量等。</p>
+<p>MPIJob 副本运行环境和命令可以通过 <code>spec.replicaSpecs[worker].template</code> 进行配置，可配置内容包括镜像、运行命令、资源配置、环境变量等。</p>
 <h3 id="资源配置"><a class="header" href="#资源配置">资源配置</a></h3>
-<p>副本资源配置通过 <code>spec.worker.template.spec.containers[*].resources</code> 字段指定。</p>
+<p>副本资源配置通过 <code>spec.replicaSpecs[worker].template.spec.containers[*].resources</code> 字段指定。</p>
 <p>MPIJob 的资源配置包括两部分：</p>
 <ul>
 <li>资源请求量（<code>requests</code>）：创建该副本时，节点上至少应具有这些数量的资源。如果集群中所有节点都不满足副本的资源请求量，则副本的创建可能会被阻塞；或者如果副本的优先级较高，则有可能驱逐节点上其他工作负载来为副本空出可用的资源。</li>
@@ -291,7 +302,8 @@ kind: MPIJob
 metadata:
   name: mpi-example
 spec:
-  worker:
+  replicaSpecs:
+  - type: worker
     replicas: 4
     template:
       spec:
@@ -311,7 +323,8 @@ kind: MPIJob
 metadata:
   name: mpi-example
 spec:
-  worker:
+  replicaSpecs:
+  - type: worker
     replicas: 4
     template:
       spec:
@@ -328,22 +341,23 @@ spec:
 </code></pre>
 <p>在该例中：</p>
 <ul>
-<li>在 <code>spec.worker.template.spec.volumes</code> 中增加一项，名称为 <code>dshm</code>，其中限制共享内存最大为 <code>1Gi</code>；</li>
-<li>在 <code>spec.worker.template.spec.containers[*].volumeMounts</code> 中增加一项，将上述 <code>dshm</code> 绑定到 <code>/dev/shm</code> 路径。</li>
+<li>在 <code>spec.replicaSpecs[worker].template.spec.volumes</code> 中增加一项，名称为 <code>dshm</code>，其中限制共享内存最大为 <code>1Gi</code>；</li>
+<li>在 <code>spec.replicaSpecs[worker].template.spec.containers[*].volumeMounts</code> 中增加一项，将上述 <code>dshm</code> 绑定到 <code>/dev/shm</code> 路径。</li>
 </ul>
 <aside class="note tip">
 <div class="title">提示</div>
 <p>如果当前副本中设置了内存资源上限，则共享内存的大小不能超过副本的内存上限；如果副本没有设置内存资源上限，则共享内存的大小最大可以设置为当前所在节点内存的最大容量。</p>
 </aside>
 <h3 id="环境变量"><a class="header" href="#环境变量">环境变量</a></h3>
-<p>副本环境变量通过 <code>spec.worker.template.spec.containers[*].env</code> 字段指定。MPIJob 支持直接设置环境变量内容和引用其他资源字段作为环境变量两种方式。</p>
+<p>副本环境变量通过 <code>spec.replicaSpecs[worker].template.spec.containers[*].env</code> 字段指定。MPIJob 支持直接设置环境变量内容和引用其他资源字段作为环境变量两种方式。</p>
 <p>在下面的示例中，MPIJob 给副本设置了两个环境变量：<code>ENV_DIRECT</code> 和 <code>ENV_REFERENCED</code>。其中 <code>ENV_DIRECT</code> 环境变量被直接设置为 <code>env-value</code>，<code>ENV_REFERENCED</code> 环境变量引用了 <code>secret-name</code> Secret 的 <code>key-in-secret</code> 字段的内容。</p>
 <pre><code class="language-yaml">apiVersion: batch.tensorstack.dev/v1beta1
 kind: MPIJob
 metadata:
   name: mpi-example
 spec:
-  worker:
+  replicaSpecs:
+  - type: worker
     replicas: 4
     template:
       spec:
@@ -419,7 +433,7 @@ spec:
 <ul>
 <li><code>spec.runMode.pause.resumeSpecs.type</code> 表示作用于的副本类型。</li>
 <li><code>spec.runMode.pause.resumeSpecs.skipInitContainer</code> 表示让副本的 InitContainer 失效，默认为 <code>false</code>。</li>
-<li><code>spec.runMode.pause.resumeSpecs.command</code> 和 <code>spec.runMode.pause.resumeSpecs.args</code> 表示副本在恢复运行时候执行的命令，默认使用 <code>spec.replicaSpecs[0].template</code> 中的命令。</li>
+<li><code>spec.runMode.pause.resumeSpecs.command</code> 和 <code>spec.runMode.pause.resumeSpecs.args</code> 表示副本在恢复运行时候执行的命令，默认使用 <code>spec.replicaSpecs[*].template</code> 中的命令。</li>
 <li>如果不填写 <code>spec.runMode.pause.resumeSpecs</code> 字段，则表示所有副本都使用默认设置。</li>
 </ul>
 </li>
@@ -428,7 +442,7 @@ spec:
 <p>在下面的示例中：</p>
 <ul>
 <li>示例一：开启了暂停模式，并配置 worker 跳过 InitContainer，并执行 <code>/usr/bin/sshd</code>。</li>
-<li>示例二：开启了暂停模式，副本使用默认恢复设置，即不跳过 InitContainer，并执行 <code>spec.replicaSpecs[0].template</code> 中设置的命令。</li>
+<li>示例二：开启了暂停模式，副本使用默认恢复设置，即不跳过 InitContainer，并执行 <code>spec.replicaSpecs[*].template</code> 中设置的命令。</li>
 </ul>
 <pre><code class="language-yaml"># 示例一
 ...

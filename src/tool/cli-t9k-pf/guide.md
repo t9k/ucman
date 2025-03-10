@@ -30,6 +30,16 @@ rm -f "$HOME/Downloads/t9k-pf-$version-$os-$arch.tar.gz"
 t9k-pf version
 ```
 
+<aside class="note tip">
+<div class="title">提示</div>
+
+macOS 系统可能会显示 `未打开 “t9k-pf” Apple 无法验证 “t9k-pf” 是否包含恶意软件` 的提示，可以按照以下步骤进行操作：
+1. 打开 `系统设置` -> `隐私与安全性`。
+2. 在 `安全性` 部分，找到 `已阻止 “t9k-pf” 以保护 Mac` 提示，点击 `仍然允许`。
+3. 确认后，t9k-pf 将正常运行。
+
+</aside>
+
 ### 卸载
 
 删除二进制文件即可卸载 t9k-pf。
@@ -65,10 +75,12 @@ contexts:
 * `contexts`：数组，包含集群相关信息。
     * `name`：字符串，Context 的名称。
     * `server`：字符串，记录访问这个集群服务的域名。
-    * `auth`：，记录认证信息，支持 `apikey` 和 `token` 两种认证方式，需要填写其中一种。
+    * `auth`：记录认证信息，支持 `apikey` 和 `token` 两种认证方式，需要填写其中一种。
+      * `apikey`：API Key 是一种 TensorStack AI 平台的安全认证方式，支持在命令行工具等场景下进行身份认证，可以通过 [管理 API Key](../../guide/account/security-setting.md#管理-api-key) 启用并生成一个 API Key。
+      * `token`：token 是一个 JWT（<a target="_blank" rel="noopener noreferrer" href="https://datatracker.ietf.org/doc/html/rfc7519">JSON Web Token</a>），可以通过 `t9k-pf config auth` 命令并输入用户名和密码登录会生成一个 token。
     * `extension`：记录其他工具需要用到的拓展配置。
 
-### 通过 API Key 进行临时身份认证和授权
+### 通过命令行参数进行临时身份认证和授权
 
 t9k-pf 支持通过命令行参数 `-k,--apikey` 直接指定 API Key，完成单次端口转发的身份认证和授权。
 

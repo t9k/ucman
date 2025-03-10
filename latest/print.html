@@ -11352,6 +11352,15 @@ rm -f &quot;$HOME/Downloads/t9k-pf-$version-$os-$arch.tar.gz&quot;
 <p>安装完成后，运行以下命令来验证安装是否成功：</p>
 <pre><code class="language-bash">t9k-pf version
 </code></pre>
+<aside class="note tip">
+<div class="title">提示</div>
+<p>macOS 系统可能会显示 <code>未打开 “t9k-pf” Apple 无法验证 “t9k-pf” 是否包含恶意软件</code> 的提示，可以按照以下步骤进行操作：</p>
+<ol>
+<li>打开 <code>系统设置</code> -&gt; <code>隐私与安全性</code>。</li>
+<li>在 <code>安全性</code> 部分，找到 <code>已阻止 “t9k-pf” 以保护 Mac</code> 提示，点击 <code>仍然允许</code>。</li>
+<li>确认后，t9k-pf 将正常运行。</li>
+</ol>
+</aside>
 <h3 id="卸载"><a class="header" href="#卸载">卸载</a></h3>
 <p>删除二进制文件即可卸载 t9k-pf。</p>
 <pre><code class="language-bash">rm -f /usr/local/bin/t9k-pf
@@ -11378,12 +11387,17 @@ contexts:
 <ul>
 <li><code>name</code>：字符串，Context 的名称。</li>
 <li><code>server</code>：字符串，记录访问这个集群服务的域名。</li>
-<li><code>auth</code>：，记录认证信息，支持 <code>apikey</code> 和 <code>token</code> 两种认证方式，需要填写其中一种。</li>
+<li><code>auth</code>：记录认证信息，支持 <code>apikey</code> 和 <code>token</code> 两种认证方式，需要填写其中一种。
+<ul>
+<li><code>apikey</code>：API Key 是一种 TensorStack AI 平台的安全认证方式，支持在命令行工具等场景下进行身份认证，可以通过 <a href="tool/cli-t9k-pf/../../guide/account/security-setting.html#%E7%AE%A1%E7%90%86-api-key">管理 API Key</a> 启用并生成一个 API Key。</li>
+<li><code>token</code>：token 是一个 JWT（<a target="_blank" rel="noopener noreferrer" href="https://datatracker.ietf.org/doc/html/rfc7519">JSON Web Token</a>），可以通过 <code>t9k-pf config auth</code> 命令并输入用户名和密码登录会生成一个 token。</li>
+</ul>
+</li>
 <li><code>extension</code>：记录其他工具需要用到的拓展配置。</li>
 </ul>
 </li>
 </ul>
-<h3 id="通过-api-key-进行临时身份认证和授权"><a class="header" href="#通过-api-key-进行临时身份认证和授权">通过 API Key 进行临时身份认证和授权</a></h3>
+<h3 id="通过命令行参数进行临时身份认证和授权"><a class="header" href="#通过命令行参数进行临时身份认证和授权">通过命令行参数进行临时身份认证和授权</a></h3>
 <p>t9k-pf 支持通过命令行参数 <code>-k,--apikey</code> 直接指定 API Key，完成单次端口转发的身份认证和授权。</p>
 <p>例如输入以下指令（其中 <code>notebook &lt;URL&gt;</code> 会在<a href="tool/cli-t9k-pf/./commands.html">命令</a>中介绍，此处只用关注 <code>--apikey</code> 的使用）：</p>
 <pre><code class="language-bash">t9k-pf notebook &lt;url&gt; --apikey

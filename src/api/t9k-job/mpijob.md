@@ -14,9 +14,11 @@ kind: MPIJob
 metadata:
   name: mpi-example
 spec:
-  worker:
-    replicas: 5
-    extraMPIArgs:
+  mpiConfig:
+    home: /usr/local
+    mca:
+      btl: ^openib
+    extraArgs:
       - -N
       - "3"
       - --enable-recovery
@@ -25,15 +27,22 @@ spec:
       - --allow-run-as-root
       - -bind-to
       - none
-    cmd:
+    script:
       - ./random_walk
       - "20"
       - "40"
       - "2"
+  ssh:
+    sshdPath: /usr/sbin/sshd
+  runPolicy:
+    cleanUpWorkers: true
+  replicaSpecs:
+  - type: worker
+    replicas: 4
     template:
       spec:
         containers:
-          - name: mpi-worker
+          - name: worker
             image: t9kpublic/mpi-tutorial:2021022-2
             resources:
               limits:
@@ -41,24 +50,29 @@ spec:
               requests:
                 cpu: 50m
             workingDir: /usr/local/code
-  mca:
-    btl: ^openib
-  runPolicy:
-    cleanUpWorkers: true
-  ssh:
-    sshdPath: /usr/sbin/sshd
-  mpiHome: /usr/local
+  - type: launcher
+    replicas: 1
+    template: {}
 ```
 
 在该例中：
 
-* 创建 5 个执行副本（由 `spec.worker.replicas` 字段指定）。
-* `spec.worker.template` 字段沿用 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/workloads/pods/#pod-templates">PodTemplate</a> 的规约，配置执行副本和启动副本的环境。每个执行副本包含一个名为 `mpi-worker` 的容器（为了确定用于执行 MPI 进程的容器，执行副本定义中必须有一个名为 `mpi-worker` 的容器）。`mpi-worker` 容器创建后执行 `sshd` 命令并等待启动副本连接，所以此容器会忽略 `PodTemplate` 定义中的 `command` 和 `args` 字段（因此该例中没有填写这两个字段）。
-* 在执行副本准备完毕后，启动副本向执行副本发送启动命令，令执行副本创建 3 个 MPI 进程，这些进程分别执行 `./random_walk 20 40 2`（由 `spec.worker.cmd` 字段指定）命令。
-* 在训练过程中不使用 Infiniband 进行通信（由 `spec.mca.btl` 字段指定）。
+* 创建 5 个执行副本（由 `spec.replicaSpecs` 数组中 `type` 为 `worker` 的部分指定）。
+* `spec.replicaSpecs[*].template` 字段沿用 <a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/concepts/workloads/pods/#pod-templates">PodTemplate</a> 的规约，配置执行副本和启动副本的环境。
+* 在执行副本准备完毕后，启动副本向执行副本发送启动命令，令执行副本创建 3 个 MPI 进程，这些进程分别执行 `./random_walk 20 40 2`（由 `spec.mpiConfig.script` 字段指定）命令。
+* 在训练过程中不使用 Infiniband 进行通信（由 `spec.mpiconfig.mca.btl` 字段指定）。
 * 在训练结束后自动清除副本（由 `spec.runPolicy.cleanUpWorkers` 字段指定）来释放集群资源。
 * sshd 的路径为 `/user/sbin/sshd`（由 `spec.ssh.sshdPath` 字段指定，使用该字段的原因是 sshd 程序必须使用绝对路径调用，所以需要其具体路径）。
-* MPI 安装在 `/usr/local` 处（由 `spec.mpiHome` 字段指定，使用该字段的原因是 `mpirun` 的有些功能需要知道 MPI 的根目录地址才能正确运行）。
+* MPI 安装在 `/usr/local` 处（由 `spec.mpiConfig.home` 字段指定，使用该字段的原因是 `mpirun` 的有些功能需要知道 MPI 的根目录地址才能正确运行）。
+
+<aside class="note">
+<div class="title">注意</div>
+
+另外，MPIJob 的执行副本定义中必须包含一个 `name` 是 `worker` 的容器，用来作为训练容器；启动副本应包含一个 `name` 是 `launcher` 的容器，但不是必须的，在未填写 `launcher` 容器配置的情况下，控制器为启动副本设置默认容器配置。
+
+执行副本实际执行的命令是启动 `sshd`，所以执行副本的训练容器的 `command` 和 `args` 字段不再生效，而是由启动脚本向执行脚本发送启动命令，具体命令根据 `spec.mpiConfig` 自动生成。
+
+</aside>
 
 ## 运行 Horovod 训练脚本
 
@@ -73,7 +87,7 @@ Horovod 框架的分布式训练脚本一般使用 `horovodrun` 命令启动；�
 
 在 MPIJob 中需要执行以下操作：
 
-1. 在 `spec.worker.template.spec.containers[mpi-worker].env` 字段中添加 `NCCL_DEBUG`；
+1. 在 `spec.replicaSpecs[worker].template.spec.containers[worker].env` 字段中添加 `NCCL_DEBUG`；
 2. 在 `spec.mca` 字段中添加 `pml:ob1` 和 `btl:^openib`。
 
 下面是使用 MPIJob 执行 Horovod 框架的分布式训练脚本的示例：
@@ -87,11 +101,12 @@ spec:
   mca:
     btl: ^openib
     pml: ob1
-  worker:
+  replicaSpecs:
+  - type: worker
     template:
       spec:
         containers:
-          - name: mpi-worker
+          - name: worker
             env: 
             - name: "NCCL_DEBUG"
               value: "INFO"
@@ -100,11 +115,11 @@ spec:
 
 ## 副本设置
 
-MPIJob 副本运行环境和命令可以通过 `spec.worker.template` 进行配置，可配置内容包括镜像、运行命令、资源配置、环境变量等。
+MPIJob 副本运行环境和命令可以通过 `spec.replicaSpecs[worker].template` 进行配置，可配置内容包括镜像、运行命令、资源配置、环境变量等。
 
 ### 资源配置
 
-副本资源配置通过 `spec.worker.template.spec.containers[*].resources` 字段指定。
+副本资源配置通过 `spec.replicaSpecs[worker].template.spec.containers[*].resources` 字段指定。
 
 MPIJob 的资源配置包括两部分：
 
@@ -122,7 +137,8 @@ kind: MPIJob
 metadata:
   name: mpi-example
 spec:
-  worker:
+  replicaSpecs:
+  - type: worker
     replicas: 4
     template:
       spec:
@@ -146,7 +162,8 @@ kind: MPIJob
 metadata:
   name: mpi-example
 spec:
-  worker:
+  replicaSpecs:
+  - type: worker
     replicas: 4
     template:
       spec:
@@ -164,8 +181,8 @@ spec:
 
 在该例中：
 
-* 在 `spec.worker.template.spec.volumes` 中增加一项，名称为 `dshm`，其中限制共享内存最大为 `1Gi`；
-* 在 `spec.worker.template.spec.containers[*].volumeMounts` 中增加一项，将上述 `dshm` 绑定到 `/dev/shm` 路径。
+* 在 `spec.replicaSpecs[worker].template.spec.volumes` 中增加一项，名称为 `dshm`，其中限制共享内存最大为 `1Gi`；
+* 在 `spec.replicaSpecs[worker].template.spec.containers[*].volumeMounts` 中增加一项，将上述 `dshm` 绑定到 `/dev/shm` 路径。
 
 <aside class="note tip">
 <div class="title">提示</div>
@@ -176,7 +193,7 @@ spec:
 
 ### 环境变量
 
-副本环境变量通过 `spec.worker.template.spec.containers[*].env` 字段指定。MPIJob 支持直接设置环境变量内容和引用其他资源字段作为环境变量两种方式。
+副本环境变量通过 `spec.replicaSpecs[worker].template.spec.containers[*].env` 字段指定。MPIJob 支持直接设置环境变量内容和引用其他资源字段作为环境变量两种方式。
 
 在下面的示例中，MPIJob 给副本设置了两个环境变量：`ENV_DIRECT` 和 `ENV_REFERENCED`。其中 `ENV_DIRECT` 环境变量被直接设置为 `env-value`，`ENV_REFERENCED` 环境变量引用了 `secret-name` Secret 的 `key-in-secret` 字段的内容。
 
@@ -186,7 +203,8 @@ kind: MPIJob
 metadata:
   name: mpi-example
 spec:
-  worker:
+  replicaSpecs:
+  - type: worker
     replicas: 4
     template:
       spec:
@@ -270,7 +288,7 @@ MPIJob 支持暂停模式。在该模式下，删除（或不创建）副本，�
 * `spec.runMode.pause.resumeSpecs` 表示结束暂停后，如何恢复各个副本：
     * `spec.runMode.pause.resumeSpecs.type` 表示作用于的副本类型。
     * `spec.runMode.pause.resumeSpecs.skipInitContainer` 表示让副本的 InitContainer 失效，默认为 `false`。
-    * `spec.runMode.pause.resumeSpecs.command` 和 `spec.runMode.pause.resumeSpecs.args` 表示副本在恢复运行时候执行的命令，默认使用 `spec.replicaSpecs[0].template` 中的命令。
+    * `spec.runMode.pause.resumeSpecs.command` 和 `spec.runMode.pause.resumeSpecs.args` 表示副本在恢复运行时候执行的命令，默认使用 `spec.replicaSpecs[*].template` 中的命令。
     * 如果不填写 `spec.runMode.pause.resumeSpecs` 字段，则表示所有副本都使用默认设置。
 
 用户可以随时修改 `spec.runMode.pause.enabled` 来控制任务暂停，但是不可以更改 `spec.runMode.pause.resumeSpecs`，所以如果有暂停 MPIJob 的需求，请提前设置好恢复设置。
@@ -278,7 +296,7 @@ MPIJob 支持暂停模式。在该模式下，删除（或不创建）副本，�
 在下面的示例中：
 
 * 示例一：开启了暂停模式，并配置 worker 跳过 InitContainer，并执行 `/usr/bin/sshd`。
-* 示例二：开启了暂停模式，副本使用默认恢复设置，即不跳过 InitContainer，并执行 `spec.replicaSpecs[0].template` 中设置的命令。
+* 示例二：开启了暂停模式，副本使用默认恢复设置，即不跳过 InitContainer，并执行 `spec.replicaSpecs[*].template` 中设置的命令。
 
 ```yaml
 # 示例一

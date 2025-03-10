@@ -14,6 +14,8 @@ Package v1beta1 contains API Schema definitions for the batch v1beta1 API group
 
 
 
+
+
 #### ColossalAIJob
 
 
@@ -27,7 +29,7 @@ _Appears in:_
 | --- | --- |
 | `apiVersion` _string_ | `batch.tensorstack.dev/v1beta1`
 | `kind` _string_ | `ColossalAIJob`
-| `metadata` _<a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#objectmeta-v1-meta">ObjectMeta</a>_ | Refer to Kubernetes API documentation for fields of `metadata`. |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
 | `spec` _[ColossalAIJobSpec](#colossalaijobspec)_ |  |
 | `status` _[ColossalAIJobStatus](#colossalaijobstatus)_ |  |
 
@@ -44,7 +46,7 @@ ColossalAIJobList contains a list of ColossalAIJob.
 | --- | --- |
 | `apiVersion` _string_ | `batch.tensorstack.dev/v1beta1`
 | `kind` _string_ | `ColossalAIJobList`
-| `metadata` _<a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#listmeta-v1-meta">ListMeta</a>_ | Refer to Kubernetes API documentation for fields of `metadata`. |
+| `metadata` _[ListMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#listmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
 | `items` _[ColossalAIJob](#colossalaijob) array_ |  |
 
 
@@ -63,8 +65,8 @@ _Appears in:_
 | `runMode` _[RunMode](#runmode)_ | The desired running mode of the job, defaults to `Immediate`. |
 | `runPolicy` _[RunPolicy](#runpolicy)_ | Controls the handling of completed replicas and other related processes. |
 | `scheduler` _SchedulePolicy_ | Specifies the scheduler to request for resources. Defaults to cluster default scheduler. |
-| `launcher` _[Launcher](#launcher)_ | Specication for the launcher replica. |
-| `worker` _[Worker](#worker)_ | Specication for the launcher replica. |
+| `torchConfig` _[TorchConfig](#torchconfig)_ | Describes how to start the colossalai job. |
+| `replicaSpecs` _[ReplicaSpec](#replicaspec) array_ | List of replica specs belonging to the job. There must be at least one replica defined for a Job. |
 
 
 #### ColossalAIJobStatus
@@ -84,21 +86,58 @@ _Appears in:_
 | `conditions` _[JobCondition](#jobcondition) array_ | The latest available observations of an object's current state. |
 
 
-#### Launcher
+#### ReplicaSpec
 
 
 
-Specification of replica `launcher`.
+ReplicaSpec defines the desired state of replicas.
 
 _Appears in:_
 - [ColossalAIJobSpec](#colossalaijobspec)
 
 | Field | Description |
 | --- | --- |
-| `image` _string_ | Container image name. |
-| `workingDir` _string_ | Working directory of container `launcher`. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated. |
-| `env` _<a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#envvar-v1-core">EnvVar</a> array_ | List of environment variables set for the container. Cannot be updated. |
-| `resources` _<a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#resourcerequirements-v1-core">ResourceRequirements</a>_ | Compute Resources required by this container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/ |
+| `type` _[ReplicaType](#replicatype)_ | Replica type. |
+| `replicas` _integer_ | The desired number of replicas of this replica type. Defaults to 1. |
+| `restartPolicy` _[RestartPolicy](#restartpolicy)_ | Restart policy for replicas of this replica type. One of Always, OnFailure, Never. Optional: Default to OnFailure. |
+| `template` _[PodTemplateSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#podtemplatespec-v1-core)_ | Defines the template used to create pods. |
+
+
+#### ReplicaType
+
+_Underlying type:_ `string`
+
+
+
+_Appears in:_
+- [ReplicaSpec](#replicaspec)
+
+
+
+#### RestartPolicy
+
+
+
+RestartPolicy describes how the replica should be restarted.
+
+_Appears in:_
+- [ReplicaSpec](#replicaspec)
+
+| Field | Description |
+| --- | --- |
+| `policy` _[RestartPolicyType](#restartpolicytype)_ | The policy to restart finished replica. |
+| `limit` _integer_ | The maximum number of restarts. Optional: Default to 0. |
+
+
+#### RestartPolicyType
+
+_Underlying type:_ `string`
+
+
+
+_Appears in:_
+- [RestartPolicy](#restartpolicy)
+
 
 
 #### RunPolicy
@@ -130,21 +169,19 @@ _Appears in:_
 | `sshdPath` _string_ | The location of the sshd executable file. |
 
 
-#### Worker
+#### TorchConfig
 
 
 
-Specification of the worker replicas.
+MPIConfig describes how to start the mpi job.
 
 _Appears in:_
 - [ColossalAIJobSpec](#colossalaijobspec)
 
 | Field | Description |
 | --- | --- |
-| `replicas` _integer_ | Number of replicas to launch. Defaults to 1. |
 | `procPerWorker` _integer_ | The number of processes of a worker. Defaults to 1. |
-| `command` _string array_ | Specifies the command used to start the workers. |
-| `torchArgs` _string array_ | Args of torchrun. |
-| `template` _<a target="_blank" rel="noopener noreferrer" href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#podtemplatespec-v1-core">PodTemplateSpec</a>_ | Template defines the workers that will be created from this pod template. |
+| `script` _string array_ | Specifies the command used to start the workers. |
+| `extraArgs` _string array_ | Args of torchrun. |
 
 

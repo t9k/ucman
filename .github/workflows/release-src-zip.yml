@@ -1,0 +1,38 @@
+name: Build and publish src zip
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - 'src/**'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  zip-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create zip for src/
+        run: |
+          zip -r ucman-src.zip src/
+
+      - name: Create or update release (md-src-latest)
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: md-src-latest
+          name: Markdown Source (latest)
+          body: Auto-generated from ${{ github.sha }}
+          draft: false
+          prerelease: false
+          files: |
+            ucman-src.zip
+          make_latest: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+

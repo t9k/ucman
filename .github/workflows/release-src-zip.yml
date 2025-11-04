@@ -19,7 +19,7 @@ jobs:
 
       - name: Create zip for src/
         run: |
-          zip -r ucman-src.zip src/
+          zip -r ucman.zip src/
 
       - name: Create or update release (md-src-latest)
         uses: softprops/action-gh-release@v2
@@ -30,7 +30,7 @@ jobs:
           draft: false
           prerelease: false
           files: |
-            ucman-src.zip
+            ucman.zip
           make_latest: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
